@@ -106,12 +106,43 @@
  "tileheight":32,
  "tilesets":[
         {
+         "columns":16,
          "firstgid":1,
-         "source":"wood_tileset_use.json"
+         "image":"wood_tileset.png",
+         "imageheight":512,
+         "imagewidth":512,
+         "margin":0,
+         "name":"wood_tileset",
+         "spacing":0,
+         "tilecount":256,
+         "tileheight":32,
+         "tilewidth":32
         }, 
         {
+         "columns":8,
          "firstgid":257,
-         "source":"magecity_use.json"
+         "image":"magecity.png",
+         "imageheight":1450,
+         "imagewidth":256,
+         "margin":0,
+         "name":"magecity",
+         "spacing":0,
+         "tilecount":360,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":11,
+         "firstgid":617,
+         "image":"indoor.png",
+         "imageheight":384,
+         "imagewidth":352,
+         "margin":0,
+         "name":"indoor",
+         "spacing":0,
+         "tilecount":132,
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":32,
  "type":"map",

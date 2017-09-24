@@ -25,7 +25,6 @@ demo.state1.prototype = {
         var stairs = map.createLayer('stairs');
         var buildings = map.createLayer('buildings');
         
-        TACOTACOTACOTACOTACO
     },
     update: function(){}
 };
