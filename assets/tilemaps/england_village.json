@@ -107,11 +107,11 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"woo_tileset_use.tsx"
+         "source":"woo_tileset_use.json"
         }, 
         {
          "firstgid":257,
-         "source":"magecity_use.tsx"
+         "source":"magecity_use.json"
         }],
  "tilewidth":32,
  "type":"map",

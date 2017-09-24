@@ -1,0 +1,12 @@
+{ "columns":8,
+ "image":"magecity.png",
+ "imageheight":1450,
+ "imagewidth":256,
+ "margin":0,
+ "name":"magecity",
+ "spacing":0,
+ "tilecount":360,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}
