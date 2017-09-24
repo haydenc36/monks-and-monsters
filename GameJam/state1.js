@@ -1,3 +1,4 @@
+// ENGLAND VILLAGE
 var demo = {};
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -9,7 +10,7 @@ demo.state1.prototype = {
         
     },
     create:function(){
-        game.stage.backgroundColor = '#DDDDDD';
+        //game.stage.backgroundColor = '#DDDDDD';
 
         var map = game.add.tilemap('england_village');
         map.addTilesetImage('magecity');
@@ -24,7 +25,7 @@ demo.state1.prototype = {
         var windows = map.createLayer('windows');
         var stairs = map.createLayer('stairs');
         var buildings = map.createLayer('buildings');
-        
+
     },
     update: function(){}
 };

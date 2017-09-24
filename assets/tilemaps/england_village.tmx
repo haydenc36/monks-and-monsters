@@ -4,7 +4,7 @@
   <image source="wood_tileset.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="257" name="magecity" tilewidth="32" tileheight="32" tilecount="360" columns="8">
-  <image source="magecity.png" width="256" height="1450"/>
+  <image source="magecity.png" width="256" height="1440"/>
  </tileset>
  <tileset firstgid="617" name="indoor" tilewidth="32" tileheight="32" tilecount="132" columns="11">
   <image source="indoor.png" width="352" height="384"/>
