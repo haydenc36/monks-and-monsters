@@ -3,7 +3,7 @@ demo.state1 = function(){};
 demo.state1.prototype = {
     preload: function(){
         
-        game.load.tilemap('england_village', '../assets/tilemaps/england_village.tmx', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('england_village', '../assets/tilemaps/england_village.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('magecity', '../assets/tilemaps/magecity.png');
         game.load.image('tileset', '../assets/tilemaps/wood_tileset.png');
         
@@ -25,6 +25,7 @@ demo.state1.prototype = {
         var stairs = map.createLayer('stairs');
         var buildings = map.createLayer('buildings');
         
+        TACOTACOTACOTACOTACO
     },
     update: function(){}
 };
