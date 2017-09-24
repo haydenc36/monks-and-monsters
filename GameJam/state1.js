@@ -9,7 +9,7 @@ demo.state1.prototype = {
         
     },
     create:function(){
-        game.state.backgroundColor = '#DDDDDD';
+        game.stage.backgroundColor = '#DDDDDD';
 
         var map = game.add.tilemap('england_village');
         map.addTilesetImage('magecity');

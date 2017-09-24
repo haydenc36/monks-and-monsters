@@ -107,7 +107,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"woo_tileset_use.json"
+         "source":"wood_tileset_use.json"
         }, 
         {
          "firstgid":257,
