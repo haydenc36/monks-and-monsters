@@ -5,7 +5,7 @@ demo.state1.prototype = {
         
         game.load.tilemap('england_village', '../assets/tilemaps/england_village.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('magecity', '../assets/tilemaps/magecity.png');
-        game.load.image('tileset', '../assets/tilemaps/wood_tileset.png');
+        game.load.image('wood_tileset', '../assets/tilemaps/wood_tileset.png');
         
     },
     create:function(){
@@ -13,7 +13,7 @@ demo.state1.prototype = {
 
         var map = game.add.tilemap('england_village');
         map.addTilesetImage('magecity');
-        map.addTilesetImage('tileset');
+        map.addTilesetImage('wood_tileset');
         
         var grass = map.createLayer('grass');
         var trees = map.createLayer('trees');
