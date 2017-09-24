@@ -17,8 +17,8 @@ demo.state1.prototype = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
         
         //Adjust camera settings
-        game.world.setBounds(0,0, 3200, 3200);
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        //game.world.setBounds(0,0, 3200, 3200);
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         var map = game.add.tilemap('england_village');
         map.addTilesetImage('magecity');
@@ -42,8 +42,8 @@ demo.state1.prototype = {
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Adjust the camera
-        game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectange(0, 800, 800, 800);
+        //game.camera.follow(monk);
+        //game.camera.deadzone = new Phaser.Rectange(0, 800, 800, 800);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
