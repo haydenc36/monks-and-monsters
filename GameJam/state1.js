@@ -1,6 +1,6 @@
 // ENGLAND VILLAGE
 var demo = {};
-var monk, speed = 5;
+var monk, speed;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -15,6 +15,7 @@ demo.state1.prototype = {
     create:function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
+        speed = 10; 
         
         //Adjust camera settings
         //game.world.setBounds(0,0, 3200, 3200);

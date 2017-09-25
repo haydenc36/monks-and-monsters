@@ -1,5 +1,5 @@
 // ENGLAND BUILDING
-var monk, speed = 2;
+var monk;
 
 demo.state2 = function(){};
 demo.state2.prototype = {
@@ -13,6 +13,7 @@ demo.state2.prototype = {
     create:function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
+        speed = 6; 
         
         //Adjust camera settings
         game.world.setBounds(0,0, 480, 640);

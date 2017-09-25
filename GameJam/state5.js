@@ -1,5 +1,5 @@
 // England Monster Lair
-var monk, speed = 2;
+var monk, speed;
 
 demo.state5 = function(){};
 demo.state5.prototype = {
@@ -13,6 +13,7 @@ demo.state5.prototype = {
     create:function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
+        speed = 5;
         
         //Adjust camera settings
         game.world.setBounds(0,0, 800, 800);
