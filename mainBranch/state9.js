@@ -1,3 +1,4 @@
+hello
 // Satan's Temple
 demo.state9 = function(){};
 demo.state9.prototype = {
