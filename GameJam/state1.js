@@ -18,7 +18,7 @@ demo.state1.prototype = {
         speed = 10; 
         
         //Adjust camera settings
-        game.world.setBounds(0,0, 32, 32);
+        game.world.setBounds(0,0, 3200, 3200);
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
