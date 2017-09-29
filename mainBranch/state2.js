@@ -16,7 +16,7 @@ demo.state2.prototype = {
         speed = 6; 
         
         //Adjust camera settings
-        game.world.setBounds(0,0, 3200, 1200);
+        game.world.setBounds(0,0, 2400, 3400);
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         var map = game.add.tilemap('england_building');
@@ -29,6 +29,14 @@ demo.state2.prototype = {
         var statue = map.createLayer('statue');
         var food_drink = map.createLayer('food_drink');
         var hidden_furniture = map.createLayer('hidden_furniture');
+        
+        floor.scale.set(5);
+        wall.scale.set(5);
+        furniture.scale.set(5);
+        windows.scale.set(5);
+        statue.scale.set(5);
+        food_drink.scale.set(5);
+        hidden_furniture.scale.set(5);
         
         // Initialize the monk character
         monk = game.add.sprite(0, 0, 'monk');
