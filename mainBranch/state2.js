@@ -6,7 +6,7 @@ demo.state2.prototype = {
     preload: function(){
         game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
         game.load.tilemap('england_building', '../assets/tilemaps/england_building.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('magecity', '../assets/tilemaps/magecity.png');
+        game.load.image('village_tileset', '../assets/tilemaps/village_tileset.png');
         
     },
     
@@ -20,7 +20,7 @@ demo.state2.prototype = {
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         var map = game.add.tilemap('england_building');
-        map.addTilesetImage('magecity');
+        map.addTilesetImage('village_tileset');
         
         var floor = map.createLayer('floor');
         var wall = map.createLayer('wall');

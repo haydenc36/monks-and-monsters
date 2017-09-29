@@ -20,7 +20,7 @@ demo.state1.prototype = {
         //Adjust camera settings
         game.world.setBounds(0,0, 3200, 3200);
         //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         var map = game.add.tilemap('england_village');
         map.addTilesetImage('magecity');
@@ -37,14 +37,14 @@ demo.state1.prototype = {
         var buildings = map.createLayer('buildings');
         
         // Initialize the monk character
-        monk = game.add.sprite(0, 0, 'monk');
+        monk = game.add.sprite(3200, 1632, 'monk');
         monk.anchor.setTo(0.5, 0.5);
         game.physics.arcade.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Adjust the camera
-        //game.camera.follow(monk);
+        game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectange(0, 800, 800, 800);
         
         // Controls
