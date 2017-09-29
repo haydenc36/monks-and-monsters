@@ -19,8 +19,8 @@ demo.state1.prototype = {
         
         //Adjust camera settings
         game.world.setBounds(0,0, 3200, 3200);
-        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         var map = game.add.tilemap('england_village');
         map.addTilesetImage('magecity');
