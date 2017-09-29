@@ -1,5 +1,5 @@
 // Merchant's House
-var monk;
+//var monk;
 
 demo.state2 = function(){};
 demo.state2.prototype = {
@@ -40,6 +40,7 @@ demo.state2.prototype = {
         
         // Initialize the monk character
         monk = game.add.sprite(0, 0, 'monk');
+        monk.scale.setTo(1, 1);
         monk.anchor.setTo(0.5, 0.5);
         game.physics.arcade.enable(monk);
         monk.body.collideWorldBounds = true;
