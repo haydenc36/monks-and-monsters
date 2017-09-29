@@ -1,40 +1,32 @@
-// English Village
-var demo = {};
+// England Monster Lair
 var monk, speed;
 
-demo.state1 = function(){};
-demo.state1.prototype = {
-    
+demo.state5 = function(){};
+demo.state5.prototype = {
     preload: function(){
-        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
-        game.load.tilemap('england_village', '../assets/tilemaps/england_village.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('magecity', '../assets/tilemaps/magecity.png');
-        game.load.image('wood_tileset', '../assets/tilemaps/wood_tileset.png');
+        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32); 
+        game.load.tilemap('MonsterLair', '../assets/tilemaps/MonsterLair.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('ground', '../assets/tilemaps/ground_tiles.png');
+        game.load.image('obj', '../assets/tilemaps/object-layer.png');
     },
     
     create:function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        speed = 10; 
+        speed = 5;
         
         //Adjust camera settings
-        game.world.setBounds(0,0, 32, 32);
-        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.world.setBounds(0,0, 800, 800);
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
-        var map = game.add.tilemap('england_village');
-        map.addTilesetImage('magecity');
-        map.addTilesetImage('wood_tileset');
+        var map = game.add.tilemap('MonsterLair');
+        map.addTilesetImage('ground');
+        map.addTilesetImage('obj');
         
-        var grass = map.createLayer('grass');
-        var trees = map.createLayer('trees');
-        var paths = map.createLayer('paths');
-        var city_gate = map.createLayer('city_gate');
-        var leaves = map.createLayer('leaves');
-        var fences = map.createLayer('fences');
-        var windows = map.createLayer('windows');
-        var stairs = map.createLayer('stairs');
-        var buildings = map.createLayer('buildings');
+        var sand = map.createLayer('Sand');
+        var sanddeets = map.createLayer('SandDetails');
+        var rocks = map.createLayer('Rock');
+        var bar = map.createLayer('Barrel');
         
         // Initialize the monk character
         monk = game.add.sprite(0, 0, 'monk');
@@ -44,11 +36,12 @@ demo.state1.prototype = {
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Adjust the camera
-        //game.camera.follow(monk);
+        game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectange(0, 800, 800, 800);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
+        
     },
     
     update: function(){
