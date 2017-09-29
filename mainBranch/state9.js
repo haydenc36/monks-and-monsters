@@ -1,9 +1,10 @@
+<<<<<<< HEAD
 hhdsfjkhskfhd<<<<<<< HEAD
 hello
-// Satan's Temple
 =======
-// Satan's Temple bsafbasbdfhksabfhksbdfk
->>>>>>> 7c067d3a9dda00f6d591e048c452585a5eaba8d9
+mochi
+>>>>>>> 42afdea338812c6580e18877ebcc4f3fbabeaabb
+// Satan's Temple
 demo.state9 = function(){};
 demo.state9.prototype = {
     preload: function(){},
