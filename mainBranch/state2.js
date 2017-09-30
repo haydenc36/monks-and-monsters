@@ -39,9 +39,6 @@ demo.state2.prototype = {
         hidden_furniture.scale.set(5);
         
         // Initialize the monk character
-        monk = game.add.sprite(0, 0, 'monk');
-        monk.scale.setTo(1, 1);
-        monk.anchor.setTo(0.5, 0.5);
         monk = game.add.sprite(1200, 3168, 'monk');
         monk.scale.set(5);
         game.physics.arcade.enable(monk);
