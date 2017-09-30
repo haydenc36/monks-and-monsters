@@ -8,9 +8,4 @@ game.state.add('state6', demo.state6);
 game.state.add('state7', demo.state7);
 game.state.add('state8', demo.state8);
 game.state.add('state9', demo.state9);
-<<<<<<< HEAD
-game.state.add('state10', demo.state10);
 game.state.start('state1');
-=======
-game.state.start('state2');
->>>>>>> 7c067d3a9dda00f6d591e048c452585a5eaba8d9
