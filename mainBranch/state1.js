@@ -19,7 +19,6 @@ demo.state1.prototype = {
         //addChangeStateEventListeners();
         
         //Adjust camera settings
-        //game.world.setBounds(0,0, 2400, 2400);
         //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
