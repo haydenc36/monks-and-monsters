@@ -39,14 +39,11 @@ demo.state2.prototype = {
         hidden_furniture.scale.set(5);
         
         // Initialize the monk character
-<<<<<<< HEAD
         monk = game.add.sprite(0, 0, 'monk');
         monk.scale.setTo(1, 1);
         monk.anchor.setTo(0.5, 0.5);
-=======
         monk = game.add.sprite(1200, 3168, 'monk');
         monk.scale.set(5);
->>>>>>> 7c067d3a9dda00f6d591e048c452585a5eaba8d9
         game.physics.arcade.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
