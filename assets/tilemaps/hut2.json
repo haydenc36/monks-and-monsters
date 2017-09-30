@@ -1,0 +1,13 @@
+{ "columns":32,
+ "image":"..\/..\/..\/..\/..\/Downloads\/T_simple_hut\/simple hut AA tileset 1.BMP",
+ "imageheight":1024,
+ "imagewidth":1024,
+ "margin":0,
+ "name":"hut2",
+ "spacing":0,
+ "tilecount":1024,
+ "tileheight":32,
+ "tilewidth":32,
+ "transparentcolor":"#ff00ff",
+ "type":"tileset"
+}

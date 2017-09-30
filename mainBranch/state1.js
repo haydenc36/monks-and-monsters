@@ -1,6 +1,6 @@
 // English Village
 var demo = {};
-var monk, cursors, vel;
+var monk, cursors, vel, buildings;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -15,13 +15,15 @@ demo.state1.prototype = {
     create:function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel = 300;
+        vel = 400;
         //addChangeStateEventListeners();
         
         //Adjust camera settings
+        game.world.setBounds(0, 0, 2400, 2400);
         //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
+        // Initialize the map
         var map = game.add.tilemap('england_village');
         map.addTilesetImage('village_tileset');
         map.addTilesetImage('village_tileset2');
@@ -34,28 +36,30 @@ demo.state1.prototype = {
         var fences = map.createLayer('fences');
         var windows = map.createLayer('windows');
         var stairs = map.createLayer('stairs');
-        var buildings = map.createLayer('buildings');
+        buildings = map.createLayer('buildings');
         
         // Allow for collisions
-        //map.setCollisionBetween()
+        map.setCollisionBetween(1, 203, true, 'buildings')
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2100, 'monk');
         monk.scale.set(2.5);
         game.physics.enable(monk);
-        monk.anchor.setTo(0.5, 0.5);
-        
         monk.body.collideWorldBounds = true;
+        monk.anchor.setTo(0.5, 0.5);
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Adjust the camera
         //game.camera.follow(monk);
+        //game.camera.deadzone = new Phaser.Rectangle(100, 400, 1000, 1000);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
     },
     
     update: function(){
+        
+        game.physics.arcade.collide(monk, buildings);
         
         // Set movement controls
         if (cursors.up.isDown){

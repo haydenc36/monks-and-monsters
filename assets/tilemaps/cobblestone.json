@@ -1,0 +1,13 @@
+{ "columns":16,
+ "image":"..\/..\/..\/..\/..\/Downloads\/T_cobblesroad\/cobblesroad tileset 1.bmp",
+ "imageheight":1024,
+ "imagewidth":512,
+ "margin":0,
+ "name":"cobblesroad",
+ "spacing":0,
+ "tilecount":512,
+ "tileheight":32,
+ "tilewidth":32,
+ "transparentcolor":"#ff00ff",
+ "type":"tileset"
+}

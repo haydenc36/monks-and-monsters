@@ -1,0 +1,13 @@
+{ "columns":24,
+ "image":"..\/..\/..\/..\/..\/Downloads\/T_barracks 2\/barracks light AA tileset.bmp",
+ "imageheight":1024,
+ "imagewidth":768,
+ "margin":0,
+ "name":"barracks",
+ "spacing":0,
+ "tilecount":768,
+ "tileheight":32,
+ "tilewidth":32,
+ "transparentcolor":"#ff00ff",
+ "type":"tileset"
+}
