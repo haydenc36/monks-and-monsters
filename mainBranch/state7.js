@@ -32,7 +32,7 @@ demo.state7.prototype = {
         var path = map.createLayer('path');
         
         // Allow for collisions
-        map.setCollisionBetween(1, 203, true, 'trees')
+        map.setCollisionBetween(1, 203, true, 'trees');
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2000, 'monk');

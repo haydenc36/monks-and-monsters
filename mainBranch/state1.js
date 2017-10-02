@@ -34,13 +34,13 @@ demo.state1.prototype = {
     create: function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel = 600;
+        vel = 200;
         //addChangeStateEventListeners();
         
         //Adjust camera settings
         game.world.setBounds(0, 0, 2400, 2400);
-        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         // Integrate the map
         var map = game.add.tilemap('england_village');
@@ -94,8 +94,8 @@ demo.state1.prototype = {
         
         
         // Adjust the camera
-        //game.camera.follow(monk);
-        //game.camera.deadzone = new Phaser.Rectangle(100, 400, 1000, 1000);
+        game.camera.follow(monk);
+        game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 500);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
