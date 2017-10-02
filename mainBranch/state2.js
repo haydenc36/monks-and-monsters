@@ -5,8 +5,8 @@ demo.state2 = function(){};
 demo.state2.prototype = {
     preload: function(){
         game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
-        game.load.tilemap('england_vendor', '../assets/tilemaps/england_vendor.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('village_tileset', '../assets/tilemaps/village_tileset.png');
+        game.load.tilemap('england_vendor', '../assets/tilemaps/files/england_vendor.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
         
     },
     

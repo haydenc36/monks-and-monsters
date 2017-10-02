@@ -7,7 +7,7 @@ demo.state1.prototype = {
     
     preload: function(){
         game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
-        game.load.tilemap('england_village', '../assets/tilemaps/tilesets/england_village.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('england_village', '../assets/tilemaps/files/england_village.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
         game.load.image('barracks', '../assets/tilemaps/tilesets/barracks.bmp');
         game.load.image('castle', '../assets/tilemaps/tilesets/castle.bmp');
@@ -42,11 +42,32 @@ demo.state1.prototype = {
         //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
-        // Initialize the map
+        // Integrate the map
         var map = game.add.tilemap('england_village');
-        map.addTilesetImage('village_tileset');
-        map.addTilesetImage('village_tileset2');
         
+        // Integrate the tilesets into the map
+        map.addTilesetImage('village_tileset2');
+        map.addTilesetImage('barracks');
+        map.addTilesetImage('castle');
+        map.addTilesetImage('castle1');
+        map.addTilesetImage('chapel');
+        map.addTilesetImage('door');
+        map.addTilesetImage('farmhouse');
+        map.addTilesetImage('huts2');
+        map.addTilesetImage('huts');
+        map.addTilesetImage('lodges');
+        map.addTilesetImage('lodges2');
+        map.addTilesetImage('monastery');
+        map.addTilesetImage('mountain');
+        map.addTilesetImage('pub');
+        map.addTilesetImage('sawmill');
+        map.addTilesetImage('stable2');
+        map.addTilesetImage('stonehut');
+        map.addTilesetImage('timbered');
+        map.addTilesetImage('town');
+        map.addTilesetImage('walltowers');
+        
+        // Integrate the layers
         var grass = map.createLayer('grass');
         var path2 = map.createLayer('path2');
         var grass2 = map.createLayer('grass2');
@@ -64,10 +85,10 @@ demo.state1.prototype = {
         // Initialize the monk character
         monk = game.add.sprite(0, 2100, 'monk');
         monk.scale.set(2.5);
-        game.physics.enable(monk);
-        monk.body.collideWorldBounds = true;
-        monk.anchor.setTo(0.5, 0.5);
-        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+//        game.physics.enable(monk);
+//        monk.body.collideWorldBounds = true;
+//        monk.anchor.setTo(0.5, 0.5);
+//        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Adjust the camera
         //game.camera.follow(monk);
