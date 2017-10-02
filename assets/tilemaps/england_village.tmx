@@ -4,43 +4,43 @@
   <image source="tilesets/village_tileset2.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="257" name="stonehut" tilewidth="32" tileheight="32" tilecount="775" columns="31">
-  <image source="tilesets/hut3.bmp" width="1013" height="821"/>
+  <image source="tilesets/hut3.png" width="1013" height="821"/>
  </tileset>
  <tileset firstgid="1032" name="lodges" tilewidth="32" tileheight="32" tilecount="864" columns="32">
-  <image source="tilesets/lodge.bmp" width="1024" height="864"/>
+  <image source="tilesets/lodge.png" width="1024" height="864"/>
  </tileset>
  <tileset firstgid="1896" name="lodges2" tilewidth="32" tileheight="32" tilecount="864" columns="32">
-  <image source="tilesets/lodge2.bmp" width="1024" height="864"/>
+  <image source="tilesets/lodge2.png" width="1024" height="864"/>
  </tileset>
  <tileset firstgid="2760" name="sawmill" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/sawmill.bmp" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/sawmill.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="3784" name="huts" tilewidth="32" tileheight="32" tilecount="512" columns="16">
-  <image source="tilesets/hut2.BMP" trans="ff00ff" width="512" height="1024"/>
+  <image source="tilesets/hut2.png" trans="ff00ff" width="512" height="1024"/>
  </tileset>
  <tileset firstgid="4296" name="hut2" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/hut.BMP" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/hut.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="5320" name="stable2" tilewidth="32" tileheight="32" tilecount="512" columns="16">
-  <image source="tilesets/stable.bmp" trans="ff00ff" width="512" height="1024"/>
+  <image source="tilesets/stable.png" trans="ff00ff" width="512" height="1024"/>
  </tileset>
  <tileset firstgid="5832" name="farmhouse" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/farmhouse.BMP" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/farmhouse.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="6856" name="pub" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/pub.bmp" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/pub.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="7880" name="town" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/beautiful.bmp" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/beautiful.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="8904" name="castle1" tilewidth="32" tileheight="32" tilecount="768" columns="32">
-  <image source="tilesets/castle1.bmp" trans="ff00ff" width="1024" height="768"/>
+  <image source="tilesets/castle1.png" trans="ff00ff" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="9672" name="barracks" tilewidth="32" tileheight="32" tilecount="768" columns="24">
-  <image source="tilesets/barracks.bmp" trans="ff00ff" width="768" height="1024"/>
+  <image source="tilesets/barracks.png" trans="ff00ff" width="768" height="1024"/>
  </tileset>
  <tileset firstgid="10440" name="timbered" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/timbered.bmp" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/timbered.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="11464" name="monastery" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="tilesets/monastery.png" trans="ff00ff" width="512" height="512"/>
@@ -52,13 +52,13 @@
   <image source="tilesets/paths.png" trans="ff00ff" width="512" height="512"/>
  </tileset>
  <tileset firstgid="12084" name="chapel" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/chapel.bmp" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/chapel.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="13108" name="castle" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/castle.bmp" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/castle.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="14132" name="walltowers" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilesets/towers.bmp" trans="ff00ff" width="1024" height="1024"/>
+  <image source="tilesets/towers.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
  <layer name="grass" width="75" height="75">
   <data encoding="csv">

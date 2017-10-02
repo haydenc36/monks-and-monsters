@@ -132,7 +132,7 @@
         {
          "columns":31,
          "firstgid":257,
-         "image":"..\/tilesets\/hut3.bmp",
+         "image":"..\/tilesets\/hut3.png",
          "imageheight":821,
          "imagewidth":1013,
          "margin":0,
@@ -145,7 +145,7 @@
         {
          "columns":32,
          "firstgid":1032,
-         "image":"..\/tilesets\/lodge.bmp",
+         "image":"..\/tilesets\/lodge.png",
          "imageheight":864,
          "imagewidth":1024,
          "margin":0,
@@ -158,7 +158,7 @@
         {
          "columns":32,
          "firstgid":1896,
-         "image":"..\/tilesets\/lodge2.bmp",
+         "image":"..\/tilesets\/lodge2.png",
          "imageheight":864,
          "imagewidth":1024,
          "margin":0,
@@ -171,7 +171,7 @@
         {
          "columns":32,
          "firstgid":2760,
-         "image":"..\/tilesets\/sawmill.bmp",
+         "image":"..\/tilesets\/sawmill.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -185,7 +185,7 @@
         {
          "columns":16,
          "firstgid":3784,
-         "image":"..\/tilesets\/hut2.BMP",
+         "image":"..\/tilesets\/hut2.png",
          "imageheight":1024,
          "imagewidth":512,
          "margin":0,
@@ -199,7 +199,7 @@
         {
          "columns":32,
          "firstgid":4296,
-         "image":"..\/tilesets\/hut.BMP",
+         "image":"..\/tilesets\/hut.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -213,7 +213,7 @@
         {
          "columns":16,
          "firstgid":5320,
-         "image":"..\/tilesets\/stable.bmp",
+         "image":"..\/tilesets\/stable.png",
          "imageheight":1024,
          "imagewidth":512,
          "margin":0,
@@ -227,7 +227,7 @@
         {
          "columns":32,
          "firstgid":5832,
-         "image":"..\/tilesets\/farmhouse.BMP",
+         "image":"..\/tilesets\/farmhouse.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -241,7 +241,7 @@
         {
          "columns":32,
          "firstgid":6856,
-         "image":"..\/tilesets\/pub.bmp",
+         "image":"..\/tilesets\/pub.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -255,7 +255,7 @@
         {
          "columns":32,
          "firstgid":7880,
-         "image":"..\/tilesets\/beautiful.bmp",
+         "image":"..\/tilesets\/beautiful.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -269,7 +269,7 @@
         {
          "columns":32,
          "firstgid":8904,
-         "image":"..\/tilesets\/castle1.bmp",
+         "image":"..\/tilesets\/castle1.png",
          "imageheight":768,
          "imagewidth":1024,
          "margin":0,
@@ -283,7 +283,7 @@
         {
          "columns":24,
          "firstgid":9672,
-         "image":"..\/tilesets\/barracks.bmp",
+         "image":"..\/tilesets\/barracks.png",
          "imageheight":1024,
          "imagewidth":768,
          "margin":0,
@@ -297,7 +297,7 @@
         {
          "columns":32,
          "firstgid":10440,
-         "image":"..\/tilesets\/timbered.bmp",
+         "image":"..\/tilesets\/timbered.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -353,7 +353,7 @@
         {
          "columns":32,
          "firstgid":12084,
-         "image":"..\/tilesets\/chapel.bmp",
+         "image":"..\/tilesets\/chapel.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -367,7 +367,7 @@
         {
          "columns":32,
          "firstgid":13108,
-         "image":"..\/tilesets\/castle.bmp",
+         "image":"..\/tilesets\/castle.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -381,7 +381,7 @@
         {
          "columns":32,
          "firstgid":14132,
-         "image":"..\/tilesets\/towers.bmp",
+         "image":"..\/tilesets\/towers.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
