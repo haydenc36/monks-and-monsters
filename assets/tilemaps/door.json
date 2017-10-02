@@ -1,0 +1,13 @@
+{ "columns":9,
+ "image":"..\/..\/..\/..\/..\/Downloads\/fsmdoor_soruve.png",
+ "imageheight":384,
+ "imagewidth":288,
+ "margin":0,
+ "name":"door",
+ "spacing":0,
+ "tilecount":108,
+ "tileheight":32,
+ "tilewidth":32,
+ "transparentcolor":"#ff00ff",
+ "type":"tileset"
+}
