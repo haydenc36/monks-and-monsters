@@ -1,0 +1,12 @@
+{ "columns":11,
+ "image":"indoor.png",
+ "imageheight":384,
+ "imagewidth":352,
+ "margin":0,
+ "name":"indoor",
+ "spacing":0,
+ "tilecount":132,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}

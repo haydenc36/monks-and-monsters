@@ -7,9 +7,28 @@ demo.state1.prototype = {
     
     preload: function(){
         game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
-        game.load.tilemap('england_village', '../assets/tilemaps/england_village.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('village_tileset', '../assets/tilemaps/village_tileset.png');
-        game.load.image('village_tileset2', '../assets/tilemaps/village_tileset2.png');
+        game.load.tilemap('england_village', '../assets/tilemaps/tilesets/england_village.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
+        game.load.image('barracks', '../assets/tilemaps/tilesets/barracks.bmp');
+        game.load.image('castle', '../assets/tilemaps/tilesets/castle.bmp');
+        game.load.image('castle1', '../assets/tilemaps/tilesets/castle1.bmp');
+        game.load.image('chapel', '../assets/tilemaps/tilesets/chapel.bmp');
+        game.load.image('door', '../assets/tilemaps/tilesets/door.png');
+        game.load.image('farmhouse', '../assets/tilemaps/tilesets/farmhouse.BMP');
+        game.load.image('hut2', '../assets/tilemaps/tilesets/hut.bmp');
+        game.load.image('huts', '../assets/tilemaps/tilesets/hut2.bmp');
+        game.load.image('lodges', '../assets/tilemaps/tilesets/lodge.bmp');
+        game.load.image('lodges2', '../assets/tilemaps/tilesets/lodge2.bmp');
+        game.load.image('monastery', '../assets/tilemaps/tilesets/monastery.png');
+        game.load.image('mountain', '../assets/tilemaps/tilesets/paths.png');
+        game.load.image('pub', '../assets/tilemaps/tilesets/pub.bmp');
+        game.load.image('sawmill', '../assets/tilemaps/tilesets/sawmill.bmp');
+        game.load.image('stable2', '../assets/tilemaps/tilesets/stable.bmp');
+        game.load.image('stonehut', '../assets/tilemaps/tilesets/hut3.bmp');
+        game.load.image('timbered', '../assets/tilemaps/tilesets/timbered.bmp');
+        game.load.image('town', '../assets/tilemaps/tilesets/beautiful.bmp');
+        game.load.image('walltowers', '../assets/tilemaps/tilesets/towers.bmp');
+        
     },
     
     create:function(){
@@ -29,17 +48,18 @@ demo.state1.prototype = {
         map.addTilesetImage('village_tileset2');
         
         var grass = map.createLayer('grass');
-        var trees = map.createLayer('trees');
-        var paths = map.createLayer('paths');
-        var city_gate = map.createLayer('city_gate');
-        var leaves = map.createLayer('leaves');
-        var fences = map.createLayer('fences');
-        var windows = map.createLayer('windows');
-        var stairs = map.createLayer('stairs');
-        buildings = map.createLayer('buildings');
+        var path2 = map.createLayer('path2');
+        var grass2 = map.createLayer('grass2');
+        var path1 = map.createLayer('path1');
+        var mountains_walking = map.createLayer('mountains_walking');
+        var buildings2_noWalk = map.createLayer('buildings2_noWalk');
+        var buildings2_walk = map.createLayer('buildings2_walk');
+        var buildings1_noWalk = map.createLayer('buildings1_noWalk');
+        var buildings1_walk = map.createLayer('buildings1_walk');
+        var mountains_nowalking = map.createLayer('mountains_nowalking');
         
         // Allow for collisions
-        map.setCollisionBetween(1, 203, true, 'buildings')
+        //map.setCollisionBetween(1, 203, true, 'buildings')
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2100, 'monk');

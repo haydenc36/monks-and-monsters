@@ -1,0 +1,12 @@
+{ "columns":31,
+ "image":"..\/..\/..\/..\/..\/Downloads\/T_stone_hut\/stone hut AA tileset 1.bmp",
+ "imageheight":821,
+ "imagewidth":1013,
+ "margin":0,
+ "name":"stonehut",
+ "spacing":0,
+ "tilecount":775,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}

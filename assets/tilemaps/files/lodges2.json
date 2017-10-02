@@ -1,0 +1,12 @@
+{ "columns":32,
+ "image":"..\/..\/..\/..\/..\/Downloads\/T_foresters_lodge\/foresters lodge AA tileset 2.bmp",
+ "imageheight":864,
+ "imagewidth":1024,
+ "margin":0,
+ "name":"lodges2",
+ "spacing":0,
+ "tilecount":864,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}
