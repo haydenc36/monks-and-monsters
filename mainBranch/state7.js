@@ -7,8 +7,8 @@ demo.state7.prototype = {
     
     preload: function(){
         game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
-        game.load.tilemap('countryside', '../assets/tilemaps/countryside.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('countryside', '../assets/tilemaps/countryside.png');
+        game.load.tilemap('countryside', '../assets/tilemaps/files/countryside.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('countryside', '../assets/backgrounds/countryside.png');
         
     },
     
