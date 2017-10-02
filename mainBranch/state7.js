@@ -1,5 +1,4 @@
 // Countryside
-var demo = {};
 var monk, cursors, vel;
 
 demo.state7 = function(){};
