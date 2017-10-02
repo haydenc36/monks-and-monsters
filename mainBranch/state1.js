@@ -1,6 +1,6 @@
 // English Village
 var demo = {};
-var monk, cursors, vel, buildings;
+var monk, cursors, vel, buildings2_noWalk, buildings1_noWalk, mountains_nowalking;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -34,7 +34,7 @@ demo.state1.prototype = {
     create: function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel = 400;
+        vel = 600;
         //addChangeStateEventListeners();
         
         //Adjust camera settings
@@ -73,22 +73,25 @@ demo.state1.prototype = {
         var grass2 = map.createLayer('grass2');
         var path1 = map.createLayer('path1');
         var montains_walking = map.createLayer('montains_walking');
-        var buildings2_noWalk = map.createLayer('buildings2_noWalk');
+        buildings2_noWalk = map.createLayer('buildings2_noWalk');
         var buildings2_walk = map.createLayer('buildings2_walk');
-        var buildings1_noWalk = map.createLayer('buildings1_noWalk');
+        buildings1_noWalk = map.createLayer('buildings1_noWalk');
         var buildings1_walk = map.createLayer('buildings1_walk');
-        var mountains_nowalking = map.createLayer('mountains_nowalking');
-        
-        // Allow for collisions
-        //map.setCollisionBetween(1, 203, true, 'buildings');
+        mountains_nowalking = map.createLayer('mountains_nowalking');
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2100, 'monk');
-        monk.scale.set(2.5);
+        monk.scale.set(2);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        
+        // Allow for collisions
+        map.setCollisionBetween(265, 14627, true, 'buildings2_noWalk');
+        map.setCollisionBetween(265, 13506, true, 'buildings1_noWalk');
+        map.setCollisionBetween(11830, 12070, true, 'mountains_nowalking');
+        
         
         // Adjust the camera
         //game.camera.follow(monk);
@@ -100,7 +103,9 @@ demo.state1.prototype = {
     
     update: function(){
         
-        //game.physics.arcade.collide(monk, buildings);
+        game.physics.arcade.collide(monk, buildings2_noWalk, function(){console.log('buildings2');});
+        game.physics.arcade.collide(monk, buildings1_noWalk, function(){console.log('buildings1')});
+        game.physics.arcade.collide(monk, mountains_nowalking, function(){console.log('mountains');});
         
         // Set movement controls
         if (cursors.up.isDown){
