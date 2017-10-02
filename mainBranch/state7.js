@@ -1,6 +1,6 @@
 // Countryside
 var demo = {};
-var monk, cursors, vel, buildings;
+var monk, cursors, vel;
 
 demo.state7 = function(){};
 demo.state7.prototype = {
@@ -36,7 +36,7 @@ demo.state7.prototype = {
         map.setCollisionBetween(1, 203, true, 'trees')
         
         // Initialize the monk character
-        monk = game.add.sprite(0, 2100, 'monk');
+        monk = game.add.sprite(0, 2000, 'monk');
         monk.scale.set(2.5);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
