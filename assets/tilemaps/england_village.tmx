@@ -4,7 +4,7 @@
   <image source="tilesets/village_tileset2.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="257" name="stonehut" tilewidth="32" tileheight="32" tilecount="775" columns="31">
-  <image source="tilesets/hut3.png" width="1013" height="821"/>
+  <image source="tilesets/hut3.png" width="992" height="800"/>
  </tileset>
  <tileset firstgid="1032" name="lodges" tilewidth="32" tileheight="32" tilecount="864" columns="32">
   <image source="tilesets/lodge.png" width="1024" height="864"/>
