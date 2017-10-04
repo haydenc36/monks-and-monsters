@@ -63,6 +63,9 @@ demo.state2.prototype = {
     
     update: function(){
         
+        game.physics.arcade.collide(monk, walls_noWalk, function(){console.log('walls');});
+        game.physics.arcade.collide(monk, furniture_noWalk, function(){console.log('furniture')});
+        
         // Set movement controls
         if (cursors.up.isDown){
             monk.body.velocity.y = -vel;
