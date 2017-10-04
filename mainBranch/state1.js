@@ -34,11 +34,8 @@ demo.state1.prototype = {
     create: function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-<<<<<<< HEAD
         vel = 600;
-=======
         vel = 100;
->>>>>>> 33e7888674cf5a588ccb6dd274397ef05aabc8df
         //addChangeStateEventListeners();
         
         //Adjust camera settings
@@ -98,13 +95,10 @@ demo.state1.prototype = {
         
         
         // Adjust the camera
-<<<<<<< HEAD
         //game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 500);
-=======
         game.camera.follow(monk);
         game.camera.deadzone = new Phaser.Rectangle(140, 100, 1000, 400);
->>>>>>> 33e7888674cf5a588ccb6dd274397ef05aabc8df
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
