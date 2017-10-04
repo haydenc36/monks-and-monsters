@@ -1,5 +1,4 @@
 var game = new Phaser.Game(2400, 2400, Phaser.AUTO);
-var game = new Phaser.Game(1280, 1280, Phaser.AUTO);
 game.state.add('state1', demo.state1);
 game.state.add('state2', demo.state2);
 game.state.add('state3', demo.state3);
