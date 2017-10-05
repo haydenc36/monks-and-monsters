@@ -1,5 +1,5 @@
 { "columns":8,
- "image":"village_tileset.png",
+ "image":"..\/tilesets\/village_tileset.png",
  "imageheight":1440,
  "imagewidth":256,
  "margin":0,
@@ -8,5 +8,6 @@
  "tilecount":360,
  "tileheight":32,
  "tilewidth":32,
+ "transparentcolor":"#ff00ff",
  "type":"tileset"
 }
