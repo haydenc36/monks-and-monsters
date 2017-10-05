@@ -1,6 +1,6 @@
-// Hut
-demo.state4 = function(){};
-demo.state4.prototype = {
+// Revolutionaries' Hideout
+demo.state5 = function(){};
+demo.state5.prototype = {
     preload: function(){},
     create:function(){},
     update: function(){}

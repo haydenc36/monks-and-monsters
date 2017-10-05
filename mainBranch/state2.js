@@ -4,6 +4,7 @@ var walls_noWalk, furniture_noWalk;
 demo.state2 = function(){};
 demo.state2.prototype = {
     preload: function(){
+        
         game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
         game.load.tilemap('england_vendor', '../assets/tilemaps/files/england_vendor.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
@@ -15,24 +16,26 @@ demo.state2.prototype = {
     create:function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
+        console.log(vel);
         vel = 700; 
-        
+        console.log(vel);
+                
         //Adjust the camera settings
         game.world.setBounds(0,0, 2400, 3600);
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         // Initialize the tilemap and tilesets
-        var map = game.add.tilemap('england_vendor');
-        map.addTilesetImage('village_tileset');
-        map.addTilesetImage('village_tileset2');
-        map.addTilesetImage('door');
+        var map2 = game.add.tilemap('england_vendor');
+        map2.addTilesetImage('village_tileset');
+        map2.addTilesetImage('village_tileset2');
+        map2.addTilesetImage('door');
         
         // Integrate the layers
-        var floor = map.createLayer('floor');
-        var walls_walk = map.createLayer('walls_walk');
-        walls_noWalk = map.createLayer('walls_noWalk');
-        var furniture_walk = map.createLayer('furniture_walk');
-        furniture_noWalk = map.createLayer('furniture_noWalk');
+        var floor = map2.createLayer('floor');
+        var walls_walk = map2.createLayer('walls_walk');
+        walls_noWalk = map2.createLayer('walls_noWalk');
+        var furniture_walk = map2.createLayer('furniture_walk');
+        furniture_noWalk = map2.createLayer('furniture_noWalk');
         
         // Scale the layers
         floor.scale.set(5);
@@ -49,8 +52,8 @@ demo.state2.prototype = {
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Allow for collisions
-        map.setCollisionBetween(33, 45, true, 'walls_noWalk');
-        map.setCollisionBetween(6, 145, true, 'furniture_noWalk');
+        map2.setCollisionBetween(33, 47, true, 'walls_noWalk');
+        map2.setCollisionBetween(6, 146, true, 'furniture_noWalk');
         
         // Adjust the camera
         game.camera.follow(monk);
@@ -63,8 +66,8 @@ demo.state2.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk, walls_noWalk, function(){console.log('walls');});
-        game.physics.arcade.collide(monk, furniture_noWalk, function(){console.log('furniture')});
+        game.physics.arcade.collide(monk, walls_noWalk, function(){console.log('walls_noWalk');});
+        game.physics.arcade.collide(monk, furniture_noWalk, function(){console.log('furniture_noWalk')});
         
         // Set movement controls
         if (cursors.up.isDown){
