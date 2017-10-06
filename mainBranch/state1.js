@@ -1,5 +1,4 @@
 // English Village
-var demo = {};
 var monk, cursors, vel, buildings2_noWalk, buildings1_noWalk, mountains_nowalking;
 
 demo.state1 = function(){};
@@ -39,8 +38,8 @@ demo.state1.prototype = {
         
         //Adjust camera settings
         game.world.setBounds(0, 0, 2400, 2400);
-        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         // Integrate the map
         var map = game.add.tilemap('england_village');
@@ -92,12 +91,11 @@ demo.state1.prototype = {
         map.setCollisionBetween(265, 13506, true, 'buildings1_noWalk');
         map.setCollisionBetween(11830, 12070, true, 'mountains_nowalking');
         
-        
         // Adjust the camera
-        //game.camera.follow(monk);
+        game.camera.follow(monk);
+        //game.camera.follow(monk, Phaser.Camera.FOLLOW_SMOOTH);
         //game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 500);
-        //game.camera.follow(monk);
-        //game.camera.deadzone = new Phaser.Rectangle(140, 100, 1000, 400);
+        game.camera.deadzone = new Phaser.Rectangle(140, 100, 1000, 300);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
