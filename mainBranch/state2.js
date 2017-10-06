@@ -21,7 +21,7 @@ demo.state2.prototype = {
         console.log(vel);
                 
         //Adjust the camera settings
-        game.world.setBounds(0,0, 2400, 3600);
+        game.world.setBounds(0,0, 2400, 3200);
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         // Initialize the tilemap and tilesets
