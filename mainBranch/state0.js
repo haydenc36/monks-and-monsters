@@ -12,7 +12,7 @@ demo.state0.prototype = {
         var bg = game.add.sprite(0,-100,'Barcelona');
         bg.scale.set(0.45);
         
-        var title = game.add.text(600, 150, "Monks & Monsters");
+        var title = game.add.text(600, 200, "Monks & Monsters");
         title.anchor.set(0.5,0.5);
         title.align = 'center';
         title.font = 'Book Antiqua';
