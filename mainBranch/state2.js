@@ -21,8 +21,9 @@ demo.state2.prototype = {
         console.log(vel);
                 
         //Adjust the camera settings
-        game.world.setBounds(0,0, 2400, 3200);
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.world.setBounds(0,0, 1320, 1760);
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
         var map2 = game.add.tilemap('england_vendor');
@@ -38,15 +39,15 @@ demo.state2.prototype = {
         furniture_noWalk = map2.createLayer('furniture_noWalk');
         
         // Scale the layers
-        floor.scale.set(5);
-        walls_walk.scale.set(5);
-        walls_noWalk.scale.set(5);
-        furniture_walk.scale.set(5);
-        furniture_noWalk.scale.set(5);
+        floor.scale.set(2.75);
+        walls_walk.scale.set(2.75);
+        walls_noWalk.scale.set(2.75);
+        furniture_walk.scale.set(2.75);
+        furniture_noWalk.scale.set(2.75);
         
         // Initialize the monk character
-        monk = game.add.sprite(1000, 1000, 'monk');
-        monk.scale.set(10);
+        monk = game.add.sprite(580, 105, 'monk');
+        monk.scale.set(5);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
@@ -57,7 +58,7 @@ demo.state2.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(100, 400, 2400, 1600);
+        game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 400);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
