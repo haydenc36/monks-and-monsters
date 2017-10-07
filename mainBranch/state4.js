@@ -1,5 +1,5 @@
 // Peasant's house
-var walls_noWalk, furniture_noWalk;
+var walls_noWalk4, furniture_noWalk4;
 
 demo.state4 = function(){};
 demo.state4.prototype = {
@@ -35,8 +35,8 @@ demo.state4.prototype = {
         // Integrate the layers
         var floor = map.createLayer('floor');
         var walls_walk = map.createLayer('walls_walk');
-        walls_noWalk = map.createLayer('walls_noWalk');
-        furniture_noWalk = map.createLayer('furniture_noWalk');
+        walls_noWalk4 = map.createLayer('walls_noWalk4');
+        furniture_noWalk4 = map.createLayer('furniture_noWalk4');
         var background_decor = map.createLayer('background_decor');
         var furniture_walk = map.createLayer('furniture_walk');
         var foreground_decor = map.createLayer('foreground_decor');
@@ -44,9 +44,9 @@ demo.state4.prototype = {
         // Scale the layers
         floor.scale.set(5);
         walls_walk.scale.set(5);
-        walls_noWalk.scale.set(5);
+        walls_noWalk4.scale.set(5);
         furniture_walk.scale.set(5);
-        furniture_noWalk.scale.set(5);
+        furniture_noWalk4.scale.set(5);
         background_decor.scale.set(5);
         foreground_decor.scale.set(5);
         
@@ -56,15 +56,16 @@ demo.state4.prototype = {
         monk.scale.set(7);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
+        monk.anchor.setTo(0.5, 0.5);
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        
+        // Allow for collisions
+        map.setCollisionBetween(1387, 1387, true, 'walls_noWalk4');
+        map.setCollisionBetween(296, 1031, true, 'furniture_noWalk4');
         
         //Camera
         game.camera.follow(monk);
         game.camera.deadzone = new Phaser.Rectangle(140, 100, 1000, 300);
-        
-        // Allow for collisions
-        map.setCollisionBetween(1387, true, 'walls_noWalk');
-        map.setCollisionBetween(296, 1031, true, 'furniture_noWalk');
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
@@ -73,8 +74,8 @@ demo.state4.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk, walls_noWalk, function(){console.log('walls');});
-        game.physics.arcade.collide(monk, furniture_noWalk, function(){console.log('furniture')});
+        game.physics.arcade.collide(monk, walls_noWalk4, function(){console.log('walls');});
+        game.physics.arcade.collide(monk, furniture_noWalk4, function(){console.log('furniture')});
         
         // Set movement controls
         if (cursors.up.isDown){

@@ -29,11 +29,11 @@ demo.state0.prototype = {
         });
         
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
-            this.state.start("state9");
+            this.state.start("state2");
         });
         
         this.createButton(25, "Settings", 600, 600, 300, 100, function(){
-            this.state.start("state2");
+            this.state.start("state4");
         });
     },
     update: function(){
