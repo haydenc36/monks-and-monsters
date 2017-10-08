@@ -1,0 +1,82 @@
+{
+    "assets": {
+        "bg_image": {"type": "image", "source": "/backgrounds/monster-lair.png"},
+        "bg_image": {"type": "image", "source": "/backgrounds/monster-lair.png"},
+        "monk_spritesheet": {"type": "spritesheet", "source": "/sprites/ezio.png", "frame_width": 508, "frame_height": 900},
+        "devil_spritesheet": {"type": "spritesheet", "source": "/sprites/devil.png", "frame_width": 500, "frame_height": 500}
+    },
+    "groups": [
+        "background",
+        "players",
+        "enemies",
+        "hud"
+    ],
+    "prefabs": {
+        "background": {
+            "type": "background",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "texture": "bg_image",
+                "group": "background",
+                "width": 3200,
+                "height": 1079,
+                "scale": {"x":0.4, "y": 0.4}
+            }
+        },
+        "enemy_rectangle": {
+            "type": "rectangle",
+            "position": {"x": 0, "y": 432},
+            "properties": {
+                "texture": "rectangle_image",
+                "group": "hud",
+                "scale": {"x": 1, "y": 1}
+            }
+        },
+        "action_rectangle": {
+            "type": "rectangle",
+            "position": {"x": 427, "y": 432},
+            "properties": {
+                "texture": "rectangle_image",
+                "group": "hud",
+                "scale": {"x": 1, "y": 1}
+            }
+        },
+        "player_rectangle": {
+            "type": "rectangle",
+            "position": {"x": 427, "y": 432},
+            "properties": {
+                "texture": "rectangle_image",
+                "group": "hud",
+                "scale": {"x": 1, "y": 1}
+            }
+        },
+        "monk": {
+            "type": "player_unit",
+            "position": {"x": 40, "y": 147},
+            "properties": {
+                "texture": "monk_spritesheet",
+                "group": "players",
+                "scale": {"x": 0.4, "y": 0.4},
+                "stats": {
+                    "attack": 15,
+                    "defense": 5,
+                    "health": 100
+                }
+            }
+        },
+        "devil": {
+            "type": "enemy_unit",
+            "position": {"x": 600, "y": 93},
+            "properties": {
+                "texture": "devil_spritesheet",
+                "group": "enemies",
+                "scale": {"x": 0.4, "y": 0.4},
+                "stats": {
+                    "attack": 10,
+                    "defense": 1,
+                    "health": 30
+                }
+            }
+        }
+    }
+}
