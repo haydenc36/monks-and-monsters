@@ -1,6 +1,6 @@
-var RPG = RPG || {};
+var demo = demo || {};
 
-RPG.create_prefab_from_pool = function (pool, prefab_constructor, game_state, prefab_name, prefab_position, prefab_properties) {
+demo.create_prefab_from_pool = function (pool, prefab_constructor, game_state, prefab_name, prefab_position, prefab_properties) {
     "use strict";
     var prefab;
     // get the first dead prefab from the pool

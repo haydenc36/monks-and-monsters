@@ -1,19 +1,19 @@
-var RPG = RPG || {};
+var demo = demo || {};
 
-RPG.WorldState = function () {
+demo.WorldState = function () {
     "use strict";
     Phaser.State.call(this);
     
     this.prefab_classes = {
-        "player": RPG.Player.prototype.constructor,
-        "enemy_spawner": RPG.EnemySpawner.prototype.constructor
+        "player": demo.Player.prototype.constructor,
+        "enemy_spawner": demo.EnemySpawner.prototype.constructor
     };
 };
 
-RPG.WorldState.prototype = Object.create(Phaser.State.prototype);
-RPG.WorldState.prototype.constructor = RPG.WorldState;
+demo.WorldState.prototype = Object.create(Phaser.State.prototype);
+demo.WorldState.prototype.constructor = demo.WorldState;
 
-RPG.WorldState.prototype.init = function (level_data, extra_parameters) {
+demo.WorldState.prototype.init = function (level_data, extra_parameters) {
     "use strict";
     var tileset_index;
     this.level_data = this.level_data || level_data;
@@ -88,7 +88,7 @@ RPG.WorldState.prototype.init = function (level_data, extra_parameters) {
     }
 };
 
-RPG.WorldState.prototype.create = function () {
+demo.WorldState.prototype.create = function () {
     "use strict";
     var group_name, object_layer, collision_tiles;
     
@@ -133,7 +133,7 @@ RPG.WorldState.prototype.create = function () {
     }
 };
 
-RPG.WorldState.prototype.create_object = function (object) {
+demo.WorldState.prototype.create_object = function (object) {
     "use strict";
     var object_y, position, prefab;
     // tiled coordinates starts in the bottom left corner
