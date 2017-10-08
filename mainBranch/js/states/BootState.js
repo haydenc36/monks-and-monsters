@@ -1,26 +1,26 @@
-var RPG = RPG || {};
+var demo = demo || {};
 
-RPG.BootState = function () {
+demo.BootState = function () {
     "use strict";
     Phaser.State.call(this);
 };
 
-RPG.BootState.prototype = Object.create(Phaser.State.prototype);
-RPG.BootState.prototype.constructor = RPG.BootState;
+demo.BootState.prototype = Object.create(Phaser.State.prototype);
+demo.BootState.prototype.constructor = demo.BootState;
 
-RPG.BootState.prototype.init = function (level_file, next_state, extra_parameters) {
+demo.BootState.prototype.init = function (level_file, next_state, extra_parameters) {
     "use strict";
     this.level_file = level_file;
     this.next_state = next_state;
     this.extra_parameters = extra_parameters;
 };
 
-RPG.BootState.prototype.preload = function () {
+demo.BootState.prototype.preload = function () {
     "use strict";
     this.load.text("level1", this.level_file);
 };
 
-RPG.BootState.prototype.create = function () {
+demo.BootState.prototype.create = function () {
     "use strict";
     var level_text, level_data;
     level_text = this.game.cache.getText("level1");

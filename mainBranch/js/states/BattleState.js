@@ -1,23 +1,23 @@
-var RPG = RPG || {};
+var demo = demo || {};
 
-RPG.BattleState = function () {
+demo.BattleState = function () {
     "use strict";
     Phaser.State.call(this);
     
     this.prefab_classes = {
-        "background": RPG.TilePrefab.prototype.constructor,
-        "rectangle": RPG.Prefab.prototype.constructor,
-        "player_unit": RPG.PlayerUnit.prototype.constructor,
-        "enemy_unit": RPG.EnemyUnit.prototype.constructor
+        "background": demo.TilePrefab.prototype.constructor,
+        "rectangle": demo.Prefab.prototype.constructor,
+        "player_unit": demo.PlayerUnit.prototype.constructor,
+        "enemy_unit": demo.EnemyUnit.prototype.constructor
     };
     
     this.TEXT_STYLE = {font: "14px Arial", fill: "#FFFFFF"};
 };
 
-RPG.BattleState.prototype = Object.create(Phaser.State.prototype);
-RPG.BattleState.prototype.constructor = RPG.BattleState;
+demo.BattleState.prototype = Object.create(Phaser.State.prototype);
+demo.BattleState.prototype.constructor = demo.BattleState;
 
-RPG.BattleState.prototype.init = function (level_data, extra_parameters) {
+demo.BattleState.prototype.init = function (level_data, extra_parameters) {
     "use strict";
     this.level_data = level_data;
     this.enemy_data = extra_parameters.enemy_data;
@@ -28,7 +28,7 @@ RPG.BattleState.prototype.init = function (level_data, extra_parameters) {
     this.scale.pageAlignVertically = true;
 };
 
-RPG.BattleState.prototype.create = function () {
+demo.BattleState.prototype.create = function () {
     "use strict";
     var group_name, prefab_name, player_unit_name, enemy_unit_name;
     
@@ -81,7 +81,7 @@ RPG.BattleState.prototype.create = function () {
     this.next_turn();
 };
 
-RPG.BattleState.prototype.create_prefab = function (prefab_name, prefab_data) {
+demo.BattleState.prototype.create_prefab = function (prefab_name, prefab_data) {
     "use strict";
     var prefab;
     // create object according to its type
@@ -90,7 +90,7 @@ RPG.BattleState.prototype.create_prefab = function (prefab_name, prefab_data) {
     }
 };
 
-RPG.BattleState.prototype.init_hud = function () {
+demo.BattleState.prototype.init_hud = function () {
     "use strict";
     var unit_index, player_unit_health;
     
@@ -98,13 +98,13 @@ RPG.BattleState.prototype.init_hud = function () {
     this.show_player_actions({x: 106, y: 210});
     
     // show player units
-    this.show_units("player_units", {x: 202, y: 210}, RPG.PlayerMenuItem.prototype.constructor);
+    this.show_units("player_units", {x: 202, y: 210}, demo.PlayerMenuItem.prototype.constructor);
     
     // show enemy units
-    this.show_units("enemy_units", {x: 10, y: 210}, RPG.EnemyMenuItem.prototype.constructor);
+    this.show_units("enemy_units", {x: 10, y: 210}, demo.EnemyMenuItem.prototype.constructor);
 };
 
-RPG.BattleState.prototype.show_units = function (group_name, position, menu_item_constructor) {
+demo.BattleState.prototype.show_units = function (group_name, position, menu_item_constructor) {
     "use strict";
     var unit_index, menu_items, unit_menu_item, units_menu;
     
@@ -117,14 +117,14 @@ RPG.BattleState.prototype.show_units = function (group_name, position, menu_item
         menu_items.push(unit_menu_item);
     }, this);
     // create units menu
-    units_menu = new RPG.Menu(this, group_name + "_menu", position, {group: "hud", menu_items: menu_items});
+    units_menu = new demo.Menu(this, group_name + "_menu", position, {group: "hud", menu_items: menu_items});
 };
 
-RPG.BattleState.prototype.show_player_actions = function (position) {
+demo.BattleState.prototype.show_player_actions = function (position) {
     "use strict";
     var actions, actions_menu_items, action_index, actions_menu;
     // available actions
-    actions = [{text: "Attack", item_constructor: RPG.AttackMenuItem.prototype.constructor}];
+    actions = [{text: "Attack", item_constructor: demo.AttackMenuItem.prototype.constructor}];
     actions_menu_items = [];
     action_index = 0;
     // create a menu item for each action
@@ -132,10 +132,10 @@ RPG.BattleState.prototype.show_player_actions = function (position) {
         actions_menu_items.push(new action.item_constructor(this, action.text + "_menu_item", {x: position.x, y: position.y + action_index * 20}, {group: "hud", text: action.text, style: Object.create(this.TEXT_STYLE)}));
         action_index += 1;
     }, this);
-    actions_menu = new RPG.Menu(this, "actions_menu", position, {group: "hud", menu_items: actions_menu_items});
+    actions_menu = new demo.Menu(this, "actions_menu", position, {group: "hud", menu_items: actions_menu_items});
 };
 
-RPG.BattleState.prototype.next_turn = function () {
+demo.BattleState.prototype.next_turn = function () {
     "use strict";
     // if all enemy units are dead, go back to the world state
     if (this.groups.enemy_units.countLiving() === 0) {
@@ -159,13 +159,13 @@ RPG.BattleState.prototype.next_turn = function () {
     }
 };
 
-RPG.BattleState.prototype.game_over = function () {
+demo.BattleState.prototype.game_over = function () {
     "use strict";
     // go back to WorldState restarting the player position
     this.game.state.start("BootState", true, false, "assets/levels/level1.json", "WorldState", {restart_position: true});
 };
 
-RPG.BattleState.prototype.end_battle = function () {
+demo.BattleState.prototype.end_battle = function () {
     "use strict";
     // save current party health
     this.groups.player_units.forEach(function (player_unit) {

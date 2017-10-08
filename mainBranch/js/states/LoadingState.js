@@ -1,21 +1,21 @@
-var RPG = RPG || {};
+var demo = demo || {};
 
-RPG.LoadingState = function () {
+demo.LoadingState = function () {
     "use strict";
     Phaser.State.call(this);
 };
 
-RPG.LoadingState.prototype = Object.create(Phaser.State.prototype);
-RPG.LoadingState.prototype.constructor = RPG.LoadingState;
+demo.LoadingState.prototype = Object.create(Phaser.State.prototype);
+demo.LoadingState.prototype.constructor = demo.LoadingState;
 
-RPG.LoadingState.prototype.init = function (level_data, next_state, extra_parameters) {
+demo.LoadingState.prototype.init = function (level_data, next_state, extra_parameters) {
     "use strict";
     this.level_data = level_data;
     this.next_state = next_state;
     this.extra_parameters = extra_parameters;
 };
 
-RPG.LoadingState.prototype.preload = function () {
+demo.LoadingState.prototype.preload = function () {
     "use strict";
     var assets, asset_loader, asset_key, asset;
     assets = this.level_data.assets;
@@ -37,7 +37,7 @@ RPG.LoadingState.prototype.preload = function () {
     }
 };
 
-RPG.LoadingState.prototype.create = function () {
+demo.LoadingState.prototype.create = function () {
     "use strict";
     this.game.state.start(this.next_state, true, false, this.level_data, this.extra_parameters);
 };
