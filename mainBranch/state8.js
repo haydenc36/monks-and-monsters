@@ -14,16 +14,24 @@ demo.state8.prototype = {
         speed = 10; 
         
         //Adjust camera settings
-        game.world.setBounds(0,0, 2400, 809);
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        //game.world.setBounds(0,0, 2400, 809);
+        game.world.setBounds(0,0, 1280, 432);
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         monlair = game.add.sprite(0, 0, 'monster-lair');
-        ezio = game.add.sprite(75, 275, 'ezio');
-        devil = game.add.sprite(1125, 175, 'devil');
+        //ezio = game.add.sprite(75, 275, 'ezio');
+        ezio = game.add.sprite(40, 147, 'ezio');
+        //devil = game.add.sprite(1125, 175, 'devil');
+        devil = game.add.sprite(600, 93, 'devil');
         
-        monlair.scale.set(0.75);
-        ezio.scale.set(0.75);
-        devil.scale.set(0.75);
+        //monlair.scale.set(0.75);
+        //ezio.scale.set(0.75);
+        //devil.scale.set(0.75);
+        
+        monlair.scale.set(0.4);
+        ezio.scale.set(0.4);
+        devil.scale.set(0.4);
         
     },
     
