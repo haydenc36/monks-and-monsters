@@ -36,7 +36,7 @@ demo.state2.prototype = {
         walls_noWalk = map2.createLayer('walls_noWalk');
         var furniture_walk = map2.createLayer('furniture_walk');
         furniture_noWalk = map2.createLayer('furniture_noWalk');
-        
+
         // Scale the layers
         floor.scale.set(5);
         walls_walk.scale.set(5);
