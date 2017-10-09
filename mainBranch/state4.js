@@ -22,8 +22,8 @@ demo.state4.prototype = {
         
         //Adjust the camera settings
         game.world.setBounds(0,0, 1280, 1280);
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
         var map = game.add.tilemap('england_peasant');
@@ -42,18 +42,18 @@ demo.state4.prototype = {
         var foreground_decor = map.createLayer('foreground_decor');
         
         // Scale the layers
-        floor.scale.set(5);
-        walls_walk.scale.set(5);
-        walls_noWalk4.scale.set(5);
-        furniture_walk.scale.set(5);
-        furniture_noWalk4.scale.set(5);
-        background_decor.scale.set(5);
-        foreground_decor.scale.set(5);
+        floor.scale.set(9.375);
+        walls_walk.scale.set(9.375);
+        walls_noWalk4.scale.set(9.375);
+        furniture_walk.scale.set(9.375);
+        furniture_noWalk4.scale.set(9.375);
+        background_decor.scale.set(9.375);
+        foreground_decor.scale.set(9.375);
         
         
         // Initialize the monk character
         monk = game.add.sprite(500, 500, 'monk');
-        monk.scale.set(7);
+        monk.scale.set(16);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);

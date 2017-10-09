@@ -69,16 +69,12 @@ demo.state1.prototype = {
         map.addTilesetImage('brothel');
         
         // Integrate the layers
-        var grass = map.createLayer('grass');
-        var path2 = map.createLayer('path2');
-        var grass2 = map.createLayer('grass2');
-        var path1 = map.createLayer('path1');
-        mountains_nowalking = map.createLayer('mountains_nowalking');
-        var montains_walking = map.createLayer('montains_walking');
-        buildings2_noWalk = map.createLayer('buildings2_noWalk');
-        var buildings2_walk = map.createLayer('buildings2_walk');
-        buildings1_noWalk = map.createLayer('buildings1_noWalk');
-        var buildings1_walk = map.createLayer('buildings1_walk');
+        var floor = map.createLayer('floor');
+        var walls_noWalk = map.createLayer('walls_noWalk');
+        var walls_walk = map.createLayer('walls_walk');
+        var windows = map.createLayer('windows');
+        var furniture_walk = map.createLayer('furniture_walk');
+        
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2100, 'monk');
