@@ -27,6 +27,7 @@ demo.state1.prototype = {
         game.load.image('timbered', '../assets/tilemaps/tilesets/timbered.png');
         game.load.image('town', '../assets/tilemaps/tilesets/beautiful.png');
         game.load.image('walltowers', '../assets/tilemaps/tilesets/towers.png');
+        game.load.image('brothel', '../assets/tilemaps/tilesets/brothel.png')
         
     },
     
@@ -65,18 +66,19 @@ demo.state1.prototype = {
         map.addTilesetImage('timbered');
         map.addTilesetImage('town');
         map.addTilesetImage('walltowers');
+        map.addTilesetImage('brothel');
         
         // Integrate the layers
         var grass = map.createLayer('grass');
         var path2 = map.createLayer('path2');
         var grass2 = map.createLayer('grass2');
         var path1 = map.createLayer('path1');
+        mountains_nowalking = map.createLayer('mountains_nowalking');
         var montains_walking = map.createLayer('montains_walking');
         buildings2_noWalk = map.createLayer('buildings2_noWalk');
         var buildings2_walk = map.createLayer('buildings2_walk');
         buildings1_noWalk = map.createLayer('buildings1_noWalk');
         var buildings1_walk = map.createLayer('buildings1_walk');
-        mountains_nowalking = map.createLayer('mountains_nowalking');
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2100, 'monk');

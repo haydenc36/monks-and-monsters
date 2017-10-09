@@ -10,6 +10,9 @@ demo.state2.prototype = {
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
         game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
         game.load.image('door', '../assets/tilemaps/tilesets/door.png');
+        game.load.image('art', '../assets/tilemaps/tilesets/art.png');
+        game.load.image('couches', '../assets/tilemaps/tilesets/couches.png');
+        
 
     },
     
@@ -28,11 +31,14 @@ demo.state2.prototype = {
         map.addTilesetImage('village_tileset');
         map.addTilesetImage('village_tileset2');
         map.addTilesetImage('door');
+        map.addTilesetImage('art');
+        map.addTilesetImage('couches');
         
         // Integrate the layers
         var floor = map.createLayer('floor');
         var walls_walk = map.createLayer('walls_walk');
         walls_noWalk = map.createLayer('walls_noWalk');
+        var window = map.createLayer('window');
         var furniture_walk = map.createLayer('furniture_walk');
         furniture_noWalk = map.createLayer('furniture_noWalk');
         
@@ -42,6 +48,8 @@ demo.state2.prototype = {
         walls_noWalk.scale.set(2.75);
         furniture_walk.scale.set(2.75);
         furniture_noWalk.scale.set(2.75);
+        window.scale.set(2.75);
+
         
         // Initialize the monk character
         monk = game.add.sprite(580, 105, 'monk');

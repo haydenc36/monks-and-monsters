@@ -1,7 +1,81 @@
-// Monastery - Dilapidated and Restored
+// Monastery
 demo.state3 = function(){};
 demo.state3.prototype = {
-    preload: function(){},
-    create:function(){},
+    preload: function(){
+        
+        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
+        game.load.tilemap('england_monastery', '../assets/tilemaps/files/england_monastery.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
+        game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
+        game.load.image('beautiful', '../assets/tilemaps/tilesets/beautiful.png');
+        game.load.image('floors', '../assets/tilemaps/tilesets/floors.png');
+        game.load.image('furniture', '../assets/tilemaps/tilesets/furniture.png');
+        game.load.image('furniture2', '../assets/tilemaps/tilesets/furniture2.png');
+        game.load.image('monastery', '../assets/tilemaps/tilesets/monastery.png');
+        game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
+        game.load.image('spooky', '../assets/tilemaps/tilesets/spooky.png');
+        
+    },
+    
+    create:function(){
+        
+        // Initialize Physics
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        vel = 700;
+                
+        //Adjust the camera settings
+        game.world.setBounds(0,0, 2400, 2400);
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        
+        // Initialize the tilemap and tilesets
+        var map = game.add.tilemap('england_monastery');
+        map.addTilesetImage('village_tileset');
+        map.addTilesetImage('village_tileset2');
+        map.addTilesetImage('beautiful');
+        map.addTilesetImage('floors');
+        map.addTilesetImage('furniture');
+        map.addTilesetImage('furniture2');
+        map.addTilesetImage('monastery');
+        map.addTilesetImage('religious');
+        map.addTilesetImage('spooky');
+        
+        // Integrate the layers
+        var ground3 = map.createLayer('ground3');
+        var walls3_walk = map.createLayer('walls3_walk');
+        var walls3_noWalk = map.createLayer('walls3_noWalk');
+        var furniture3_foreground = map.createLayer('furniture3_foreground');
+        var stairs = map.createLayer('stairs');
+        var buildings3_walk = map.createLayer('buildings3_walk');
+        var buildings3_noWalk = map.createLayer('buildings3_noWalk');
+        var roof3_noWalk = map.createLayer('roof3_noWalk');
+        var windows = map.createLayer('windows');
+        var decor = map.createLayer('decor');
+        var roof3_walk = map.createLayer('roof3_walk');
+        
+        // Scale the layers
+        //floor.scale.set(1);
+        
+        
+        // Initialize the monk character
+        monk = game.add.sprite(580, 105, 'monk');
+        monk.scale.set(5);
+        game.physics.enable(monk);
+        monk.body.collideWorldBounds = true;
+        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        
+        // Allow for collisions
+        //map.setCollisionBetween(33, 47, true, 'walls_noWalk');
+        //map.setCollisionBetween(6, 146, true, 'furniture_noWalk');
+        
+        // Adjust the camera
+        game.camera.follow(monk);
+        game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 400);
+        
+        // Controls
+        cursors = game.input.keyboard.createCursorKeys();
+        
+    },
+    
     update: function(){}
 };
