@@ -1,6 +1,6 @@
-var RPG = RPG || {};
+var demo = demo || {};
 
-RPG.TextPrefab = function (game_state, name, position, properties) {
+demo.TextPrefab = function (game_state, name, position, properties) {
     "use strict";
     Phaser.Text.call(this, game_state.game, position.x, position.y, properties.text, properties.style);
     
@@ -13,5 +13,5 @@ RPG.TextPrefab = function (game_state, name, position, properties) {
     this.game_state.prefabs[name] = this;
 };
 
-RPG.TextPrefab.prototype = Object.create(Phaser.Text.prototype);
-RPG.TextPrefab.prototype.constructor = RPG.TextPrefab;
+demo.TextPrefab.prototype = Object.create(Phaser.Text.prototype);
+demo.TextPrefab.prototype.constructor = demo.TextPrefab;

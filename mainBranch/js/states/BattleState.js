@@ -5,7 +5,7 @@ demo.BattleState = function () {
     Phaser.State.call(this);
     
     this.prefab_classes = {
-        "background": demo.TilePrefab.prototype.constructor,
+        "background": demo.Prefab.prototype.constructor,
         "rectangle": demo.Prefab.prototype.constructor,
         "player_unit": demo.PlayerUnit.prototype.constructor,
         "enemy_unit": demo.EnemyUnit.prototype.constructor

@@ -30,21 +30,12 @@ demo.state2.prototype = {
         map.addTilesetImage('door');
         
         // Integrate the layers
-<<<<<<< HEAD
-        var floor = map2.createLayer('floor');
-        var walls_walk = map2.createLayer('walls_walk');
-        walls_noWalk = map2.createLayer('walls_noWalk');
-        var furniture_walk = map2.createLayer('furniture_walk');
-        furniture_noWalk = map2.createLayer('furniture_noWalk');
-
-=======
         var floor = map.createLayer('floor');
         var walls_walk = map.createLayer('walls_walk');
         walls_noWalk = map.createLayer('walls_noWalk');
         var furniture_walk = map.createLayer('furniture_walk');
         furniture_noWalk = map.createLayer('furniture_noWalk');
         
->>>>>>> 65eedb1b2f559319b9b91d2cd4bd613eaa88c11f
         // Scale the layers
         floor.scale.set(2.75);
         walls_walk.scale.set(2.75);
