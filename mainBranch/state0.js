@@ -35,6 +35,11 @@ demo.state0.prototype = {
         this.createButton(25, "Settings", 600, 600, 300, 100, function(){
             this.state.start("state4");
         });
+        
+        //Remove after Sprint
+        this.createButton(25, "[Temp] BossBattle", 200, 375, 400, 200, function(){
+            this.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState");
+        });
     },
     update: function(){
         

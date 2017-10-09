@@ -52,7 +52,7 @@
         },
         "monk": {
             "type": "player_unit",
-            "position": {"x": 150, "y": 360},
+            "position": {"x": 160, "y": 340},
             "properties": {
                 "texture": "monk_spritesheet",
                 "group": "players",
@@ -70,7 +70,7 @@
             "properties": {
                 "texture": "devil_spritesheet",
                 "group": "enemies",
-                "scale": {"x": 0.5, "y": 0.5},
+                "scale": {"x": 0.05, "y": 0.05},
                 "stats": {
                     "attack": 10,
                     "defense": 1,
