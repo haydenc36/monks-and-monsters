@@ -21,7 +21,7 @@ demo.state3.prototype = {
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel = 700;
+        vel = 600;
                 
         //Adjust the camera settings
         game.world.setBounds(0,0, 2240, 2240);
@@ -54,7 +54,7 @@ demo.state3.prototype = {
         var roof3_walk = map.createLayer('roof3_walk');
         
         // Scale the layers
-        ground3.scale.set(1.75);
+/*        ground3.scale.set(1.75);
         walls3_noWalk.scale.set(1.75);
         walls3_walk.scale.set(1.75);
         furniture3_foreground.scale.set(1.75);
@@ -69,6 +69,23 @@ demo.state3.prototype = {
         // Initialize the monk character
         monk = game.add.sprite(580, 105, 'monk');
         monk.scale.set(2.75);
+*/
+        ground3.scale.set(1.875);
+        walls3_walk.scale.set(1.875);
+        walls3_noWalk.scale.set(1.875);
+        furniture3_foreground.scale.set(1.875);
+        stairs.scale.set(1.875);
+        buildings3_walk.scale.set(1.875);
+        buildings3_noWalk.scale.set(1.875);
+        roof3_noWalk.scale.set(1.875);
+        roof3_walk.scale.set(1.875);
+        windows.scale.set(1.875);
+        decor.scale.set(1.875);
+        
+        
+        // Initialize the monk character
+        monk = game.add.sprite(800, 2400, 'monk');
+        monk.scale.set(4);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
