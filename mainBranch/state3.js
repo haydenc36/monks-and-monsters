@@ -24,9 +24,9 @@ demo.state3.prototype = {
         vel = 700;
                 
         //Adjust the camera settings
-        game.world.setBounds(0,0, 2400, 2400);
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        game.world.setBounds(0,0, 2240, 2240);
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
         var map = game.add.tilemap('england_monastery');
@@ -54,12 +54,21 @@ demo.state3.prototype = {
         var roof3_walk = map.createLayer('roof3_walk');
         
         // Scale the layers
-        //floor.scale.set(1);
-        
+        ground3.scale.set(1.75);
+        walls3_noWalk.scale.set(1.75);
+        walls3_walk.scale.set(1.75);
+        furniture3_foreground.scale.set(1.75);
+        stairs.scale.set(1.75);
+        buildings3_noWalk.scale.set(1.75);
+        buildings3_walk.scale.set(1.75);
+        roof3_noWalk.scale.set(1.75);
+        windows.scale.set(1.75);
+        decor.scale.set(1.75);
+        roof3_walk.scale.set(1.75);
         
         // Initialize the monk character
         monk = game.add.sprite(580, 105, 'monk');
-        monk.scale.set(5);
+        monk.scale.set(2.75);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
@@ -77,5 +86,30 @@ demo.state3.prototype = {
         
     },
     
-    update: function(){}
+    update: function(){
+        //Set movement controls
+        if (cursors.up.isDown){
+            monk.body.velocity.y = -vel;
+        }
+        
+        else if (cursors.down.isDown){
+            monk.body.velocity.y = vel;
+        }
+        
+        else{
+            monk.body.velocity.y = 0;
+        }
+        
+        if (cursors.left.isDown){
+            monk.body.velocity.x = -vel;
+        }
+        
+        else if (cursors.right.isDown){
+            monk.body.velocity.x = vel;
+        }
+        
+        else{
+            monk.body.velocity.x = 0;
+        }
+    }
 };
