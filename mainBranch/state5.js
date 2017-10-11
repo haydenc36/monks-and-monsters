@@ -26,9 +26,9 @@ demo.state5.prototype = {
         vel = 800; 
         
         //Adjust the camera settings
-        game.world.setBounds(0,0, 1280, 1280);
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        game.world.setBounds(0,0, 2240, 1680);
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
         var map = game.add.tilemap('england_brothel');
@@ -54,18 +54,18 @@ demo.state5.prototype = {
         var stairs = map.createLayer('stairs');
         
         // Scale the layers
-        floor.scale.set(5);
-        walls_walk.scale.set(5);
-        walls_noWalk.scale.set(5);
-        windows.scale.set(5);
-        furniture_walk.scale.set(5);
-        furniture_noWalk.scale.set(5);
-        stairs.scale.set(5);
+        floor.scale.set(3.5);
+        walls_walk.scale.set(3.5);
+        walls_noWalk.scale.set(3.5);
+        windows.scale.set(3.5);
+        furniture_walk.scale.set(3.5);
+        furniture_noWalk.scale.set(3.5);
+        stairs.scale.set(3.5);
         
         
         // Initialize the monk character
-        monk = game.add.sprite(500, 500, 'monk');
-        monk.scale.set(10);
+        monk = game.add.sprite(1230, 150, 'monk');
+        monk.scale.set(5);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
@@ -77,7 +77,8 @@ demo.state5.prototype = {
         
         //Camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(140, 100, 1000, 300);
+        monk.
+        game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 400);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
