@@ -15,7 +15,7 @@
  <tileset firstgid="749" name="couches" tilewidth="32" tileheight="32" tilecount="88" columns="8">
   <image source="tilesets/couches.png" trans="ff00ff" width="256" height="352"/>
  </tileset>
- <layer name="floor" width="15" height="20">
+ <layer name="floor2" width="15" height="20">
   <data encoding="csv">
 82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,
 82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,
@@ -39,7 +39,7 @@
 82,82,82,82,82,82,82,82,82,82,82,82,82,82,82
 </data>
  </layer>
- <layer name="walls_walk" width="15" height="20">
+ <layer name="walls_walk2" width="15" height="20">
   <data encoding="csv">
 36,37,37,37,37,37,37,37,37,37,37,37,37,37,38,
 33,34,34,34,34,34,34,34,34,34,34,34,34,34,35,
@@ -63,7 +63,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="walls_noWalk" width="15" height="20">
+ <layer name="walls_noWalk2" width="15" height="20">
   <data encoding="csv">
 36,37,37,37,37,37,37,37,37,37,37,37,37,37,38,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -87,7 +87,7 @@
 0,0,0,0,34,34,45,34,34,34,34,44,34,45,40
 </data>
  </layer>
- <layer name="window" width="15" height="20">
+ <layer name="window2" width="15" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,735,736,0,0,0,0,0,0,0,0,0,729,730,0,
@@ -111,7 +111,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="furniture_walk" width="15" height="20">
+ <layer name="furniture_walk2" width="15" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,647,648,649,0,0,0,0,0,0,
 167,0,0,0,0,0,656,657,658,0,0,0,0,0,166,
@@ -135,7 +135,7 @@
 0,0,0,0,33,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="furniture_noWalk" width="15" height="20">
+ <layer name="furniture_noWalk2" width="15" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,145,0,0,0,0,0,145,0,0,0,0,

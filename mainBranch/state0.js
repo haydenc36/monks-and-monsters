@@ -39,6 +39,7 @@ demo.state0.prototype = {
     update: function(){
         
     },
+    
     createButton:function(s, string, x, y, w, h, callback){
         var btn = game.add.button(x,y,'button',callback,this,2,1,0);
         
