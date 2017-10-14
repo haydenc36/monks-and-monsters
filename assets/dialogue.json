@@ -1,0 +1,33 @@
+{
+    "name":"Monk-villager",
+    "key":"Monk-villager",
+    "start":"001",
+    "elements":{
+        "001":{
+            "npc":"Hello good sir, welcome to (village name)",
+            "character":{
+                "002":{
+                    "text":"Have you noticed anything strange things recently?",
+                    "followup":"003"
+                },
+                
+                "004":{
+                    "text":"I need a few scolls, can you point me to the village shop?",
+                    "followup":"005"
+                }
+            }
+        },
+        "003":{
+            "npc":"Now that you mention it, there has been a series of sinister and evil presences passing by (village name)."
+        },
+        "005":{
+            "npc":"Sure thing stranger, its (location of shop on village map).",
+            "character": {
+                "006": {
+                    "text":"Let's start over.",
+                    "followup":"001"
+                }
+            }
+        }
+    }
+}
