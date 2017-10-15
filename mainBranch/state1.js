@@ -1,5 +1,6 @@
 // English Village
-var monk1, cursors1, vel1, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
+var demo = demo || {};
+var monk, cursors, vel, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -34,7 +35,7 @@ demo.state1.prototype = {
     create: function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel1 = 600;
+        vel = 600;
         //addChangeStateEventListeners();
         
         //Adjust camera settings
@@ -81,12 +82,12 @@ demo.state1.prototype = {
         var buildings1_walk1 = map.createLayer('buildings1_walk1');
         
         // Initialize the monk character
-        monk1 = game.add.sprite(0, 2100, 'monk');
-        monk1.scale.set(2);
-        game.physics.enable(monk1);
-        monk1.body.collideWorldBounds = true;
-        monk1.anchor.setTo(0.5, 0.5);
-        monk1.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        monk = game.add.sprite(0, 2100, 'monk');
+        monk.scale.set(2);
+        game.physics.enable(monk);
+        monk.body.collideWorldBounds = true;
+        monk.anchor.setTo(0.5, 0.5);
+        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Allow for collisions
         map.setCollisionBetween(265, 14627, true, 'buildings2_noWalk1');
@@ -94,44 +95,44 @@ demo.state1.prototype = {
         map.setCollisionBetween(11830, 12070, true, 'mountains_nowalking1');
         
         // Adjust the camera
-        game.camera.follow(monk1);
+        game.camera.follow(monk);
         //game.camera.follow(monk, Phaser.Camera.FOLLOW_SMOOTH);
         //game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 500);
         game.camera.deadzone = new Phaser.Rectangle(140, 100, 1000, 300);
         
         // Controls
-        cursors1 = game.input.keyboard.createCursorKeys();
+        cursors = game.input.keyboard.createCursorKeys();
     },
     
     update: function(){
         
-        game.physics.arcade.collide(monk1, buildings2_noWalk1, function(){console.log('buildings2');});
-        game.physics.arcade.collide(monk1, buildings1_noWalk1, function(){console.log('buildings1')});
-        game.physics.arcade.collide(monk1, mountains_nowalking1, function(){console.log('mountains');});
+        game.physics.arcade.collide(monk, buildings2_noWalk1, function(){console.log('buildings2');});
+        game.physics.arcade.collide(monk, buildings1_noWalk1, function(){console.log('buildings1')});
+        game.physics.arcade.collide(monk, mountains_nowalking1, function(){console.log('mountains');});
         
         // Set movement controls
-        if (cursors1.up.isDown){
-            monk1.body.velocity.y = -vel1;
+        if (cursors.up.isDown){
+            monk.body.velocity.y = -vel;
         }
         
-        else if (cursors1.down.isDown){
-            monk1.body.velocity.y = vel1;
-        }
-        
-        else{
-            monk1.body.velocity.y = 0;
-        }
-        
-        if (cursors1.left.isDown){
-            monk1.body.velocity.x = -vel1;
-        }
-        
-        else if (cursors1.right.isDown){
-            monk1.body.velocity.x = vel1;
+        else if (cursors.down.isDown){
+            monk.body.velocity.y = vel;
         }
         
         else{
-            monk1.body.velocity.x = 0;
+            monk.body.velocity.y = 0;
+        }
+        
+        if (cursors.left.isDown){
+            monk.body.velocity.x = -vel;
+        }
+        
+        else if (cursors.right.isDown){
+            monk.body.velocity.x = vel;
+        }
+        
+        else{
+            monk.body.velocity.x = 0;
         }
     }
 };

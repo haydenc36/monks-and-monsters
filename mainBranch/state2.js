@@ -1,5 +1,6 @@
 // Aristocrat's House
-var monk2, cursors2, vel2, walls_noWalk2, furniture_noWalk2;
+var demo = demo || {};
+var walls_noWalk2, furniture_noWalk2;
 
 demo.state2 = function(){};
 demo.state2.prototype = {
@@ -19,7 +20,7 @@ demo.state2.prototype = {
     create:function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel2 = 700;
+        vel = 700;
                 
         //Adjust the camera settings
         game.world.setBounds(0,0, 1320, 1760);
@@ -52,53 +53,53 @@ demo.state2.prototype = {
 
         
         // Initialize the monk character
-        monk2 = game.add.sprite(580, 105, 'monk');
-        monk2.scale.set(5);
-        game.physics.enable(monk2);
-        monk2.body.collideWorldBounds = true;
-        monk2.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        monk = game.add.sprite(580, 105, 'monk');
+        monk.scale.set(5);
+        game.physics.enable(monk);
+        monk.body.collideWorldBounds = true;
+        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Allow for collisions
         map.setCollisionBetween(34, 47, true, 'walls_noWalk2');
         map.setCollisionBetween(138, 146, true, 'furniture_noWalk2');
         
         // Adjust the camera
-        game.camera.follow(monk2);
+        game.camera.follow(monk);
         game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 400);
         
         // Controls
-        cursors2 = game.input.keyboard.createCursorKeys();
+        cursors = game.input.keyboard.createCursorKeys();
         
     },
     
     update: function(){
         
-        game.physics.arcade.collide(monk2, walls_noWalk2, function(){console.log('walls_noWalk');});
-        game.physics.arcade.collide(monk2, furniture_noWalk2, function(){console.log('furniture_noWalk')});
+        game.physics.arcade.collide(monk, walls_noWalk2, function(){console.log('walls_noWalk');});
+        game.physics.arcade.collide(monk, furniture_noWalk2, function(){console.log('furniture_noWalk')});
         
         // Set movement controls
-        if (cursors2.up.isDown){
-            monk2.body.velocity.y = -vel2;
+        if (cursors.up.isDown){
+            monk.body.velocity.y = -vel;
         }
         
-        else if (cursors2.down.isDown){
-            monk2.body.velocity.y = vel2;
-        }
-        
-        else{
-            monk2.body.velocity.y = 0;
-        }
-        
-        if (cursors2.left.isDown){
-            monk2.body.velocity.x = -vel2;
-        }
-        
-        else if (cursors2.right.isDown){
-            monk2.body.velocity.x = vel2;
+        else if (cursors.down.isDown){
+            monk.body.velocity.y = vel;
         }
         
         else{
-            monk2.body.velocity.x = 0;
+            monk.body.velocity.y = 0;
+        }
+        
+        if (cursors.left.isDown){
+            monk.body.velocity.x = -vel;
+        }
+        
+        else if (cursors.right.isDown){
+            monk.body.velocity.x = vel;
+        }
+        
+        else{
+            monk.body.velocity.x = 0;
         }
     }
 };

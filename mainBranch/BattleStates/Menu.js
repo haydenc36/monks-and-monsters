@@ -1,21 +1,22 @@
-var RPG = RPG || {};
+var demo = demo || {};
 
-RPG.Menu = function (game_state, name, position, properties) {
+demo.Menu = function (game_state, name, position, properties) {
     "use strict";
     var live_index, life;
-    RPG.Prefab.call(this, game_state, name, position, properties);
+    demo.Prefab.call(this, game_state, name, position, properties);
     
     this.visible = false;
+    this.name = name;
     
     this.menu_items = properties.menu_items;
     
     this.current_item_index = 0;
 };
 
-RPG.Menu.prototype = Object.create(RPG.Prefab.prototype);
-RPG.Menu.prototype.constructor = RPG.Menu;
+demo.Menu.prototype = Object.create(demo.Prefab.prototype);
+demo.Menu.prototype.constructor = demo.Menu;
 
-RPG.Menu.prototype.process_input = function (event) {
+demo.Menu.prototype.process_input = function (event) {
     "use strict";
     switch (event.keyCode) {
     case Phaser.Keyboard.UP:
@@ -36,14 +37,14 @@ RPG.Menu.prototype.process_input = function (event) {
     }
 };
 
-RPG.Menu.prototype.move_selection = function (item_index) {
+demo.Menu.prototype.move_selection = function (item_index) {
     "use strict";
     this.menu_items[this.current_item_index].selection_out();
     this.current_item_index = item_index;
     this.menu_items[this.current_item_index].selection_over();
 };
 
-RPG.Menu.prototype.find_item_index = function (text) {
+demo.Menu.prototype.find_item_index = function (text) {
     "use strict";
     var item_index;
     for (item_index = 0; item_index < this.menu_items.length; item_index += 1) {
@@ -53,7 +54,7 @@ RPG.Menu.prototype.find_item_index = function (text) {
     }
 };
 
-RPG.Menu.prototype.remove_item = function (index) {
+demo.Menu.prototype.remove_item = function (index) {
     "use strict";
     var menu_item;
     menu_item = this.menu_items[index];
@@ -66,19 +67,42 @@ RPG.Menu.prototype.remove_item = function (index) {
     return menu_item;
 };
 
-RPG.Menu.prototype.enable = function () {
+demo.Menu.prototype.enable = function () {
     "use strict";
-    this.current_item_index = 0;
     if (this.menu_items.length > 0) {
+        this.menu_items[this.current_item_index].selection_out();
+        this.current_item_index = 0;
         this.menu_items[this.current_item_index].selection_over();
     }
     this.game_state.game.input.keyboard.addCallbacks(this, this.process_input);
 };
 
-RPG.Menu.prototype.disable = function () {
+demo.Menu.prototype.disable = function () {
     "use strict";
     if (this.menu_items.length > 0) {
         this.menu_items[this.current_item_index].selection_out();
     }
     this.current_item_index = 0;
+};
+
+demo.Menu.prototype.show = function () {
+    "use strict";
+    this.menu_items.forEach(function (menu_item) {
+        menu_item.visible = true;
+        if (!!(menu_item.item_quantity)){
+            menu_item.item_quantity.visibile = true;
+            menu_item.item_quantity.visible = true;
+        }
+    }, this);
+};
+
+demo.Menu.prototype.hide = function () {
+    "use strict";
+    this.menu_items.forEach(function (menu_item) {
+        menu_item.visible = false;
+        if (!!(menu_item.item_quantity)){
+            menu_item.item_quantity.visibile = false;
+            menu_item.item_quantity.visible = false;
+        }
+    }, this);
 };

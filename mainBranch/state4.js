@@ -1,4 +1,5 @@
 // Peasant's house
+var demo = demo || {};
 var walls_noWalk4, furniture_noWalk4;
 
 demo.state4 = function(){};

@@ -1,4 +1,6 @@
 // Monastery
+var demo = demo || {};
+
 demo.state3 = function(){};
 demo.state3.prototype = {
     preload: function(){
@@ -42,16 +44,16 @@ demo.state3.prototype = {
         
         // Integrate the layers
         var ground3 = map.createLayer('ground3');
-        var walls3_walk = map.createLayer('walls3_walk');
-        var walls3_noWalk = map.createLayer('walls3_noWalk');
-        var furniture3_foreground = map.createLayer('furniture3_foreground');
-        var stairs = map.createLayer('stairs');
-        var buildings3_walk = map.createLayer('buildings3_walk');
-        var buildings3_noWalk = map.createLayer('buildings3_noWalk');
-        var roof3_noWalk = map.createLayer('roof3_noWalk');
-        var windows = map.createLayer('windows');
-        var decor = map.createLayer('decor');
-        var roof3_walk = map.createLayer('roof3_walk');
+        var walls3_walk = map.createLayer('walls3_walk3');
+        var walls3_noWalk = map.createLayer('walls3_noWalk3');
+        var furniture3_foreground = map.createLayer('furniture3_foreground3');
+        var stairs = map.createLayer('stairs3');
+        var buildings3_walk = map.createLayer('buildings3_walk3');
+        var buildings3_noWalk = map.createLayer('buildings3_noWalk3');
+        var roof3_noWalk = map.createLayer('roof3_noWalk3');
+        var windows = map.createLayer('windows3');
+        var decor = map.createLayer('decor3');
+        var roof3_walk = map.createLayer('roof3_walk3');
         
         // Scale the layers
         ground3.scale.set(1.875);

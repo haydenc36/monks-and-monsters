@@ -1,4 +1,5 @@
 // Brothel / Revolutionary Hangout
+var demo = demo || {};
 demo.state5 = function(){};
 demo.state5.prototype = {
     preload: function(){

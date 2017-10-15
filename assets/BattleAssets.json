@@ -1,11 +1,18 @@
 {
     "assets": {
-        "rectangle_image": {"type": "image", "source": "../../assets/rectangle.png"},
+        "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "../../assets/backgrounds/monster-lair.png"},
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 508, "frame_height": 900},
-        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/devil.png", "frame_width": 1690, "frame_height": 1000}
+        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/devil.png", "frame_width": 1690, "frame_height": 1000},
+        "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
+        "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"}
     },
     "groups": [
+        "items",
+        "attacks",
+        "attackskills",
+        "selfskills",
+        "skills",
         "background",
         "players",
         "enemies",
@@ -18,9 +25,8 @@
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
-                "width": 3200,
-                "height": 1079,
-                "scale": {"x":0.4, "y": 0.4}
+                "width": 1280,
+                "height": 432
             }
         },
         "enemy_rectangle": {
@@ -50,7 +56,7 @@
                 "scale": {"x": 1, "y": 1}
             }
         },
-        "monk": {
+        "Monk": {
             "type": "player_unit",
             "position": {"x": 160, "y": 340},
             "properties": {
@@ -58,13 +64,15 @@
                 "group": "players",
                 "scale": {"x": 0.5, "y": 0.5},
                 "stats": {
-                    "attack": 15,
+                    "attack": 10,
                     "defense": 5,
-                    "health": 100
+                    "health": 100,
+                    "magic_attack":10,
+                    "mana": 100
                 }
             }
         },
-        "devil": {
+        "Devil": {
             "type": "enemy_unit",
             "position": {"x": 900, "y": 250},
             "properties": {
@@ -74,8 +82,74 @@
                 "stats": {
                     "attack": 10,
                     "defense": 1,
-                    "health": 30
+                    "health": 75
                 }
+            }
+        },
+        "Wine": {
+            "type": "wine",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "texture": "wine_img",
+                "group": "items",
+                "scale": {"x": 0.05, "y": 0.05},
+                "stats": {
+                    "mana_power": 30,
+                    "quantity": 100
+                }
+            }
+        },
+        "Bread": {
+            "type": "bread",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "texture": "bread_img",
+                "group": "items",
+                "stats": {
+                    "health_power": 30,
+                    "quantity": 100
+                }
+            }
+        },
+        "Heal": {
+            "type": "heal",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "group": "selfskills",
+                "stats": {
+                    "health_power": 30,
+                    "req_mana": 30
+                }
+            }
+        },
+        "ScrollSword": {
+            "type": "scroll",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "group": "attackskills",
+                "stats": {
+                    "attack_mult": 1.5,
+                    "req_health": 30
+                }
+            }
+        },
+        "Miracle": {
+            "type": "miracle",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "group": "attackskills",
+                "stats": {
+                    "attack_mult": 1.5,
+                    "req_mana": 30
+                }
+            }
+        },
+        "AngelofDeath": {
+            "type": "aod",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "group": "attackskills",
+                "stats": {}
             }
         }
     }
