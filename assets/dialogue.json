@@ -1,33 +1,93 @@
 {
-    "name":"Monk-villager",
-    "key":"Monk-villager",
-    "start":"001",
-    "elements":{
-        "001":{
-            "npc":"Hello good sir, welcome to (village name)",
-            "character":{
-                "002":{
-                    "text":"Have you noticed anything strange things recently?",
-                    "followup":"003"
-                },
-                
-                "004":{
-                    "text":"I need a few scolls, can you point me to the village shop?",
-                    "followup":"005"
-                }
-            }
+    "actors": [
+        {
+            "id": 10,
+            "name": "Monk"
         },
-        "003":{
-            "npc":"Now that you mention it, there has been a series of sinister and evil presences passing by (village name)."
-        },
-        "005":{
-            "npc":"Sure thing stranger, its (location of shop on village map).",
-            "character": {
-                "006": {
-                    "text":"Let's start over.",
-                    "followup":"001"
-                }
-            }
+        {
+            "id": 20,
+            "name": "Villager"
         }
-    }
+    ],
+    "dialogues": [
+        {
+            "id": 10,
+            "parent": null,
+            "isChoice": false,
+            "actor": 20,
+            "conversant": 10,
+            "menuText": "",
+            "dialogueText": "Hello good sir, welcome to (village name)",
+            "conditionsString": "",
+            "codeBefore": "",
+            "codeAfter": "",
+            "outgoingLinks": [
+                20
+            ]
+        },
+        {
+            "id": 20,
+            "parent": 10,
+            "isChoice": true,
+            "conditionsString": "",
+            "codeBefore": "",
+            "codeAfter": "",
+            "outgoingLinks": [
+                30,
+                40
+            ]
+        },
+        {
+            "id": 30,
+            "parent": 20,
+            "isChoice": false,
+            "actor": 10,
+            "conversant": 20,
+            "menuText": "",
+            "dialogueText": "I need a few scolls, can you point me to the village shop?",
+            "conditionsString": "",
+            "codeBefore": "",
+            "codeAfter": "",
+            "outgoingLinks": []
+        },
+        {
+            "id": 31,
+            "parent": 30,
+            "isChoice": false,
+            "actor": 20,
+            "conversant": 10,
+            "menuText": "",
+            "dialogueText": "Sure thing stranger, its over there.",
+            "conditionsString": "",
+            "codeBefore": "",
+            "codeAfter": "",
+            "outgoingLinks": []
+        },
+        {
+            "id": 40,
+            "parent": 20,
+            "isChoice": false,
+            "actor": 10,
+            "conversant": 20,
+            "menuText": "",
+            "dialogueText": "Have you noticed anything strange things recently?",
+            "conditionsString": "",
+            "codeBefore": "",
+            "codeAfter": "",
+            "outgoingLinks": []
+        },
+        {
+            "id": 41,
+            "parent": 40,
+            "isChoice": false,
+            "actor": 20,
+            "conversant": 10,
+            "menuText": "",
+            "dialogueText": "Now that you mention it, there has been a series of sinister and evil presences passing by Outtown",
+            "conditionsString": "",
+            "codeBefore": "",
+            "codeAfter": "",
+            "outgoingLinks": []
+        }
+    ]
 }
