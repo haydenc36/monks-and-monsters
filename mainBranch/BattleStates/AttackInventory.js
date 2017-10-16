@@ -15,7 +15,7 @@ demo.AttackInventory.prototype.constructor = demo.AttackInventory;
 demo.AttackInventory.prototype.create_menu = function (position) {
     "use strict";
     var menu_items, attack_index, attackskill, menu_item, attackskills_menu;
-    // create Magic skills menu items
+    // create miracles skills menu items
     attack_index = 0;
     menu_items = [];
     for (attack_index = 0; attack_index < this.skills.length; attack_index += 1) {

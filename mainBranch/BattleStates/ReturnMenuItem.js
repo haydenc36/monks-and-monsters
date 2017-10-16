@@ -14,9 +14,9 @@ demo.ReturnMenuItem.prototype.select = function () {
     this.game_state.prefabs.items_menu.hide();
     this.game_state.prefabs.items_menu.disable();
     
-    // hide magic skills menu
-    this.game_state.prefabs.magicskills_menu.hide();
-    this.game_state.prefabs.magicskills_menu.disable();
+    // hide miracles skills menu
+    this.game_state.prefabs.miraclesskills_menu.hide();
+    this.game_state.prefabs.miraclesskills_menu.disable();
     
     // hide attack skills menu
     this.game_state.prefabs.attackskills_menu.hide();

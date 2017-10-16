@@ -18,7 +18,7 @@ demo.BattleState = function () {
         "aod": demo.AngelOfDeath.prototype.constructor,
     };
     
-    this.TEXT_STYLE = {font: "30px Impact", fill: "#FFFFFF"};
+    this.TEXT_STYLE = {font: "20px Zapfino", fill: "#FFFFFF"};
 };
 
 demo.BattleState.prototype = Object.create(Phaser.State.prototype);
@@ -67,11 +67,11 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.inventory = new demo.Inventory(this, "inventory", {x: 477, y: 480}, {group: "items"});
     }
     
-    // Magic Skills list
-    if (this.magicskills) {
-        this.prefabs.magicskills = this.attackskills;
+    // Miracles list
+    if (this.miraclesskills) {
+        this.prefabs.miraclesskills = this.attackskills;
     } else {
-        this.prefabs.magicskills = new demo.MagicInventory(this, "magicskills", {x: 477, y: 480}, {group: "skills"});
+        this.prefabs.miraclesskills = new demo.miraclesInventory(this, "miraclesskills", {x: 477, y: 480}, {group: "skills"});
     }
     
     // Attack Skills list
@@ -143,8 +143,8 @@ demo.BattleState.prototype.init_hud = function () {
     // create items menu
     this.prefabs.inventory.create_menu({x: 477, y: 480});
     
-    // create MagicSkills menu
-    this.prefabs.magicskills.create_menu({x: 477, y: 480});
+    // create miraclesSkills menu
+    this.prefabs.miraclesskills.create_menu({x: 477, y: 480});
     
     // create AttackSkills menu
     this.prefabs.attackskills.create_menu({x: 477, y: 480});
@@ -171,7 +171,7 @@ demo.BattleState.prototype.show_player_actions = function (position) {
     var actions, actions_menu_items, action_index, actions_menu;
     // available actions
     actions = [{text: "Attacks", item_constructor: demo.AttackInventoryMenuItem.prototype.constructor},
-               {text: "Magic Skills", item_constructor: demo.MagicInventoryMenuItem.prototype.constructor},
+               {text: "Miracles", item_constructor: demo.miraclesInventoryMenuItem.prototype.constructor},
                {text: "Item", item_constructor: demo.InventoryMenuItem.prototype.constructor},
                {text: "Retreat", item_constructor: demo.RetreatMenuItem.prototype.constructor}
               ];

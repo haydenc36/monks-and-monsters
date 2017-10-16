@@ -18,7 +18,7 @@ demo.Miracle.prototype.hit = function (target) {
     attack_multiplier = this.game_state.game.rnd.realInRange(0.9, 1.3);
     defense_multiplier = this.game_state.game.rnd.realInRange(0.8, 1.2);
     // calculate damage using the Sword attack stat
-    damage = Math.max(0, Math.round((this.attack_mult * attack_multiplier * this.game_state.current_unit.stats.magic_attack) - (defense_multiplier * target.stats.defense)));
+    damage = Math.max(0, Math.round((this.attack_mult * attack_multiplier * this.game_state.current_unit.stats.miracles_attack) - (defense_multiplier * target.stats.defense)));
     // apply damage
     target.receive_damage(damage);
     
