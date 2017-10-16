@@ -35,7 +35,7 @@ demo.state1.prototype = {
     create: function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel = 600;
+        vel = 400;
         //addChangeStateEventListeners();
         
         //Adjust camera settings

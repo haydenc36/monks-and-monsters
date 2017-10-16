@@ -53,7 +53,7 @@ demo.state4.prototype = {
         
         
         // Initialize the monk character
-        monk = game.add.sprite(500, 500, 'monk');
+        monk = game.add.sprite(1200, 500, 'monk');
         monk.scale.set(16);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
