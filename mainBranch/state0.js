@@ -41,7 +41,7 @@ demo.state0.prototype = {
         });
         
         this.createButton(25, "Enter Brothel", 800, 600, 300, 100, function(){
-            this.state.start("state");
+            this.state.start("state5");
         });
         
         this.createButton(25, "Enter Countryside", 400, 700, 300, 100, function(){
