@@ -176,8 +176,8 @@ demo.state1.prototype = {
         // NOT MOVING
         else{
             console.log("STOP");
-            monk.body.velocity.x = 0;
-            monk.body.velocity.y = 0;
+//            monk.body.velocity.x = 0;
+//            monk.body.velocity.y = 0;
             //monk.animations.stop('walk');
             //monk.frame = 0; 
         }
