@@ -30,6 +30,8 @@ demo.PlayerMenuItem.prototype.select = function () {
     // hide attack skills menu
     this.game_state.prefabs.attackskills_menu.hide();
     this.game_state.prefabs.attackskills_menu.disable();
+
+    this.game_state.prefabs.players_menu.disable();
     
     // show actions menu
     this.game_state.prefabs.actions_menu.show();

@@ -11,5 +11,5 @@ demo.RetreatMenuItem.prototype.constructor = demo.RetreatMenuItem;
 demo.RetreatMenuItem.prototype.select = function () {
     "use strict";
     this.game_state.current_unit.stats.health = 0;
-    this.game.state.start("BootState", true, false, "../assBattleAssets.JSON", "state1");
+    this.game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "state1");
 };

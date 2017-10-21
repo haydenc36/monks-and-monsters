@@ -5,7 +5,8 @@
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
         "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/devil.png", "frame_width": 1690, "frame_height": 1006},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
-        "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"}
+        "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
+        "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"}
     },
     "groups": [
         "items",

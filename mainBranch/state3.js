@@ -82,7 +82,7 @@ demo.state3.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 400);
+        game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
