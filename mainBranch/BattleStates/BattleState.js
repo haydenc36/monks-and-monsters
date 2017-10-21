@@ -131,9 +131,6 @@ demo.BattleState.prototype.init_hud = function () {
     "use strict";
     var unit_index, player_unit_health;
     
-    // show player actions
-    this.show_player_actions({x: 477, y: 480});
-    
     // show player units
     this.show_units("players", {x: 50, y: 480}, demo.PlayerMenuItem.prototype.constructor);
     
@@ -148,6 +145,9 @@ demo.BattleState.prototype.init_hud = function () {
     
     // create AttackSkills menu
     this.prefabs.attackskills.create_menu({x: 477, y: 480});
+    
+    // show player actions
+    this.show_player_actions({x: 477, y: 480});
 };
 
 demo.BattleState.prototype.show_units = function (group_name, position, menu_item_constructor) {
@@ -194,7 +194,7 @@ demo.BattleState.prototype.next_turn = function () {
     
     // if all player units are dead, restart the game
     if (this.groups.players.countLiving() === 0) {
-        //this.game_over();
+        this.game_over();
     }
     
     // takes the next unit
@@ -217,7 +217,7 @@ demo.BattleState.prototype.game_over = function () {
 
 demo.BattleState.prototype.end_battle = function () {
     "use strict";
-    var received_experience;
+    /*var received_experience;
     
     // receive battle reward
     received_experience = this.encounter.reward.experience;
@@ -231,7 +231,7 @@ demo.BattleState.prototype.end_battle = function () {
     
     this.encounter.reward.items.forEach(function (item_object) {
         this.prefabs.inventory.collect_item(item_object);
-    }, this);
+    }, this);*/
     
     // go back to WorldState with the current party data
     this.game.state.start("state1", true, false, {party_data: this.party_data});

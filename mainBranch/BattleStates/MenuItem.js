@@ -8,7 +8,7 @@ demo.MenuItem = function (game_state, name, position, properties) {
 demo.MenuItem.prototype = Object.create(demo.TextPrefab.prototype);
 demo.MenuItem.prototype.constructor = demo.MenuItem;
  
-demo.MenuItem.prototype.selection_over = function () {
+demo.MenuItem.prototype.selection_over = function (curs) {
     "use strict";
     this.fill = "#CCF";
 };
