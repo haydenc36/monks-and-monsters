@@ -76,6 +76,10 @@ demo.state2.prototype = {
         cursors = game.input.keyboard.createCursorKeys();
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
+        
+        
+        
+        
         //create text box and adjust fonts accordingly
         this.styleInfobox0 = {font: '20px Arial', fill: '#000000', fontWeight: 'bold'};
 	    this.styleInfobox1 = {font: '40px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
@@ -83,6 +87,7 @@ demo.state2.prototype = {
 	    this.styleInfobox3 = {font: '30px Book Antiqua', fill: '#0aaaa0', align: 'left', fontWeight: 'bold', fontStyle: 'italic'};
 	    
 
+        
    	    //Create 1st NPC Character
 //Copy from here to add additional NPCs.....
    	    this.npc1 = this.add.sprite(500, 500, 'npc1'); //NPC Sprite + where to spawn
