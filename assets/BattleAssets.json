@@ -1,9 +1,9 @@
 {
     "assets": {
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
-        "bg_image": {"type": "image", "source": "../../assets/backgrounds/monster-lair.png"},
+        "bg_image": {"type": "image", "source": "../../assets/backgrounds/BBG.png"},
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/devil.png", "frame_width": 1690, "frame_height": 1006},
+        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/devilMonk.png", "frame_width": 274, "frame_height": 500},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
         "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"}
@@ -22,12 +22,12 @@
     "prefabs": {
         "background": {
             "type": "background",
-            "position": {"x": 0, "y": 0},
+            "position": {"x": 0, "y": -225},
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
                 "width": 1280,
-                "height": 432
+                "height": 721
             }
         },
         "enemy_rectangle": {
@@ -75,7 +75,7 @@
         },
         "Devil": {
             "type": "enemy_unit",
-            "position": {"x": 900, "y": 250},
+            "position": {"x": 1000, "y": 225},
             "properties": {
                 "texture": "devil_spritesheet",
                 "group": "enemies",

@@ -4,9 +4,9 @@ demo.PlayerMenuItem = function (game_state, name, position, properties) {
     "use strict";
     demo.MenuItem.call(this, game_state, name, position, properties);
     
-    this.player_unit_health = new demo.ShowStat(this.game_state, this.text + "_health", {x: this.x + 150, y: this.y}, {group: "hud", text: "", style: properties.style, prefab: this.text, stat: "health"});
+    this.player_unit_health = new demo.ShowStat(this.game_state, this.text + "_health", {x: this.x + 165, y: this.y}, {group: "hud", text: "", style: properties.style, prefab: this.text, stat: "health"});
     
-    this.player_unit_mana = new demo.ShowStat(this.game_state, this.text + "_mana", {x: this.x + 250, y: this.y}, {group: "hud", text: "", style: properties.style, prefab: this.text, stat: "mana"});
+    this.player_unit_mana = new demo.ShowStat(this.game_state, this.text + "_mana", {x: this.x + 275, y: this.y}, {group: "hud", text: "", style: properties.style, prefab: this.text, stat: "mana"});
 };
 
 demo.PlayerMenuItem.prototype = Object.create(demo.MenuItem.prototype);
