@@ -1,6 +1,6 @@
 // English Village
 var demo = demo || {};
-var monk, cursors, vel = 400, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
+var monk, cursors, vel = 400, transitionTrigger1, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -35,12 +35,11 @@ demo.state1.prototype = {
     create: function(){
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
--        //addChangeStateEventListeners();
+        //addChangeStateEventListeners();
         
         //Adjust camera settings
         game.world.setBounds(0, 0, 2400, 2400);
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         // Integrate the map
         var map = game.add.tilemap('england_village');
@@ -70,6 +69,7 @@ demo.state1.prototype = {
         
         // Integrate the layers
         var grass = map.createLayer('grass1');
+        var skies1 = map.createLayer('skies1');
         var path2 = map.createLayer('path1_b');
         var grass2 = map.createLayer('grass1_b');
         var path1 = map.createLayer('path1_a');
@@ -78,7 +78,9 @@ demo.state1.prototype = {
         buildings2_noWalk1 = map.createLayer('buildings2_noWalk1');
         var buildings2_walk1 = map.createLayer('buildings2_walk1');
         buildings1_noWalk1 = map.createLayer('buildings1_noWalk1');
+        transitionTrigger1 = map.createLayer('transitionTrigger1');
         var buildings1_walk1 = map.createLayer('buildings1_walk1');
+        var flowers1 = map.createLayer('flowers1');
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2100, 'monk');
@@ -94,14 +96,12 @@ demo.state1.prototype = {
         
         
         // Allow for collisions
-        map.setCollisionBetween(265, 14627, true, 'buildings2_noWalk1');
-        map.setCollisionBetween(265, 13506, true, 'buildings1_noWalk1');
-        map.setCollisionBetween(11830, 12070, true, 'mountains_nowalking1');
+        map.setCollisionBetween(11472, 15192, true, 'buildings2_noWalk1');
+        map.setCollisionBetween(2025, 15714, true, 'buildings1_noWalk1');
+        map.setCollisionBetween(53, 15471, true, 'mountains_nowalking1');
         
         // Adjust the camera
         game.camera.follow(monk);
-        //game.camera.follow(monk, Phaser.Camera.FOLLOW_SMOOTH);
-        //game.camera.deadzone = new Phaser.Rectangle(100, 100, 1000, 500);
         game.camera.deadzone = new Phaser.Rectangle(340, 300, 800, 100);
         
         // Controls
@@ -113,39 +113,6 @@ demo.state1.prototype = {
         game.physics.arcade.collide(monk, buildings2_noWalk1, function(){console.log('buildings2');});
         game.physics.arcade.collide(monk, buildings1_noWalk1, function(){console.log('buildings1')});
         game.physics.arcade.collide(monk, mountains_nowalking1, function(){console.log('mountains');});
-        
-//        // Set movement controls
-//        if (cursors.up.isDown){
-//            monk.body.velocity.y = -vel;
-//            monk.animations.play('walkNorth');
-//            
-//        }
-//        
-//        else if (cursors.down.isDown){
-//            monk.body.velocity.y = vel;
-//            monk.animations.play('walkSouth');
-//        }
-//        
-//        else{
-//            monk.body.velocity.y = 0;
-//            monk.frame = 0;
-//        }
-//        
-//        if (cursors.left.isDown){
-//            monk.body.velocity.x = -vel;
-//            monk.animations.play('walkWest');
-//        }
-//        
-//        else if (cursors.right.isDown){
-//            monk.body.velocity.x = vel;
-//            monk.animations.play('walkEast');
-//        }
-//        
-//        else{
-//            monk.body.velocity.x = 0;
-//        }
-        
-        
         
         if (cursors.right.isDown || cursors.left.isDown || cursors.up.isDown || cursors.down.isDown){
             
@@ -176,17 +143,6 @@ demo.state1.prototype = {
         // NOT MOVING
         else{
             console.log("STOP");
-//            monk.body.velocity.x = 0;
-//            monk.body.velocity.y = 0;
-            //monk.animations.stop('walk');
-            //monk.frame = 0; 
         }
-        
-        
-        
-        
-        
-        
-        
     }
 };
