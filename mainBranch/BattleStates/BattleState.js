@@ -133,6 +133,7 @@ demo.BattleState.prototype.init_hud = function () {
     
     // show player units
     this.show_units("players", {x: 50, y: 480}, demo.PlayerMenuItem.prototype.constructor);
+    this.show_hpmp({x: 50, y: 480});
     
     // show enemy units
     this.show_units("enemies", {x: 904, y: 480}, demo.EnemyMenuItem.prototype.constructor);
@@ -165,6 +166,11 @@ demo.BattleState.prototype.show_units = function (group_name, position, menu_ite
     // create units menu
     units_menu = new demo.Menu(this, group_name + "_menu", position, {group: "hud", menu_items: menu_items});
 };
+
+demo.BattleState.prototype.show_hpmp = function (position) {
+    game.add.text(position.x + 130, position.y + 20, "HP: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+    game.add.text(position.x + 240, position.y + 20, "MP: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+}
 
 demo.BattleState.prototype.show_player_actions = function (position) {
     "use strict";
