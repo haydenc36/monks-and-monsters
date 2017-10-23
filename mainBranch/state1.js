@@ -1,12 +1,12 @@
 // English Village
 var demo = demo || {};
-var monk, cursors, vel = 400, transitionTrigger1, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
+var monk, cursors, vel = 200, transitionTrigger1, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
     
     preload: function(){
-        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 320, 320);
+        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
         game.load.tilemap('england_village', '../assets/tilemaps/files/england_village.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
         game.load.image('barracks', '../assets/tilemaps/tilesets/barracks.png');
@@ -28,7 +28,9 @@ demo.state1.prototype = {
         game.load.image('timbered', '../assets/tilemaps/tilesets/timbered.png');
         game.load.image('town', '../assets/tilemaps/tilesets/beautiful.png');
         game.load.image('walltowers', '../assets/tilemaps/tilesets/towers.png');
-        game.load.image('brothel', '../assets/tilemaps/tilesets/brothel.png')
+        game.load.image('brothel', '../assets/tilemaps/tilesets/brothel.png');
+        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
+        game.load.image('sky', '../assets/tilemaps/tilesets/sky.png');
         
     },
     
@@ -65,6 +67,8 @@ demo.state1.prototype = {
         map.addTilesetImage('timbered');
         map.addTilesetImage('town');
         map.addTilesetImage('walltowers');
+        map.addTilesetImage('village_tileset');
+        map.addTilesetImage('sky');
         map.addTilesetImage('brothel');
         
         // Integrate the layers
@@ -84,15 +88,14 @@ demo.state1.prototype = {
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2100, 'monk');
-        monk.scale.set(.3);
+        monk.scale.set(2);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
-        monk.frame = 0;
-        monk.animations.add('walkUp', [5, 6], 4);
-        monk.animations.add('walkDown', [1, 2], 4);
-        monk.animations.add('walkRight', [1, 2], 4);
-        monk.animations.add('walkLeft', [3, 4], 4);
+        monk.animations.add('walkUp', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
+        monk.animations.add('walkDown', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
+        monk.animations.add('walkRight', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
+        monk.animations.add('walkLeft', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
         
         
         // Allow for collisions
@@ -102,7 +105,7 @@ demo.state1.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(340, 300, 800, 100);
+        game.camera.deadzone = new Phaser.Rectangle(400, 400, 700, 100);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
@@ -114,35 +117,35 @@ demo.state1.prototype = {
         game.physics.arcade.collide(monk, buildings1_noWalk1, function(){console.log('buildings1')});
         game.physics.arcade.collide(monk, mountains_nowalking1, function(){console.log('mountains');});
         
-        if (cursors.right.isDown || cursors.left.isDown || cursors.up.isDown || cursors.down.isDown){
-            
-            if (cursors.up.isDown){
-                console.log("UP");
-                monk.body.velocity.y -= vel;
-                //monk.animations.play('walkUp');
-            }
-            else if (cursors.down.isDown){
-                console.log("DOWN");
-                monk.body.velocity.y += vel;
-                //monk.animations.play('walkDown');
-            }
-            
-            // LEFT AND RIGHT
-            if (cursors.right.isDown){
-                console.log("RIGHT");
-                monk.body.velocity.x += vel;
-                //monk.animations.play('walkRight');
-            }
-            else if (cursors.left.isDown){
-                console.log("LEFT");
-                monk.body.velocity.x -= vel;
-                //monk.animations.play('walkLeft');
-            }
+        // Up and Down
+        if (cursors.up.isDown){
+            //console.log("UP");
+            monk.body.velocity.y = -vel;
+            monk.animations.play('walkUp');
         }
-        
-        // NOT MOVING
-        else{
-            console.log("STOP");
+        else if (cursors.down.isDown){
+            //console.log("DOWN");
+            monk.body.velocity.y = vel;
+            monk.animations.play('walkDown');
+        }
+        else {
+            monk.body.velocity.y = 0;
+        }
+        // Right & Left
+        if (cursors.right.isDown){
+            //console.log("RIGHT");
+            monk.body.velocity.x = vel;
+            monk.animations.play('walkRight');
+            monk.scale.set(2,2);
+        }
+        else if (cursors.left.isDown){
+            //console.log("LEFT");
+            monk.body.velocity.x = -vel;
+            monk.animations.play('walkLeft');
+            monk.scale.set(-2,2);
+        }
+        else {
+            monk.body.velocity.x = 0;
         }
     }
 };
