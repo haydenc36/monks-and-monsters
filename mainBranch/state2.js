@@ -240,7 +240,12 @@ demo.state2.prototype = {
 						this.npcboxText[3]="Father, Theo sent specifically for our aid. Perhaps he knows better than us what is needed.";
 						this.npcboxText[4]="Yes, and perhaps Master Theo has tumbled into the wine cellar once again.!";
                         this.npcboxText[5]="You know better than I that Theo is a discerning man. Perhaps he senses that this conflict, whatever its nature, is not amenable to the force of Lord William. Please, send me.";
-                
+                        this.npcboxText[6]="Give me a moment to contemplate.";
+                        this.npcboxText[7]=".........";
+                        this.npcboxText[8]="As I departed from his quarters, Sir Theo made great note to deliver this epistle to this abbey, and this abbey alone.";
+                        this.npcboxText[9]="Then perhaps that settles the matter.";
+                        this.npcboxText[10]="Alright Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.";
+                        this.npcboxText[11]="I will be in good company. Bless you, Father.";
 
                     //check which character is talking
                     if(this.npcboxnmame_id == 0) //Character who starts the conversation
