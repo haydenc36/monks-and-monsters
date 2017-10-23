@@ -90,7 +90,7 @@ demo.state2.prototype = {
         
    	    //Create 1st NPC Character
 //Copy from here to add additional NPCs.....
-   	    this.npc1 = this.add.sprite(500, 500, 'npc1'); //NPC Sprite + where to spawn
+   	    this.npc1 = this.add.sprite(700, 1450, 'npc1'); //NPC Sprite + where to spawn
             this.physics.arcade.enableBody(this.npc1);
             this.npc1.anchor.setTo(1, 1);
             this.npc1.scale.set(1.75); // Scaling for NPC
@@ -100,7 +100,7 @@ demo.state2.prototype = {
 //.....until here
         
         //example to add another NPC
-        this.npc2 = this.add.sprite(1000, 800, 'npc2'); //NPC Sprite + where to spawn in the game
+        this.npc2 = this.add.sprite(875, 300, 'npc2'); //NPC Sprite + where to spawn in the game
             this.physics.arcade.enableBody(this.npc2);
             this.npc2.anchor.setTo(1, 1);
             this.npc2.scale.set(1.75); // scaling for NPC
@@ -279,8 +279,8 @@ demo.state2.prototype = {
 					
 						this.npcboxActive = 1;
 					
-						this.npcboxText[0]="I couldn’t believe it myself! Sweet Parvos, do recall that there was a time many ages ago when saints and priests could inspire peace and moral splendor in their disciples… Now, now there is drunkenness and philandering with the rich, drunkenness and ignorance with our poor! And what am I to do? The people see nothing in us religious any longer. Bread and blood, bread and blood.";
-						this.npcboxText[1]="...";
+						this.npcboxText[0]="Let's make sure you remember your training!";
+						this.npcboxText[1]=".....";
                         
 
                     if(this.npcboxnmame_id == 0)
