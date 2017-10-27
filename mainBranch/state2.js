@@ -54,34 +54,32 @@ demo.state2.prototype = {
         fixtures_noWalk2b = map.createLayer('fixtures_noWalk2b');
         var fixtures_walk2a = map.createLayer('fixtures_walk2a');
         
-        
         // Scale the layers
-        trigger2a.scale.set(2.75)
-        floor2.scale.set(2.75);
-        walls_walk2.scale.set(2.75);
-        walls_noWalk2.scale.set(2.75);
-        fixtures_walk2b.scale.set(2.75);
-        fixtures_noWalk2b.scale.set(2.75);
-        fixtures_walk2a.scale.set(2.75);
+        trigger2a.setScale(2.75);
+        floor2.setScale(2.75);
+        walls_walk2.setScale(2.75);
+        walls_noWalk2.setScale(2.75);
+        fixtures_walk2b.setScale(2.75);
+        fixtures_noWalk2b.setScale(2.75);
+        fixtures_walk2a.setScale(2.75);
         
-        
-        // Initialize the monk character
+        // Initialize the monk2 character
+        //monk2 = game.add.sprite(0, 0, 'monk2');
         monk2 = game.add.sprite(100, 1450, 'monk2');
         monk2.scale.set(5);
         game.physics.enable(monk2);
         monk2.body.collideWorldBounds = true;
         monk2.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
-        
         // Allow for collisions
         map.setCollisionBetween(242, 242, true, 'trigger2a');
         map.setCollisionBetween(33, 324, true, 'walls_noWalk2');
-        map.setCollisionBetween(99, 1316, true, 'fixtures_noWalk2b');
+        map.setCollisionBetween(23, 1316, true, 'fixtures_noWalk2b');
         
         
         // Adjust the camera
         game.camera.follow(monk2);
-        game.camera.deadzone = new Phaser.Rectangle(340, 300, 800, 100);
+        game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
         
         // Controls
@@ -155,9 +153,9 @@ demo.state2.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk2, trigger2a, function(){console.log('Battle State'); game.state.start('')});
+        game.physics.arcade.collide(monk2, trigger2a, function(){console.log('Battle State');});
         game.physics.arcade.collide(monk2, walls_noWalk2, function(){console.log('walls_noWalk');});
-        game.physics.arcade.collide(monk2, fixtures_noWalk2b, function(){console.log('fixtures_noWalk2b')});
+        game.physics.arcade.collide(monk2, fixtures_noWalk2b, function(){console.log('fixtures_noWalk2b');});
         
         // Set movement controls
         if (cursors.up.isDown){
