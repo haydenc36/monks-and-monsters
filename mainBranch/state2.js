@@ -1,19 +1,21 @@
-// Aristocrat's House
+// Parvos' Monastery
 var demo = demo || {};
-var walls_noWalk2, furniture_noWalk2;
+var monk2, trigger2a, walls_noWalk2, fixtures_noWalk2b;
 var enter;
 
 demo.state2 = function(){};
 demo.state2.prototype = {
     preload: function(){
         
-        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
-        game.load.tilemap('england_vendor', '../assets/tilemaps/files/england_vendor.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
-        game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
-        game.load.image('door', '../assets/tilemaps/tilesets/door.png');
-        game.load.image('art', '../assets/tilemaps/tilesets/art.png');
+        game.load.spritesheet('monk2', '../assets/spritesheets/monk.png', 32, 32);
+        game.load.tilemap('england_parvos', '../assets/tilemaps/files/england_parvos.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('couches', '../assets/tilemaps/tilesets/couches.png');
+        game.load.image('door', '../assets/tilemaps/tilesets/door.png');
+        game.load.image('furniture2', '../assets/tilemaps/tilesets/furniture2.png');
+        game.load.image('paths', '../assets/tilemaps/tilesets/paths.png');
+        game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
+        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
+
         
         this.load.image('npcbox', '../assets/boxes/paper-dialog.png');
         this.load.spritesheet('npc1', '../assets/boxes/wandering_trader1.png', 64, 126);
@@ -23,9 +25,10 @@ demo.state2.prototype = {
     },
     
     create:function(){
+        
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel = 700;
+        vel = 400;
                 
         //Adjust the camera settings
         game.world.setBounds(0,0, 1320, 1760);
@@ -33,51 +36,57 @@ demo.state2.prototype = {
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
-        var map = game.add.tilemap('england_vendor');
+        var map = game.add.tilemap('england_parvos');
         map.addTilesetImage('village_tileset');
-        map.addTilesetImage('village_tileset2');
         map.addTilesetImage('door');
-        map.addTilesetImage('art');
         map.addTilesetImage('couches');
+        map.addTilesetImage('furniture2');
+        map.addTilesetImage('paths');
+        map.addTilesetImage('religious');
+        
         
         // Integrate the layers
+        trigger2a = map.createLayer('trigger2a');
         var floor2 = map.createLayer('floor2');
         var walls_walk2 = map.createLayer('walls_walk2');
         walls_noWalk2 = map.createLayer('walls_noWalk2');
-        var window2 = map.createLayer('window2');
-        var furniture_walk2 = map.createLayer('furniture_walk2');
-        furniture_noWalk2 = map.createLayer('furniture_noWalk2');
+        var fixtures_walk2b = map.createLayer('fixtures_walk2b');
+        fixtures_noWalk2b = map.createLayer('fixtures_noWalk2b');
+        var fixtures_walk2a = map.createLayer('fixtures_walk2a');
+        
         
         // Scale the layers
+        trigger2a.scale.set(2.75)
         floor2.scale.set(2.75);
         walls_walk2.scale.set(2.75);
         walls_noWalk2.scale.set(2.75);
-        furniture_walk2.scale.set(2.75);
-        furniture_noWalk2.scale.set(2.75);
-        window2.scale.set(2.75);
-
+        fixtures_walk2b.scale.set(2.75);
+        fixtures_noWalk2b.scale.set(2.75);
+        fixtures_walk2a.scale.set(2.75);
+        
         
         // Initialize the monk character
-        monk = game.add.sprite(580, 105, 'monk');
-        monk.scale.set(5);
-        game.physics.enable(monk);
-        monk.body.collideWorldBounds = true;
-        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        monk2 = game.add.sprite(100, 1450, 'monk2');
+        monk2.scale.set(5);
+        game.physics.enable(monk2);
+        monk2.body.collideWorldBounds = true;
+        monk2.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        
         
         // Allow for collisions
-        map.setCollisionBetween(34, 47, true, 'walls_noWalk2');
-        map.setCollisionBetween(138, 146, true, 'furniture_noWalk2');
+        map.setCollisionBetween(242, 242, true, 'trigger2a');
+        map.setCollisionBetween(33, 324, true, 'walls_noWalk2');
+        map.setCollisionBetween(99, 1316, true, 'fixtures_noWalk2b');
+        
         
         // Adjust the camera
-        game.camera.follow(monk);
+        game.camera.follow(monk2);
         game.camera.deadzone = new Phaser.Rectangle(340, 300, 800, 100);
+        
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-
-        
-        
         
         
         //create text box and adjust fonts accordingly
@@ -86,11 +95,10 @@ demo.state2.prototype = {
 	    this.styleInfobox2 = {font: '30px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
 	    this.styleInfobox3 = {font: '30px Book Antiqua', fill: '#0aaaa0', align: 'left', fontWeight: 'bold', fontStyle: 'italic'};
 	    
-
         
    	    //Create 1st NPC Character
 //Copy from here to add additional NPCs.....
-   	    this.npc1 = this.add.sprite(700, 1450, 'npc1'); //NPC Sprite + where to spawn
+   	    this.npc1 = this.add.sprite(600, 1450, 'npc1'); //NPC Sprite + where to spawn
             this.physics.arcade.enableBody(this.npc1);
             this.npc1.anchor.setTo(1, 1);
             this.npc1.scale.set(1.75); // Scaling for NPC
@@ -100,7 +108,7 @@ demo.state2.prototype = {
 //.....until here
         
         //example to add another NPC
-        this.npc2 = this.add.sprite(875, 300, 'npc2'); //NPC Sprite + where to spawn in the game
+        this.npc2 = this.add.sprite(875, 600, 'npc2'); //NPC Sprite + where to spawn in the game
             this.physics.arcade.enableBody(this.npc2);
             this.npc2.anchor.setTo(1, 1);
             this.npc2.scale.set(1.75); // scaling for NPC
@@ -147,32 +155,33 @@ demo.state2.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk, walls_noWalk2, function(){console.log('walls_noWalk');});
-        game.physics.arcade.collide(monk, furniture_noWalk2, function(){console.log('furniture_noWalk')});
+        game.physics.arcade.collide(monk2, trigger2a, function(){console.log('Battle State'); game.state.start('')});
+        game.physics.arcade.collide(monk2, walls_noWalk2, function(){console.log('walls_noWalk');});
+        game.physics.arcade.collide(monk2, fixtures_noWalk2b, function(){console.log('fixtures_noWalk2b')});
         
         // Set movement controls
         if (cursors.up.isDown){
-            monk.body.velocity.y = -vel;
+            monk2.body.velocity.y = -vel;
         }
         
         else if (cursors.down.isDown){
-            monk.body.velocity.y = vel;
+            monk2.body.velocity.y = vel;
         }
         
         else{
-            monk.body.velocity.y = 0;
+            monk2.body.velocity.y = 0;
         }
         
         if (cursors.left.isDown){
-            monk.body.velocity.x = -vel;
+            monk2.body.velocity.x = -vel;
         }
         
         else if (cursors.right.isDown){
-            monk.body.velocity.x = vel;
+            monk2.body.velocity.x = vel;
         }
         
         else{
-            monk.body.velocity.x = 0;
+            monk2.body.velocity.x = 0;
         }
         
 	   		if((this.npcboxActive==1) && (this.npcboxTextPosition <= this.npcboxText.length)){
@@ -219,7 +228,7 @@ demo.state2.prototype = {
 	   }
 
 				//this adjusts the distance between character and NPC so that dialogue box is triggered
-                if(Math.abs(this.npc1.x-200-monk.x)<50 && Math.abs(this.npc1.y-175-monk.y)<50){ 
+                if(Math.abs(this.npc1.x-200-monk2.x)<50 && Math.abs(this.npc1.y-175-monk2.y)<50){ 
                     
 					
                         if(this.npcboxActive<=1){
@@ -265,7 +274,7 @@ demo.state2.prototype = {
 				}
 
                 //example for additional NPC and their conversation
-                else if(Math.abs(this.npc2.x-200-monk.x)<80 && Math.abs(this.npc2.y-175-monk.y)<50){ 
+                else if(Math.abs(this.npc2.x-200-monk2.x)<80 && Math.abs(this.npc2.y-175-monk2.y)<50){ 
                     
 					
                         if(this.npcboxActive<=1){

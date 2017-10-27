@@ -1,11 +1,12 @@
 // English Village
 var demo = demo || {};
-var monk, cursors, vel = 200, transitionTrigger1, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
+var monk, cursors, vel = 200, trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
     
     preload: function(){
+        
         game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
         game.load.tilemap('england_village', '../assets/tilemaps/files/england_village.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
@@ -34,17 +35,21 @@ demo.state1.prototype = {
         
     },
     
+    
     create: function(){
+        
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        //addChangeStateEventListeners();
+        
         
         //Adjust camera settings
         game.world.setBounds(0, 0, 2400, 2400);
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
+        
         // Integrate the map
         var map = game.add.tilemap('england_village');
+        
         
         // Integrate the tilesets into the map
         map.addTilesetImage('village_tileset2');
@@ -71,7 +76,11 @@ demo.state1.prototype = {
         map.addTilesetImage('sky');
         map.addTilesetImage('brothel');
         
+        
         // Integrate the layers
+        trigger1a = map.createLayer('trigger1a');
+        trigger1b = map.createLayer('trigger1b');
+        trigger1c = map.createLayer('trigger1c');
         var grass = map.createLayer('grass1');
         var skies1 = map.createLayer('skies1');
         var path2 = map.createLayer('path1_b');
@@ -82,9 +91,9 @@ demo.state1.prototype = {
         buildings2_noWalk1 = map.createLayer('buildings2_noWalk1');
         var buildings2_walk1 = map.createLayer('buildings2_walk1');
         buildings1_noWalk1 = map.createLayer('buildings1_noWalk1');
-        transitionTrigger1 = map.createLayer('transitionTrigger1');
         var buildings1_walk1 = map.createLayer('buildings1_walk1');
         var flowers1 = map.createLayer('flowers1');
+        
         
         // Initialize the monk character
         monk = game.add.sprite(0, 2036, 'monk');
@@ -102,35 +111,41 @@ demo.state1.prototype = {
         map.setCollisionBetween(11472, 15192, true, 'buildings2_noWalk1');
         map.setCollisionBetween(2025, 15714, true, 'buildings1_noWalk1');
         map.setCollisionBetween(53, 15471, true, 'mountains_nowalking1');
-        map.setCollisionBetween(2091, 2092, true, 'transitionTrigger1');
-        map.setCollisionBetween(2059, 2060, true, 'transitionTrigger1');
-        map.setCollisionBetween(2027, 2028, true, 'transitionTrigger1');
+        map.setCollisionBetween(15408, 15408, true, 'trigger1a');
+        map.setCollisionBetween(15408, 15408, true, 'trigger1b');
+        map.setCollisionBetween(15408, 15408, true, 'trigger1c');
+        
         
         // Adjust the camera
         game.camera.follow(monk);
         game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
+        
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
     },
     
+    
     update: function(){
         
+        // Enabling collisions
         game.physics.arcade.collide(monk, buildings2_noWalk1, function(){console.log('buildings2');});
         game.physics.arcade.collide(monk, buildings1_noWalk1, function(){console.log('buildings1')});
         game.physics.arcade.collide(monk, mountains_nowalking1, function(){console.log('mountains');});
         
-        //Changing States
-        game.physics.arcade.collide(monk, transitionTrigger1, function(){console.log('Peasants House');game.state.start('state4')});
+        
+        // Transitioning between maps
+        game.physics.arcade.collide(monk, trigger1a, function(){console.log('Peasants House'); game.state.start('state4')});
+        game.physics.arcade.collide(monk, trigger1b, function(){console.log('Brothel'); game.state.start('state5')});
+        game.physics.arcade.collide(monk, trigger1c, function(){console.log('Monastery'); game.state.start('state3')});
+        
         
         // Up and Down
         if (cursors.up.isDown){
-            //console.log("UP");
             monk.body.velocity.y = -vel;
             monk.animations.play('walkUp');
         }
         else if (cursors.down.isDown){
-            //console.log("DOWN");
             monk.body.velocity.y = vel;
             monk.animations.play('walkDown');
         }
@@ -139,13 +154,11 @@ demo.state1.prototype = {
         }
         // Right & Left
         if (cursors.right.isDown){
-            //console.log("RIGHT");
             monk.body.velocity.x = vel;
             monk.animations.play('walkRight');
             monk.scale.set(2,2);
         }
         else if (cursors.left.isDown){
-            //console.log("LEFT");
             monk.body.velocity.x = -vel;
             monk.animations.play('walkLeft');
             monk.scale.set(-2,2);
@@ -154,6 +167,7 @@ demo.state1.prototype = {
             monk.body.velocity.x = 0;
         }
     },
+    
     
     render: function () {
         game.debug.cameraInfo(game.camera, 32, 32);
