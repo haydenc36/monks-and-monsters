@@ -17,11 +17,9 @@ demo.state2.prototype = {
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
 
         
-        this.load.image('npcbox', '../assets/boxes/paper-dialog.png');
-        this.load.spritesheet('npc1', '../assets/boxes/wandering_trader1.png', 64, 126);
-        this.load.spritesheet('npc2', '../assets/boxes/wandering_trader1.png', 64, 126);
-        //This is where we load more NPC spritesheets
-        //
+        game.load.image('npcbox', '../assets/boxes/paper-dialog.png');
+        game.load.spritesheet('npc1', '../assets/boxes/wandering_trader1.png', 64, 126);
+        game.load.spritesheet('npc2', '../assets/boxes/wandering_trader1.png', 64, 126);
     },
     
     create:function(){
@@ -90,66 +88,71 @@ demo.state2.prototype = {
         
         
         //create text box and adjust fonts accordingly
-        this.styleInfobox0 = {font: '20px Arial', fill: '#000000', fontWeight: 'bold'};
-	    this.styleInfobox1 = {font: '40px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
-	    this.styleInfobox2 = {font: '30px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
-	    this.styleInfobox3 = {font: '30px Book Antiqua', fill: '#0aaaa0', align: 'left', fontWeight: 'bold', fontStyle: 'italic'};
+        game.styleInfobox0 = {font: '20px Arial', fill: '#000000', fontWeight: 'bold'};
+	    game.styleInfobox1 = {font: '40px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
+	    game.styleInfobox2 = {font: '30px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
+	    game.styleInfobox3 = {font: '30px Book Antiqua', fill: '#0aaaa0', align: 'left', fontWeight: 'bold', fontStyle: 'italic'};
 	    
         
    	    //Create 1st NPC Character
 //Copy from here to add additional NPCs.....
-   	    this.npc1 = this.add.sprite(600, 1450, 'npc1'); //NPC Sprite + where to spawn
-            this.physics.arcade.enableBody(this.npc1);
-            this.npc1.anchor.setTo(1, 1);
-            this.npc1.scale.set(1.75); // Scaling for NPC
+   	    game.npc1 = game.add.sprite(600, 1450, 'npc1'); //NPC Sprite + where to spawn
+        game.physics.arcade.enableBody(game.npc1);
+        game.npc1.anchor.setTo(1, 1);
+        game.npc1.scale.set(1.75); // Scaling for NPC
         //additional animations to add later
-	    //this.npc1.animations.add('idle',[0,1,2,3,4,5], 5 /*fps */, true);
-   	    //this.npc1.animations.play('idle');
+	    //game.npc1.animations.add('idle',[0,1,2,3,4,5], 5 /*fps */, true);
+   	    //game.npc1.animations.play('idle');
 //.....until here
         
-        //example to add another NPC
-        this.npc2 = this.add.sprite(875, 600, 'npc2'); //NPC Sprite + where to spawn in the game
-            this.physics.arcade.enableBody(this.npc2);
-            this.npc2.anchor.setTo(1, 1);
-            this.npc2.scale.set(1.75); // scaling for NPC
         
-	    //this.npc1.animations.add('idle',[0,1,2,3,4,5], 5 /*fps */, true);
-   	    //this.npc1.animations.play('idle');
+        //example to add another NPC
+        game.npc2 = game.add.sprite(875, 600, 'npc2'); //NPC Sprite + where to spawn in the game
+        game.physics.arcade.enableBody(game.npc2);
+        game.npc2.anchor.setTo(1, 1);
+        game.npc2.scale.set(1.75); // scaling for NPC
+        
+        
+	    //game.npc1.animations.add('idle',[0,1,2,3,4,5], 5 /*fps */, true);
+   	    //game.npc1.animations.play('idle');
 
+        
    	    //box for NPC text-box
-   	    this.npcbox = this.add.sprite(2000, 0, 'npcbox');
-        this.npcbox.scale.set(2, 1.5);
-	    this.physics.arcade.enableBody(this.npcbox);
-            
-            this.npcbox.visible = false;
-            //text settings for the character info box
-            this.textInfoboxNPC = this.add.text(20,40,'',this.styleInfobox2);
-        this.textInfoboxNPC.wordWrapWidth = '780'; //width of container
-	    this.textInfoboxNPC.wordWrap = true;
-	    this.textInfoboxNPC.inputEnabled = true;
-	    this.npcbox.addChild(this.textInfoboxNPC);
-        this.textInfoboxNPC.scale.set(0.35); // change textsize if needed
+   	    game.npcbox = game.add.sprite(2000, 0, 'npcbox');
+        game.npcbox.scale.set(2, 1.5);
+	    game.physics.arcade.enableBody(game.npcbox);
+        game.npcbox.visible = false;
+        
+        
+        //text settings for the character info box
+        game.textInfoboxNPC = game.add.text(20,40,'',game.styleInfobox2);
+        game.textInfoboxNPC.wordWrapWidth = '780'; //width of container
+	    game.textInfoboxNPC.wordWrap = true;
+	    game.textInfoboxNPC.inputEnabled = true;
+	    game.npcbox.addChild(game.textInfoboxNPC);
+        game.textInfoboxNPC.scale.set(0.35); // change textsize if needed
 	    
+        
 	    //text for NPC character name
-            this.textInfoboxNPCname = this.add.text(50,10,'',this.styleInfobox3);
-        	    this.textInfoboxNPCname.inputEnabled = true;
-	    this.npcbox.addChild(this.textInfoboxNPCname);
-        this.textInfoboxNPCname.scale.set(0.5);
+        game.textInfoboxNPCname = game.add.text(50,10,'',game.styleInfobox3);
+        game.textInfoboxNPCname.inputEnabled = true;
+	    game.npcbox.addChild(game.textInfoboxNPCname);
+        game.textInfoboxNPCname.scale.set(0.5);
 	    
 	    
 	    //array for text sections of the dialog
-	    this.npcboxText = new Array();
+	    game.npcboxText = new Array();
 	    //NPC's name
-	    this.npcboxname = '';
-        this.npcboxnmame_id = 0;
-	    this.npcboxTextPosition = 0;
+	    game.npcboxname = '';
+        game.npcboxnmame_id = 0;
+	    game.npcboxTextPosition = 0;
 	    //To check if is necessary to activate the NPC character's info box
 	    // 0 = not active
 	    // 1 = active
 	    // 2 = transition state
-	    this.npcboxActive = 0;
-         this.time.now = 0;
-        this.nextTextNPCBox = this.time.now;
+	    game.npcboxActive = 0;
+         game.time.now = 0;
+        game.nextTextNPCBox = game.time.now;
         
     },
     
@@ -184,41 +187,41 @@ demo.state2.prototype = {
             monk2.body.velocity.x = 0;
         }
         
-	   		if((this.npcboxActive==1) && (this.npcboxTextPosition <= this.npcboxText.length)){
+	   		if((game.npcboxActive==1) && (game.npcboxTextPosition <= game.npcboxText.length)){
 	   		
 	   			
 	   			//If the text array is finished, deactivate and set the flag in "transition state", else continue running dialog
-	   			if(this.npcboxTextPosition >= this.npcboxText.length){
+	   			if(game.npcboxTextPosition >= game.npcboxText.length){
                     
-	   				this.npcboxActive=2;
-	   				this.npcbox.visible = false;
+	   				game.npcboxActive=2;
+	   				game.npcbox.visible = false;
 					   
-					this.npcboxTextPosition = 0;
+					game.npcboxTextPosition = 0;
 
 					//reset the array
-					this.npcboxText.length = 0;
+					game.npcboxText.length = 0;
 
-					this.textInfoboxNPC.setText("");
-                    this.npcboxnmame_id = 0;
+					game.textInfoboxNPC.setText("");
+                    game.npcboxnmame_id = 0;
 	   			    //reset the array
-                    this.npcboxText.length = 0;
-                    this.time.now = 0;
-                    this.nextTextNPCBox = this.time.now;
-					this.textInfoboxNPC.setText("");
+                    game.npcboxText.length = 0;
+                    game.time.now = 0;
+                    game.nextTextNPCBox = game.time.now;
+					game.textInfoboxNPC.setText("");
 	   			}
                 else{
                     
-                    if(this.nextTextNPCBox<this.time.now){
-	   				this.textInfoboxNPC.setText(this.npcboxText[this.npcboxTextPosition]);
+                    if(game.nextTextNPCBox<game.time.now){
+	   				game.textInfoboxNPC.setText(game.npcboxText[game.npcboxTextPosition]);
                     if(enter.isDown){
-		   			this.npcboxTextPosition = Math.abs(this.npcboxTextPosition + 1);
-                    this.npcboxnamePosition = Math.abs(this.npcboxnamePosition + 1);
-                    this.nextTextNPCBox = this.time.now + 400;
-                    if(this.npcboxnmame_id == 0)
-                        {this.npcboxnmame_id = 1;
+		   			game.npcboxTextPosition = Math.abs(game.npcboxTextPosition + 1);
+                    game.npcboxnamePosition = Math.abs(game.npcboxnamePosition + 1);
+                    game.nextTextNPCBox = game.time.now + 400;
+                    if(game.npcboxnmame_id == 0)
+                        {game.npcboxnmame_id = 1;
                         }
                         else{
-                            this.npcboxnmame_id = 0;
+                            game.npcboxnmame_id = 0;
                         }
                     }
 	   			}
@@ -227,80 +230,80 @@ demo.state2.prototype = {
 	   		
 	   }
 
-				//this adjusts the distance between character and NPC so that dialogue box is triggered
-                if(Math.abs(this.npc1.x-200-monk2.x)<50 && Math.abs(this.npc1.y-175-monk2.y)<50){ 
+				//game adjusts the distance between character and NPC so that dialogue box is triggered
+                if(Math.abs(game.npc1.x-200-monk2.x)<50 && Math.abs(game.npc1.y-175-monk2.y)<50){ 
                     
 					
-                        if(this.npcboxActive<=1){
+                        if(game.npcboxActive<=1){
 					
 						
-						this.npcbox.x=this.npc1.x;
-						this.npcbox.y=this.npc1.y; 
+						game.npcbox.x=game.npc1.x;
+						game.npcbox.y=game.npc1.y; 
 						
 					
-						this.npcbox.visible = true;
+						game.npcbox.visible = true;
 					
-						this.npcboxActive = 1;
+						game.npcboxActive = 1;
 					
 						//enter text dialogue here
-						this.npcboxText[0]="Hardly comforting or clarifying. Whatever it may mean, Messenger, bring this epistle to the lord of the land.";
-						this.npcboxText[1]="Father, send me instead.";
-						this.npcboxText[2]="Sweet Parvos, what can you be expected to do—sunder skulls with scrolls and stop wars with communion wafers? Be sensible, child. Messenger, to the lord you go.";
-						this.npcboxText[3]="Father, Theo sent specifically for our aid. Perhaps he knows better than us what is needed.";
-						this.npcboxText[4]="Yes, and perhaps Master Theo has tumbled into the wine cellar once again.!";
-                        this.npcboxText[5]="You know better than I that Theo is a discerning man. Perhaps he senses that this conflict, whatever its nature, is not amenable to the force of Lord William. Please, send me.";
-                        this.npcboxText[6]="Give me a moment to contemplate.";
-                        this.npcboxText[7]=".........";
-                        this.npcboxText[8]="As I departed from his quarters, Sir Theo made great note to deliver this epistle to this abbey, and this abbey alone.";
-                        this.npcboxText[9]="Then perhaps that settles the matter.";
-                        this.npcboxText[10]="Alright Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.";
-                        this.npcboxText[11]="I will be in good company. Bless you, Father.";
+						game.npcboxText[0]="Hardly comforting or clarifying. Whatever it may mean, Messenger, bring game epistle to the lord of the land.";
+						game.npcboxText[1]="Father, send me instead.";
+						game.npcboxText[2]="Sweet Parvos, what can you be expected to do—sunder skulls with scrolls and stop wars with communion wafers? Be sensible, child. Messenger, to the lord you go.";
+						game.npcboxText[3]="Father, Theo sent specifically for our aid. Perhaps he knows better than us what is needed.";
+						game.npcboxText[4]="Yes, and perhaps Master Theo has tumbled into the wine cellar once again.!";
+                        game.npcboxText[5]="You know better than I that Theo is a discerning man. Perhaps he senses that game conflict, whatever its nature, is not amenable to the force of Lord William. Please, send me.";
+                        game.npcboxText[6]="Give me a moment to contemplate.";
+                        game.npcboxText[7]=".........";
+                        game.npcboxText[8]="As I departed from his quarters, Sir Theo made great note to deliver game epistle to game abbey, and game abbey alone.";
+                        game.npcboxText[9]="Then perhaps that settles the matter.";
+                        game.npcboxText[10]="Alright Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in game miserable groundswell, I would send you in good company.";
+                        game.npcboxText[11]="I will be in good company. Bless you, Father.";
 
                     //check which character is talking
-                    if(this.npcboxnmame_id == 0) //Character who starts the conversation
-                    {this.npcboxname="Head Abbott"; //change the names depending on the order of who starts the convo
+                    if(game.npcboxnmame_id == 0) //Character who starts the conversation
+                    {game.npcboxname="Head Abbott"; //change the names depending on the order of who starts the convo
                     }
-                    if(this.npcboxnmame_id == 1){
-                       this.npcboxname="Parvos";
+                    if(game.npcboxnmame_id == 1){
+                       game.npcboxname="Parvos";
                        }
-                    this.textInfoboxNPCname.setText(this.npcboxname);
+                    game.textInfoboxNPCname.setText(game.npcboxname);
 					
 					
 						//bring text dialogue to the top
-						this.npcbox.bringToTop();
+						game.npcbox.bringToTop();
 						
 					}
 
 				}
 
                 //example for additional NPC and their conversation
-                else if(Math.abs(this.npc2.x-200-monk2.x)<80 && Math.abs(this.npc2.y-175-monk2.y)<50){ 
+                else if(Math.abs(game.npc2.x-200-monk2.x)<80 && Math.abs(game.npc2.y-175-monk2.y)<50){ 
                     
 					
-                        if(this.npcboxActive<=1){
+                        if(game.npcboxActive<=1){
 					
 						
-						this.npcbox.x=this.npc2.x;
-						this.npcbox.y=this.npc2.y; 
+						game.npcbox.x=game.npc2.x;
+						game.npcbox.y=game.npc2.y; 
 						
 					
-						this.npcbox.visible = true;
+						game.npcbox.visible = true;
 					
-						this.npcboxActive = 1;
+						game.npcboxActive = 1;
 					
-						this.npcboxText[0]="Let's make sure you remember your training!";
-						this.npcboxText[1]=".....";
+						game.npcboxText[0]="Let's make sure you remember your training!";
+						game.npcboxText[1]=".....";
                         
 
-                    if(this.npcboxnmame_id == 0)
-                    {this.npcboxname="Theo";
+                    if(game.npcboxnmame_id == 0)
+                    {game.npcboxname="Theo";
                     }
-                    if(this.npcboxnmame_id == 1){
-                       this.npcboxname="Parvos";
+                    if(game.npcboxnmame_id == 1){
+                       game.npcboxname="Parvos";
                        }
-                    this.textInfoboxNPCname.setText(this.npcboxname);
+                    game.textInfoboxNPCname.setText(game.npcboxname);
 					
-						this.npcbox.bringToTop();
+						game.npcbox.bringToTop();
 						
 					}
 
@@ -309,17 +312,17 @@ demo.state2.prototype = {
 
 					else{
                        //reset dialogue when done
-					   this.npcbox.visible = false;
+					   game.npcbox.visible = false;
 					   
-					   this.npcboxTextPosition = 0;
-					   this.npcboxActive = 0;
+					   game.npcboxTextPosition = 0;
+					   game.npcboxActive = 0;
 					   //reset the array
-					  this.npcboxText.length = 0;
+					  game.npcboxText.length = 0;
 
-					  this.npcboxname="";
-					   this.textInfoboxNPC.setText("");
-					   this.textInfoboxNPCname.setText("");
-                        this.npcboxnmame_id =0;
+					  game.npcboxname="";
+					   game.textInfoboxNPC.setText("");
+					   game.textInfoboxNPCname.setText("");
+                        game.npcboxnmame_id =0;
 				}
     
     
