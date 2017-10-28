@@ -227,7 +227,7 @@ demo.state2.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk2, trigger2a, function(){console.log('Battle State');});
+        game.physics.arcade.collide(monk2, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", {});});
         game.physics.arcade.collide(monk2, walls_noWalk2, function(){console.log('walls_noWalk');});
         game.physics.arcade.collide(monk2, fixtures_noWalk2b, function(){console.log('fixtures_noWalk2b');});
         

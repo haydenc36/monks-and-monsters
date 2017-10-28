@@ -59,17 +59,17 @@ demo.state3.prototype = {
         var roof3_walk = map.createLayer('roof3_walk3');
         
         // Scale the layers
-        ground3.scale.set(1.875);
-        walls3_walk.scale.set(1.875);
-        walls3_noWalk.scale.set(1.875);
-        furniture3_foreground.scale.set(1.875);
-        stairs.scale.set(1.875);
-        buildings3_walk.scale.set(1.875);
-        buildings3_noWalk.scale.set(1.875);
-        roof3_noWalk.scale.set(1.875);
-        roof3_walk.scale.set(1.875);
-        windows.scale.set(1.875);
-        decor.scale.set(1.875);
+        ground3.setScale(1.875);
+        walls3_walk.setScale(1.875);
+        walls3_noWalk.setScale(1.875);
+        furniture3_foreground.setScale(1.875);
+        stairs.setScale(1.875);
+        buildings3_walk.setScale(1.875);
+        buildings3_noWalk.setScale(1.875);
+        roof3_noWalk.setScale(1.875);
+        roof3_walk.setScale(1.875);
+        windows.setScale(1.875);
+        decor.setScale(1.875);
         
         
         // Initialize the monk character
@@ -80,8 +80,8 @@ demo.state3.prototype = {
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Allow for collisions
-        //map.setCollisionBetween(33, 47, true, 'walls_noWalk');
-        //map.setCollisionBetween(6, 146, true, 'furniture_noWalk');
+        map.setCollisionBetween(33, 47, true, 'walls_noWalk');
+        map.setCollisionBetween(6, 146, true, 'furniture_noWalk');
         
         // Adjust the camera
         game.camera.follow(monk);
