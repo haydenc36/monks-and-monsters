@@ -55,13 +55,13 @@ demo.state5.prototype = {
         var stairs = map.createLayer('stairs');
         
         // Scale the layers
-        floor.scale.set(3.5);
-        walls_walk.scale.set(3.5);
-        walls_noWalk.scale.set(3.5);
-        windows.scale.set(3.5);
-        furniture_walk.scale.set(3.5);
-        furniture_noWalk.scale.set(3.5);
-        stairs.scale.set(3.5);
+        floor.setScale(3.5);
+        walls_walk.setScale(3.5);
+        walls_noWalk.setScale(3.5);
+        windows.setScale(3.5);
+        furniture_walk.setScale(3.5);
+        furniture_noWalk.setScale(3.5);
+        stairs.setScale(3.5);
         
         
         // Initialize the monk character

@@ -43,13 +43,13 @@ demo.state4.prototype = {
         var foreground_decor = map.createLayer('foreground_decor');
         
         // Scale the layers
-        floor.scale.set(9.375);
-        walls_walk.scale.set(9.375);
-        walls_noWalk4.scale.set(9.375);
-        furniture_walk.scale.set(9.375);
-        furniture_noWalk4.scale.set(9.375);
-        background_decor.scale.set(9.375);
-        foreground_decor.scale.set(9.375);
+        floor.setScale(9.375);
+        walls_walk.setScale(9.375);
+        walls_noWalk4.setScale(9.375);
+        furniture_walk.setScale(9.375);
+        furniture_noWalk4.setScale(9.375);
+        background_decor.setScale(9.375);
+        foreground_decor.setScale(9.375);
         
         
         // Initialize the monk character
