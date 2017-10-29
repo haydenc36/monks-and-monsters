@@ -1,5 +1,7 @@
 // Brothel / Revolutionary Hangout
 var demo = demo || {};
+var trigger5, noWalk5;
+
 demo.state5 = function(){};
 demo.state5.prototype = {
     preload: function(){
@@ -19,11 +21,11 @@ demo.state5.prototype = {
         game.load.image('windows2', '../assets/tilemaps/tilesets/windows2.png');
         
         //load Sprites for HUD
-            this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
-			this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
-			this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
-            this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
-			this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
+        this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
+        this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
+        this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
+        this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
+        this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
         
     },
     
@@ -56,22 +58,24 @@ demo.state5.prototype = {
         map.addTilesetImage('windows2');
         
         // Integrate the layers
-        var floor = map.createLayer('floor');
-        var walls_noWalk = map.createLayer('walls_noWalk');
-        var walls_walk = map.createLayer('walls_walk');
-        var windows = map.createLayer('windows');
-        var furniture_walk = map.createLayer('furniture_walk');
-        var furniture_noWalk = map.createLayer('furniture_noWalk');
-        var stairs = map.createLayer('stairs');
+        trigger5 = map.createLayer('trigger5');
+        noWalk5 = map.createLayer('noWalk5');
+        var floor5 = map.createLayer('floor5');
+        var walls5 = map.createLayer('walls5');
+        var windows5 = map.createLayer('windows5');
+        var furniture5b = map.createLayer('furniture5b');
+        var furniture5a = map.createLayer('furniture5a');
+        var stairs5 = map.createLayer('stairs5');
         
         // Scale the layers
-        floor.setScale(3.5);
-        walls_walk.setScale(3.5);
-        walls_noWalk.setScale(3.5);
-        windows.setScale(3.5);
-        furniture_walk.setScale(3.5);
-        furniture_noWalk.setScale(3.5);
-        stairs.setScale(3.5);
+        trigger5.setScale(3.5);
+        noWalk5.setScale(3.5);
+        floor5.setScale(3.5);
+        walls5.setScale(3.5);
+        windows5.setScale(3.5);
+        furniture5a.setScale(3.5);
+        furniture5b.setScale(3.5);
+        stairs5.setScale(3.5);
         
         
         // Initialize the monk character
@@ -83,8 +87,8 @@ demo.state5.prototype = {
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Allow for collisions
-        //map.setCollisionBetween(1387, 1387, true, 'walls_noWalk4');
-        //map.setCollisionBetween(296, 1031, true, 'furniture_noWalk4');
+        map.setCollisionBetween(1396, 1396, true, 'trigger5');
+        map.setCollisionBetween(1396, 1396, true, 'noWalk5');
         
         //Camera
         game.camera.follow(monk);
@@ -165,6 +169,9 @@ demo.state5.prototype = {
     },
     
     update: function(){
+        
+        game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); game.state.start('state1');});
+        game.physics.arcade.collide(monk, noWalk5, function(){console.log('noWalk5');});
         
         // Set movement controls
         if (cursors.up.isDown){
