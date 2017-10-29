@@ -6,7 +6,7 @@ demo.state3 = function(){};
 demo.state3.prototype = {
     preload: function(){
         
-        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
+        game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
         game.load.tilemap('england_monastery', '../assets/tilemaps/files/england_monastery.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
         game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
@@ -84,10 +84,15 @@ demo.state3.prototype = {
         
         // Initialize the monk character
         monk = game.add.sprite(1100, 2200, 'monk');
-        monk.scale.set(2.9);
+        monk.scale.set(0.35);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
-        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        monk.anchor.setTo(0.5, 0.5);
+        monk.animations.add('walkUp', [5, 6], 5);
+        monk.animations.add('walk', [1,2,0], 5);
+        //monk.animations.add('walkDown', [0], 10);
+        //monk.animations.add('walkRight', [0,1,2], 10);
+        //monk.animations.add('walkLeft', [3,4], 10);
         
         // Allow for collisions
         map.setCollisionBetween(2236, 2236, true, 'noWalk3');
@@ -235,10 +240,12 @@ demo.state3.prototype = {
         //Set movement controls
         if (cursors.up.isDown){
             monk.body.velocity.y = -vel;
+            monk.animations.play('walkUp');
         }
         
         else if (cursors.down.isDown){
             monk.body.velocity.y = vel;
+            monk.animations.play('walk');
         }
         
         else{
@@ -247,10 +254,14 @@ demo.state3.prototype = {
         
         if (cursors.left.isDown){
             monk.body.velocity.x = -vel;
+            monk.scale.set(-0.35,0.35);
+            monk.animations.play('walk');
         }
         
         else if (cursors.right.isDown){
             monk.body.velocity.x = vel;
+            monk.scale.set(0.35,0.35);
+            monk.animations.play('walk');
         }
         
         else{

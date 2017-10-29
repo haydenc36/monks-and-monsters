@@ -7,7 +7,7 @@ demo.state1.prototype = {
     
     preload: function(){
         
-        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
+        game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
         game.load.tilemap('england_village', '../assets/tilemaps/files/england_village.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
         game.load.image('barracks', '../assets/tilemaps/tilesets/barracks.png');
@@ -123,14 +123,15 @@ demo.state1.prototype = {
                 monk = game.add.sprite(0, 2036, 'monk');
             }
         
-        monk.scale.set(2);
+        monk.scale.set(0.3);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
-        monk.animations.add('walkUp', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
-        monk.animations.add('walkDown', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
-        monk.animations.add('walkRight', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
-        monk.animations.add('walkLeft', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
+        monk.animations.add('walkUp', [5, 6], 5);
+        //monk.animations.add('walkDown', [0], 10);
+        monk.animations.add('walk', [1,2,0], 5);
+        //monk.animations.add('walkRight', [0,1,2], 10);
+        //monk.animations.add('walkLeft', [3,4], 10);
         
         
         // Allow for collisions
@@ -251,7 +252,8 @@ demo.state1.prototype = {
         }
         else if (cursors.down.isDown){
             monk.body.velocity.y = vel;
-            monk.animations.play('walkDown');
+            //monk.animations.play('walkDown');
+            monk.animations.play('walk');
         }
         else {
             monk.body.velocity.y = 0;
@@ -259,13 +261,13 @@ demo.state1.prototype = {
         // Right & Left
         if (cursors.right.isDown){
             monk.body.velocity.x = vel;
-            monk.animations.play('walkRight');
-            monk.scale.set(2,2);
+            monk.scale.set(0.3,0.3);
+            monk.animations.play('walk');
         }
         else if (cursors.left.isDown){
             monk.body.velocity.x = -vel;
-            monk.animations.play('walkLeft');
-            monk.scale.set(-2,2);
+            monk.scale.set(-0.3,0.3);
+            monk.animations.play('walk');
         }
         else {
             monk.body.velocity.x = 0;
