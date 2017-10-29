@@ -321,7 +321,7 @@ demo.state2.prototype = {
 	   }
 
 				//this adjusts the distance between character and NPC so that dialogue box is triggered
-                if(Math.abs(this.npc1.x-200-monk2.x)<50 && Math.abs(this.npc1.y-175-monk2.y)<50){ 
+                if(Math.abs(this.npc1.x-175-monk2.x)<50 && Math.abs(this.npc1.y-160-monk2.y)<60){ 
                     
 					
                         if(this.npcboxActive<=1){
@@ -367,7 +367,7 @@ demo.state2.prototype = {
 				}
 
                 //example for additional NPC and their conversation
-                else if(Math.abs(this.npc2.x-200-monk2.x)<80 && Math.abs(this.npc2.y-175-monk2.y)<50){ 
+                else if(Math.abs(this.npc2.x-175-monk2.x)<80 && Math.abs(this.npc2.y-160-monk2.y)<70){ 
                     
 					
                         if(this.npcboxActive<=1){
