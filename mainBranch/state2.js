@@ -348,6 +348,7 @@ demo.state2.prototype = {
                         this.npcboxText[9]="Then perhaps that settles the matter.";
                         this.npcboxText[10]="Alright Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.";
                         this.npcboxText[11]="I will be in good company. Bless you, Father.";
+                        this.npcboxText[12]="Before you leave, meet with Thomas at the door. He will ensure that you haven’t forgotten your training!";
 
                     //check which character is talking
                     if(this.npcboxnmame_id == 0) //Character who starts the conversation
@@ -381,12 +382,12 @@ demo.state2.prototype = {
 					
 						this.npcboxActive = 1;
 					
-						this.npcboxText[0]="Let's make sure you remember your training!";
+						this.npcboxText[0]="Alright, show me what you remember!";
 						this.npcboxText[1]=".....";
                         
 
                     if(this.npcboxnmame_id == 0)
-                    {this.npcboxname="Theo";
+                    {this.npcboxname="Thomas";
                     }
                     if(this.npcboxnmame_id == 1){
                        this.npcboxname="Parvos";
