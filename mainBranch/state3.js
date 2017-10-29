@@ -320,7 +320,7 @@ demo.state3.prototype = {
 	   }
 
 				//this adjusts the distance between character and NPC so that dialogue box is triggered
-                if(Math.abs(this.npc1.x-200-monk.x)<50 && Math.abs(this.npc1.y-150-monk.y)<100){ 
+                if(Math.abs(this.npc1.x-150-monk.x)<50 && Math.abs(this.npc1.y-85-monk.y)<35){ 
                     
 					
                         if(this.npcboxActive<=1){
@@ -335,25 +335,28 @@ demo.state3.prototype = {
 						this.npcboxActive = 1;
 					
 						//enter text dialogue here
-						this.npcboxText[0]="Hardly comforting or clarifying. Whatever it may mean, Messenger, bring this epistle to the lord of the land.";
-						this.npcboxText[1]="Father, send me instead.";
-						this.npcboxText[2]="Sweet Parvos, what can you be expected to do—sunder skulls with scrolls and stop wars with communion wafers? Be sensible, child. Messenger, to the lord you go.";
-						this.npcboxText[3]="Father, Theo sent specifically for our aid. Perhaps he knows better than us what is needed.";
-						this.npcboxText[4]="Yes, and perhaps Master Theo has tumbled into the wine cellar once again.!";
-                        this.npcboxText[5]="You know better than I that Theo is a discerning man. Perhaps he senses that this conflict, whatever its nature, is not amenable to the force of Lord William. Please, send me.";
-                        this.npcboxText[6]="Give me a moment to contemplate.";
-                        this.npcboxText[7]=".........";
-                        this.npcboxText[8]="As I departed from his quarters, Sir Theo made great note to deliver this epistle to this abbey, and this abbey alone.";
-                        this.npcboxText[9]="Then perhaps that settles the matter.";
-                        this.npcboxText[10]="Alright Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.";
-                        this.npcboxText[11]="I will be in good company. Bless you, Father.";
+						this.npcboxText[0]="Father, I am looking for the monk named Theo.";
+						this.npcboxText[1]="Theo? Theo? Theo! That precious little man, what had he done? That’s all I’ve thought all night.. ‘Good God, Theo?’ I ask, ‘Theo!’ I can’t understand it… Perhaps the poor of our village could take the weights no longer? But Theo? One tiff between a duke and a laborer, then the village was swallowed in flames!";
+						this.npcboxText[2]="Don’t cry, Father! Let the dead bury their dead, but let us honor the dead.";
+						this.npcboxText[3]="A wise heart you have—";
+						this.npcboxText[4]="Thats very kind of you, father.";
+                        this.npcboxText[5]="A wise heart indeed. Yes, yes. Well how may we honor them? Their bodies dangle from trees: ‘strange fruit,’ as those accustomed to agony have said.";
+                        this.npcboxText[6]="Tell me more about the conflict. What crimes were committed, by whom, against whom?";
+                        this.npcboxText[7]="Oh mercy, there were hangings—as you no doubt witnessed—decapitations, slit throats. I tell the truth, reports tell that even one of our village’s finest was dragged by horses to the brothel down in the valley. A motley of henchmen—Can I even say it?—no, no, I could not say it aloud. Suffice it to say that they performed a minor decapitation in full view of that establishment.";
+                        this.npcboxText[8]="These were other villagers committing such atrocities?";
+                        this.npcboxText[9]="I couldn’t believe it myself! Sweet Parvos, do recall that there was a time many ages ago when saints and priests could inspire peace and moral splendor in their disciples… Now, now there is drunkenness and philandering with the rich, drunkenness and ignorance with our poor! And what am I to do? The people see nothing in us religious any longer. Bread and blood, bread and blood.";
+                        this.npcboxText[10]="Seems like an inopportune moment to withhold God from the people.";
+                        this.npcboxText[11]="What was I to do? I am a simple man—what was I to do? Stealing the blood of Christ—despicable! It could not stand; no, I could not let it stand. ‘This won’t stand,’ I said to them, the peasants. ‘Expose the thief or suffer excommunication.’ So for months, they went without the Mass. What was I to do? It could not stand!";
+                        this.npcboxText[12]="You are not to blame father. Alas, do you know a man by the name of Oceanus? I would like to have a word with him.";
+                        this.npcboxText[13]="Oceanus, yes, a good man if ever there was one! A well-connected man, I may add. I could not see all faces from the turrets, but I did not see his among the rabble rousers. If you can win his heart, he can persuade the others to return Lady Silva and the young princes. He sometimes conducts business from his hut in the lower part of the village. You may find him there.";
+                        this.npcboxText[14]="Your help is greatly appreciated!";
 
                     //check which character is talking
                     if(this.npcboxnmame_id == 0) //Character who starts the conversation
-                    {this.npcboxname="Head Abbott"; //change the names depending on the order of who starts the convo
+                    {this.npcboxname="Parvos"; //change the names depending on the order of who starts the convo
                     }
                     if(this.npcboxnmame_id == 1){
-                       this.npcboxname="Parvos";
+                       this.npcboxname="Typhon";
                        }
                     this.textInfoboxNPCname.setText(this.npcboxname);
 					
