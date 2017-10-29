@@ -199,6 +199,14 @@ demo.state1.prototype = {
 	    this.stamina_bar.cameraOffset.y = 101;
 	    this.stamina_bar.scale.set(0.5, 1);
         
+            //depletion of bars
+            this.characterEnergy=0.5;
+            this.characterMana=0.25;
+            this.characterStamina=0.75;
+        this.healthscale = this.characterEnergy/2;
+        this.manascale = this.characterMana/2;
+        this.staminascale = this.characterStamina/2;
+        
     },
     
     
@@ -252,6 +260,10 @@ demo.state1.prototype = {
                 this.health.bringToTop();
                 this.mana.bringToTop();
                 this.stamina.bringToTop();
+        
+                this.blood_bar.scale.set(this.healthscale, 1);
+                this.mana_bar.scale.set(this.manascale, 1);
+                this.stamina_bar.scale.set(this.staminascale, 1);
     },
     
     
