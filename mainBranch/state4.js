@@ -60,7 +60,7 @@ demo.state4.prototype = {
         foreground_decor4.setScale(5);
         
         // Initialize the monk character
-        monk = game.add.sprite(1200, 500, 'monk');
+        monk = game.add.sprite(635, 110, 'monk');
         monk.scale.set(0.6);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;

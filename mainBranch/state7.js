@@ -59,8 +59,8 @@ demo.state7.prototype = {
         var buildings_walk = map.createLayer('buildings_walk');
         
         // Initialize the monk character
-        monk = game.add.sprite(0, 420, 'monk');
-        monk.scale.set(0.2);
+        monk = game.add.sprite(2382, 407, 'monk');
+        monk.scale.set(-0.2,0.2);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);

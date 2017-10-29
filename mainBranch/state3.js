@@ -83,7 +83,7 @@ demo.state3.prototype = {
         roof3.setScale(1.875);
         
         // Initialize the monk character
-        monk = game.add.sprite(1100, 2200, 'monk');
+        monk = game.add.sprite(1175, 2300, 'monk');
         monk.scale.set(0.35);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;

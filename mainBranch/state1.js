@@ -112,7 +112,7 @@ demo.state1.prototype = {
             }
         else if (coordinate == 'hut')
             {
-                monk = game.add.sprite(700, 2036, 'monk');
+                monk = game.add.sprite(511, 1968, 'monk');
             }
         else if (coordinate == 'country')
             {
@@ -120,7 +120,7 @@ demo.state1.prototype = {
             }
         else if (coordinate == 'brothel')
             {
-                monk = game.add.sprite(0, 2036, 'monk');
+                monk = game.add.sprite(2012, 500, 'monk');
             }
         
         monk.scale.set(0.3);
@@ -289,8 +289,8 @@ demo.state1.prototype = {
     },
     
     
-    //render: function () {
-        //game.debug.cameraInfo(game.camera, 32, 32);
-        //game.debug.spriteCoords(monk, 32, 500);
-    //}
+    render: function () {
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(monk, 32, 500);
+    }
 };
