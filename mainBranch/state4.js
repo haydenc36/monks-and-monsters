@@ -1,6 +1,6 @@
 // Peasant's house
 var demo = demo || {};
-var walls_noWalk4, furniture_noWalk4;
+var noWalk4, trigger4;
 
 demo.state4 = function(){};
 demo.state4.prototype = {
@@ -14,15 +14,18 @@ demo.state4.prototype = {
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
         
         //load Sprites for HUD
-            this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
-			this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
-			this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
-            this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
-			this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
+        this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
+        this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
+        this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
+        this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
+        this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
         
     },
     
     create:function(){
+        
+        // Update the coodinate variable
+        coordinate = 'hut';
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -41,23 +44,20 @@ demo.state4.prototype = {
         map.addTilesetImage('beautiful');
         
         // Integrate the layers
-        var floor = map.createLayer('floor');
-        var walls_walk = map.createLayer('walls_walk');
-        walls_noWalk4 = map.createLayer('walls_noWalk4');
-        furniture_noWalk4 = map.createLayer('furniture_noWalk4');
-        var background_decor = map.createLayer('background_decor');
-        var furniture_walk = map.createLayer('furniture_walk');
-        var foreground_decor = map.createLayer('foreground_decor');
+        noWalk4 = map.createLayer('noWalk4');
+        trigger4 = map.createLayer('trigger4');
+        var floor4 = map.createLayer('floor4');
+        var walls4 = map.createLayer('walls4');
+        var background_decor4 = map.createLayer('background_decor4');
+        var foreground_decor4 = map.createLayer('foreground_decor4');
         
         // Scale the layers
-        floor.setScale(9.375);
-        walls_walk.setScale(9.375);
-        walls_noWalk4.setScale(9.375);
-        furniture_walk.setScale(9.375);
-        furniture_noWalk4.setScale(9.375);
-        background_decor.setScale(9.375);
-        foreground_decor.setScale(9.375);
-        
+        noWalk4.setScale(9.375);
+        trigger4.setScale(9.375);
+        floor4.setScale(9.375);
+        walls4.setScale(9.375);
+        background_decor4.setScale(9.375);
+        foreground_decor4.setScale(9.375);
         
         // Initialize the monk character
         monk = game.add.sprite(1200, 500, 'monk');
@@ -68,8 +68,8 @@ demo.state4.prototype = {
         monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
         
         // Allow for collisions
-        map.setCollisionBetween(1387, 1387, true, 'walls_noWalk4');
-        map.setCollisionBetween(296, 1031, true, 'furniture_noWalk4');
+        map.setCollisionBetween(94, 94, true, 'trigger4');
+        map.setCollisionBetween(93, 93, true, 'noWalk4');
         
         //Camera
         game.camera.follow(monk);
@@ -151,8 +151,8 @@ demo.state4.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk, walls_noWalk4, function(){console.log('walls');});
-        game.physics.arcade.collide(monk, furniture_noWalk4, function(){console.log('furniture')});
+        game.physics.arcade.collide(monk, trigger4, function(){console.log('Main Village'); game.state.start('state1');});
+        game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
         
         // Set movement controls
         if (cursors.up.isDown){

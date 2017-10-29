@@ -29,6 +29,9 @@ demo.state5.prototype = {
     
     create:function(){
         
+        // Update the coodinate variable
+        coordinate = 'brothel';
+        
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
         vel = 800; 

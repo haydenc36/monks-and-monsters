@@ -24,6 +24,9 @@ demo.state7.prototype = {
     
     create:function(){
         
+        // Update the coodinate variable
+        coordinate = 'country';
+        
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
         vel = 400;

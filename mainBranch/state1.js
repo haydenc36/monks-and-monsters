@@ -102,7 +102,27 @@ demo.state1.prototype = {
         
         
         // Initialize the monk character
-        monk = game.add.sprite(0, 2036, 'monk');
+        if (coordinate == 'start')
+            {
+                monk = game.add.sprite(5, 1200, 'monk');
+            }
+        else if (coordinate == 'monastery')
+            {
+                monk = game.add.sprite(700, 1100, 'monk');
+            }
+        else if (coordinate == 'hut')
+            {
+                monk = game.add.sprite(700, 2036, 'monk');
+            }
+        else if (coordinate == 'country')
+            {
+                monk = game.add.sprite(0, 2036, 'monk');
+            }
+        else if (coordinate == 'brothel')
+            {
+                monk = game.add.sprite(0, 2036, 'monk');
+            }
+        
         monk.scale.set(2);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;

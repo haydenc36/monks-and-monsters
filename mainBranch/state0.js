@@ -1,5 +1,7 @@
 // Main Menu
 var demo = demo || {};
+var coordinate = 'start';
+
 demo.state0 = function(){};
 demo.state0.prototype = {
     preload: function(){
