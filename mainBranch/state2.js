@@ -7,7 +7,7 @@ demo.state2 = function(){};
 demo.state2.prototype = {
     preload: function(){
         
-        game.load.spritesheet('monk2', '../assets/spritesheets/monk.png', 32, 32);
+        game.load.spritesheet('monk2', '../assets/spritesheets/monk_new.png', 185, 319);
         game.load.tilemap('england_parvos', '../assets/tilemaps/files/england_parvos.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('couches', '../assets/tilemaps/tilesets/couches.png');
         game.load.image('door', '../assets/tilemaps/tilesets/door.png');
@@ -72,10 +72,15 @@ demo.state2.prototype = {
         // Initialize the monk2 character
         //monk2 = game.add.sprite(0, 0, 'monk2');
         monk2 = game.add.sprite(100, 1450, 'monk2');
-        monk2.scale.set(5);
+        monk2.scale.set(0.6);
         game.physics.enable(monk2);
         monk2.body.collideWorldBounds = true;
-        monk2.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        monk2.anchor.setTo(0.5, 0.5);
+        monk2.animations.add('walkUp', [5, 6], 5);
+        monk2.animations.add('walk', [1,2,0], 5);
+        //monk2.animations.add('walkDown', [0], 10);
+        //monk2.animations.add('walkRight', [0,1,2], 10);
+        //monk2.animations.add('walkLeft', [3,4], 10);
         
         // Allow for collisions
         map.setCollisionBetween(242, 242, true, 'trigger2a');
@@ -234,10 +239,12 @@ demo.state2.prototype = {
         // Set movement controls
         if (cursors.up.isDown){
             monk2.body.velocity.y = -vel;
+            monk2.animations.play('walkUp');
         }
         
         else if (cursors.down.isDown){
             monk2.body.velocity.y = vel;
+            monk2.animations.play('walk');
         }
         
         else{
@@ -246,10 +253,14 @@ demo.state2.prototype = {
         
         if (cursors.left.isDown){
             monk2.body.velocity.x = -vel;
+            monk2.scale.set(-0.6,0.6);
+            monk2.animations.play('walk');
         }
         
         else if (cursors.right.isDown){
             monk2.body.velocity.x = vel;
+            monk2.scale.set(0.6,0.6);
+            monk2.animations.play('walk');
         }
         
         else{
@@ -310,7 +321,7 @@ demo.state2.prototype = {
 	   }
 
 				//this adjusts the distance between character and NPC so that dialogue box is triggered
-                if(Math.abs(this.npc1.x-200-monk2.x)<50 && Math.abs(this.npc1.y-175-monk2.y)<50){ 
+                if(Math.abs(this.npc1.x-175-monk2.x)<50 && Math.abs(this.npc1.y-160-monk2.y)<60){ 
                     
 					
                         if(this.npcboxActive<=1){
@@ -337,6 +348,7 @@ demo.state2.prototype = {
                         this.npcboxText[9]="Then perhaps that settles the matter.";
                         this.npcboxText[10]="Alright Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.";
                         this.npcboxText[11]="I will be in good company. Bless you, Father.";
+                        this.npcboxText[12]="Before you leave, meet with Thomas at the door. He will ensure that you haven’t forgotten your training!";
 
                     //check which character is talking
                     if(this.npcboxnmame_id == 0) //Character who starts the conversation
@@ -356,7 +368,7 @@ demo.state2.prototype = {
 				}
 
                 //example for additional NPC and their conversation
-                else if(Math.abs(this.npc2.x-200-monk2.x)<80 && Math.abs(this.npc2.y-175-monk2.y)<50){ 
+                else if(Math.abs(this.npc2.x-175-monk2.x)<80 && Math.abs(this.npc2.y-160-monk2.y)<70){ 
                     
 					
                         if(this.npcboxActive<=1){
@@ -370,12 +382,12 @@ demo.state2.prototype = {
 					
 						this.npcboxActive = 1;
 					
-						this.npcboxText[0]="Let's make sure you remember your training!";
+						this.npcboxText[0]="Alright, show me what you remember!";
 						this.npcboxText[1]=".....";
                         
 
                     if(this.npcboxnmame_id == 0)
-                    {this.npcboxname="Theo";
+                    {this.npcboxname="Thomas";
                     }
                     if(this.npcboxnmame_id == 1){
                        this.npcboxname="Parvos";

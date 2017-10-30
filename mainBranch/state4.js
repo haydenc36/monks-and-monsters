@@ -6,7 +6,7 @@ demo.state4 = function(){};
 demo.state4.prototype = {
     preload: function(){
         
-        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
+        game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
         game.load.tilemap('england_peasant', '../assets/tilemaps/files/england_peasant.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('beautiful', '../assets/tilemaps/tilesets/beautiful.png');
         game.load.image('floors', '../assets/tilemaps/tilesets/floors.png');
@@ -33,8 +33,8 @@ demo.state4.prototype = {
         
         //Adjust the camera settings
         game.world.setBounds(0,0, 1280, 1280);
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
         var map = game.add.tilemap('england_peasant');
@@ -52,20 +52,21 @@ demo.state4.prototype = {
         var foreground_decor4 = map.createLayer('foreground_decor4');
         
         // Scale the layers
-        noWalk4.setScale(9.375);
-        trigger4.setScale(9.375);
-        floor4.setScale(9.375);
-        walls4.setScale(9.375);
-        background_decor4.setScale(9.375);
-        foreground_decor4.setScale(9.375);
+        noWalk4.setScale(5);
+        trigger4.setScale(5);
+        floor4.setScale(5);
+        walls4.setScale(5);
+        background_decor4.setScale(5);
+        foreground_decor4.setScale(5);
         
         // Initialize the monk character
-        monk = game.add.sprite(1200, 500, 'monk');
-        monk.scale.set(16);
+        monk = game.add.sprite(635, 110, 'monk');
+        monk.scale.set(0.6);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
-        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        monk.animations.add('walkUp', [5, 6], 5);
+        monk.animations.add('walk', [1,2,0], 5);
         
         // Allow for collisions
         map.setCollisionBetween(94, 94, true, 'trigger4');
@@ -157,10 +158,12 @@ demo.state4.prototype = {
         // Set movement controls
         if (cursors.up.isDown){
             monk.body.velocity.y = -vel;
+            monk.animations.play('walkUp');
         }
         
         else if (cursors.down.isDown){
             monk.body.velocity.y = vel;
+            monk.animations.play('walk');
         }
         
         else{
@@ -169,10 +172,14 @@ demo.state4.prototype = {
         
         if (cursors.left.isDown){
             monk.body.velocity.x = -vel;
+            monk.scale.set(-0.6,0.6);
+            monk.animations.play('walk');
         }
         
         else if (cursors.right.isDown){
             monk.body.velocity.x = vel;
+            monk.scale.set(0.6,0.6);
+            monk.animations.play('walk');
         }
         
         else{

@@ -6,9 +6,10 @@ demo.state5 = function(){};
 demo.state5.prototype = {
     preload: function(){
         
-        game.load.spritesheet('monk', '../assets/spritesheets/monk.png', 32, 32);
+        game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
         game.load.tilemap('england_brothel', '../assets/tilemaps/files/england_brothel.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('art', '../assets/tilemaps/tilesets/art.png');
+        game.load.image('beautiful', '../assets/tilemaps/tilesets/beautiful.png');
         game.load.image('couches', '../assets/tilemaps/tilesets/couches.png');
         game.load.image('floors', '../assets/tilemaps/tilesets/floors.png');
         game.load.image('furniture', '../assets/tilemaps/tilesets/furniture.png');
@@ -41,11 +42,12 @@ demo.state5.prototype = {
         //Adjust the camera settings
         game.world.setBounds(0,0, 2240, 1680);
         //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
         var map = game.add.tilemap('england_brothel');
         map.addTilesetImage('art');
+        map.addTilesetImage('beautiful');
         map.addTilesetImage('couches');
         map.addTilesetImage('floors');
         map.addTilesetImage('furniture');
@@ -80,11 +82,12 @@ demo.state5.prototype = {
         
         // Initialize the monk character
         monk = game.add.sprite(1230, 150, 'monk');
-        monk.scale.set(5);
+        monk.scale.set(0.5);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
-        monk.animations.add('walk', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20]);
+        monk.animations.add('walkUp', [5, 6], 5);
+        monk.animations.add('walk', [1,2,0], 5);
         
         // Allow for collisions
         map.setCollisionBetween(1396, 1396, true, 'trigger5');
@@ -92,7 +95,7 @@ demo.state5.prototype = {
         
         //Camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(400, 400, 700, 100);
+        game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
@@ -176,10 +179,12 @@ demo.state5.prototype = {
         // Set movement controls
         if (cursors.up.isDown){
             monk.body.velocity.y = -vel;
+            monk.animations.play('walkUp');
         }
         
         else if (cursors.down.isDown){
             monk.body.velocity.y = vel;
+            monk.animations.play('walk');
         }
         
         else{
@@ -188,10 +193,14 @@ demo.state5.prototype = {
         
         if (cursors.left.isDown){
             monk.body.velocity.x = -vel;
+            monk.scale.set(-0.5,0.5);
+            monk.animations.play('walk');
         }
         
         else if (cursors.right.isDown){
             monk.body.velocity.x = vel;
+            monk.scale.set(0.5,0.5);
+            monk.animations.play('walk');
         }
         
         else{
