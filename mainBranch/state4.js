@@ -321,7 +321,7 @@ demo.state4.prototype = {
 	   }
 
 				//this adjusts the distance between character and NPC so that dialogue box is triggered
-                if(Math.abs(this.npc1.x-150-monk.x)<50 && Math.abs(this.npc1.y-85-monk.y)<35){ 
+                if(Math.abs(this.npc1.x-170-monk.x)<80 && Math.abs(this.npc1.y-85-monk.y)<35){ 
                     
 					
                         if(this.npcboxActive<=1){
@@ -336,28 +336,21 @@ demo.state4.prototype = {
 						this.npcboxActive = 1;
 					
 						//enter text dialogue here
-						this.npcboxText[0]="Father, I am looking for the monk named Theo.";
-						this.npcboxText[1]="Theo? Theo? Theo! That precious little man, what had he done? That’s all I’ve thought all night.. ‘Good God, Theo?’ I ask, ‘Theo!’ I can’t understand it… Perhaps the poor of our village could take the weights no longer? But Theo? One tiff between a duke and a laborer, then the village was swallowed in flames!";
-						this.npcboxText[2]="Don’t cry, Father! Let the dead bury their dead, but let us honor the dead.";
-						this.npcboxText[3]="A wise heart you have—";
-						this.npcboxText[4]="Thats very kind of you, father.";
-                        this.npcboxText[5]="A wise heart indeed. Yes, yes. Well how may we honor them? Their bodies dangle from trees: ‘strange fruit,’ as those accustomed to agony have said.";
-                        this.npcboxText[6]="Tell me more about the conflict. What crimes were committed, by whom, against whom?";
-                        this.npcboxText[7]="Oh mercy, there were hangings—as you no doubt witnessed—decapitations, slit throats. I tell the truth, reports tell that even one of our village’s finest was dragged by horses to the brothel down in the valley. A motley of henchmen—Can I even say it?—no, no, I could not say it aloud. Suffice it to say that they performed a minor decapitation in full view of that establishment.";
-                        this.npcboxText[8]="These were other villagers committing such atrocities?";
-                        this.npcboxText[9]="I couldn’t believe it myself! Sweet Parvos, do recall that there was a time many ages ago when saints and priests could inspire peace and moral splendor in their disciples… Now, now there is drunkenness and philandering with the rich, drunkenness and ignorance with our poor! And what am I to do? The people see nothing in us religious any longer. Bread and blood, bread and blood.";
-                        this.npcboxText[10]="Seems like an inopportune moment to withhold God from the people.";
-                        this.npcboxText[11]="What was I to do? I am a simple man—what was I to do? Stealing the blood of Christ—despicable! It could not stand; no, I could not let it stand. ‘This won’t stand,’ I said to them, the peasants. ‘Expose the thief or suffer excommunication.’ So for months, they went without the Mass. What was I to do? It could not stand!";
-                        this.npcboxText[12]="You are not to blame father. Alas, do you know a man by the name of Oceanus? I would like to have a word with him.";
-                        this.npcboxText[13]="Oceanus, yes, a good man if ever there was one! A well-connected man, I may add. I could not see all faces from the turrets, but I did not see his among the rabble rousers. If you can win his heart, he can persuade the others to return Lady Silva and the young princes. He sometimes conducts business from his hut in the lower part of the village. You may find him there.";
-                        this.npcboxText[14]="Your help is greatly appreciated!";
+						this.npcboxText[0]="A guest! We don’t see many travelers in these parts. Although I regret to inform you that you have chosen the wrong moon by which to visit, honorable sir.";
+						this.npcboxText[1]="I was told that you may have insights into the kidnapping of Lord Silva’s family, my good man.";
+						this.npcboxText[2]="An outrage. I tell you that God will have his vengeance upon those hellraisers. And yes, those devils are known to haunt the brothel. But what good is that to a dove?";
+						this.npcboxText[3]="I only wish to reason with the fellows.";
+						this.npcboxText[4]="Commendable, yes. Terribly mistaken. You noted the butchery atop the valley, I imagine. I can’t send you into that den of wolves. Not me.";
+                        this.npcboxText[5]="The brothel, you said?";
+                        this.npcboxText[6]="You don’t intend to go? Be sensible.";
+                        this.npcboxText[7]="Farewell, kind Oceanus! Pray for this insensible fool.";
 
                     //check which character is talking
                     if(this.npcboxnmame_id == 0) //Character who starts the conversation
-                    {this.npcboxname="Parvos"; //change the names depending on the order of who starts the convo
+                    {this.npcboxname="Oceanus"; //change the names depending on the order of who starts the convo
                     }
                     if(this.npcboxnmame_id == 1){
-                       this.npcboxname="Typhon";
+                       this.npcboxname="Parvos";
                        }
                     this.textInfoboxNPCname.setText(this.npcboxname);
 					
