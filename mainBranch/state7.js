@@ -83,7 +83,7 @@ demo.state7.prototype = {
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
         monk.animations.add('walkUp', [5, 6], 5);
-        monk.animations.add('walk', [1,2,0], 5);
+        monk.animations.add('walk', [1,2], 5);
         //monk.animations.add('walkDown', [0], 10);
         //monk.animations.add('walkRight', [0,1,2], 10);
         //monk.animations.add('walkLeft', [3,4], 10);

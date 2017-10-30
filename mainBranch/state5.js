@@ -109,7 +109,7 @@ demo.state5.prototype = {
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
         monk.animations.add('walkUp', [5, 6], 5);
-        monk.animations.add('walk', [1,2,0], 5);
+        monk.animations.add('walk', [1,2], 5);
         
         // Allow for collisions
         map.setCollisionBetween(1396, 1396, true, 'trigger5');

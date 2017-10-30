@@ -148,7 +148,7 @@ demo.state1.prototype = {
         monk.anchor.setTo(0.5, 0.5);
         monk.animations.add('walkUp', [5, 6], 5);
         //monk.animations.add('walkDown', [0], 10);
-        monk.animations.add('walk', [1,2,0], 5);
+        monk.animations.add('walk', [1,2], 5);
         //monk.animations.add('walkRight', [0,1,2], 10);
         //monk.animations.add('walkLeft', [3,4], 10);
         
@@ -265,6 +265,7 @@ demo.state1.prototype = {
         game.physics.arcade.collide(monk, trigger1c, function(){console.log('Monastery'); game.state.start('state3');});
         game.physics.arcade.collide(monk, trigger1d, function(){console.log('Country'); game.state.start('state7');});
         
+        
         // Up and Down
         if (cursors.up.isDown){
             monk.body.velocity.y = -vel;
@@ -277,6 +278,7 @@ demo.state1.prototype = {
         }
         else {
             monk.body.velocity.y = 0;
+            
         }
         // Right & Left
         if (cursors.right.isDown){
