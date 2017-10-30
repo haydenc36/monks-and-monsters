@@ -270,7 +270,6 @@ demo.BattleState.prototype.game_over = function () {
 
 demo.BattleState.prototype.end_battle = function () {
     "use strict";
-    console.log(this.groups["enemies"].length);
     this.groups["enemies"].forEach(function (enemy) {
         enemy.stats.reward.items.forEach(function (item_object){
             this.prefabs.inventory.collect_item(item_object);
@@ -278,7 +277,11 @@ demo.BattleState.prototype.end_battle = function () {
     }, this);
     
     // go back to WorldState with the current party data
-    console.log(this.prefabs.Wine.stats.quantity);
-    console.log(this.prefabs.Bread.stats.quantity);
-    this.game.state.start("state1", true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+    if (tutorial) {
+        this.game.state.start("state1", true, false, [1000,1000,1000],[10,10]);
+    }
+    else {
+        this.game.state.start("state1", true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+    }
+    
 };

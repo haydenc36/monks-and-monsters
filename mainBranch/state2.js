@@ -1,6 +1,6 @@
 // Parvos' Monastery
 var demo = demo || {};
-var monk2, trigger2a, walls_noWalk2, fixtures_noWalk2b;
+var monk2, trigger2a, walls_noWalk2, fixtures_noWalk2b,tutorial;
 var enter;
 
 demo.state2 = function(){};
@@ -255,7 +255,9 @@ demo.state2.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk2, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{});});
+        tutorial = true;
+        
+        game.physics.arcade.collide(monk2, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{},tutorial);});
         game.physics.arcade.collide(monk2, walls_noWalk2, function(){console.log('walls_noWalk');});
         game.physics.arcade.collide(monk2, fixtures_noWalk2b, function(){console.log('fixtures_noWalk2b');});
         

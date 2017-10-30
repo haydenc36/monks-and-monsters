@@ -27,7 +27,7 @@ demo.state0.prototype = {
         title.shadowBlur = 5;
         
         this.createButton(40, "Play", 600, 375, 400, 200, function(){
-            this.state.start("state1", true, false, [1000,1000,1000], [10,10]);
+            this.state.start("state2", true, false, [1000,1000,1000],[10,10]);
         });
         
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
@@ -38,15 +38,7 @@ demo.state0.prototype = {
             this.state.start("state1");
         });
         
-        this.createButton(25, "Enter Mansion", 300, 500, 300, 100, function(){
-            this.state.start("state2", true, false, [1000,1000,1000]);
-        });
-        
-        this.createButton(25, "Enter Countryside", 900, 500, 300, 100, function(){
-            this.state.start("state7", true, false, [1000,1000,1000]);
-        });
-        
-        this.createButton(25, "Enter Battle", 300, 600, 300, 100, function(){
+        this.createButton(25, "Enter Battle", 900, 500, 300, 100, function(){
             this.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState",[1000,1000,1000],[10,10], {});
         });
     },
