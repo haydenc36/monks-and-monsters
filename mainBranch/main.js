@@ -11,10 +11,6 @@ game.state.add('BootState', demo.BootState);
 game.state.add('LoadingState', demo.LoadingState);
 game.state.add('BattleState', demo.BattleState);
 
-<<<<<<< HEAD
-game.state.start('state7');
-=======
 game.state.start('state0');
->>>>>>> e88ff285a1f3bbf0e1a07ddf60be9e7163cb4a43
 
 //game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", {});

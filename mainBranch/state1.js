@@ -34,11 +34,11 @@ demo.state1.prototype = {
         game.load.image('sky', '../assets/tilemaps/tilesets/sky.png');
         
         //load Sprites for HUD
-            this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
-			this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
-			this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
-            this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
-			this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
+        this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
+        this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
+        this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
+        this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
+        this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
         
     },
     
@@ -87,6 +87,7 @@ demo.state1.prototype = {
         trigger1a = map.createLayer('trigger1a');
         trigger1b = map.createLayer('trigger1b');
         trigger1c = map.createLayer('trigger1c');
+        trigger1d = map.createLayer('trigger1d');
         var grass = map.createLayer('grass1');
         var skies1 = map.createLayer('skies1');
         var path2 = map.createLayer('path1_b');
@@ -116,7 +117,7 @@ demo.state1.prototype = {
             }
         else if (coordinate == 'country')
             {
-                monk = game.add.sprite(0, 2036, 'monk');
+                monk = game.add.sprite(15, 2036, 'monk');
             }
         else if (coordinate == 'brothel')
             {
@@ -141,6 +142,7 @@ demo.state1.prototype = {
         map.setCollisionBetween(15408, 15408, true, 'trigger1a');
         map.setCollisionBetween(15408, 15408, true, 'trigger1b');
         map.setCollisionBetween(15408, 15408, true, 'trigger1c');
+        map.setCollisionBetween(15408, 15408, true, 'trigger1d');
         
         
         // Adjust the camera
@@ -243,7 +245,7 @@ demo.state1.prototype = {
         game.physics.arcade.collide(monk, trigger1a, function(){console.log('Peasants House'); game.state.start('state4')});
         game.physics.arcade.collide(monk, trigger1b, function(){console.log('Brothel'); game.state.start('state5')});
         game.physics.arcade.collide(monk, trigger1c, function(){console.log('Monastery'); game.state.start('state3')});
-        
+        game.physics.arcade.collide(monk, trigger1d, function(){console.log('Country'); game.state.start('state7')});
         
         // Up and Down
         if (cursors.up.isDown){
