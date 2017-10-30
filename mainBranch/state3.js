@@ -56,7 +56,7 @@ demo.state3.prototype = {
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel = 300;
+        //vel = 300;
                 
         //Adjust the camera settings
         game.world.setBounds(0,0, 2400, 2400);
