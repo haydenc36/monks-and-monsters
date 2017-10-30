@@ -1,4 +1,5 @@
 {
+    "nextState": "state1",
     "assets": {
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "../../assets/backgrounds/BBG.png"},
@@ -71,7 +72,10 @@
                 "stats": {
                     "attack": 10,
                     "defense": 5,
-                    "miracles_attack":10
+                    "miracles_attack":10,
+                    "maxHP":1000,
+                    "maxMP":1000,
+                    "maxSP":1000
                 }
             }
         },
@@ -86,6 +90,7 @@
                     "attack": 100,
                     "defense": 1,
                     "health": 1000,
+                    "maxHP": 1000,
                     "reward": {
                         "items": [{"text":"Wine", "type": "wine", "properties": {"group": "items", "mana_power": 30}},{"text":"Bread", "type": "bread", "properties": {"group": "items", "health_power": 30}}]
                     }

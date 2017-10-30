@@ -40,6 +40,7 @@ demo.BattleState.prototype.init = function (level_data, charStats, inventQ, extr
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
+    this.nextState = this.level_data.nextState;
 };
 
 demo.BattleState.prototype.create = function () {
@@ -131,11 +132,10 @@ demo.BattleState.prototype.init_hud = function () {
     var unit_index, player_unit_health;
     
     // show player units
-    this.show_units("players", {x: 50, y: 465}, demo.PlayerMenuItem.prototype.constructor);
+    this.make_units("players", {x: 50, y: 465}, demo.PlayerMenuItem.prototype.constructor);
     
     // show enemy units
-    this.show_units("enemies", {x: 904, y: 465}, demo.EnemyMenuItem.prototype.constructor);
-    this.prefabs.enemies_menu.show();
+    this.make_units("enemies", {x: 904, y: 465}, demo.EnemyMenuItem.prototype.constructor);
     
     // create items menu
     this.prefabs.inventory.create_menu({x: 477, y: 465});
@@ -149,10 +149,10 @@ demo.BattleState.prototype.init_hud = function () {
     // show player actions
     this.show_player_actions({x: 50, y: 465});
     this.showPlayerStats(this.prefabs.Monk);
-    this.label_stats();
+    this.label_stats(this.prefabs.Monk);
 };
 
-demo.BattleState.prototype.show_units = function (group_name, position, menu_item_constructor) {
+demo.BattleState.prototype.make_units = function (group_name, position, menu_item_constructor) {
     "use strict";
     var unit_index, menu_items, unit_menu_item, units_menu;
     
@@ -169,13 +169,13 @@ demo.BattleState.prototype.show_units = function (group_name, position, menu_ite
     units_menu.hide();
 };
 
-demo.BattleState.prototype.label_stats = function () {
+demo.BattleState.prototype.label_stats = function (player) {
     game.add.text(258, 342, "Health: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 366, "/1000", {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(455, 366, "/" + player.stats.maxHP, {font: '10px Book Antiqua', fill: '#ffffff'});
     game.add.text(261, 372, "Mana: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 396, "/1000", {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(455, 396, "/" + player.stats.maxMP, {font: '10px Book Antiqua', fill: '#ffffff'});
     game.add.text(253, 402, "Stamina: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 426, "/1000", {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(455, 426, "/" + player.stats.maxSP, {font: '10px Book Antiqua', fill: '#ffffff'});
 }
 
 demo.BattleState.prototype.show_player_actions = function (position) {
@@ -270,7 +270,6 @@ demo.BattleState.prototype.game_over = function () {
 
 demo.BattleState.prototype.end_battle = function () {
     "use strict";
-    console.log(this.groups["enemies"].length);
     this.groups["enemies"].forEach(function (enemy) {
         enemy.stats.reward.items.forEach(function (item_object){
             this.prefabs.inventory.collect_item(item_object);
@@ -278,7 +277,11 @@ demo.BattleState.prototype.end_battle = function () {
     }, this);
     
     // go back to WorldState with the current party data
-    console.log(this.prefabs.Wine.stats.quantity);
-    console.log(this.prefabs.Bread.stats.quantity);
-    this.game.state.start("state1", true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+    if (tutorial) {
+        this.game.state.start(this.nextState, true, false, [1000,1000,1000],[10,10]);
+    }
+    else {
+        this.game.state.start(this.nextState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+    }
+    
 };

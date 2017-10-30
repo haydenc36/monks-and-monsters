@@ -21,6 +21,7 @@ demo.state1.prototype = {
         }
         this.wineQ = wineQ;
         this.breadQ = breadQ;
+        tutorial = false;
     },
     
     preload: function(){
@@ -308,10 +309,10 @@ demo.state1.prototype = {
                 this.blood_bar.scale.set(this.healthscale, 1);
                 this.mana_bar.scale.set(this.manascale, 1);
                 this.stamina_bar.scale.set(this.staminascale, 1);
-    },
+    }/*,
     
     
-    /*render: function () {
+    render: function () {
         game.debug.cameraInfo(game.camera, 32, 32);
         game.debug.spriteCoords(monk, 32, 500);
     }*/
