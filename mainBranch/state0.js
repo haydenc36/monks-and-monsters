@@ -43,7 +43,7 @@ demo.state0.prototype = {
         });
         
         this.createButton(25, "Enter Countryside", 900, 500, 300, 100, function(){
-            this.state.start("state7");
+            this.state.start("state7", true, false, [1000,1000,1000]);
         });
         
         this.createButton(25, "Enter Battle", 300, 600, 300, 100, function(){
