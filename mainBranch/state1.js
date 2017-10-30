@@ -1,9 +1,20 @@
 // English Village
 var demo = demo || {};
-var monk, cursors, vel = 200, trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
+var characterEnergy, characterMana, characterStamina, monk, cursors, vel = 200, trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
+    
+    init: function(charStats) {
+        if (!!charStats) {
+            characterEnergy = charStats[0];
+            characterMana = charStats[1];
+            characterStamina = charStats[2];
+        }
+        this.characterEnergy = characterEnergy;
+        this.characterMana = characterMana;
+        this.characterStamina = characterStamina; 
+    },
     
     preload: function(){
         
@@ -222,13 +233,13 @@ demo.state1.prototype = {
 	    this.stamina_bar.cameraOffset.y = 101;
 	    this.stamina_bar.scale.set(0.5, 1);
         
-            //depletion of bars
+            /*/depletion of bars
             this.characterEnergy=0.5;
             this.characterMana=0.25;
-            this.characterStamina=0.75;
-        this.healthscale = this.characterEnergy/2;
-        this.manascale = this.characterMana/2;
-        this.staminascale = this.characterStamina/2;
+            this.characterStamina=0.75;*/
+        this.healthscale = this.characterEnergy/2000;
+        this.manascale = this.characterMana/2000;
+        this.staminascale = this.characterStamina/2000;
         
     },
     
@@ -242,10 +253,10 @@ demo.state1.prototype = {
         
         
         // Transitioning between maps
-        game.physics.arcade.collide(monk, trigger1a, function(){console.log('Peasants House'); game.state.start('state4')});
-        game.physics.arcade.collide(monk, trigger1b, function(){console.log('Brothel'); game.state.start('state5')});
-        game.physics.arcade.collide(monk, trigger1c, function(){console.log('Monastery'); game.state.start('state3')});
-        game.physics.arcade.collide(monk, trigger1d, function(){console.log('Country'); game.state.start('state7')});
+        game.physics.arcade.collide(monk, trigger1a, function(){console.log('Peasants House'); game.state.start('state4');});
+        game.physics.arcade.collide(monk, trigger1b, function(){console.log('Brothel'); game.state.start('state5');});
+        game.physics.arcade.collide(monk, trigger1c, function(){console.log('Monastery'); game.state.start('state3');});
+        game.physics.arcade.collide(monk, trigger1d, function(){console.log('Country'); game.state.start('state7');});
         
         // Up and Down
         if (cursors.up.isDown){

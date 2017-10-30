@@ -26,35 +26,29 @@ demo.state0.prototype = {
         title.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
         title.shadowBlur = 5;
         
-        this.createButton(40, "Enter Village", 600, 375, 400, 200, function(){
+        this.createButton(40, "Play", 600, 375, 400, 200, function(){
+            this.state.start("state1", true, false, [1000,1000,1000]);
+        });
+        
+        this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
             this.state.start("state1");
         });
         
-        this.createButton(25, "Enter Mansion", 400, 500, 300, 100, function(){
-            this.state.start("state2");
+        this.createButton(25, "Settings", 600, 600, 300, 100, function(){
+            this.state.start("state1");
         });
         
-        this.createButton(25, "Enter Monastery", 800, 500, 300, 100, function(){
-            this.state.start("state3");
+        this.createButton(25, "Enter Mansion", 300, 500, 300, 100, function(){
+            this.state.start("state2", true, false, [1000,1000,1000]);
         });
         
-        this.createButton(25, "Enter Hut", 400, 600, 300, 100, function(){
-            this.state.start("state4");
-        });
-        
-        this.createButton(25, "Enter Brothel", 800, 600, 300, 100, function(){
-            this.state.start("state5");
-        });
-        
-        this.createButton(25, "Enter Countryside", 400, 700, 300, 100, function(){
+        this.createButton(25, "Enter Countryside", 900, 500, 300, 100, function(){
             this.state.start("state7");
         });
         
-        this.createButton(25, "Enter Battle", 800, 700, 300, 100, function(){
-            this.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", {});
+        this.createButton(25, "Enter Battle", 300, 600, 300, 100, function(){
+            this.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState",[1000,1000,1000], {});
         });
-        
-        
     },
     
     update: function(){

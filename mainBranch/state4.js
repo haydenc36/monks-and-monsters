@@ -4,6 +4,18 @@ var noWalk4, trigger4;
 
 demo.state4 = function(){};
 demo.state4.prototype = {
+    
+    init: function(charStats) {
+        if (!!charStats) {
+            characterEnergy = charStats[0];
+            characterMana = charStats[1];
+            characterStamina = charStats[2];
+        }
+        this.characterEnergy = characterEnergy;
+        this.characterMana = characterMana;
+        this.characterStamina = characterStamina; 
+    },
+    
     preload: function(){
         
         game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
@@ -148,6 +160,10 @@ demo.state4.prototype = {
 	    this.stamina_bar.cameraOffset.y = 101;
 	    this.stamina_bar.scale.set(0.5, 1);
         
+        this.healthscale = this.characterEnergy/2000;
+        this.manascale = this.characterMana/2000;
+        this.staminascale = this.characterStamina/2000;
+        
     },
     
     update: function(){
@@ -195,6 +211,10 @@ demo.state4.prototype = {
                 this.health.bringToTop();
                 this.mana.bringToTop();
                 this.stamina.bringToTop();
+        
+                this.blood_bar.scale.set(this.healthscale, 1);
+                this.mana_bar.scale.set(this.manascale, 1);
+                this.stamina_bar.scale.set(this.staminascale, 1);
         
     }
 };
