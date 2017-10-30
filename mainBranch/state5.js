@@ -21,6 +21,7 @@ demo.state5.prototype = {
         }
         this.wineQ = wineQ;
         this.breadQ = breadQ;
+        tutorial = false;
     },
     
     preload: function(){
