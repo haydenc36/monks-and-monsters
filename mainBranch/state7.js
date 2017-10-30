@@ -1,5 +1,6 @@
 // Countryside
 var demo = demo || {};
+var trigger7a, trigger7b, noWalk7;
 
 demo.state7 = function(){};
 demo.state7.prototype = {
@@ -14,12 +15,12 @@ demo.state7.prototype = {
         game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
         
         //load Sprites for HUD
-            this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
-			this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
-			this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
-            this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
-			this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
-        
+        this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
+        this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
+        this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
+        this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
+        this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
+
     },
     
     create:function(){
@@ -29,7 +30,7 @@ demo.state7.prototype = {
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        vel = 400;
+        vel = 300;
         
         //Adjust camera settings
         game.world.setBounds(0, 0, 2400, 640);
@@ -46,17 +47,16 @@ demo.state7.prototype = {
         map.addTilesetImage('village_tileset2');
         
         // Integrate the layers
-        var grass = map.createLayer('grass');
-        var path = map.createLayer('path');
-        var cave_walk = map.createLayer('cave_walk');
-        var objects_noWalk = map.createLayer('objects_noWalk');
-        var objects_walk = map.createLayer('objects_walk');
-        var flowers = map.createLayer('flowers');
-        var cave_noWalk = map.createLayer('cave_noWalk');
-        var tree_walk = map.createLayer('tree_walk');
-        var trees_noWalk = map.createLayer('trees_noWalk');
-        var buildings_noWalk = map.createLayer('buildings_noWalk');
-        var buildings_walk = map.createLayer('buildings_walk');
+        trigger7a = map.createLayer('trigger7a');
+        trigger7b = map.createLayer('trigger7b');
+        noWalk7 = map.createLayer('noWalk7');
+        var grass7 = map.createLayer('grass7');
+        var path7 = map.createLayer('path7');
+        var cave7 = map.createLayer('cave7');
+        var objects7 = map.createLayer('objects7');
+        var flowers7 = map.createLayer('flowers7');
+        var tree7 = map.createLayer('tree7');
+        var buildings7 = map.createLayer('buildings7');
         
         // Initialize the monk character
         monk = game.add.sprite(0, 420, 'monk');
@@ -69,6 +69,12 @@ demo.state7.prototype = {
         monk.animations.add('walkRight', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
         monk.animations.add('walkLeft', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 31);
         
+        // Allow for collisions
+        map.setCollisionBetween(1844, 1844, true, 'trigger7a');
+        map.setCollisionBetween(1844, 1844, true, 'trigger7b');
+        map.setCollisionBetween(1844, 1844, true, 'noWalk7');
+
+        
         // Adjust the camera
         game.camera.follow(monk);
         game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
@@ -77,10 +83,10 @@ demo.state7.prototype = {
         cursors = game.input.keyboard.createCursorKeys();
         
         //GUI - box that shows character face
-            this.avatar_box = this.add.sprite(this.world.centerX, this.world.centerY, 'avatar_box');
-            this.physics.arcade.enableBody(this.avatar_box);
-            this.avatar_box.anchor.setTo(0, 0);
-            this.avatar_box.fixedToCamera = true;
+        this.avatar_box = this.add.sprite(this.world.centerX, this.world.centerY, 'avatar_box');
+        this.physics.arcade.enableBody(this.avatar_box);
+        this.avatar_box.anchor.setTo(0, 0);
+        this.avatar_box.fixedToCamera = true;
 	    this.avatar_box.cameraOffset.x = 15;
 	    this.avatar_box.cameraOffset.y = 20;
         this.avatar_box.scale.set(1.75);
@@ -136,6 +142,7 @@ demo.state7.prototype = {
 	    this.mana_bar.cameraOffset.x =121;
 	    this.mana_bar.cameraOffset.y = 61;
         this.mana_bar.scale.set(0.5, 1);
+        
         //GUI - green bar for stamina
             this.stamina_bar = this.add.sprite(this.world.centerX, this.world.centerY, 'green_bar');
             this.physics.arcade.enableBody(this.stamina_bar);
@@ -148,42 +155,16 @@ demo.state7.prototype = {
     
     update: function(){
         
-        //game.physics.arcade.collide(monk, buildings);
-        
-//        // Set movement controls
-//        if (cursors.up.isDown){
-//            monk.body.velocity.y = -vel;
-//        }
-//        
-//        else if (cursors.down.isDown){
-//            monk.body.velocity.y = vel;
-//        }
-//        
-//        else{
-//            monk.body.velocity.y = 0;
-//        }
-//        
-//        if (cursors.left.isDown){
-//            monk.body.velocity.x = -vel;
-//        }
-//        
-//        else if (cursors.right.isDown){
-//            monk.body.velocity.x = vel;
-//        }
-//        
-//        else{
-//            monk.body.velocity.x = 0;
-//        }
-        
+        game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); game.state.start('state1');});
+        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", {});});
+        game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7');});
         
         // Up and Down
         if (cursors.up.isDown){
-            //console.log("UP");
             monk.body.velocity.y = -vel;
             monk.animations.play('walkUp');
         }
         else if (cursors.down.isDown){
-            //console.log("DOWN");
             monk.body.velocity.y = vel;
             monk.animations.play('walkDown');
         }
@@ -192,13 +173,11 @@ demo.state7.prototype = {
         }
         // Right & Left
         if (cursors.right.isDown){
-            //console.log("RIGHT");
             monk.body.velocity.x = vel;
             monk.animations.play('walkRight');
             monk.scale.set(2,2);
         }
         else if (cursors.left.isDown){
-            //console.log("LEFT");
             monk.body.velocity.x = -vel;
             monk.animations.play('walkLeft');
             monk.scale.set(-2,2);
