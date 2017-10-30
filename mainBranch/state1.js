@@ -309,8 +309,8 @@ demo.state1.prototype = {
     },
     
     
-    render: function () {
+    /*render: function () {
         game.debug.cameraInfo(game.camera, 32, 32);
         game.debug.spriteCoords(monk, 32, 500);
-    }
+    }*/
 };
