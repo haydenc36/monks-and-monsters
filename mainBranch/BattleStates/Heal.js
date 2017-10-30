@@ -11,8 +11,8 @@ demo.Heal = function (game_state, name, position, properties) {
 demo.Heal.prototype = Object.create(demo.Skills.prototype);
 demo.Heal.prototype.constructor = demo.Heal;
  
-demo.Heal.prototype.use = function (target) {
+demo.Heal.prototype.use = function () {
     "use strict";
-    target.stats.health += this.health_power;
-    target.stats.mana -= this.req_mana;
+    this.game_state.prefabs.Monk.stats.health += this.health_power;
+    this.game_state.prefabs.Monk.stats.mana -= this.req_mana;
 };

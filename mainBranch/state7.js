@@ -5,6 +5,24 @@ var trigger7a, trigger7b, noWalk7;
 demo.state7 = function(){};
 demo.state7.prototype = {
     
+    init: function(charStats, invent) {
+        if (!!charStats) {
+            characterEnergy = charStats[0];
+            characterMana = charStats[1];
+            characterStamina = charStats[2];
+        }
+        this.characterEnergy = characterEnergy;
+        this.characterMana = characterMana;
+        this.characterStamina = characterStamina; 
+        
+        if (!!invent) {
+            wineQ = invent[0];
+            breadQ = invent[1];
+        }
+        this.wineQ = wineQ;
+        this.breadQ = breadQ;
+    },
+    
     preload: function(){
         game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
         game.load.tilemap('england_countryside', '../assets/tilemaps/files/england_countryside.json', null, Phaser.Tilemap.TILED_JSON);
@@ -152,12 +170,16 @@ demo.state7.prototype = {
 	    this.stamina_bar.cameraOffset.x = 121;
 	    this.stamina_bar.cameraOffset.y = 101;
 	    this.stamina_bar.scale.set(0.5, 1);
+        
+        this.healthscale = this.characterEnergy/2000;
+        this.manascale = this.characterMana/2000;
+        this.staminascale = this.characterStamina/2000;
     },
     
     update: function(){
         
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); game.state.start('state1');});
-        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", {});});
+        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ], {});});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7');});
         
         // Up and Down
@@ -198,6 +220,8 @@ demo.state7.prototype = {
                 this.mana.bringToTop();
                 this.stamina.bringToTop();
         
-        
+                this.blood_bar.scale.set(this.healthscale, 1);
+                this.mana_bar.scale.set(this.manascale, 1);
+                this.stamina_bar.scale.set(this.staminascale, 1);
     }
 };

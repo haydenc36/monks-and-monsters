@@ -38,13 +38,13 @@ demo.AttackInventory.prototype.use_skill = function (skill_name, target) {
     // remove item from items list
     for (attack_index = 0; attack_index < this.skills.length; attack_index += 1) {
         if (this.skills[attack_index].name === skill_name) {
-            if (!!this.skills[attack_index].req_health){
-                if (this.game_state.current_unit.stats.health > this.skills[attack_index].req_health) {
+            if (!!this.skills[attack_index].req_stam){
+                if (this.game_state.current_unit.stats.stamina > this.skills[attack_index].req_stam) {
                     this.skills[attack_index].hit(target);
                     break;
                 }
                 else {
-                    this.game_state.prefabs.actions_menu.show();
+                    //this.game_state.prefabs.actions_menu.show();
                     this.game_state.prefabs.actions_menu.enable();
                     break;
                 }
@@ -55,7 +55,7 @@ demo.AttackInventory.prototype.use_skill = function (skill_name, target) {
                     break;
                 }
                 else {
-                    this.game_state.prefabs.actions_menu.show();
+                    //this.game_state.prefabs.actions_menu.show();
                     this.game_state.prefabs.actions_menu.enable();
                     break;
                 }

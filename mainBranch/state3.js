@@ -4,6 +4,25 @@ var noWalk3;
 
 demo.state3 = function(){};
 demo.state3.prototype = {
+    
+    init: function(charStats, invent) {
+        if (!!charStats) {
+            characterEnergy = charStats[0];
+            characterMana = charStats[1];
+            characterStamina = charStats[2];
+        }
+        this.characterEnergy = characterEnergy;
+        this.characterMana = characterMana;
+        this.characterStamina = characterStamina; 
+        
+        if (!!invent) {
+            wineQ = invent[0];
+            breadQ = invent[1];
+        }
+        this.wineQ = wineQ;
+        this.breadQ = breadQ;
+    },
+    
     preload: function(){
         
         game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
@@ -178,6 +197,10 @@ demo.state3.prototype = {
 	    this.stamina_bar.cameraOffset.y = 101;
 	    this.stamina_bar.scale.set(0.5, 1);
         
+        this.healthscale = this.characterEnergy/2000;
+        this.manascale = this.characterMana/2000;
+        this.staminascale = this.characterStamina/2000;
+        
         //create text box and adjust fonts accordingly
         this.styleInfobox0 = {font: '20px Arial', fill: '#000000', fontWeight: 'bold'};
 	    this.styleInfobox1 = {font: '40px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
@@ -277,6 +300,10 @@ demo.state3.prototype = {
                 this.health.bringToTop();
                 this.mana.bringToTop();
                 this.stamina.bringToTop();
+        
+                this.blood_bar.scale.set(this.healthscale, 1);
+                this.mana_bar.scale.set(this.manascale, 1);
+                this.stamina_bar.scale.set(this.staminascale, 1);
         
             if((this.npcboxActive==1) && (this.npcboxTextPosition <= this.npcboxText.length)){
 	   		

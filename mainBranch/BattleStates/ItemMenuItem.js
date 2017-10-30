@@ -15,7 +15,10 @@ demo.ItemMenuItem.prototype.select = function () {
     // disable actions menu
     this.game_state.prefabs.items_menu.disable();
     // enable player units menu so the player can choose the target
-    this.game_state.prefabs.players_menu.enable();
+    //this.game_state.prefabs.players_menu.enable();
     // save selected item
     this.game_state.current_item = this.text;
+    this.game_state.prefabs.inventory.use_item(this.game_state.current_item);
+    this.game_state.prefabs.actions_menu.enable();
+    this.game_state.prefabs.items_menu.hide();
 };
