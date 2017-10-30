@@ -8,11 +8,13 @@ demo.LoadingState = function () {
 demo.LoadingState.prototype = Object.create(Phaser.State.prototype);
 demo.LoadingState.prototype.constructor = demo.LoadingState;
 
-demo.LoadingState.prototype.init = function (level_data, next_state, extra_parameters) {
+demo.LoadingState.prototype.init = function (level_data, next_state, charStats, inventQ, extra_parameters) {
     "use strict";
+    this.charStats = charStats;
     this.level_data = level_data;
     this.next_state = next_state;
     this.extra_parameters = extra_parameters;
+    this.inventQ = inventQ;
 };
 
 demo.LoadingState.prototype.preload = function () {
@@ -39,5 +41,5 @@ demo.LoadingState.prototype.preload = function () {
 
 demo.LoadingState.prototype.create = function () {
     "use strict";
-    this.game.state.start(this.next_state, true, false, this.level_data, this.extra_parameters);
+    this.game.state.start(this.next_state, true, false, this.level_data, this.charStats, this.inventQ, this.extra_parameters);
 };

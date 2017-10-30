@@ -24,21 +24,22 @@ demo.BattleState = function () {
 demo.BattleState.prototype = Object.create(Phaser.State.prototype);
 demo.BattleState.prototype.constructor = demo.BattleState;
 
-demo.BattleState.prototype.init = function (level_data, extra_parameters) {
+demo.BattleState.prototype.init = function (level_data, charStats, inventQ, extra_parameters) {
     "use strict";
     this.level_data = level_data;
     //this.encounter = extra_parameters.encounter;
     //this.party_data = extra_parameters.party_data;
     this.inventory = extra_parameters.inventory;
+    this.charHealth = charStats[0];
+    this.charMana = charStats[1];
+    this.charStamina = charStats[2];
+    
+    this.wineQ = inventQ[0];
+    this.breadQ = inventQ[1];
     
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
-};
-
-demo.BattleState.prototype.preload = function () {
-    "use strict";
-    //this.load.text("experience_table", "assets/levels/experience_table.json");
 };
 
 demo.BattleState.prototype.create = function () {
@@ -81,25 +82,6 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.attackskills = new demo.AttackInventory(this, "attackskills", {x: 477, y: 480}, {group: "skills"});
     }
     
-    // create enemy units
-    /*for (enemy_unit_name in this.encounter.enemy_data) {
-        if (this.encounter.enemy_data.hasOwnProperty(enemy_unit_name)) {
-            // create enemy units
-            this.create_prefab(enemy_unit_name, this.encounter.enemy_data[enemy_unit_name]);
-        }
-    }
-    
-    // create player units
-    for (player_unit_name in this.party_data) {
-        if (this.party_data.hasOwnProperty(player_unit_name)) {
-            // create player units
-            this.create_prefab(player_unit_name, this.party_data[player_unit_name]);
-        }
-    }
-    
-    // save experience table
-    this.experience_table = JSON.parse(this.game.cache.getText("experience_table"));*/
-    
     this.init_hud();
     
     // store units in a priority queue which compares the units act turn
@@ -115,8 +97,25 @@ demo.BattleState.prototype.create = function () {
         this.units.queue(unit);
     }, this);
     
+    this.prefabs.Monk.stats.health = this.charHealth;
+    this.prefabs.Monk.stats.mana = this.charMana;
+    this.prefabs.Monk.stats.stamina = this.charStamina;
+    
+    this.prefabs.Wine.stats.quantity = this.wineQ;
+    this.prefabs.Bread.stats.quantity = this.breadQ;
+    
     this.next_turn();
 };
+
+demo.BattleState.prototype.update = function (){
+    this.healthscale = this.prefabs.Monk.stats.health/2000;
+    this.manascale = this.prefabs.Monk.stats.mana/2000;
+    this.staminascale = this.prefabs.Monk.stats.stamina/2000;
+    
+    this.blood_bar.scale.set(this.healthscale, 1);
+    this.mana_bar.scale.set(this.manascale, 1);
+    this.stamina_bar.scale.set(this.staminascale, 1);
+}
 
 demo.BattleState.prototype.create_prefab = function (prefab_name, prefab_data) {
     "use strict";
@@ -132,23 +131,25 @@ demo.BattleState.prototype.init_hud = function () {
     var unit_index, player_unit_health;
     
     // show player units
-    this.show_units("players", {x: 50, y: 480}, demo.PlayerMenuItem.prototype.constructor);
-    this.show_hpmp({x: 50, y: 480});
+    this.show_units("players", {x: 50, y: 465}, demo.PlayerMenuItem.prototype.constructor);
     
     // show enemy units
-    this.show_units("enemies", {x: 904, y: 480}, demo.EnemyMenuItem.prototype.constructor);
+    this.show_units("enemies", {x: 904, y: 465}, demo.EnemyMenuItem.prototype.constructor);
+    this.prefabs.enemies_menu.show();
     
     // create items menu
-    this.prefabs.inventory.create_menu({x: 477, y: 480});
+    this.prefabs.inventory.create_menu({x: 477, y: 465});
     
     // create miraclesSkills menu
-    this.prefabs.miraclesskills.create_menu({x: 477, y: 480});
+    this.prefabs.miraclesskills.create_menu({x: 477, y: 465});
     
     // create AttackSkills menu
-    this.prefabs.attackskills.create_menu({x: 477, y: 480});
+    this.prefabs.attackskills.create_menu({x: 477, y: 465});
     
     // show player actions
-    this.show_player_actions({x: 477, y: 480});
+    this.show_player_actions({x: 50, y: 465});
+    this.showPlayerStats(this.prefabs.Monk);
+    this.label_stats();
 };
 
 demo.BattleState.prototype.show_units = function (group_name, position, menu_item_constructor) {
@@ -165,11 +166,16 @@ demo.BattleState.prototype.show_units = function (group_name, position, menu_ite
     }, this);
     // create units menu
     units_menu = new demo.Menu(this, group_name + "_menu", position, {group: "hud", menu_items: menu_items});
+    units_menu.hide();
 };
 
-demo.BattleState.prototype.show_hpmp = function (position) {
-    game.add.text(position.x + 130, position.y + 20, "HP: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(position.x + 240, position.y + 20, "MP: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+demo.BattleState.prototype.label_stats = function () {
+    game.add.text(258, 342, "Health: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+    game.add.text(455, 366, "/1000", {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(261, 372, "Mana: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+    game.add.text(455, 396, "/1000", {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(253, 402, "Stamina: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+    game.add.text(455, 426, "/1000", {font: '10px Book Antiqua', fill: '#ffffff'});
 }
 
 demo.BattleState.prototype.show_player_actions = function (position) {
@@ -191,11 +197,52 @@ demo.BattleState.prototype.show_player_actions = function (position) {
     actions_menu = new demo.Menu(this, "actions_menu", position, {group: "hud", menu_items: actions_menu_items});
 };
 
+demo.BattleState.prototype.showPlayerStats = function (player) {
+    "use strict";
+    //GUI - black bars as background for life and mana
+    this.black_bar = this.add.sprite(308, 350, 'blackBar');
+    this.physics.arcade.enableBody(this.black_bar);
+    this.black_bar.anchor.setTo(0, 0);
+    this.black_bar.scale.set(0.5, 1);
+    
+    this.black2_bar = this.add.sprite(308, 380, 'blackBar');
+    this.physics.arcade.enableBody(this.black2_bar);
+    this.black2_bar.anchor.setTo(0, 0);
+    this.black2_bar.scale.set(0.5, 1);
+    
+    this.black3_bar = this.add.sprite(308, 410, 'blackBar');
+    this.physics.arcade.enableBody(this.black3_bar);
+    this.black3_bar.anchor.setTo(0, 0);
+    this.black3_bar.scale.set(0.5, 1);
+    
+    //GUI - red bar for health
+    this.blood_bar = this.add.sprite(308, 350, 'redBar');
+    this.physics.arcade.enableBody(this.blood_bar);
+    this.blood_bar.anchor.setTo(0, 0);
+    this.blood_bar.scale.set(0.5, 1);
+    
+    //GUI - blue bar for mana
+    this.mana_bar = this.add.sprite(308, 380, 'blueBar');
+    this.physics.arcade.enableBody(this.mana_bar);
+    this.mana_bar.anchor.setTo(0, 0);
+    this.mana_bar.scale.set(0.5, 1);
+    
+    //GUI - green bar for stamina
+    this.stamina_bar = this.add.sprite(308, 410, 'greenBar');
+    this.physics.arcade.enableBody(this.stamina_bar);
+    this.stamina_bar.anchor.setTo(0, 0);
+    this.stamina_bar.scale.set(0.5, 1);
+    
+    this.healthscale = player.stats.health/2000;
+    this.manascale = player.stats.mana/2000;
+    this.staminascale = player.stats.stamina/2000;
+}
+
 demo.BattleState.prototype.next_turn = function () {
     "use strict";
     // if all enemy units are dead, go back to the world state
     if (this.groups.enemies.countLiving() === 0) {
-        //this.end_battle();
+        this.end_battle();
     }
     
     // if all player units are dead, restart the game
@@ -218,27 +265,20 @@ demo.BattleState.prototype.next_turn = function () {
 demo.BattleState.prototype.game_over = function () {
     "use strict";
     // go back to WorldState restarting the player position
-    this.game.state.start("state1", true, false, {restart_position: true});
+    this.game.state.start("state1", true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity], {restart_position: true});
 };
 
 demo.BattleState.prototype.end_battle = function () {
     "use strict";
-    /*var received_experience;
-    
-    // receive battle reward
-    received_experience = this.encounter.reward.experience;
-    this.groups.players.forEach(function (player_unit) {
-        // receive experience from enemy
-        player_unit.receive_experience(received_experience / this.groups.players.children.length);
-        // save current party stats
-        this.party_data[player_unit.name].properties.stats = player_unit.stats;
+    console.log(this.groups["enemies"].length);
+    this.groups["enemies"].forEach(function (enemy) {
+        enemy.stats.reward.items.forEach(function (item_object){
+            this.prefabs.inventory.collect_item(item_object);
+        }, this);
     }, this);
     
-    
-    this.encounter.reward.items.forEach(function (item_object) {
-        this.prefabs.inventory.collect_item(item_object);
-    }, this);*/
-    
     // go back to WorldState with the current party data
-    this.game.state.start("state1", true, false, {party_data: this.party_data});
+    console.log(this.prefabs.Wine.stats.quantity);
+    console.log(this.prefabs.Bread.stats.quantity);
+    this.game.state.start("state1", true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
 };

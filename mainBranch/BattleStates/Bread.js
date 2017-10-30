@@ -10,11 +10,11 @@ demo.Bread = function (game_state, name, position, properties) {
 demo.Bread.prototype = Object.create(demo.Item.prototype);
 demo.Bread.prototype.constructor = demo.Bread;
  
-demo.Bread.prototype.use = function (target) {
+demo.Bread.prototype.use = function () {
     "use strict";
     if (this.game_state.prefabs[this.name].stats.quantity > 0){
         demo.Item.prototype.use.call(this);
-        target.stats.health += this.health_power;
+        this.game_state.prefabs.Monk.stats.health += this.health_power;
     }
     else {
         //Message

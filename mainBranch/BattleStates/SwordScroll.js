@@ -5,7 +5,7 @@ demo.SwordScroll = function (game_state, name, position, properties) {
     demo.Skills.call(this, game_state, name, position, properties);
     
     this.attack_mult = this.game_state.prefabs[this.name].stats.attack_mult;
-    this.req_health = this.game_state.prefabs[this.name].stats.req_health;
+    this.req_stam = this.game_state.prefabs[this.name].stats.req_stam;
 };
  
 demo.SwordScroll.prototype = Object.create(demo.Skills.prototype);
@@ -23,7 +23,7 @@ demo.SwordScroll.prototype.hit = function (target) {
     target.receive_damage(damage);
     
     // reduce the unit mana
-    this.game_state.current_unit.stats.health -= this.req_health;
+    this.game_state.current_unit.stats.stamina -= this.req_stam;
     
     this.show_message(target, damage);
 };

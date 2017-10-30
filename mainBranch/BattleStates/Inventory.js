@@ -45,8 +45,14 @@ demo.Inventory.prototype.collect_item = function (item_object) {
     "use strict";
     var item;
     // create item prefab
-    item = new this.item_classes[item_object.type](this.game_state, item_object.type + this.items.length, {x: 0, y: 0}, item_object.properties);
-    this.items.push(item);
+    if (item_object.text == "Wine") {
+        //it's 0.5 because for some reason, it goes through twice..
+        this.game_state.prefabs.Wine.stats.quantity += 0.5;
+    }
+    
+    if (item_object.text == "Bread") {
+        this.game_state.prefabs.Bread.stats.quantity += 0.5;
+    }
 };
  
 demo.Inventory.prototype.use_item = function (item_name, target) {
