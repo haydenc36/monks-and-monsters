@@ -5,7 +5,7 @@ var noWalk4, trigger4;
 demo.state4 = function(){};
 demo.state4.prototype = {
     
-    init: function(charStats) {
+    init: function(charStats, invent) {
         if (!!charStats) {
             characterEnergy = charStats[0];
             characterMana = charStats[1];
@@ -14,6 +14,13 @@ demo.state4.prototype = {
         this.characterEnergy = characterEnergy;
         this.characterMana = characterMana;
         this.characterStamina = characterStamina; 
+        
+        if (!!invent) {
+            wineQ = invent[0];
+            breadQ = invent[1];
+        }
+        this.wineQ = wineQ;
+        this.breadQ = breadQ;
     },
     
     preload: function(){

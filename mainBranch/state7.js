@@ -5,7 +5,7 @@ var trigger7a, trigger7b, noWalk7;
 demo.state7 = function(){};
 demo.state7.prototype = {
     
-    init: function(charStats) {
+    init: function(charStats, invent) {
         if (!!charStats) {
             characterEnergy = charStats[0];
             characterMana = charStats[1];
@@ -14,6 +14,13 @@ demo.state7.prototype = {
         this.characterEnergy = characterEnergy;
         this.characterMana = characterMana;
         this.characterStamina = characterStamina; 
+        
+        if (!!invent) {
+            wineQ = invent[0];
+            breadQ = invent[1];
+        }
+        this.wineQ = wineQ;
+        this.breadQ = breadQ;
     },
     
     preload: function(){
@@ -172,7 +179,7 @@ demo.state7.prototype = {
     update: function(){
         
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); game.state.start('state1');});
-        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], {});});
+        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ], {});});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7');});
         
         // Up and Down

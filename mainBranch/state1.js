@@ -1,11 +1,11 @@
 // English Village
 var demo = demo || {};
-var characterEnergy, characterMana, characterStamina, monk, cursors, vel = 200, trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
+var monk, cursors, vel = 200, trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1, characterEnergy, characterMana, characterStamina, wineQ, breadQ;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
     
-    init: function(charStats) {
+    init: function(charStats, invent) {
         if (!!charStats) {
             characterEnergy = charStats[0];
             characterMana = charStats[1];
@@ -13,7 +13,14 @@ demo.state1.prototype = {
         }
         this.characterEnergy = characterEnergy;
         this.characterMana = characterMana;
-        this.characterStamina = characterStamina; 
+        this.characterStamina = characterStamina;
+        
+        if (!!invent) {
+            wineQ = invent[0];
+            breadQ = invent[1];
+        }
+        this.wineQ = wineQ;
+        this.breadQ = breadQ;
     },
     
     preload: function(){
