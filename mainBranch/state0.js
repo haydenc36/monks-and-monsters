@@ -28,7 +28,6 @@ demo.state0.prototype = {
         
         this.createButton(40, "Play", 600, 375, 400, 200, function(){
             this.state.start("state2", true, false, [1000,1000,1000], [10,10]);
-            this.state.start("state2", true, false, [1000,1000,1000],[10,10]);
         });
         
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){

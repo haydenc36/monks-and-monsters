@@ -36,11 +36,11 @@ demo.BattleState.prototype.init = function (level_data, charStats, inventQ, extr
     
     this.wineQ = inventQ[0];
     this.breadQ = inventQ[1];
+    this.nextState = this.level_data.nextState;
     
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
-    this.nextState = this.level_data.nextState;
 };
 
 demo.BattleState.prototype.create = function () {
