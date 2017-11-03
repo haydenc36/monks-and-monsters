@@ -88,39 +88,12 @@ demo.state2.prototype = {
         fixtures_noWalk2b.setScale(2.75);
         fixtures_walk2a.setScale(2.75);
         
-        // Initialize the monk2 character
-        //monk2 = game.add.sprite(0, 0, 'monk2');
-        monk2 = game.add.sprite(100, 1450, 'monk2');
-        monk2.scale.set(0.6);
-        game.physics.enable(monk2);
-        monk2.body.collideWorldBounds = true;
-        monk2.anchor.setTo(0.5, 0.5);
-        monk2.animations.add('walkUp', [5, 6], 5);
-        monk2.animations.add('walk', [1,2], 5);
-        //monk2.animations.add('walkDown', [0], 10);
-        //monk2.animations.add('walkRight', [0,1,2], 10);
-        //monk2.animations.add('walkLeft', [3,4], 10);
-        
-        // Allow for collisions
-        map.setCollisionBetween(242, 242, true, 'trigger2a');
-        map.setCollisionBetween(33, 324, true, 'walls_noWalk2');
-        map.setCollisionBetween(23, 1316, true, 'fixtures_noWalk2b');
-        
-        
-        // Adjust the camera
-        game.camera.follow(monk2);
-        game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
-        
-        
-        // Controls
-        cursors = game.input.keyboard.createCursorKeys();
-        enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         
         //GUI - box that shows character face
-            this.avatar_box = this.add.sprite(this.world.centerX, this.world.centerY, 'avatar_box');
-            this.physics.arcade.enableBody(this.avatar_box);
-            this.avatar_box.anchor.setTo(0, 0);
-            this.avatar_box.fixedToCamera = true;
+        this.avatar_box = this.add.sprite(this.world.centerX, this.world.centerY, 'avatar_box');
+        this.physics.arcade.enableBody(this.avatar_box);
+        this.avatar_box.anchor.setTo(0, 0);
+        this.avatar_box.fixedToCamera = true;
 	    this.avatar_box.cameraOffset.x = 15;
 	    this.avatar_box.cameraOffset.y = 20;
         this.avatar_box.scale.set(1.75);
@@ -251,6 +224,31 @@ demo.state2.prototype = {
          this.time.now = 0;
         this.nextTextNPCBox = this.time.now;
         
+        // Initialize the monk2 character
+        //monk2 = game.add.sprite(0, 0, 'monk2');
+        monk2 = game.add.sprite(115, 1450, 'monk2');
+        monk2.scale.set(0.6);
+        game.physics.enable(monk2);
+        monk2.body.collideWorldBounds = true;
+        monk2.anchor.setTo(0.5, 0.5);
+        monk2.animations.add('walkUp', [5, 6], 5);
+        monk2.animations.add('walk', [1,2], 5);
+        
+        // Allow for collisions
+        map.setCollisionBetween(242, 242, true, 'trigger2a');
+        map.setCollisionBetween(33, 324, true, 'walls_noWalk2');
+        map.setCollisionBetween(23, 1316, true, 'fixtures_noWalk2b');
+        
+        
+        // Adjust the camera
+        game.camera.follow(monk2);
+        game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
+        
+        
+        // Controls
+        cursors = game.input.keyboard.createCursorKeys();
+        enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        
     },
     
     update: function(){
@@ -365,17 +363,17 @@ demo.state2.prototype = {
 						this.npcboxActive = 1;
 					
 						//enter text dialogue here
-						this.npcboxText[0]="Hardly comforting or clarifying. Whatever it may mean, Messenger, bring this epistle to the lord of the land.";
+						this.npcboxText[0]="I've received an alarming epistle from our friend Theo—it's hardly comforting or clarifying. Whatever it may mean, Parvos, bring it to the lord of the land. He will send knights to settle the matter.";
 						this.npcboxText[1]="Father, send me instead.";
-						this.npcboxText[2]="Sweet Parvos, what can you be expected to do—sunder skulls with scrolls and stop wars with communion wafers? Be sensible, child. Messenger, to the lord you go.";
+						this.npcboxText[2]="Sweet Parvos, what can you be expected to do—sunder skulls with scrolls and stop wars with communion wafers? Be sensible, child. To the lord you go.";
 						this.npcboxText[3]="Father, Theo sent specifically for our aid. Perhaps he knows better than us what is needed.";
-						this.npcboxText[4]="Yes, and perhaps Master Theo has tumbled into the wine cellar once again.!";
-                        this.npcboxText[5]="You know better than I that Theo is a discerning man. Perhaps he senses that this conflict, whatever its nature, is not amenable to the force of Lord William. Please, send me.";
-                        this.npcboxText[6]="Give me a moment to contemplate.";
-                        this.npcboxText[7]=".........";
-                        this.npcboxText[8]="As I departed from his quarters, Sir Theo made great note to deliver this epistle to this abbey, and this abbey alone.";
-                        this.npcboxText[9]="Then perhaps that settles the matter.";
-                        this.npcboxText[10]="Alright Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.";
+						this.npcboxText[4]="Yes, and perhaps Master Theo has been swimming in communion wine again!";
+                        this.npcboxText[5]="You know better than I that Theo is a discerning man. Perhaps he senses that this conflict, whatever its nature, is not amenable to the force of Lord William. Send me.";
+                        this.npcboxText[6]="Hm...";
+                        this.npcboxText[7]="Father?";
+                        this.npcboxText[8]="The messenger informed me that Sir Theo greatly emphasized that this epistle make its way to our abbey, and to this abbey alone.";
+                        this.npcboxText[9]="Then what do you decide?";
+                        this.npcboxText[10]="Collect your things. But if we receive no word from you within the fortnight, Lord William's men will be deployed. If our village were not embroiled in this miserable groundswell, I would send you in good company.";
                         this.npcboxText[11]="I will be in good company. Bless you, Father.";
                         this.npcboxText[12]="Before you leave, meet with Thomas at the door. He will ensure that you haven’t forgotten your training!";
 
