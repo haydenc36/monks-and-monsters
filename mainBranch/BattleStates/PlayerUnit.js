@@ -18,7 +18,9 @@ demo.PlayerUnit.prototype.act = function () {
     this.game_state.prefabs.players_menu.move_selection(unit_index);
     
     // enable menu for choosing the action
-    this.game_state.prefabs.actions_menu.enable();
+    if (!!this.game_state.prefabs.actions_menu) {
+        this.game_state.prefabs.actions_menu.enable();
+    }
 };
 
 demo.PlayerUnit.prototype.kill = function () {

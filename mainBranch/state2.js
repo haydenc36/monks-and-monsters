@@ -23,9 +23,7 @@ demo.state2.prototype = {
 
         
         this.load.image('npcbox', '../assets/boxes/paper-dialog.png');
-        this.load.spritesheet('npc1', '../assets/boxes/wandering_trader1.png', 64, 126);
-        this.load.spritesheet('npc2', '../assets/boxes/wandering_trader1.png', 64, 126);
-        //This is where we load more NPC spritesheets
+        this.load.spritesheet('npc', '../assets/boxes/wandering_trader1.png', 64, 126);
         
         //load Sprites for HUD
         game.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
@@ -74,83 +72,7 @@ demo.state2.prototype = {
         fixtures_noWalk2b.setScale(2.75);
         fixtures_walk2a.setScale(2.75);
         
-<<<<<<< HEAD
-        
-        //GUI - box that shows character face
-        this.avatar_box = this.add.sprite(this.world.centerX, this.world.centerY, 'avatar_box');
-        this.physics.arcade.enableBody(this.avatar_box);
-        this.avatar_box.anchor.setTo(0, 0);
-        this.avatar_box.fixedToCamera = true;
-	    this.avatar_box.cameraOffset.x = 15;
-	    this.avatar_box.cameraOffset.y = 20;
-        this.avatar_box.scale.set(1.75);
-            
-            //GUI - black bars as background for life and mana
-            this.styleHUD = {font: '15px Book Antiqua', fill: '#ffffff', align: 'left', fontWeight: 'bold', stroke: '#000000', strokeThickness: 4};
-            this.health = this.add.text(this.world.centerX, this.world.centerY, 'Health', this.styleHUD);
-            this.health.fixedToCamera = true;
-            this.health.cameraOffset.x = 180;
-            this.health.cameraOffset.y = 0;
-            this.black_bar = this.add.sprite(this.world.centerX, this.world.centerY, 'black_bar');
-            this.physics.arcade.enableBody(this.black_bar);
-            this.black_bar.anchor.setTo(0, 0);
-            this.black_bar.fixedToCamera = true;
-	    this.black_bar.cameraOffset.x = 120;
-	    this.black_bar.cameraOffset.y = 20;
-        this.black_bar.scale.set(0.5, 1);
-        this.mana = this.add.text(this.world.centerX, this.world.centerY, 'Mana', this.styleHUD);
-        this.mana.fixedToCamera = true;
-        this.mana.cameraOffset.x = 180;
-        this.mana.cameraOffset.y = 40;
-	    this.black2_bar = this.add.sprite(this.world.centerX, this.world.centerY, 'black_bar');
-            this.physics.arcade.enableBody(this.black2_bar);
-            this.black2_bar.anchor.setTo(0, 0);
-            this.black2_bar.fixedToCamera = true;
-        this.black2_bar.scale.set(0.5, 1);
-	    this.black2_bar.cameraOffset.x = 120;
-	    this.black2_bar.cameraOffset.y = 60;
-        this.stamina = this.add.text(this.world.centerX, this.world.centerY, 'Stamina', this.styleHUD);
-        this.stamina.fixedToCamera = true;
-        this.stamina.cameraOffset.x = 180;
-        this.stamina.cameraOffset.y = 80;
-        this.black3_bar = this.add.sprite(this.world.centerX, this.world.centerY, 'black_bar');
-            this.physics.arcade.enableBody(this.black3_bar);
-            this.black3_bar.anchor.setTo(0, 0);
-            this.black3_bar.fixedToCamera = true;
-	    this.black3_bar.cameraOffset.x = 120;
-	    this.black3_bar.cameraOffset.y = 100;
-        this.black3_bar.scale.set(0.5, 1);
-            //GUI - red bar for health
-            this.blood_bar = this.add.sprite(this.world.centerX, this.world.centerY, 'red_bar');
-            this.physics.arcade.enableBody(this.blood_bar);
-            this.blood_bar.anchor.setTo(0, 0);
-            this.blood_bar.fixedToCamera = true;
-	    this.blood_bar.cameraOffset.x = 121;
-	    this.blood_bar.cameraOffset.y = 21;
-        this.blood_bar.scale.set(0.5, 1);
-	    //GUI - blue bar for mana
-            this.mana_bar = this.add.sprite(this.world.centerX, this.world.centerY, 'blue_bar');
-            this.physics.arcade.enableBody(this.mana_bar);
-            this.mana_bar.anchor.setTo(0, 0);
-            this.mana_bar.fixedToCamera = true;
-	    this.mana_bar.cameraOffset.x =121;
-	    this.mana_bar.cameraOffset.y = 61;
-        this.mana_bar.scale.set(0.5, 1);
-        //GUI - green bar for stamina
-            this.stamina_bar = this.add.sprite(this.world.centerX, this.world.centerY, 'green_bar');
-            this.physics.arcade.enableBody(this.stamina_bar);
-            this.stamina_bar.anchor.setTo(0, 0);
-            this.stamina_bar.fixedToCamera = true;
-	    this.stamina_bar.cameraOffset.x = 121;
-	    this.stamina_bar.cameraOffset.y = 101;
-	    this.stamina_bar.scale.set(0.5, 1);
-        
-        this.healthscale = this.characterEnergy/2000;
-        this.manascale = this.characterMana/2000;
-        this.staminascale = this.characterStamina/2000;
-=======
         // Initialize the monk character
-        //monk = game.add.sprite(0, 0, 'monk');
         monk = game.add.sprite(100, 1450, 'monk');
         monk.scale.set(0.6);
         game.physics.enable(monk);
@@ -175,94 +97,11 @@ demo.state2.prototype = {
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         
         createHUD(this);
->>>>>>> 81b25050a895e2020ee081d87184225794d23d89
         
-        //create text box and adjust fonts accordingly
-        this.styleInfobox0 = {font: '20px Arial', fill: '#000000', fontWeight: 'bold'};
-	    this.styleInfobox1 = {font: '40px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
-	    this.styleInfobox2 = {font: '30px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
-	    this.styleInfobox3 = {font: '30px Book Antiqua', fill: '#0aaaa0', align: 'left', fontWeight: 'bold', fontStyle: 'italic'};
-	    
-        
-   	    //Create 1st NPC Character
-//Copy from here to add additional NPCs.....
-   	    this.npc1 = this.add.sprite(600, 1450, 'npc1'); //NPC Sprite + where to spawn
-            this.physics.arcade.enableBody(this.npc1);
-            this.npc1.anchor.setTo(1, 1);
-            this.npc1.scale.set(1.75); // Scaling for NPC
-        //additional animations to add later
-	    //this.npc1.animations.add('idle',[0,1,2,3,4,5], 5 /*fps */, true);
-   	    //this.npc1.animations.play('idle');
-//.....until here
-        
-        //example to add another NPC
-        this.npc2 = this.add.sprite(875, 600, 'npc2'); //NPC Sprite + where to spawn in the game
-            this.physics.arcade.enableBody(this.npc2);
-            this.npc2.anchor.setTo(1, 1);
-            this.npc2.scale.set(1.75); // scaling for NPC
-        
-	    //this.npc1.animations.add('idle',[0,1,2,3,4,5], 5 /*fps */, true);
-   	    //this.npc1.animations.play('idle');
-
-   	    //box for NPC text-box
-   	    this.npcbox = this.add.sprite(2000, 0, 'npcbox');
-        this.npcbox.scale.set(2, 1.5);
-	    this.physics.arcade.enableBody(this.npcbox);
-            
-            this.npcbox.visible = false;
-            //text settings for the character info box
-            this.textInfoboxNPC = this.add.text(20,40,'',this.styleInfobox2);
-        this.textInfoboxNPC.wordWrapWidth = '780'; //width of container
-	    this.textInfoboxNPC.wordWrap = true;
-	    this.textInfoboxNPC.inputEnabled = true;
-	    this.npcbox.addChild(this.textInfoboxNPC);
-        this.textInfoboxNPC.scale.set(0.35); // change textsize if needed
-	    
-	    //text for NPC character name
-            this.textInfoboxNPCname = this.add.text(50,10,'',this.styleInfobox3);
-        	    this.textInfoboxNPCname.inputEnabled = true;
-	    this.npcbox.addChild(this.textInfoboxNPCname);
-        this.textInfoboxNPCname.scale.set(0.5);
-	    
-	    
-	    //array for text sections of the dialog
-	    this.npcboxText = new Array();
-	    //NPC's name
-	    this.npcboxname = '';
-        this.npcboxnmame_id = 0;
-	    this.npcboxTextPosition = 0;
-	    //To check if is necessary to activate the NPC character's info box
-	    // 0 = not active
-	    // 1 = active
-	    // 2 = transition state
-	    this.npcboxActive = 0;
-         this.time.now = 0;
-        this.nextTextNPCBox = this.time.now;
-        
-        // Initialize the monk2 character
-        //monk2 = game.add.sprite(0, 0, 'monk2');
-        monk2 = game.add.sprite(115, 1450, 'monk2');
-        monk2.scale.set(0.6);
-        game.physics.enable(monk2);
-        monk2.body.collideWorldBounds = true;
-        monk2.anchor.setTo(0.5, 0.5);
-        monk2.animations.add('walkUp', [5, 6], 5);
-        monk2.animations.add('walk', [1,2], 5);
-        
-        // Allow for collisions
-        map.setCollisionBetween(242, 242, true, 'trigger2a');
-        map.setCollisionBetween(33, 324, true, 'walls_noWalk2');
-        map.setCollisionBetween(23, 1316, true, 'fixtures_noWalk2b');
-        
-        
-        // Adjust the camera
-        game.camera.follow(monk2);
-        game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
-        
-        
-        // Controls
-        cursors = game.input.keyboard.createCursorKeys();
-        enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        createNPC(this,"Head Abbot",{"x":600, "y":1450},"npc",{"x":1.75, "y":1.75});
+        createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
+        createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
+        initInfoBox(this);
         
     },
     
@@ -277,146 +116,8 @@ demo.state2.prototype = {
         cursorControl(0.6);
         updateHUD(this);
         
-	   		if((this.npcboxActive==1) && (this.npcboxTextPosition <= this.npcboxText.length)){
-	   		
-	   			
-	   			//If the text array is finished, deactivate and set the flag in "transition state", else continue running dialog
-	   			if(this.npcboxTextPosition >= this.npcboxText.length){
-                    
-	   				this.npcboxActive=2;
-	   				this.npcbox.visible = false;
-					   
-					this.npcboxTextPosition = 0;
-
-					//reset the array
-					this.npcboxText.length = 0;
-
-					this.textInfoboxNPC.setText("");
-                    this.npcboxnmame_id = 0;
-	   			    //reset the array
-                    this.npcboxText.length = 0;
-                    this.time.now = 0;
-                    this.nextTextNPCBox = this.time.now;
-					this.textInfoboxNPC.setText("");
-	   			}
-                else{
-                    
-                    if(this.nextTextNPCBox<this.time.now){
-	   				this.textInfoboxNPC.setText(this.npcboxText[this.npcboxTextPosition]);
-                    if(enter.isDown){
-		   			this.npcboxTextPosition = Math.abs(this.npcboxTextPosition + 1);
-                    this.npcboxnamePosition = Math.abs(this.npcboxnamePosition + 1);
-                    this.nextTextNPCBox = this.time.now + 400;
-                    if(this.npcboxnmame_id == 0)
-                        {this.npcboxnmame_id = 1;
-                        }
-                        else{
-                            this.npcboxnmame_id = 0;
-                        }
-                    }
-	   			}
-	   		
-	   		}
-	   		
-	   }
-
-				//this adjusts the distance between character and NPC so that dialogue box is triggered
-                if(Math.abs(this.npc1.x-175-monk.x)<50 && Math.abs(this.npc1.y-160-monk.y)<60){ 
-                    
-					
-                        if(this.npcboxActive<=1){
-					
-						
-						this.npcbox.x=this.npc1.x;
-						this.npcbox.y=this.npc1.y; 
-						
-					
-						this.npcbox.visible = true;
-					
-						this.npcboxActive = 1;
-					
-						//enter text dialogue here
-						this.npcboxText[0]="I've received an alarming epistle from our friend Theo—it's hardly comforting or clarifying. Whatever it may mean, Parvos, bring it to the lord of the land. He will send knights to settle the matter.";
-						this.npcboxText[1]="Father, send me instead.";
-						this.npcboxText[2]="Sweet Parvos, what can you be expected to do—sunder skulls with scrolls and stop wars with communion wafers? Be sensible, child. To the lord you go.";
-						this.npcboxText[3]="Father, Theo sent specifically for our aid. Perhaps he knows better than us what is needed.";
-						this.npcboxText[4]="Yes, and perhaps Master Theo has been swimming in communion wine again!";
-                        this.npcboxText[5]="You know better than I that Theo is a discerning man. Perhaps he senses that this conflict, whatever its nature, is not amenable to the force of Lord William. Send me.";
-                        this.npcboxText[6]="Hm...";
-                        this.npcboxText[7]="Father?";
-                        this.npcboxText[8]="The messenger informed me that Sir Theo greatly emphasized that this epistle make its way to our abbey, and to this abbey alone.";
-                        this.npcboxText[9]="Then what do you decide?";
-                        this.npcboxText[10]="Collect your things. But if we receive no word from you within the fortnight, Lord William's men will be deployed. If our village were not embroiled in this miserable groundswell, I would send you in good company.";
-                        this.npcboxText[11]="I will be in good company. Bless you, Father.";
-                        this.npcboxText[12]="Before you leave, meet with Thomas at the door. He will ensure that you haven’t forgotten your training!";
-
-                    //check which character is talking
-                    if(this.npcboxnmame_id == 0) //Character who starts the conversation
-                    {this.npcboxname="Head Abbott"; //change the names depending on the order of who starts the convo
-                    }
-                    if(this.npcboxnmame_id == 1){
-                       this.npcboxname="Parvos";
-                       }
-                    this.textInfoboxNPCname.setText(this.npcboxname);
-					
-					
-						//bring text dialogue to the top
-						this.npcbox.bringToTop();
-						
-					}
-
-				}
-
-                //example for additional NPC and their conversation
-                else if(Math.abs(this.npc2.x-175-monk.x)<80 && Math.abs(this.npc2.y-160-monk.y)<70){ 
-                    
-					
-                        if(this.npcboxActive<=1){
-					
-						
-						this.npcbox.x=this.npc2.x;
-						this.npcbox.y=this.npc2.y; 
-						
-					
-						this.npcbox.visible = true;
-					
-						this.npcboxActive = 1;
-					
-						this.npcboxText[0]="Alright, show me what you remember!";
-						this.npcboxText[1]=".....";
-                        
-
-                    if(this.npcboxnmame_id == 0)
-                    {this.npcboxname="Thomas";
-                    }
-                    if(this.npcboxnmame_id == 1){
-                       this.npcboxname="Parvos";
-                       }
-                    this.textInfoboxNPCname.setText(this.npcboxname);
-					
-						this.npcbox.bringToTop();
-						
-					}
-
-				}
- 
-
-					else{
-                       //reset dialogue when done
-					   this.npcbox.visible = false;
-					   
-					   this.npcboxTextPosition = 0;
-					   this.npcboxActive = 0;
-					   //reset the array
-					  this.npcboxText.length = 0;
-
-					  this.npcboxname="";
-					   this.textInfoboxNPC.setText("");
-					   this.textInfoboxNPCname.setText("");
-                        this.npcboxnmame_id =0;
-				}
-    
-    
-				
+        distTrigger(this,{"x":-175,"y":-160},{"x":50,"y":60});
+        updateDialogue(this,this.currentNPC);
+        NPCBoxVis(this,this.currentNPC,{"x":-175,"y":-160},{"x":50,"y":60});
     }
 };

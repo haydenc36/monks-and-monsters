@@ -47,11 +47,11 @@ demo.Inventory.prototype.collect_item = function (item_object) {
     // create item prefab
     if (item_object.text == "Wine") {
         //it's 0.5 because for some reason, it goes through twice..
-        this.game_state.prefabs.Wine.stats.quantity += 0.5;
+        this.game_state.prefabs.Wine.stats.quantity += 1;
     }
     
     if (item_object.text == "Bread") {
-        this.game_state.prefabs.Bread.stats.quantity += 0.5;
+        this.game_state.prefabs.Bread.stats.quantity += 1;
     }
 };
  

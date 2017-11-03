@@ -136,6 +136,7 @@ demo.BattleState.prototype.init_hud = function () {
     
     // show enemy units
     this.make_units("enemies", {x: 904, y: 465}, demo.EnemyMenuItem.prototype.constructor);
+    this.prefabs.enemies_menu.show();
     
     // create items menu
     this.prefabs.inventory.create_menu({x: 477, y: 465});
@@ -240,25 +241,28 @@ demo.BattleState.prototype.showPlayerStats = function (player) {
 
 demo.BattleState.prototype.next_turn = function () {
     "use strict";
-    // if all enemy units are dead, go back to the world state
-    if (this.groups.enemies.countLiving() === 0) {
-        this.end_battle();
+    if ((this.groups.enemies.countLiving() === 0) || (this.groups.players.countLiving() === 0)) {
+        // if all enemy units are dead, go back to the world state
+        if (this.groups.enemies.countLiving() === 0) {
+            this.end_battle();
+        }
+
+        // if all player units are dead, restart the game
+        if (this.groups.players.countLiving() === 0) {
+            this.game_over();
+        }
     }
-    
-    // if all player units are dead, restart the game
-    if (this.groups.players.countLiving() === 0) {
-        this.game_over();
-    }
-    
-    // takes the next unit
-    this.current_unit = this.units.dequeue();
-    // if the unit is alive, it acts, otherwise goes to the next turn
-    if (this.current_unit.alive) {
-        this.current_unit.act();
-        this.current_unit.calculate_act_turn(this.current_unit.act_turn);
-        this.units.queue(this.current_unit);
-    } else {
-        this.next_turn();
+    else {
+        // takes the next unit
+        this.current_unit = this.units.dequeue();
+        // if the unit is alive, it acts, otherwise goes to the next turn
+        if (this.current_unit.alive) {
+            this.current_unit.act();
+            this.current_unit.calculate_act_turn(this.current_unit.act_turn);
+            this.units.queue(this.current_unit);
+        } else {
+            this.next_turn();
+        }
     }
 };
 

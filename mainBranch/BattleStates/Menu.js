@@ -32,10 +32,14 @@ demo.Menu.prototype.process_input = function (event) {
         }
         break;
     case Phaser.Keyboard.SPACEBAR:
-        this.menu_items[this.current_item_index].select();
+        if (!!this.menu_items[this.current_item_index]) {
+            this.menu_items[this.current_item_index].select();
+        }
         break;
     case Phaser.Keyboard.ENTER:
-        this.menu_items[this.current_item_index].select();
+        if (!!this.menu_items[this.current_item_index]) {
+            this.menu_items[this.current_item_index].select();
+        }
         break;
     }
 };
