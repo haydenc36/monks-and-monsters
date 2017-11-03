@@ -1,32 +1,18 @@
 // Parvos' Monastery
 var demo = demo || {};
-var monk2, trigger2a, walls_noWalk2, fixtures_noWalk2b,tutorial;
+var trigger2a, walls_noWalk2, fixtures_noWalk2b,tutorial;
 var enter;
 
 demo.state2 = function(){};
 demo.state2.prototype = {
     
     init: function(charStats, invent) {
-        if (!!charStats) {
-            characterEnergy = charStats[0];
-            characterMana = charStats[1];
-            characterStamina = charStats[2];
-        }
-        this.characterEnergy = characterEnergy;
-        this.characterMana = characterMana;
-        this.characterStamina = characterStamina; 
-        
-        if (!!invent) {
-            wineQ = invent[0];
-            breadQ = invent[1];
-        }
-        this.wineQ = wineQ;
-        this.breadQ = breadQ;
+        changeStatsInvent(charStats,invent);
     },
     
     preload: function(){
         
-        game.load.spritesheet('monk2', '../assets/spritesheets/monk_new.png', 185, 319);
+        game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
         game.load.tilemap('england_parvos', '../assets/tilemaps/files/england_parvos.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('couches', '../assets/tilemaps/tilesets/couches.png');
         game.load.image('door', '../assets/tilemaps/tilesets/door.png');
@@ -42,11 +28,11 @@ demo.state2.prototype = {
         //This is where we load more NPC spritesheets
         
         //load Sprites for HUD
-            this.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
-			this.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
-			this.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
-            this.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
-			this.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
+        game.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
+		game.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
+		game.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
+        game.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
+		game.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
     },
     
     create:function(){
@@ -88,6 +74,7 @@ demo.state2.prototype = {
         fixtures_noWalk2b.setScale(2.75);
         fixtures_walk2a.setScale(2.75);
         
+<<<<<<< HEAD
         
         //GUI - box that shows character face
         this.avatar_box = this.add.sprite(this.world.centerX, this.world.centerY, 'avatar_box');
@@ -161,6 +148,34 @@ demo.state2.prototype = {
         this.healthscale = this.characterEnergy/2000;
         this.manascale = this.characterMana/2000;
         this.staminascale = this.characterStamina/2000;
+=======
+        // Initialize the monk character
+        //monk = game.add.sprite(0, 0, 'monk');
+        monk = game.add.sprite(100, 1450, 'monk');
+        monk.scale.set(0.6);
+        game.physics.enable(monk);
+        monk.body.collideWorldBounds = true;
+        monk.anchor.setTo(0.5, 0.5);
+        monk.animations.add('walkUp', [5, 6], 5);
+        monk.animations.add('walk', [1,2], 5);
+        
+        // Allow for collisions
+        map.setCollisionBetween(242, 242, true, 'trigger2a');
+        map.setCollisionBetween(33, 324, true, 'walls_noWalk2');
+        map.setCollisionBetween(23, 1316, true, 'fixtures_noWalk2b');
+        
+        
+        // Adjust the camera
+        game.camera.follow(monk);
+        game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
+        
+        
+        // Controls
+        cursors = game.input.keyboard.createCursorKeys();
+        enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+        
+        createHUD(this);
+>>>>>>> 81b25050a895e2020ee081d87184225794d23d89
         
         //create text box and adjust fonts accordingly
         this.styleInfobox0 = {font: '20px Arial', fill: '#000000', fontWeight: 'bold'};
@@ -255,54 +270,12 @@ demo.state2.prototype = {
         
         tutorial = true;
         
-        game.physics.arcade.collide(monk2, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{},tutorial);});
-        game.physics.arcade.collide(monk2, walls_noWalk2, function(){console.log('walls_noWalk');});
-        game.physics.arcade.collide(monk2, fixtures_noWalk2b, function(){console.log('fixtures_noWalk2b');});
+        game.physics.arcade.collide(monk, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{},tutorial);});
+        game.physics.arcade.collide(monk, walls_noWalk2, function(){console.log('walls_noWalk');});
+        game.physics.arcade.collide(monk, fixtures_noWalk2b, function(){console.log('fixtures_noWalk2b');});
         
-        // Set movement controls
-        if (cursors.up.isDown){
-            monk2.body.velocity.y = -vel;
-            monk2.animations.play('walkUp');
-        }
-        
-        else if (cursors.down.isDown){
-            monk2.body.velocity.y = vel;
-            monk2.animations.play('walk');
-        }
-        
-        else{
-            monk2.body.velocity.y = 0;
-        }
-        
-        if (cursors.left.isDown){
-            monk2.body.velocity.x = -vel;
-            monk2.scale.set(-0.6,0.6);
-            monk2.animations.play('walk');
-        }
-        
-        else if (cursors.right.isDown){
-            monk2.body.velocity.x = vel;
-            monk2.scale.set(0.6,0.6);
-            monk2.animations.play('walk');
-        }
-        
-        else{
-            monk2.body.velocity.x = 0;
-        }
-        
-                //Bring everything to the top
-			     this.black_bar.bringToTop();
-				this.black2_bar.bringToTop();
-				this.blood_bar.bringToTop();
-				this.mana_bar.bringToTop();
-                this.stamina_bar.bringToTop();
-                this.health.bringToTop();
-                this.mana.bringToTop();
-                this.stamina.bringToTop();
-        
-                this.blood_bar.scale.set(this.healthscale, 1);
-                this.mana_bar.scale.set(this.manascale, 1);
-                this.stamina_bar.scale.set(this.staminascale, 1);
+        cursorControl(0.6);
+        updateHUD(this);
         
 	   		if((this.npcboxActive==1) && (this.npcboxTextPosition <= this.npcboxText.length)){
 	   		
@@ -348,7 +321,7 @@ demo.state2.prototype = {
 	   }
 
 				//this adjusts the distance between character and NPC so that dialogue box is triggered
-                if(Math.abs(this.npc1.x-175-monk2.x)<50 && Math.abs(this.npc1.y-160-monk2.y)<60){ 
+                if(Math.abs(this.npc1.x-175-monk.x)<50 && Math.abs(this.npc1.y-160-monk.y)<60){ 
                     
 					
                         if(this.npcboxActive<=1){
@@ -395,7 +368,7 @@ demo.state2.prototype = {
 				}
 
                 //example for additional NPC and their conversation
-                else if(Math.abs(this.npc2.x-175-monk2.x)<80 && Math.abs(this.npc2.y-160-monk2.y)<70){ 
+                else if(Math.abs(this.npc2.x-175-monk.x)<80 && Math.abs(this.npc2.y-160-monk.y)<70){ 
                     
 					
                         if(this.npcboxActive<=1){
