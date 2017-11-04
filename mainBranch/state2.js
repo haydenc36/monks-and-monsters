@@ -31,6 +31,14 @@ demo.state2.prototype = {
 		game.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
         game.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
 		game.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
+        
+        //load Sprites for inventory
+            this.load.spritesheet('inventory_base', '../assets/sprites/scroll_menu.png');
+            this.load.spritesheet('slot', '../assets/sprites/slot.png');
+        //load Items for inventory
+            this.load.spritesheet('bread', '../assets/sprites/bread.png');
+            this.load.spritesheet('wine', '../assets/sprites/wine.png');
+            this.load.spritesheet('scroll', '../assets/sprites/scroll_menu.png');
     },
     
     create:function(){
@@ -40,7 +48,8 @@ demo.state2.prototype = {
         //vel = 400;
                 
         //Adjust the camera settings
-        game.world.setBounds(0,0, 1320, 1760);
+        bounds_x=1320; //important to avoid textbox overlapping with world borders
+        game.world.setBounds(0,0, bounds_x, 1760);
         //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
@@ -97,6 +106,7 @@ demo.state2.prototype = {
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         
         createHUD(this);
+        createInventory(this);
         
         createNPC(this,"Head Abbot",{"x":600, "y":1450},"npc",{"x":1.75, "y":1.75});
         createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
@@ -115,6 +125,7 @@ demo.state2.prototype = {
         
         cursorControl(0.6);
         updateHUD(this);
+        updateInventory(this);
         
         distTrigger(this,{"x":-175,"y":-160},{"x":50,"y":60});
         updateDialogue(this,this.currentNPC);

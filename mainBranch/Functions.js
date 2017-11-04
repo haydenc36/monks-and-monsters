@@ -9,6 +9,7 @@ changeStatsInvent = function (charStats, invent) {
     if (!!invent) {
         wineQ = invent[0];
         breadQ = invent[1];
+        scrollQ = 1; //use invent[2] when existing!!!
     }
 };
 
@@ -144,6 +145,13 @@ createHUD = function (game_state) {
 
 // Update HUD (If Necessary)
 updateHUD = function (game_state) {
+    
+     // Scales(important, else not working!!!)
+    game_state.healthscale = characterEnergy/2000;
+    game_state.manascale = characterMana/2000;
+    game_state.staminascale = characterStamina/2000;
+    
+    
     game_state.blood_bar.scale.set(game_state.healthscale, 1);
     game_state.mana_bar.scale.set(game_state.manascale, 1);
     game_state.stamina_bar.scale.set(game_state.staminascale, 1);
@@ -234,8 +242,22 @@ NPCBoxVis = function (game_state, NPC,shift,atleast) {
     if (!!NPC){
         if ((Math.abs(NPC.x + shift.x - monk.x) < atleast.x) && (Math.abs(NPC.y + shift.y - monk.y) < atleast.y)) {
             if(game_state.NPCBoxActive <= 1) {
-                game_state.NPCBox.x = NPC.x;
-                game_state.NPCBox.y = NPC.y;
+                
+                //check if text box is overlapping with  game_state bounds
+                              if(NPC.x+650 <= bounds_x)
+						{
+                            //if not just take the normal coordinates ...
+                             game_state.NPCBox.x = NPC.x;
+                        }
+                        else if(NPC.x+650 > bounds_x) {
+                            // ... else subtract the difference from usual coordinates and spawn the text box offset
+                            npcdifference = (NPC.x+650) - bounds_x;
+                            game_state.NPCBox.x = NPC.x - npcdifference;
+						      
+                        } 
+                       
+			    game_state.NPCBox.y = NPC.y;
+                
                 game_state.NPCBox.visible = true;
                 game_state.NPCBoxActive = 1;
                 game_state.NPCBox.bringToTop();
@@ -492,4 +514,269 @@ dialogueList = function (game_state, NPC, npcName) {
     }
     else if (game_state.key == "state6") {/*NPC's and their dialogue*/}
     else if (game_state.key == "state7") {/*NPC's and their dialogue*/}
+};
+
+
+createInventory = function (game_state){
+
+          //spacebar toggles the inventory
+          toggle_inventory = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); 
+	
+	   //GUI - the background image for the inventory
+	   game_state.inventory_base = game_state.add.sprite(game.world.centerX, game.world.centerY,  'inventory_base');
+	   game_state.inventory_base.fixedToCamera = true;
+	   game_state.inventory_base.cameraOffset.x = 500;
+	   game_state.inventory_base.cameraOffset.y = 500;
+        game_state.inventory_base.visible = false;
+        game_state.inventory_base.scale.set(1.5);
+        
+        game_state.styleInventory = {font: '20px Book Antiqua', fill: '#000000', wordWrap: true, wordWrapWidth: 220, align: 'center', fontWeight: 'bold'};
+        game_state.styleInventory2 = {font: '15px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
+         game_state.styleInventory3 = {font: '15px Book Antiqua', fill: '#000000', align: 'center', fontWeight: 'bold', stroke: '#ffffff', strokeThickness: 3};
+        
+        //create empty slots
+        game_state.slot1 = game_state.add.sprite(90, 80, 'slot');
+        game_state.inventory_base.addChild(game_state.slot1);
+        game_state.slot1.scale.set(1.25);
+      
+        game_state.slot2 = game_state.add.sprite(170, 80, 'slot');
+        game_state.inventory_base.addChild(game_state.slot2);
+        game_state.slot2.scale.set(1.25);
+        
+        
+        game_state.slot3 = game_state.add.sprite(250, 80, 'slot');
+        game_state.inventory_base.addChild(game_state.slot3);
+        game_state.slot3.scale.set(1.25);
+        
+        
+        game_state.slot4 = game_state.add.sprite(90, 160, 'slot');
+        game_state.inventory_base.addChild(game_state.slot4);
+        game_state.slot4.scale.set(1.25);
+        
+        
+         game_state.slot5 = game_state.add.sprite(170, 160, 'slot');
+        game_state.inventory_base.addChild(game_state.slot5);
+        game_state.slot5.scale.set(1.25);
+         
+        game_state.slot6 = game_state.add.sprite(250, 160, 'slot');
+        game_state.inventory_base.addChild(game_state.slot6);
+        game_state.slot6.scale.set(1.25);
+                
+        game_state.item_name = game_state.add.text(170,240, '', game_state.styleInventory);
+        game_state.inventory_base.addChild(game_state.item_name); 
+        game_state.item_description = game_state.add.text(90, 270, '', game_state.styleInventory2);
+        game_state.inventory_base.addChild(game_state.item_description);
+         
+        usageText = '';
+        game_state.usedItem = game.add.text(100,70,usageText, game_state.styleInventory3);
+        game_state.inventory_base.addChild(game_state.usedItem);
+        	                   
+        game_state.delay_inventory = game_state.time.now;
+
+                        
+        //Item traits for inventory stored in array
+        game_state.items = new Array();
+        // Slot empty/full (0/1)
+	   game_state.items[0] = new Array(); //not used yet (for auto-sort)
+	   // Item name
+	   game_state.items[1] = new Array();
+	   // Item image
+	   game_state.items[2] = new Array();
+	   // Quantity of items
+	   game_state.items[3] = new Array();
+        //Text for numbers
+        game_state.items[4] = new Array();
+	   // Description
+	   game_state.items[5] = new Array(); 	   
+        
+        //Item 1
+        game_state.items[1][0] = "Bread";
+        game_state.items[2][0] = game_state.add.button(game_state.slot1.x, game_state.slot1.centerY-10,  'bread', useBread);
+        game_state.items[2][0].alpha = 0.5;
+        game_state.items[2][0].scale.set(0.2);
+        game_state.items[2][0].onInputOver.add(over_bread, this);
+        game_state.items[2][0].onInputOut.add(out, this);
+        game_state.inventory_base.addChild(game_state.items[2][0]);
+        game_state.items[3][0] = breadQ;
+        game_state.items[4][0] = game_state.add.text(game_state.slot1.centerX+20, game_state.slot1.centerY+20, game_state.items[3][0], game_state.styleInventory2);
+        game_state.inventory_base.addChild(game_state.items[4][0]);
+        game_state.items[5][0] = "Restores 50% health once";
+        //Item 2
+        game_state.items[1][1] ="Wine";
+        game_state.items[2][1] = game_state.add.button(game_state.slot2.centerX-20, game_state.slot2.centerY-20,  'wine', useWine);
+        game_state.items[2][1].alpha = 0.5;
+        game_state.items[2][1].scale.set(0.1);
+        game_state.items[2][1].onInputOver.add(over_wine, this);
+        game_state.items[2][1].onInputOut.add(out, this);
+        game_state.inventory_base.addChild(game_state.items[2][1]);
+        game_state.items[3][1] = wineQ;
+        game_state.items[4][1] = game_state.add.text(game_state.slot2.centerX+20, game_state.slot2.centerY+20, game_state.items[3][1], game_state.styleInventory2);
+        game_state.inventory_base.addChild(game_state.items[4][1]);
+        game_state.items[5][1] = "Restores 50% mana once";
+        //Item 3
+        game_state.items[1][2] ="Scrolls";
+        game_state.items[2][2] = game_state.add.button(game_state.slot3.centerX-20, game_state.slot3.centerY-20,  'scroll', useScroll);
+        game_state.items[2][2].alpha = 0.5;
+        game_state.items[2][2].scale.set(0.1);
+        game_state.items[2][2].onInputOver.add(over_scroll, this);
+        game_state.items[2][2].onInputOut.add(out, this);
+        game_state.inventory_base.addChild(game_state.items[2][2]);
+        game_state.items[3][2] = scrollQ;
+        game_state.items[4][2] = game_state.add.text(game_state.slot3.centerX+20, game_state.slot3.centerY+20, game_state.items[3][2], game_state.styleInventory2);
+        game_state.inventory_base.addChild(game_state.items[4][2]);
+        game_state.items[5][2] = "Restores 50% stamina once";
+        
+        //Global function variables
+    
+        hover_bread = false;
+        hover_wine = false;
+        hover_scroll = false;            
+	  
+}
+//Hover functions to highlight selected item
+function over_bread(){
+    hover_bread = true;
+}
+function over_wine() {
+    hover_wine = true;
+}
+function over_scroll() {
+    hover_scroll = true;
+}
+function out(){
+    hover_bread = false;
+    hover_wine = false;
+    hover_scroll = false;
+}
+
+//Functions for item use
+function useBread(){
+    if(characterEnergy<1000){
+        breadQ = breadQ - 1;
+        temp_Restore = 1000 - characterEnergy;
+        if(characterEnergy<=500){
+        characterEnergy = characterEnergy + 500;
+        }
+        else{
+            characterEnergy=characterEnergy + temp_Restore; // check how much is left to fill
+        }
+        }
+    else{
+       usageText = 'You are already fully healed!';
+        game.time.events.add(1500, function () { usageText='';}, self);        
+        
+        }
+        
+}
+function useWine(){
+    if(characterMana<1000){
+        wineQ = wineQ - 1;
+        temp_Restore = 1000 - characterMana;
+        if(characterMana<=500){
+            characterMana = characterMana + 500;
+        }
+        else{
+            characterMana=characterMana + temp_Restore;
+        }
+    }
+    else{
+        usageText = 'You have already full mana!';
+        game.time.events.add(1500, function () { usageText='';}, self);   
+    }
+    
+}
+function useScroll(){
+    if(characterStamina<1000){
+        scrollQ = scrollQ -1;
+        temp_Restore = characterStamina + 500;
+        temp_characterStamina = 1000 - characterStamina;
+        if(characterStamina<=500){
+            characterStamina = characterStamina + 500;
+        }
+         else{
+            characterStamina=characterStamina + temp_Restore;
+        }
+    }
+     else{
+        usageText = 'You have already full stamina!';
+        game.time.events.add(1500, function () { usageText='';}, self);   
+    }
+    
+}
+
+updateInventory = function (game_state){
+    
+    
+        //Update quantity
+        game_state.items[3][0] = breadQ;
+        game_state.items[3][1] = wineQ;
+        game_state.items[3][2] = scrollQ;
+    
+        game_state.items[4][0].setText(game_state.items[3][0]);
+        game_state.items[4][1].setText(game_state.items[3][1]);
+        game_state.items[4][2].setText(game_state.items[3][2]);
+        
+        game_state.usedItem.setText(usageText);
+    
+              
+          //Inventory toggle
+      if(toggle_inventory.isDown){
+          if(game_state.delay_inventory<game_state.time.now){
+          if(game_state.inventory_base.visible == false)
+              {
+              game_state.inventory_base.visible = true;
+             game_state.game.physics.arcade.isPaused=true;
+              }
+          else{
+              game_state.inventory_base.visible = false;
+              game_state.game.physics.arcade.isPaused=false;
+            }
+            game_state.delay_inventory = game_state.time.now + 400; //Delay to prevent fast pressing of spacebar
+          }
+      }  
+
+    if(game_state.inventory_base.visible == true)
+        {
+            
+            game_state.inventory_base.bringToTop();
+
+               //Update hovered item        
+                if(hover_bread == true){
+               game_state.item_name_text= game_state.items[1][0];
+                game_state.item_description_text = game_state.items[5][0];
+                game_state.items[2][0].alpha = 1;
+                }
+            
+            else if(hover_wine == true){
+              game_state.item_name_text= game_state.items[1][1];
+              game_state.item_description_text = game_state.items[5][1];
+              game_state.items[2][1].alpha = 1;
+              }
+            
+            else if(hover_scroll == true){
+              game_state.item_name_text= game_state.items[1][2];
+                game_state.item_description_text = game_state.items[5][2];
+                game_state.items[2][2].alpha = 1;
+                }
+            
+            else{
+                game_state.item_name_text= '';
+                game_state.item_description_text = '';
+                 for(var u=0; u<3; u++)
+                {
+                game_state.items[2][u].alpha = 0.5;
+                };
+               }
+            game_state.item_name.setText(game_state.item_name_text);
+            game_state.item_description.setText(game_state.item_description_text);
+            for(var i=0; i<7; i++)
+                {
+                //Remove item from inventory if quantity is 0
+                if(game_state.items[3][i]==0)
+                    {
+                    game_state.items[2][i].visible = false;
+                    game_state.items[4][i].visible = false;
+                    }
+                };
+        }
 };

@@ -33,7 +33,8 @@ demo.state4.prototype = {
         //vel = 800; 
         
         //Adjust the camera settings
-        game.world.setBounds(0,0, 1280, 1280);
+        bounds_x = 1280; //important to avoid text box overlapping with world borders
+        game.world.setBounds(0,0, bounds_x, 1280);
         //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
@@ -78,6 +79,7 @@ demo.state4.prototype = {
         game.camera.deadzone = new Phaser.Rectangle(340, 300, 800, 100);
         
         createHUD(this);
+        createInventory(this);
         createNPC(this,"Oceanus",{"x":1000, "y":700},"npc",{"x":2, "y":2});
         createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
@@ -90,6 +92,7 @@ demo.state4.prototype = {
         
         cursorControl(0.6);
         updateHUD(this);
+        updateInventory(this);
         distTrigger(this,{"x":-170,"y":-85},{"x":80,"y":35});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-170,"y":-85},{"x":80,"y":35});

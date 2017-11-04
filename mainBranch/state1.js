@@ -142,6 +142,7 @@ demo.state1.prototype = {
         game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
         createHUD(this);
+        createInventory(this);
     },
     
     
@@ -162,5 +163,6 @@ demo.state1.prototype = {
         
         cursorControl(0.3);
         updateHUD(this);
+        updateInventory(this);
     }
 };

@@ -40,7 +40,8 @@ demo.state5.prototype = {
         //vel = 400; 
         
         //Adjust the camera settings
-        game.world.setBounds(0,0, 2240, 1680);
+        bounds_x = 2240; //important to avoid text box overlapping with world borders
+        game.world.setBounds(0,0, bounds_x, 1680);
         //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
@@ -98,7 +99,7 @@ demo.state5.prototype = {
         game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
         
         createHUD(this);
-        
+        createInventory(this);
         createNPC(this,"Sicarius",{"x":225, "y":1550},"npc",{"x":-1.5, "y":1.5});
         createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
@@ -112,6 +113,7 @@ demo.state5.prototype = {
         cursorControl(0.5);
         
         updateHUD(this);
+        updateInventory(this);
         distTrigger(this,{"x":100,"y":-85},{"x":50,"y":35});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":100,"y":-85},{"x":50,"y":35});
