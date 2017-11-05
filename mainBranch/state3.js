@@ -21,6 +21,7 @@ demo.state3.prototype = {
         game.load.image('monastery', '../assets/tilemaps/tilesets/monastery.png');
         game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
         game.load.image('spooky', '../assets/tilemaps/tilesets/spooky.png');
+        
     },
     
     create:function(){
@@ -32,7 +33,8 @@ demo.state3.prototype = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
                 
         //Adjust the camera settings
-        game.world.setBounds(0,0, 2400, 2400);
+        bounds_x = 2400; // important to avoid text box overlapping with borders
+        game.world.setBounds(0,0, bounds_x, 2400);
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
@@ -93,8 +95,17 @@ demo.state3.prototype = {
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         
         createHUD(this);
-	    
-        createNPC(this,"Typhon",{"x":700, "y":700},"npc",{"x":1, "y":1});
+        createInventory(this);
+        
+        //Check for checkpoint before Silva Appears
+	    if (dialogueCheck.indexOf("") != -1){
+            createNPC(this,"Silva",{"x":700, "y":700},"npc",{"x":1, "y":1}, "");
+        }
+        else {
+            createNPC(this,"Seth",{"x":700, "y":700},"npc",{"x":1, "y":1}, "");
+            
+        }
+        
         createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },
@@ -106,9 +117,9 @@ demo.state3.prototype = {
         cursorControl(0.35);
         
         updateHUD(this);
+        updateInventory(this);
         distTrigger(this,{"x":-150,"y":-85},{"x":50,"y":35});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-150,"y":-85},{"x":50,"y":35});
     }
 };
-        

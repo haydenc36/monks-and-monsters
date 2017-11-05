@@ -74,6 +74,7 @@ demo.state7.prototype = {
         game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
         createHUD(this);
+        createInventory(this);
     },
     
     update: function(){
@@ -84,5 +85,6 @@ demo.state7.prototype = {
         
         cursorControl(0.2);
         updateHUD(this);
+        updateInventory(this);
     }
 };

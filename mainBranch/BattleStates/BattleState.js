@@ -36,6 +36,7 @@ demo.BattleState.prototype.init = function (level_data, charStats, inventQ, extr
     
     this.wineQ = inventQ[0];
     this.breadQ = inventQ[1];
+    this.prevState = this.level_data.returnState;
     this.nextState = this.level_data.nextState;
     
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
@@ -269,7 +270,7 @@ demo.BattleState.prototype.next_turn = function () {
 demo.BattleState.prototype.game_over = function () {
     "use strict";
     // go back to WorldState restarting the player position
-    this.game.state.start("state1", true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity], {restart_position: true});
+    this.game.state.start(this.prevState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity]);
 };
 
 demo.BattleState.prototype.end_battle = function () {
