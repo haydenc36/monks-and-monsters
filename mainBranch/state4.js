@@ -34,7 +34,8 @@ demo.state4.prototype = {
         
         //Adjust the camera settings
         bounds_x = 1280; //important to avoid text box overlapping with world borders
-        game.world.setBounds(0,0, bounds_x, 1280);
+        bounds_y = 1280;
+        game.world.setBounds(0,0, bounds_x, bounds_y);
         //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
@@ -81,7 +82,7 @@ demo.state4.prototype = {
         createHUD(this);
         createInventory(this);
         createNPC(this,"Oceanus",{"x":1000, "y":700},"npc",{"x":2, "y":2},"");
-        createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
+        createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },
     

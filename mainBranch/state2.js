@@ -46,8 +46,9 @@ demo.state2.prototype = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
                 
         //Adjust the camera settings
-        bounds_x=1320; //important to avoid textbox overlapping with world borders
-        game.world.setBounds(0,0, bounds_x, 1760);
+        bounds_x = 1320; //important to avoid textbox overlapping with world borders
+        bounds_y = 1760;
+        game.world.setBounds(0,0, bounds_x, bounds_y);
         //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
@@ -106,9 +107,9 @@ demo.state2.prototype = {
         createHUD(this);
         createInventory(this);
         
-        createNPC(this,"Head Abbot",{"x":600, "y":1450},"npc",{"x":1.75, "y":1.75}, "");
-        createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75}, "");
-        createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
+        createNPC(this,"Head Abbot",{"x":600, "y":1450},"npc",{"x":1.75, "y":1.75});
+        createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
+        createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
         
     },
@@ -117,7 +118,10 @@ demo.state2.prototype = {
         
         tutorial = true;
         
-        game.physics.arcade.collide(monk, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{},tutorial);});
+        if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
+            game.physics.arcade.collide(monk, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{},tutorial);});   
+        }
+        
         game.physics.arcade.collide(monk, walls_noWalk2, function(){console.log('walls_noWalk');});
         game.physics.arcade.collide(monk, fixtures_noWalk2b, function(){console.log('fixtures_noWalk2b');});
         
@@ -125,18 +129,16 @@ demo.state2.prototype = {
         updateHUD(this);
         updateInventory(this);
         
+        // Update Dialogue list if met requirements (multiple sets of dialogue within one state)
+        if (!!this.currentNPC){
+            if ((this.currentNPC.name == "Thomas") && (dialogueCheck.indexOf("Head Abbot Tutorial") != -1)) {
+                dialogueList(this, this.currentNPC,"Thomas");
+                this.currentNPC.readDialogue = false;
+            }
+        }
+        
         distTrigger(this,{"x":-175,"y":-160},{"x":50,"y":60});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-175,"y":-160},{"x":50,"y":60});
-        
-        /*/ Template to Update Dialogue List if multiple visits in the same state/scene
-        if (!!this.currentNPC){
-            if ((this.currentNPC.numDialogueScenes != 1) && (this.currentNPC.name == "NPCName") && (this.currentNPC.readDialogue) && (dialogueCheck.indexOf("CheckpointName") != -1)) {
-                dialogueList(this, this.currentNPC,"NPCName");
-                this.currentNPC.checkpointID = "CheckpointID";
-                this.currentNPC.numDialogueScenes -= 1;
-                this.currentNPC.readDialogue = false;
-            }
-        }*/
     }
 };

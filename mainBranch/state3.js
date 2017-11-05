@@ -34,7 +34,8 @@ demo.state3.prototype = {
                 
         //Adjust the camera settings
         bounds_x = 2400; // important to avoid text box overlapping with borders
-        game.world.setBounds(0,0, bounds_x, 2400);
+        bounds_y = 2400;
+        game.world.setBounds(0,0, bounds_x, bounds_y);
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
@@ -99,14 +100,14 @@ demo.state3.prototype = {
         
         //Check for checkpoint before Silva Appears
 	    if (dialogueCheck.indexOf("") != -1){
-            createNPC(this,"Silva",{"x":700, "y":700},"npc",{"x":1, "y":1}, "");
+            createNPC(this,"Silva",{"x":700, "y":700},"npc",{"x":1, "y":1});
         }
         else {
-            createNPC(this,"Seth",{"x":700, "y":700},"npc",{"x":1, "y":1}, "");
+            createNPC(this,"Seth",{"x":700, "y":700},"npc",{"x":1, "y":1});
             
         }
         
-        createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
+        createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },
     

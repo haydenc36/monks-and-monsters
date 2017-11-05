@@ -158,26 +158,26 @@ updateHUD = function (game_state) {
 };
 
 // Create an NPC Sprite
-createNPC = function (game_state, npcName, position, sprite, scale, numDialogueScenes, checkpointID) {
+createNPC = function (game_state, npcName, position, sprite, scale) {
     var checkNPC = false;
-    game_state.NPCs = game_state.NPCs || [];
-    game_state.NPCs.forEach (function (key) {
-        if (key.name == npcName) {
-            key.x = position.x;
-            key.y = position.y;
-            key.spriteObj = game_state.add.sprite(position.x,position.y,sprite);
-            game_state.physics.arcade.enableBody(key.spriteObj);
-            key.spriteObj.scale.set(scale.x,scale.y);
+    game_state.NPCs = game_state.NPCs || {};
+    for (var NPC in game_state.NPCs) {
+        if (NPC == npcName) {
+            NPC.x = position.x;
+            NPC.y = position.y;
+            NPC.spriteObj = game_state.add.sprite(position.x,position.y,sprite);
+            game_state.physics.arcade.enableBody(NPC.spriteObj);
+            NPC.spriteObj.scale.set(scale.x,scale.y);
             if (scale.x < 0) {
-                key.spriteObj.anchor.setTo(0,1);
+                NPC.spriteObj.anchor.setTo(0,1);
             }
             else {
-                key.spriteObj.anchor.setTo(1,1);
+                NPC.spriteObj.anchor.setTo(1,1);
             }
             checkNPC = true;
             return;
         }
-    }, this);
+    }
     
     if (!checkNPC) {
         var newNPC = Object();
@@ -197,9 +197,7 @@ createNPC = function (game_state, npcName, position, sprite, scale, numDialogueS
         //newNPC.spriteObj.animations.play('idle');
         dialogueList(game_state, newNPC, npcName);
         newNPC.readDialogue = false;
-        newNPC.checkpointID = checkpointID;
-        newNPC.numDialogueScenes = numDialogueScenes;
-        game_state.NPCs.push(newNPC);
+        game_state.NPCs[npcName] = newNPC;
     }
 };
 
@@ -244,16 +242,17 @@ initInfoBox = function (game_state) {
 
 // Determines which NPC you trigger the NPC
 distTrigger = function (game_state,shift,atleast) {
-    game_state.NPCs.forEach (function (NPC) {
-        if ((Math.abs(NPC.x + shift.x - monk.x) < atleast.x) && (Math.abs(NPC.y + shift.y - monk.y) < atleast.y)) {
-            game_state.currentNPC = NPC;
+    for (var NPC in game_state.NPCs) {
+        if ((Math.abs(game_state.NPCs[NPC].x + shift.x - monk.x) < atleast.x) && (Math.abs(game_state.NPCs[NPC].y + shift.y - monk.y) < atleast.y)) {
+            game_state.currentNPC = game_state.NPCs[NPC];
         }
-    });
+    }
 }
 
 // Make Visible the NPC chat
 NPCBoxVis = function (game_state, NPC,shift,atleast) {
     if (!!NPC){
+        if (Object.keys(NPC.dialogue).length != 0) {
         if ((Math.abs(NPC.x + shift.x - monk.x) < atleast.x) && (Math.abs(NPC.y + shift.y - monk.y) < atleast.y)) {
             if(game_state.NPCBoxActive <= 1) {
                 
@@ -267,8 +266,14 @@ NPCBoxVis = function (game_state, NPC,shift,atleast) {
                     npcdifference = (NPC.x+650) - bounds_x;
                     game_state.NPCBox.x = NPC.x - npcdifference;
                 } 
-                       
-			    game_state.NPCBox.y = NPC.y;
+                
+                if (NPC.y + 270 <= bounds_y) {
+                    game_state.NPCBox.y = NPC.y;
+                }
+                else if (NPC.y + 270 > bounds_y) {
+                    npcdiff = (NPC.y + 270) - bounds_y;
+                    game_state.NPCBox.y = NPC.y - npcdiff;
+                }
                 
                 game_state.NPCBox.visible = true;
                 game_state.NPCBoxActive = 1;
@@ -286,7 +291,7 @@ NPCBoxVis = function (game_state, NPC,shift,atleast) {
             game_state.newConvo = true;
             game_state.NPCSpeak = true;
         }
-    }
+    }}
 };
 
 // Updates Chat when select Enter
@@ -295,7 +300,9 @@ updateDialogue = function (game_state, NPC) {
         if (game_state.nextTextNPCBox < game_state.time.now) {
             if (game_state.NPCBoxTextPosition >= Object.keys(NPC.dialogue).length) {
                 if (!NPC.readDialogue) {
-                    dialogueCheck.push(NPC.checkpointID);
+                    if (NPC.checkpointID != "Default") {
+                        dialogueCheck.push(NPC.checkpointID);
+                    }
                     NPC.readDialogue = true;
                     console.log(dialogueCheck);
                 }
@@ -452,7 +459,9 @@ chooseStr = function (game_state,NPC,extraNPC) {
 dialogueList = function (game_state, NPC, npcName) {
     if(game_state.key == "state1") {
         if (npcName == "Typhon") {
+            if (dialogueCheck.indexOf("Last Battle") != -1) {
             //Scene 9: Seth/Typhon
+            NPC.checkpointID = "Seth is Typhon";
             NPC.dialogue = {
                 "0": {
                     "charResponse": "Seth, explain yourself."
@@ -487,11 +496,22 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
                 }
             };
+            }
+            else {
+            NPC.checkpointID = "Default"
+            NPC.dialogue = {
+                "0": {
+                    "npcDialogue": "[Default Dialogue]",
+                    "charResponse": ""
+                }
+            };
+            }
         }
     }
     else if (game_state.key == "state2") {
         if (npcName == "Head Abbot"){
             // Scene 1: Tutorial; 3 people Talking
+            NPC.checkpointID = "Head Abbot Tutorial";
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Hardly comforting or clarifying. Whatever it may mean, Messenger, bring this epistle to the lord of the land.",
@@ -523,7 +543,9 @@ dialogueList = function (game_state, NPC, npcName) {
             }; 
         }
         else if (npcName == "Thomas") {
+            if (dialogueCheck.indexOf("Head Abbot Tutorial") != -1) {
             // Scene 1: Before Tutorial Battle
+            NPC.checkpointID = "Thomas Tutorial";
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Alright, show me what you remember!",
@@ -533,11 +555,23 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "....."
                 }
             };
+            }
+            else {
+            NPC.checkpointID = "Default"
+            NPC.dialogue = {
+                "0": {
+                    "npcDialogue": "[Default Dialogue]",
+                    "charResponse": ""
+                }
+            };
+            }
         }
     }
     else if (game_state.key == "state3") {
         if (npcName == "Seth") {
             // Scene 2
+            if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
+            NPC.checkpointID = "Seth Recommends Oceanus";
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "*Sobbing*",
@@ -575,11 +609,39 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "Your help is greatly appreciated!"
                 }
             };
-            
+            }
+            else {
+            NPC.checkpointID = "Default"
+            NPC.dialogue = {
+                "0": {
+                    "npcDialogue": "[Default Dialogue]",
+                    "charResponse": ""
+                }
+            };
+            }
         }
         else if (npcName == "Silva"){
+            //Scene 6: After Duel
+            if (dialogueCheck.indexOf("Silva Training") != -1) {
+                NPC.checkpointID = "Silva to Cemetery";
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "Alright, alright! Perhaps you are right, but this is already out of my hands. My spies spotted peasants surrounding the monastery, and my men are already stationed outside Oceanus’ home.",
+                        "charResponse": "This has gone far beyond any man… There’s only one way an entire village could be possessed in this way. So tell me, where do you bury your dead?"
+                    },
+                    "1": {
+                        "npcDialogue": "Pardon?",
+                        "charResponse": "I must go to the dead to find hints about your true master."
+                    },
+                    "2": {
+                        "npcDialogue": "There’s a cemetery to the west of the peasant’s quarters.. Continue along the dirt road.",
+                        "charResponse": ""
+                    }
+                };
+            }
             //Scene 6: Before Duel
-            if (dialogueCheck.indexOf("") == -1) {
+            else if (dialogueCheck.indexOf("Oceanus After Battle") != -1) {
+                NPC.checkpointID = "Silva Training";
                 NPC.dialogue = {
                     "0": {
                         "charResponse": "Lord Silva?"
@@ -606,59 +668,43 @@ dialogueList = function (game_state, NPC, npcName) {
                     }
                 };
             }
-            
-            //Scene 6: After Duel
-            else if (dialogueCheck.indexOf("") == -1) {
-                NPC.dialogue = {
-                    "0": {
-                        "npcDialogue": "Alright, alright! Perhaps you are right, but this is already out of my hands. My spies spotted peasants surrounding the monastery, and my men are already stationed outside Oceanus’ home.",
-                        "charResponse": "This has gone far beyond any man… There’s only one way an entire village could be possessed in this way. So tell me, where do you bury your dead?"
-                    },
-                    "1": {
-                        "npcDialogue": "Pardon?",
-                        "charResponse": "I must go to the dead to find hints about your true master."
-                    },
-                    "2": {
-                        "npcDialogue": "There’s a cemetery to the west of the peasant’s quarters.. Continue along the dirt road.",
-                        "charResponse": ""
-                    }
-                };
+            else {
+            NPC.checkpointID = "Default"
+            NPC.dialogue = {
+                "0": {
+                    "npcDialogue": "[Default Dialogue]",
+                    "charResponse": ""
+                }
+            };
             }
         }
     }
     else if (game_state.key == "state4") {
         if (npcName == "Oceanus") {
-            // Scene 3
-            //if (dialogueCheck.indexOf("") == -1) {
+            //Scene 5: After Battle with Oceanus
+            if (dialogueCheck.indexOf("Oceanus Before Battle") != -1) {
+                NPC.checkpointID = "Oceanus After Battle";
                 NPC.dialogue = {
-                    "0": {
-                        "npcDialogue": "A guest! We don’t see many travelers in these parts. Although I regret to inform you that you have chosen the wrong moon by which to visit, honorable sir.",
-                        "charResponse": "I was told that you may have insights into the kidnapping of Lord Silva’s family, my good man."
-                    },
-                    "1": {
-                        "npcDialogue": "An outrage. I tell you that God will have his vengeance upon those hellraisers. And yes, those devils are known to haunt the brothel. But what good is that to a dove?",
-                        "charResponse": "I only wish to reason with the fellows."
-                    },
-                    "2": {
-                        "npcDialogue": "Commendable, yes. Terribly mistaken. You noted the butchery atop the valley, I imagine. I can’t send you into that den of wolves. Not me.",
-                        "charResponse": "The brothel, you said?"
-                    },
-                    "3": {
-                        "npcDialogue": "You don’t intend to go? Be sensible.",
-                        "charResponse": "Farewell, kind Oceanus! Pray for this insensible fool."
-                    },
-                    "4": {
-                        "npcDialogue": "Well that simply won’t due! At the very least, tell the rebels who are there that you under my aegis.",
-                        "charResponse": "Will do."
-                    },
-                    "5": {
-                        "charResponse": "Will do."
-                    }
-                };
-            //}
-            
-            /*// Scene 5: Before Battle with Oceanus
-            else if (dialogueCheck.indexOf("") == -1) {
+                "0": {
+                    "npcDialogue": "Fine, fine. Perhaps I have been in error. But of what use is that? The wheels of revolution have already begun spinning ahead of me.",
+                    "charResponse": "In what sense?"
+                },
+                "1": {
+                    "npcDialogue": "As we speak, men prepare to take the lives of Silva and Seth.",
+                    "charResponse": "And I suppose you would be too late to stop this plot?"
+                },
+                "2": {
+                    "npcDialogue": "I am not privy to a single detail regarding the plans, except that they will occur when Silva comes for confession.",
+                    "charResponse": "Then I must warn Silva and Seth to flee! Farewell, Master Oceanus. Dissuade who you can; you owe those families your life."
+                },
+                "3": {
+                    "charResponse": "Then I must warn Silva and Seth to flee! Farewell, Master Oceanus. Dissuade who you can; you owe those families your life."
+                }
+            };
+            }
+            /// Scene 5: Before Battle with Oceanus
+            else if (dialogueCheck.indexOf("Self Dialogue") != -1) {
+                NPC.checkpointID = "Oceanus Before Battle";
                 NPC.dialogue = {
                 "0":{
                     "npcDialogue": "Parvos! Uh… What a pleasant surprise! So I see your encounter—",
@@ -704,34 +750,51 @@ dialogueList = function (game_state, NPC, npcName) {
                 }
             };
             }
-            
-            //Scene 5: After Battle with Oceanus
-            else if (dialogueCheck.indexOf("") == -1) {
+            // Scene 3
+            else if (dialogueCheck.indexOf("Seth Recommends Oceanus") != -1) {
+                NPC.checkpointID = "Oceanus Recommends Brothel";
                 NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "A guest! We don’t see many travelers in these parts. Although I regret to inform you that you have chosen the wrong moon by which to visit, honorable sir.",
+                        "charResponse": "I was told that you may have insights into the kidnapping of Lord Silva’s family, my good man."
+                    },
+                    "1": {
+                        "npcDialogue": "An outrage. I tell you that God will have his vengeance upon those hellraisers. And yes, those devils are known to haunt the brothel. But what good is that to a dove?",
+                        "charResponse": "I only wish to reason with the fellows."
+                    },
+                    "2": {
+                        "npcDialogue": "Commendable, yes. Terribly mistaken. You noted the butchery atop the valley, I imagine. I can’t send you into that den of wolves. Not me.",
+                        "charResponse": "The brothel, you said?"
+                    },
+                    "3": {
+                        "npcDialogue": "You don’t intend to go? Be sensible.",
+                        "charResponse": "Farewell, kind Oceanus! Pray for this insensible fool."
+                    },
+                    "4": {
+                        "npcDialogue": "Well that simply won’t due! At the very least, tell the rebels who are there that you under my aegis.",
+                        "charResponse": "Will do."
+                    },
+                    "5": {
+                        "charResponse": "Will do."
+                    }
+                };
+            }
+            else {
+            NPC.checkpointID = "Default"
+            NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "Fine, fine. Perhaps I have been in error. But of what use is that? The wheels of revolution have already begun spinning ahead of me.",
-                    "charResponse": "In what sense?"
-                },
-                "1": {
-                    "npcDialogue": "As we speak, men prepare to take the lives of Silva and Seth.",
-                    "charResponse": "And I suppose you would be too late to stop this plot?"
-                },
-                "2": {
-                    "npcDialogue": "I am not privy to a single detail regarding the plans, except that they will occur when Silva comes for confession.",
-                    "charResponse": "Then I must warn Silva and Seth to flee! Farewell, Master Oceanus. Dissuade who you can; you owe those families your life."
-                },
-                "3": {
-                    "charResponse": "Then I must warn Silva and Seth to flee! Farewell, Master Oceanus. Dissuade who you can; you owe those families your life."
+                    "npcDialogue": "[Default Dialogue]",
+                    "charResponse": ""
                 }
             };
-            }*/
+            }
         }
     }
     else if (game_state.key == "state5") {
         if (npcName == "Sicarius") {
-            // Scene 4
-            if (dialogueCheck.indexOf("") == -1) {
-                NPC.dialogue = {
+            if (dialogueCheck.indexOf("Oceanus Recommends Brothel") != -1){
+            NPC.checkpointID = "Sicarius To Basement";
+            NPC.dialogue = {
                 "0": {
                     "npcDialogue":"*Whistling*",
                     "charResponse": "Good sir, are you the leader of this rabble?"
@@ -753,6 +816,32 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "Many thanks."
                 }
             };
+            }
+            else {
+            NPC.checkpointID = "Default"
+            NPC.dialogue = {
+                "0": {
+                    "npcDialogue": "[Default Dialogue]",
+                    "charResponse": ""
+                }
+            };
+            }
+        }
+        else if (npcName == "Self"){
+            if (dialogueCheck.indexOf("Sicarius To Basement") != -1) {
+                NPC.checkpointID = "Self Dialogue";
+                NPC.dialogue = {
+                    "0": {
+                        "charResponse": "Let’s pay another visit to dear Oceanus."
+                    },
+                    "1": {
+                        "charResponse": "Let’s pay another visit to dear Oceanus."
+                    }
+                }
+            }
+            else {
+                NPC.checkpointID = "Default";
+                NPC.dialogue = {}
             }
         }
     }
