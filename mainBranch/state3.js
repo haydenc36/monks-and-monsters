@@ -96,8 +96,16 @@ demo.state3.prototype = {
         
         createHUD(this);
         createInventory(this);
-	    
-        createNPC(this,"Typhon",{"x":700, "y":700},"npc",{"x":1, "y":1});
+        
+        //Check for checkpoint before Silva Appears
+	    if (dialogueCheck.indexOf("") != -1){
+            createNPC(this,"Silva",{"x":700, "y":700},"npc",{"x":1, "y":1}, "");
+        }
+        else {
+            createNPC(this,"Seth",{"x":700, "y":700},"npc",{"x":1, "y":1}, "");
+            
+        }
+        
         createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },

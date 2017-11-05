@@ -80,7 +80,7 @@ demo.state4.prototype = {
         
         createHUD(this);
         createInventory(this);
-        createNPC(this,"Oceanus",{"x":1000, "y":700},"npc",{"x":2, "y":2});
+        createNPC(this,"Oceanus",{"x":1000, "y":700},"npc",{"x":2, "y":2},"");
         createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },

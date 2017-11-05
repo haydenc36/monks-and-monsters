@@ -1,7 +1,7 @@
 // Parvos' Monastery
 var demo = demo || {};
-var trigger2a, walls_noWalk2, fixtures_noWalk2b,tutorial;
-var enter;
+var trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial;
+var dialogueCheck = [];
 
 demo.state2 = function(){};
 demo.state2.prototype = {
@@ -21,9 +21,8 @@ demo.state2.prototype = {
         game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
 
-        
-        this.load.image('npcbox', '../assets/boxes/paper-dialog.png');
-        this.load.spritesheet('npc', '../assets/boxes/wandering_trader1.png', 64, 126);
+        game.load.image('npcbox', '../assets/boxes/paper-dialog.png');
+        game.load.spritesheet('npc', '../assets/boxes/wandering_trader1.png', 64, 126);
         
         //load Sprites for HUD
         game.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
@@ -33,19 +32,18 @@ demo.state2.prototype = {
 		game.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
         
         //load Sprites for inventory
-            this.load.spritesheet('inventory_base', '../assets/sprites/scroll_menu.png');
-            this.load.spritesheet('slot', '../assets/sprites/slot.png');
+        game.load.spritesheet('inventory_base', '../assets/sprites/scroll_menu.png');
+        game.load.spritesheet('slot', '../assets/sprites/slot.png');
         //load Items for inventory
-            this.load.spritesheet('bread', '../assets/sprites/bread.png');
-            this.load.spritesheet('wine', '../assets/sprites/wine.png');
-            this.load.spritesheet('scroll', '../assets/sprites/scroll_menu.png');
+        game.load.spritesheet('bread', '../assets/sprites/bread.png');
+        game.load.spritesheet('wine', '../assets/sprites/wine.png');
+        game.load.spritesheet('scroll', '../assets/sprites/scroll_menu.png');
     },
     
     create:function(){
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        //vel = 400;
                 
         //Adjust the camera settings
         bounds_x=1320; //important to avoid textbox overlapping with world borders
@@ -108,8 +106,8 @@ demo.state2.prototype = {
         createHUD(this);
         createInventory(this);
         
-        createNPC(this,"Head Abbot",{"x":600, "y":1450},"npc",{"x":1.75, "y":1.75});
-        createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
+        createNPC(this,"Head Abbot",{"x":600, "y":1450},"npc",{"x":1.75, "y":1.75}, "");
+        createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75}, "");
         createDialogueBox(this,{"x":2000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
         
@@ -130,5 +128,15 @@ demo.state2.prototype = {
         distTrigger(this,{"x":-175,"y":-160},{"x":50,"y":60});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-175,"y":-160},{"x":50,"y":60});
+        
+        /*/ Template to Update Dialogue List if multiple visits in the same state/scene
+        if (!!this.currentNPC){
+            if ((this.currentNPC.numDialogueScenes != 1) && (this.currentNPC.name == "NPCName") && (this.currentNPC.readDialogue) && (dialogueCheck.indexOf("CheckpointName") != -1)) {
+                dialogueList(this, this.currentNPC,"NPCName");
+                this.currentNPC.checkpointID = "CheckpointID";
+                this.currentNPC.numDialogueScenes -= 1;
+                this.currentNPC.readDialogue = false;
+            }
+        }*/
     }
 };

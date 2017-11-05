@@ -158,7 +158,7 @@ updateHUD = function (game_state) {
 };
 
 // Create an NPC Sprite
-createNPC = function (game_state, npcName, position, sprite, scale) {
+createNPC = function (game_state, npcName, position, sprite, scale, numDialogueScenes, checkpointID) {
     var checkNPC = false;
     game_state.NPCs = game_state.NPCs || [];
     game_state.NPCs.forEach (function (key) {
@@ -185,6 +185,9 @@ createNPC = function (game_state, npcName, position, sprite, scale) {
         //newNPC.spriteObj.animations.add('idle', [0,1,2,3,4,5], 5, true);
         //newNPC.spriteObj.animations.play('idle');
         dialogueList(game_state, newNPC, npcName);
+        newNPC.readDialogue = false;
+        newNPC.checkpointID = checkpointID;
+        newNPC.numDialogueScenes = numDialogueScenes;
         game_state.NPCs.push(newNPC);
     }
 };
@@ -244,17 +247,15 @@ NPCBoxVis = function (game_state, NPC,shift,atleast) {
             if(game_state.NPCBoxActive <= 1) {
                 
                 //check if text box is overlapping with  game_state bounds
-                              if(NPC.x+650 <= bounds_x)
-						{
-                            //if not just take the normal coordinates ...
-                             game_state.NPCBox.x = NPC.x;
-                        }
-                        else if(NPC.x+650 > bounds_x) {
-                            // ... else subtract the difference from usual coordinates and spawn the text box offset
-                            npcdifference = (NPC.x+650) - bounds_x;
-                            game_state.NPCBox.x = NPC.x - npcdifference;
-						      
-                        } 
+                if(NPC.x+650 <= bounds_x) {
+                    //if not just take the normal coordinates ...
+                    game_state.NPCBox.x = NPC.x;
+                }
+                else if(NPC.x+650 > bounds_x) {
+                    // ... else subtract the difference from usual coordinates and spawn the text box offset
+                    npcdifference = (NPC.x+650) - bounds_x;
+                    game_state.NPCBox.x = NPC.x - npcdifference;
+                } 
                        
 			    game_state.NPCBox.y = NPC.y;
                 
@@ -282,6 +283,12 @@ updateDialogue = function (game_state, NPC) {
     if ((game_state.NPCBoxActive == 1) && (game_state.NPCBoxTextPosition <= Object.keys(NPC.dialogue).length)) {
         if (game_state.nextTextNPCBox < game_state.time.now) {
             if (game_state.NPCBoxTextPosition >= Object.keys(NPC.dialogue).length) {
+                if (!NPC.readDialogue) {
+                    dialogueCheck.push(NPC.checkpointID);
+                    NPC.readDialogue = true;
+                    console.log(dialogueCheck);
+                }
+                
                 game_state.NPCBoxActive = 2;
                 game_state.NPCBox.visible = false;
                 
@@ -294,7 +301,26 @@ updateDialogue = function (game_state, NPC) {
             }
             else {
                 if (game_state.nextTextNPCBox < game_state.time.now) {
-                    chooseStr(game_state,NPC);
+                    if (game_state.key == "state1") {
+                        if (NPC.name == "Typhon"){
+                            chooseStr(game_state,NPC,"Seth");
+                        }
+                        else {
+                            chooseStr(game_state,NPC);
+                        }
+                    }
+                    else if (game_state.key == "state2") {
+                        if(NPC.name == "Head Abbot"){
+                            chooseStr(game_state,NPC,"Messenger");
+                        }
+                        else {
+                            chooseStr(game_state,NPC);
+                        }
+                    }
+                    else {
+                        chooseStr(game_state,NPC);
+                    }
+                    
                 }
             }
         }
@@ -302,17 +328,34 @@ updateDialogue = function (game_state, NPC) {
 };
 
 // Choose which statement to show
-chooseStr = function (game_state,NPC,npcName) {
+chooseStr = function (game_state,NPC,extraNPC) {
     var st;
     if (game_state.newConvo) {
         if (game_state.NPCSpeak) {
-            if (!!NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue) {
-                st = NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue;
-                game_state.NPCBoxName = NPC.name;
-                game_state.textInfoboxNPC.setText(st);
-                game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+            if (Object.keys(NPC.dialogue[game_state.NPCBoxTextPosition]).length < 2){
+                if (!!NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue) {
+                    st = NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue;
+                    game_state.NPCBoxName = NPC.name;
+                    game_state.textInfoboxNPC.setText(st);
+                    game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                    game_state.NPCSpeak = false;
+                }
+                else if (!!NPC.dialogue[game_state.NPCBoxTextPosition].charResponse) {
+                    st = NPC.dialogue[game_state.NPCBoxTextPosition].charResponse;
+                    game_state.NPCBoxName = "Parvos";
+                    game_state.textInfoboxNPC.setText(st);
+                    game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                }
             }
-            game_state.NPCSpeak = false;
+            else {
+                if (!!NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue) {
+                    st = NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue;
+                    game_state.NPCBoxName = NPC.name;
+                    game_state.textInfoboxNPC.setText(st);
+                    game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                    game_state.NPCSpeak = false;
+                }
+            }
         }
         else {
             if (!!NPC.dialogue[game_state.NPCBoxTextPosition].charResponse) {
@@ -340,9 +383,17 @@ chooseStr = function (game_state,NPC,npcName) {
                     game_state.nextTextNPCBox = game_state.time.now + 400;
                 }
                 else if (!!NPC.dialogue[game_state.NPCBoxTextPosition].charResponse){
-                    console.log();
                     st = NPC.dialogue[game_state.NPCBoxTextPosition].charResponse;
                     game_state.NPCBoxName = "Parvos";
+                    game_state.textInfoboxNPC.setText(st);
+                    game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                    game_state.NPCSpeak = true;
+                    game_state.NPCBoxTextPosition = Math.abs(game_state.NPCBoxTextPosition + 1);
+                    game_state.nextTextNPCBox = game_state.time.now + 400;
+                }
+                else if (!!NPC.dialogue[game_state.NPCBoxTextPosition].extra){
+                    st = NPC.dialogue[game_state.NPCBoxTextPosition].extra;
+                    game_state.NPCBoxName = extraNPC;
                     game_state.textInfoboxNPC.setText(st);
                     game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
                     game_state.NPCSpeak = true;
@@ -370,6 +421,12 @@ chooseStr = function (game_state,NPC,npcName) {
                         game_state.textInfoboxNPC.setText(st);
                         game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
                     }
+                    else if (!!NPC.dialogue[game_state.NPCBoxTextPosition].extra) {
+                        st = NPC.dialogue[game_state.NPCBoxTextPosition].extra;
+                        game_state.NPCBoxName = extraNPC;
+                        game_state.textInfoboxNPC.setText(st);
+                        game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                    }
                     game_state.NPCSpeak = true;
                     game_state.NPCBoxTextPosition = Math.abs(game_state.NPCBoxTextPosition + 1);
                 }
@@ -382,9 +439,48 @@ chooseStr = function (game_state,NPC,npcName) {
 
 // List of all the Dialogue
 dialogueList = function (game_state, NPC, npcName) {
-    if(game_state.key == "state1") {/*NPC's and their dialogue*/}
+    if(game_state.key == "state1") {
+        if (npcName == "Typhon") {
+            //Scene 9: Seth/Typhon
+            NPC.dialogue = {
+                "0": {
+                    "charResponse": "Seth, explain yourself."
+                },
+                "1": {
+                    "extra": "You’ve ruined everything! The church is ruined! I am ruined!"
+                },
+                "2": {
+                    "charResponse": "What have you done?"
+                },
+                "3": {
+                    "extra": "I had to, I had to! I framed the poor for the theft; I poisoned Theo; I provoked the lords."
+                },
+                "4": {
+                    "charResponse": "But why?"
+                },
+                "5": {
+                    "extra": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! ‘She’ll be cleansed of this filth!’ But now, he is not pleased. What have you done?!"
+                },
+                "6": {
+                    "charResponse": "Who—?"
+                },
+                "7": {
+                    "extra": "*Screaming*"
+                },
+                "8": {
+                    "npcDialogue": "Scrum!",
+                    "charResponse": "Identify yourself."
+                },
+                "9": {
+                    "npcDialogue": "I am the one whom the gods wished to lock away. I am the god of devastating winds, of volcanoes, and of serpents. And you are the puny minister of the Evil One who has stolen my slaves.",
+                    "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
+                }
+            };
+        }
+    }
     else if (game_state.key == "state2") {
         if (npcName == "Head Abbot"){
+            // Scene 1: Tutorial; 3 people Talking
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Hardly comforting or clarifying. Whatever it may mean, Messenger, bring this epistle to the lord of the land.",
@@ -395,28 +491,28 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "Father, Theo sent specifically for our aid. Perhaps he knows better than us what is needed."
                 },
                 "2": {
-                    "npcDialogue": "Yes, and perhaps Master Theo has tumbled into the wine cellar once again.!",
+                    "npcDialogue": "Yes, and perhaps Master Theo has tumbled into the wine cellar once again.",
                     "charResponse": "You know better than I that Theo is a discerning man. Perhaps he senses that this conflict, whatever its nature, is not amenable to the force of Lord William. Please, send me."
                 },
                 "3": {
-                    "npcDialogue": "Give me a moment to contemplate.",
-                    "charResponse": "........."
+                    "extra": "If I may..."
                 },
                 "4": {
-                    "npcDialogue": "As I departed from his quarters, Sir Theo made great note to deliver this epistle to this abbey, and this abbey alone.",
-                    "charResponse": "Then perhaps that settles the matter."
+                    "npcDialogue": "Yes, yes.",
+                    "extra": "As I departed from his quarters, Sir Theo made great note to deliver this epistle to this abbey, and this abbey alone. ‘For no other eyes,’ he said."
                 },
                 "5": {
-                    "npcDialogue": "Alright Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.",
+                    "npcDialogue": "...Then perhaps that settles the matter. Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.",
                     "charResponse": "I will be in good company. Bless you, Father."
                 },
                 "6": {
                     "npcDialogue": "Before you leave, meet with Thomas at the door. He will ensure that you haven’t forgotten your training!",
                     "charResponse": ""
                 }
-            };
+            }; 
         }
         else if (npcName == "Thomas") {
+            // Scene 1: Before Tutorial Battle
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Alright, show me what you remember!",
@@ -429,7 +525,8 @@ dialogueList = function (game_state, NPC, npcName) {
         }
     }
     else if (game_state.key == "state3") {
-        if (npcName == "Typhon") {
+        if (npcName == "Seth") {
+            // Scene 2
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "*Sobbing*",
@@ -441,10 +538,10 @@ dialogueList = function (game_state, NPC, npcName) {
                 },
                 "2": {
                     "npcDialogue": "A wise heart you have—",
-                    "charResponse": "Thats very kind of you, father."
+                    "charResponse": "Parvos, good sir."
                 },
                 "3": {
-                    "npcDialogue": "A wise heart indeed. Yes, yes. Well how may we honor them? Their bodies dangle from trees: ‘strange fruit,’ as those accustomed to agony have said.",
+                    "npcDialogue": "Parvos, a wise heart indeed. Yes, yes. Well how may we honor them? Their bodies dangle from trees: ‘strange fruit,’ as those accustomed to agony have said.",
                     "charResponse": "Tell me more about the conflict. What crimes were committed, by whom, against whom?"
                 },
                 "4": {
@@ -467,55 +564,188 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "Your help is greatly appreciated!"
                 }
             };
+            
+        }
+        else if (npcName == "Silva"){
+            //Scene 6: Before Duel
+            if (dialogueCheck.indexOf("") == -1) {
+                NPC.dialogue = {
+                    "0": {
+                        "charResponse": "Lord Silva?"
+                    },
+                    "1": {
+                        "npcDialogue": "Ah! You must be the little man who dreams of pacifying a revolution.",
+                        "charResponse": "Lord Silva, you must flee the village."
+                    },
+                    "2": {
+                        "npcDialogue": "Do you think I’m unaware of their next target? I am neither hiding nor fleeing. I am waiting for vengeance.",
+                        charResponse: "The bloodshed must end."
+                    },
+                    "3": {
+                        "npcDialogue": "Do you suppose I am pleased? I could have gone on happily with my studies and my ladies. Have you seen the bellibones hereabouts? Bedswervers, they are. No, I am merely reacting to barbarism.",
+                        "charResponse": "The poor have endured their burdens long enough, and you know this."
+                    },
+                    "4": {
+                        "npcDialogue": "Do you suppose they would have homes or breath in their lungs without my knights? Who do you prevented the Franks from raping, pillaging, and decimating this town? Farmers?",
+                        "charResponse": "Nonetheless, revenge will only lead to greater disorder."
+                    },
+                    "5": {
+                        "npcDialogue": "You are a sweet man, I see. But the strong must triumph.",
+                        "charResponse": ""
+                    }
+                };
+            }
+            
+            //Scene 6: After Duel
+            else if (dialogueCheck.indexOf("") == -1) {
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "Alright, alright! Perhaps you are right, but this is already out of my hands. My spies spotted peasants surrounding the monastery, and my men are already stationed outside Oceanus’ home.",
+                        "charResponse": "This has gone far beyond any man… There’s only one way an entire village could be possessed in this way. So tell me, where do you bury your dead?"
+                    },
+                    "1": {
+                        "npcDialogue": "Pardon?",
+                        "charResponse": "I must go to the dead to find hints about your true master."
+                    },
+                    "2": {
+                        "npcDialogue": "There’s a cemetery to the west of the peasant’s quarters.. Continue along the dirt road.",
+                        "charResponse": ""
+                    }
+                };
+            }
         }
     }
     else if (game_state.key == "state4") {
         if (npcName == "Oceanus") {
-            NPC.dialogue = {
-                "0": {
-                    "npcDialogue": "A guest! We don’t see many travelers in these parts. Although I regret to inform you that you have chosen the wrong moon by which to visit, honorable sir.",
-                    "charResponse": "I was told that you may have insights into the kidnapping of Lord Silva’s family, my good man."
+            // Scene 3
+            //if (dialogueCheck.indexOf("") == -1) {
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "A guest! We don’t see many travelers in these parts. Although I regret to inform you that you have chosen the wrong moon by which to visit, honorable sir.",
+                        "charResponse": "I was told that you may have insights into the kidnapping of Lord Silva’s family, my good man."
+                    },
+                    "1": {
+                        "npcDialogue": "An outrage. I tell you that God will have his vengeance upon those hellraisers. And yes, those devils are known to haunt the brothel. But what good is that to a dove?",
+                        "charResponse": "I only wish to reason with the fellows."
+                    },
+                    "2": {
+                        "npcDialogue": "Commendable, yes. Terribly mistaken. You noted the butchery atop the valley, I imagine. I can’t send you into that den of wolves. Not me.",
+                        "charResponse": "The brothel, you said?"
+                    },
+                    "3": {
+                        "npcDialogue": "You don’t intend to go? Be sensible.",
+                        "charResponse": "Farewell, kind Oceanus! Pray for this insensible fool."
+                    },
+                    "4": {
+                        "npcDialogue": "Well that simply won’t due! At the very least, tell the rebels who are there that you under my aegis.",
+                        "charResponse": "Will do."
+                    },
+                    "5": {
+                        "charResponse": "Will do."
+                    }
+                };
+            //}
+            
+            /*// Scene 5: Before Battle with Oceanus
+            else if (dialogueCheck.indexOf("") == -1) {
+                NPC.dialogue = {
+                "0":{
+                    "npcDialogue": "Parvos! Uh… What a pleasant surprise! So I see your encounter—",
+                    "charResponse": "*Shows the head of the snake.*"
                 },
                 "1": {
-                    "npcDialogue": "An outrage. I tell you that God will have his vengeance upon those hellraisers. And yes, those devils are known to haunt the brothel. But what good is that to a dove?",
-                    "charResponse": "I only wish to reason with the fellows."
+                    "charResponse": "Was this the leader you hoped for me to meet?"
                 },
                 "2": {
-                    "npcDialogue": "Commendable, yes. Terribly mistaken. You noted the butchery atop the valley, I imagine. I can’t send you into that den of wolves. Not me.",
-                    "charResponse": "The brothel, you said?"
+                    "npcDialogue": "*Speechless*",
+                    "charResponse": "I will permit two replies. You may deceive me again or you may reveal the truth. In the former case, the Angel of Death will decide your fate."
                 },
                 "3": {
-                    "npcDialogue": "You don’t intend to go? Be sensible.",
-                    "charResponse": "Farewell, kind Oceanus! Pray for this insensible fool."
+                    "npcDialogue": "*Looking at the serpent’s head*"
                 },
                 "4": {
-                    "charResponse": "Farewell, kind Oceanus! Pray for this insensible fool."
+                    "npcDialogue": "...I led the revolt.",
+                    "charResponse": "Surely that is old news. You stole life. You are drenched in blood."
+                },
+                "5": {
+                    "npcDialogue": "Because we have been despised long enough. It is high time that the lords of this land, the illegitimate masters of this hell, drown in a sea of resistance.",
+                    "charResponse": "We?"
+                },
+                "6": {
+                    "npcDialogue": "Decent folk. Peasants, as they say.",
+                    "charResponse": "I will be the last to deny the sorry state of laborers in this age. But what distance does that grievance go towards alleviating your guilt?"
+                },
+                "7": {
+                    "npcDialogue": "The new tax, the lengthened days, all weights on our shoulders. Sure, we could take the fatigue and the scorn. But have you heard what the tax collectors would do to women?! And cutting us off from Mass?",
+                    "charResponse": "Cutting you from the Mass?"
+                },
+                "8": {
+                    "npcDialogue": "The gentlemen convinced Brentwood clergy that we’re a horde of drunks, swindlers, and louts. So the moment wine vanished from the tabernacle, we looked to be the perfect scapegoats. We were excommunicated until a thief was turned over.",
+                    "charResponse": "And at what point were fathers, mothers, sons, and daughters murdered? Over the span of four decades, from the time I was wee, I have not once observed Father Theo dipping into the holy wine."
+                },
+                "9": {
+                    "npcDialogue": "Those innocents lived in a world of blood. With all respect, a good man would not associate with scum like Seth or Silva. We did not murder. We initiated our redemption! Affiliates of evil share graves when the roof caves.",
+                    "charResponse": "You’re spreading lies."
+                },
+                "10": {
+                    "npcDialogue": "The meek inheriting the earth, the last becoming first. Are you calling Christ a liar?",
+                    "charResponse": ""
                 }
             };
+            }
+            
+            //Scene 5: After Battle with Oceanus
+            else if (dialogueCheck.indexOf("") == -1) {
+                NPC.dialogue = {
+                "0": {
+                    "npcDialogue": "Fine, fine. Perhaps I have been in error. But of what use is that? The wheels of revolution have already begun spinning ahead of me.",
+                    "charResponse": "In what sense?"
+                },
+                "1": {
+                    "npcDialogue": "As we speak, men prepare to take the lives of Silva and Seth.",
+                    "charResponse": "And I suppose you would be too late to stop this plot?"
+                },
+                "2": {
+                    "npcDialogue": "I am not privy to a single detail regarding the plans, except that they will occur when Silva comes for confession.",
+                    "charResponse": "Then I must warn Silva and Seth to flee! Farewell, Master Oceanus. Dissuade who you can; you owe those families your life."
+                },
+                "3": {
+                    "charResponse": "Then I must warn Silva and Seth to flee! Farewell, Master Oceanus. Dissuade who you can; you owe those families your life."
+                }
+            };
+            }*/
         }
     }
     else if (game_state.key == "state5") {
         if (npcName == "Sicarius") {
-            NPC.dialogue = {
+            // Scene 4
+            if (dialogueCheck.indexOf("") == -1) {
+                NPC.dialogue = {
                 "0": {
-                    "npcDialogue":"",
-                    "charResponse": ""
+                    "npcDialogue":"*Whistling*",
+                    "charResponse": "Good sir, are you the leader of this rabble?"
                 },
                 "1": {
-                    "npcDialogue":"",
-                    "charResponse": ""
+                    "npcDialogue":"Rabble? What business do you have here, little man? And do you presume that God will protect you?",
+                    "charResponse": "In a sense, but in another sense, Master Oceanus sent me beneath his aegis."
                 },
                 "2": {
-                    "npcDialogue":"",
-                    "charResponse": ""
+                    "npcDialogue":"Ah, Master Oceanus! That being the case, may I ask again, what brings you to these lowly quarters, good sir?",
+                    "charResponse": "I wish to speak with the leader of yesterday’s massacre."
+                },
+                "3": {
+                    "npcDialogue":"Have you not spoken with him yet?",
+                    "charResponse": "I certainly hope not."
+                },
+                "4": {
+                    "npcDialogue":"Certainly not. You are a lucky monk. Had I not known of your friendship with Oceanus, this encounter would have ended sourly for you. That aside, you will find our leader in the basement, hiding.",
+                    "charResponse": "Many thanks."
                 }
             };
+            }
         }
     }
-    else if (game_state.key == "state6") {/*NPC's and their dialogue*/}
-    else if (game_state.key == "state7") {/*NPC's and their dialogue*/}
 };
-
 
 createInventory = function (game_state){
 
@@ -634,6 +864,7 @@ createInventory = function (game_state){
 	  
 }
 //Hover functions to highlight selected item
+
 function over_bread(){
     hover_bread = true;
 }

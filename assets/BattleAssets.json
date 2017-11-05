@@ -1,4 +1,5 @@
 {
+    "returnState": "state2",
     "nextState": "state1",
     "assets": {
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
