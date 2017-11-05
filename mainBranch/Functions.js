@@ -163,6 +163,17 @@ createNPC = function (game_state, npcName, position, sprite, scale, numDialogueS
     game_state.NPCs = game_state.NPCs || [];
     game_state.NPCs.forEach (function (key) {
         if (key.name == npcName) {
+            key.x = position.x;
+            key.y = position.y;
+            key.spriteObj = game_state.add.sprite(position.x,position.y,sprite);
+            game_state.physics.arcade.enableBody(key.spriteObj);
+            key.spriteObj.scale.set(scale.x,scale.y);
+            if (scale.x < 0) {
+                key.spriteObj.anchor.setTo(0,1);
+            }
+            else {
+                key.spriteObj.anchor.setTo(1,1);
+            }
             checkNPC = true;
             return;
         }
