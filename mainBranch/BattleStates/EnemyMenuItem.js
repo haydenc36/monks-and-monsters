@@ -3,6 +3,9 @@ var demo = demo || {};
 demo.EnemyMenuItem = function (game_state, name, position, properties) {
     "use strict";
     demo.MenuItem.call(this, game_state, name, position, properties);
+    
+    this.enemy_unit_health = new demo.ShowStat(this.game_state, this.text + "_health", {x: this.x+405, y: this.y-99}, {group: "hud", text: "", style: {font: '10px Book Antiqua', fill: '#ffffff', align:"right"}, prefab: this.text, stat: "health"});
+    this.enemy_unit_health.anchor.setTo(1,0);
 };
 
 demo.EnemyMenuItem.prototype = Object.create(demo.MenuItem.prototype);

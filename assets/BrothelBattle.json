@@ -1,0 +1,168 @@
+{
+    "returnState": "state5",
+    "nextState": "state5",
+    "assets": {
+        "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
+        "bg_image": {"type": "image", "source": "../../assets/backgrounds/basement.png"},
+        "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
+        "wolf_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/Wolf.png", "frame_width": 459, "frame_height": 450},
+        "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
+        "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
+        "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
+        "redBar": {"type": "image", "source": "../../assets/boxes/red_bar.png"},
+        "blackBar": {"type": "image", "source": "../../assets/boxes/black_bar.png"},
+        "blueBar": {"type": "image", "source": "../../assets/boxes/blue_bar.png"},
+        "greenBar": {"type": "image", "source": "../../assets/boxes/green_bar.png"}
+    },
+    "groups": [
+        "items",
+        "attacks",
+        "attackskills",
+        "selfskills",
+        "skills",
+        "background",
+        "players",
+        "enemies",
+        "hud"
+    ],
+    "prefabs": {
+        "background": {
+            "type": "background",
+            "position": {"x": 0, "y": -225},
+            "properties": {
+                "texture": "bg_image",
+                "group": "background",
+                "width": 1280,
+                "height": 719
+            }
+        },
+        "enemy_rectangle": {
+            "type": "rectangle",
+            "position": {"x": 0, "y": 432},
+            "properties": {
+                "texture": "rectangle_image",
+                "group": "hud",
+                "scale": {"x": 1, "y": 1}
+            }
+        },
+        "action_rectangle": {
+            "type": "rectangle",
+            "position": {"x": 427, "y": 432},
+            "properties": {
+                "texture": "rectangle_image",
+                "group": "hud",
+                "scale": {"x": 1, "y": 1}
+            }
+        },
+        "player_rectangle": {
+            "type": "rectangle",
+            "position": {"x": 854, "y": 432},
+            "properties": {
+                "texture": "rectangle_image",
+                "group": "hud",
+                "scale": {"x": 1, "y": 1}
+            }
+        },
+        "Monk": {
+            "type": "player_unit",
+            "position": {"x": 160, "y": 340},
+            "properties": {
+                "texture": "monk_spritesheet",
+                "group": "players",
+                "scale": {"x": 0.5, "y": 0.5},
+                "stats": {
+                    "attack": 10,
+                    "defense": 5,
+                    "miracles_attack":10,
+                    "maxHP":1000,
+                    "maxMP":1000,
+                    "maxSP":1000
+                }
+            }
+        },
+        "Demon Wolf": {
+            "type": "enemy_unit",
+            "position": {"x": 1000, "y": 225},
+            "properties": {
+                "texture": "wolf_spritesheet",
+                "group": "enemies",
+                "scale": {"x": 0.05, "y": 0.05},
+                "stats": {
+                    "attack": 10,
+                    "defense": 1,
+                    "health": 100,
+                    "maxHP": 100,
+                    "reward": {
+                        "items": [{"text":"Wine", "type": "wine", "properties": {"group": "items", "mana_power": 30}},{"text":"Bread", "type": "bread", "properties": {"group": "items", "health_power": 30}}]
+                    }
+                }
+            }
+        },
+        "Wine": {
+            "type": "wine",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "texture": "wine_img",
+                "group": "items",
+                "scale": {"x": 0.05, "y": 0.05},
+                "stats": {
+                    "mana_power": 30
+                }
+            }
+        },
+        "Bread": {
+            "type": "bread",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "texture": "bread_img",
+                "group": "items",
+                "stats": {
+                    "health_power": 30
+                }
+            }
+        },
+        "Heal": {
+            "type": "heal",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "group": "selfskills",
+                "stats": {
+                    "health_power": 30,
+                    "req_mana": 30
+                }
+            }
+        },
+        "ScrollSword": {
+            "type": "scroll",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "group": "attackskills",
+                "stats": {
+                    "attack_mult": 1.5,
+                    "req_stam": 30
+                }
+            }
+        },
+        "Miracle": {
+            "type": "miracle",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "group": "attackskills",
+                "stats": {
+                    "attack_mult": 1.5,
+                    "req_mana": 30
+                }
+            }
+        },
+        "AngelofDeath": {
+            "type": "aod",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "group": "attackskills",
+                "stats": {
+                    "req_mana": 1000
+                }
+            }
+        }
+    }
+}

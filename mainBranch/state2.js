@@ -119,7 +119,7 @@ demo.state2.prototype = {
         tutorial = true;
         
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
-            game.physics.arcade.collide(monk, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/BattleAssets.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{},tutorial);});   
+            game.physics.arcade.collide(monk, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{},tutorial);});   
         }
         
         game.physics.arcade.collide(monk, walls_noWalk2, function(){console.log('walls_noWalk');});

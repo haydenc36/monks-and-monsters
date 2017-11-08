@@ -110,13 +110,20 @@ demo.BattleState.prototype.create = function () {
 };
 
 demo.BattleState.prototype.update = function (){
-    this.healthscale = this.prefabs.Monk.stats.health/2000;
-    this.manascale = this.prefabs.Monk.stats.mana/2000;
-    this.staminascale = this.prefabs.Monk.stats.stamina/2000;
+    this.healthscale = 0.5 * this.prefabs.Monk.stats.health / this.prefabs.Monk.stats.health;
+    this.manascale = 0.5 * this.prefabs.Monk.stats.mana / this.prefabs.Monk.stats.health;
+    this.staminascale = 0.5 * this.prefabs.Monk.stats.stamina / this.prefabs.Monk.stats.health;
     
     this.blood_bar.scale.set(this.healthscale, 1);
     this.mana_bar.scale.set(this.manascale, 1);
     this.stamina_bar.scale.set(this.staminascale, 1);
+    
+    this.groups["enemies"].forEach(function (enemy) {
+        this.enemyhealthscale = 3.5 * enemy.stats.health / enemy.stats.maxHP;
+    }, this);
+    
+    this.enemyblood_bar.scale.set(this.enemyhealthscale, 1.5);
+    
 }
 
 demo.BattleState.prototype.create_prefab = function (prefab_name, prefab_data) {
@@ -151,7 +158,11 @@ demo.BattleState.prototype.init_hud = function () {
     // show player actions
     this.show_player_actions({x: 50, y: 465});
     this.showPlayerStats(this.prefabs.Monk);
+    
     this.label_stats(this.prefabs.Monk);
+    this.groups["enemies"].forEach(function(enemy) {
+        this.showEnemyHealth(enemy);
+    }, this);
 };
 
 demo.BattleState.prototype.make_units = function (group_name, position, menu_item_constructor) {
@@ -235,9 +246,27 @@ demo.BattleState.prototype.showPlayerStats = function (player) {
     this.stamina_bar.anchor.setTo(0, 0);
     this.stamina_bar.scale.set(0.5, 1);
     
-    this.healthscale = player.stats.health/2000;
-    this.manascale = player.stats.mana/2000;
-    this.staminascale = player.stats.stamina/2000;
+    this.healthscale = 0.5 * player.stats.health/ player.stats.maxHP;
+    this.manascale = 0.5 * player.stats.mana/ player.stats.maxMP;
+    this.staminascale = player.stats.stamina/ player.stats.maxSP;
+}
+
+demo.BattleState.prototype.showEnemyHealth = function (enemy) {
+    "use strict";
+    //GUI - black bars as background for life and mana
+    this.black_bar = this.add.sprite(0, 0, 'blackBar');
+    this.physics.arcade.enableBody(this.black_bar);
+    this.black_bar.anchor.setTo(0, 0);
+    this.black_bar.scale.set(3.65, 2);
+    
+    //GUI - red bar for health
+    this.enemyblood_bar = this.add.sprite(25, 4, 'redBar');
+    this.physics.arcade.enableBody(this.enemyblood_bar);
+    this.enemyblood_bar.anchor.setTo(0, 0);
+    this.enemyblood_bar.scale.set(3.5, 2);
+    
+    this.enemyhealthscale = 3.5 * enemy.stats.health / enemy.stats.maxHP;
+    
 }
 
 demo.BattleState.prototype.next_turn = function () {
@@ -270,6 +299,8 @@ demo.BattleState.prototype.next_turn = function () {
 demo.BattleState.prototype.game_over = function () {
     "use strict";
     // go back to WorldState restarting the player position
+    this.game.world.removeAll();
+    
     this.game.state.start(this.prevState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity]);
 };
 
@@ -280,6 +311,8 @@ demo.BattleState.prototype.end_battle = function () {
             this.prefabs.inventory.collect_item(item_object);
         }, this);
     }, this);
+    
+    this.game.world.removeAll();
     
     // go back to WorldState with the current party data
     if (tutorial) {

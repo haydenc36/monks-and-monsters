@@ -132,7 +132,7 @@ createHUD = function (game_state) {
     game_state.manascale = characterMana/2000;
     game_state.staminascale = characterStamina/2000;
     
-    /*/ Bring to Top
+    // Bring to Top
     game_state.black_bar.bringToTop();
     game_state.black2_bar.bringToTop();
     game_state.blood_bar.bringToTop();
@@ -140,7 +140,7 @@ createHUD = function (game_state) {
     game_state.stamina_bar.bringToTop();
     game_state.health.bringToTop();
     game_state.mana.bringToTop();
-    game_state.stamina.bringToTop();*/ // Is bringToTop(); Necessary?
+    game_state.stamina.bringToTop();
 };
 
 // Update HUD (If Necessary)
@@ -159,46 +159,27 @@ updateHUD = function (game_state) {
 
 // Create an NPC Sprite
 createNPC = function (game_state, npcName, position, sprite, scale) {
-    var checkNPC = false;
-    game_state.NPCs = game_state.NPCs || {};
-    for (var NPC in game_state.NPCs) {
-        if (NPC == npcName) {
-            NPC.x = position.x;
-            NPC.y = position.y;
-            NPC.spriteObj = game_state.add.sprite(position.x,position.y,sprite);
-            game_state.physics.arcade.enableBody(NPC.spriteObj);
-            NPC.spriteObj.scale.set(scale.x,scale.y);
-            if (scale.x < 0) {
-                NPC.spriteObj.anchor.setTo(0,1);
-            }
-            else {
-                NPC.spriteObj.anchor.setTo(1,1);
-            }
-            checkNPC = true;
-            return;
-        }
-    }
     
-    if (!checkNPC) {
-        var newNPC = Object();
-        newNPC.name = npcName;
-        newNPC.x = position.x;
-        newNPC.y = position.y;
-        newNPC.spriteObj = game_state.add.sprite(position.x, position.y, sprite);
-        game_state.physics.arcade.enableBody(newNPC.spriteObj);
-        newNPC.spriteObj.scale.set(scale.x,scale.y);
-        if (scale.x < 0) {
-            newNPC.spriteObj.anchor.setTo(0,1);
-        }
-        else {
-            newNPC.spriteObj.anchor.setTo(1,1);
-        }
-        //newNPC.spriteObj.animations.add('idle', [0,1,2,3,4,5], 5, true);
-        //newNPC.spriteObj.animations.play('idle');
-        dialogueList(game_state, newNPC, npcName);
-        newNPC.readDialogue = false;
-        game_state.NPCs[npcName] = newNPC;
+    game_state.NPCs = game_state.NPCs || {};
+    
+    var newNPC = Object();
+    newNPC.name = npcName;
+    newNPC.x = position.x;
+    newNPC.y = position.y;
+    newNPC.spriteObj = game_state.add.sprite(position.x, position.y, sprite);
+    game_state.physics.arcade.enableBody(newNPC.spriteObj);
+    newNPC.spriteObj.scale.set(scale.x,scale.y);
+    if (scale.x < 0) {
+        newNPC.spriteObj.anchor.setTo(0,1);
     }
+    else {
+        newNPC.spriteObj.anchor.setTo(1,1);
+    }
+    //newNPC.spriteObj.animations.add('idle', [0,1,2,3,4,5], 5, true);
+    //newNPC.spriteObj.animations.play('idle');
+    dialogueList(game_state, newNPC, npcName);
+    newNPC.readDialogue = false;
+    game_state.NPCs[npcName] = newNPC;
 };
 
 // Create Dialogue Box for further use
@@ -300,7 +281,7 @@ updateDialogue = function (game_state, NPC) {
         if (game_state.nextTextNPCBox < game_state.time.now) {
             if (game_state.NPCBoxTextPosition >= Object.keys(NPC.dialogue).length) {
                 if (!NPC.readDialogue) {
-                    if (NPC.checkpointID != "Default") {
+                    if ((NPC.checkpointID != "Default")  && (dialogueCheck.indexOf(NPC.checkpointID) == -1)){
                         dialogueCheck.push(NPC.checkpointID);
                     }
                     NPC.readDialogue = true;

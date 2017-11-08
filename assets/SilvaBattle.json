@@ -1,11 +1,11 @@
 {
-    "returnState": "state2",
-    "nextState": "state1",
+    "returnState": "state3",
+    "nextState": "state3",
     "assets": {
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
-        "bg_image": {"type": "image", "source": "../../assets/backgrounds/BBG.png"},
+        "bg_image": {"type": "image", "source": "../../assets/backgrounds/abbey.jpg"},
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/devilMonk.png", "frame_width": 274, "frame_height": 500},
+        "wise_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/WiseMonk.png", "frame_width": 375, "frame_height": 500},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
         "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
@@ -28,7 +28,7 @@
     "prefabs": {
         "background": {
             "type": "background",
-            "position": {"x": 0, "y": -225},
+            "position": {"x": 0, "y": -230},
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
@@ -80,18 +80,18 @@
                 }
             }
         },
-        "Devil": {
+        "Silva": {
             "type": "enemy_unit",
-            "position": {"x": 1000, "y": 225},
+            "position": {"x": 1000, "y": 300},
             "properties": {
-                "texture": "devil_spritesheet",
+                "texture": "wise_spritesheet",
                 "group": "enemies",
                 "scale": {"x": 0.05, "y": 0.05},
                 "stats": {
-                    "attack": 100,
+                    "attack": 10,
                     "defense": 1,
-                    "health": 1000,
-                    "maxHP": 1000,
+                    "health": 100,
+                    "maxHP": 100,
                     "reward": {
                         "items": [{"text":"Wine", "type": "wine", "properties": {"group": "items", "mana_power": 30}},{"text":"Bread", "type": "bread", "properties": {"group": "items", "health_power": 30}}]
                     }
