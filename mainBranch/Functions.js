@@ -460,7 +460,7 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "But why?"
                 },
                 "5": {
-                    "extra": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! ‘She’ll be cleansed of this filth!’ But now, he is not pleased. What have you done?!"
+                    "extra": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! But now, he is not pleased."
                 },
                 "6": {
                     "charResponse": "Who—?"
@@ -469,7 +469,7 @@ dialogueList = function (game_state, NPC, npcName) {
                     "extra": "*Screaming*"
                 },
                 "8": {
-                    "npcDialogue": "Scrum!",
+                    "npcDialogue": "Scum!",
                     "charResponse": "Identify yourself."
                 },
                 "9": {
@@ -495,16 +495,16 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Head Abbot Tutorial";
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "Hardly comforting or clarifying. Whatever it may mean, Messenger, bring this epistle to the lord of the land.",
-                    "charResponse":"Father, send me instead."
+                    "npcDialogue": "I've just received a letter from Theo. Whatever it may mean, bring this epistle to the lord of the land.",
+                    "charResponse":"Father, send me."
                 },
                 "1": {
-                    "npcDialogue": "Sweet Parvos, what can you be expected to do—sunder skulls with scrolls and stop wars with communion wafers? Be sensible, child. Messenger, to the lord you go.",
+                    "npcDialogue": "Sweet Parvos, what can you be expected to do—sunder skulls with scrolls and stop wars with communion wafers? Be sensible, child.",
                     "charResponse": "Father, Theo sent specifically for our aid. Perhaps he knows better than us what is needed."
                 },
                 "2": {
                     "npcDialogue": "Yes, and perhaps Master Theo has tumbled into the wine cellar once again.",
-                    "charResponse": "You know better than I that Theo is a discerning man. Perhaps he senses that this conflict, whatever its nature, is not amenable to the force of Lord William. Please, send me."
+                    "charResponse": "Perhaps he senses that this conflict is not amenable to the force of Lord William. Send me."
                 },
                 "3": {
                     "extra": "If I may..."
