@@ -14,7 +14,12 @@ demo.Bread.prototype.use = function () {
     "use strict";
     if (this.game_state.prefabs[this.name].stats.quantity > 0){
         demo.Item.prototype.use.call(this);
-        this.game_state.prefabs.Monk.stats.health += this.health_power;
+        if (this.game_state.prefabs.Monk.stats.health + this.health_power > this.game_state.prefabs.Monk.stats.maxHP) {
+            this.game_state.prefabs.Monk.stats.health = this.game_state.prefabs.Monk.stats.maxHP;
+        }
+        else {
+            this.game_state.prefabs.Monk.stats.health += this.health_power;
+        }
     }
     else {
         //Message

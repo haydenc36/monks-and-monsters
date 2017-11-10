@@ -13,7 +13,12 @@ demo.Wine.prototype.use = function () {
     "use strict";
     if (this.game_state.prefabs[this.name].stats.quantity > 0){
         demo.Item.prototype.use.call(this);
-        this.game_state.prefabs.Monk.stats.mana += this.mana_power;
+        if (this.game_state.prefabs.Monk.stats.mana + this.mana_power > this.game_state.prefabs.Monk.stats.maxMP) {
+            this.game_state.prefabs.Monk.stats.mana = this.game_state.prefabs.Monk.stats.maxMP;
+        }
+        else {
+            this.game_state.prefabs.Monk.stats.mana += this.mana_power;
+        }
     }
     else {
         //Message

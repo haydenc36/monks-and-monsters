@@ -27,8 +27,6 @@ demo.BattleState.prototype.constructor = demo.BattleState;
 demo.BattleState.prototype.init = function (level_data, charStats, inventQ, extra_parameters) {
     "use strict";
     this.level_data = level_data;
-    //this.encounter = extra_parameters.encounter;
-    //this.party_data = extra_parameters.party_data;
     this.inventory = extra_parameters.inventory;
     this.charHealth = charStats[0];
     this.charMana = charStats[1];
@@ -84,6 +82,60 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.attackskills = new demo.AttackInventory(this, "attackskills", {x: 477, y: 480}, {group: "skills"});
     }
     
+    // Scroll Sword Requirements
+    if (this.SwordReq){
+        this.prefabs.SwordReq = this.SwordReq;
+        this.prefabs.SwordReq.visible = false;
+    } else {
+        this.prefabs.SwordReq = game.add.text(904, 465, "Sword Requirements", this.TEXT_STYLE);
+        this.prefabs.SwordReq.visible = false;
+    }
+    
+    // Miracles Requirements
+    if (this.MiraclesReq){
+        this.prefabs.MiraclesReq = this.MiraclesReq;
+        this.prefabs.MiraclesReq.visible = false;
+    } else {
+        this.prefabs.MiraclesReq = game.add.text(904, 465, "Miracles Requirments", this.TEXT_STYLE);
+        this.prefabs.MiraclesReq.visible = false;
+    }
+    
+    // Angel of Death Requirements
+    if (this.AODReq){
+        this.prefabs.AODReq = this.AODReq;
+        this.prefabs.AODReq.visible = false;
+    } else {
+        this.prefabs.AODReq = game.add.text(904, 465, "Angel of Death Requirements", this.TEXT_STYLE);
+        this.prefabs.AODReq.visible = false;
+    }
+    
+    // Heal Requirements
+    if (this.HealReq){
+        this.prefabs.HealReq = this.HealReq;
+        this.prefabs.HealReq.visible = false;
+    } else {
+        this.prefabs.HealReq = game.add.text(904, 465, "Heal Requirements", this.TEXT_STYLE);
+        this.prefabs.HealReq.visible = false;
+    }
+    
+    // Wine Requirements
+    if (this.WineReq){
+        this.prefabs.WineReq = this.WineReq;
+        this.prefabs.WineReq.visible = false;
+    } else {
+        this.prefabs.WineReq = game.add.text(904, 465, "Wine Requirements", this.TEXT_STYLE);
+        this.prefabs.WineReq.visible = false;
+    }
+    
+    // Bread Requirements
+    if (this.BreadReq){
+        this.prefabs.BreadReq = this.BreadReq;
+        this.prefabs.BreadReq.visible = false;
+    } else {
+        this.prefabs.BreadReq = game.add.text(904, 465, "Bread Requirements", this.TEXT_STYLE);
+        this.prefabs.BreadReq.visible = false;
+    }
+    
     this.init_hud();
     
     // store units in a priority queue which compares the units act turn
@@ -118,9 +170,11 @@ demo.BattleState.prototype.update = function (){
     this.mana_bar.scale.set(this.manascale, 1);
     this.stamina_bar.scale.set(this.staminascale, 1);
     
-    this.groups["enemies"].forEach(function (enemy) {
+    this.enemyhealthscale = 3.5 * this.enemy.stats.health / this.enemy.stats.maxHP;
+    
+    /*this.groups["enemies"].forEach(function (enemy) {
         this.enemyhealthscale = 3.5 * enemy.stats.health / enemy.stats.maxHP;
-    }, this);
+    }, this);*/
     
     this.enemyblood_bar.scale.set(this.enemyhealthscale, 1.5);
     
@@ -144,7 +198,6 @@ demo.BattleState.prototype.init_hud = function () {
     
     // show enemy units
     this.make_units("enemies", {x: 904, y: 465}, demo.EnemyMenuItem.prototype.constructor);
-    this.prefabs.enemies_menu.show();
     
     // create items menu
     this.prefabs.inventory.create_menu({x: 477, y: 465});
@@ -160,9 +213,11 @@ demo.BattleState.prototype.init_hud = function () {
     this.showPlayerStats(this.prefabs.Monk);
     
     this.label_stats(this.prefabs.Monk);
-    this.groups["enemies"].forEach(function(enemy) {
+    this.showEnemyHealth(this.enemy);
+    
+    /*this.groups["enemies"].forEach(function(enemy) {
         this.showEnemyHealth(enemy);
-    }, this);
+    }, this);*/
 };
 
 demo.BattleState.prototype.make_units = function (group_name, position, menu_item_constructor) {
@@ -180,6 +235,12 @@ demo.BattleState.prototype.make_units = function (group_name, position, menu_ite
     // create units menu
     units_menu = new demo.Menu(this, group_name + "_menu", position, {group: "hud", menu_items: menu_items});
     units_menu.hide();
+    
+    if (group_name == "enemies") {
+        this.groups["enemies"].forEach(function (unit) {
+            this.enemy = unit;
+        },this);
+    }
 };
 
 demo.BattleState.prototype.label_stats = function (player) {
@@ -301,25 +362,28 @@ demo.BattleState.prototype.game_over = function () {
     // go back to WorldState restarting the player position
     this.game.world.removeAll();
     
-    this.game.state.start(this.prevState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity]);
+    this.game.state.start(this.prevState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity]);
 };
 
 demo.BattleState.prototype.end_battle = function () {
     "use strict";
-    this.groups["enemies"].forEach(function (enemy) {
+    this.enemy.stats.reward.items.forEach(function (item_object){
+        this.prefabs.inventory.collect_item(item_object);
+    }, this);
+    /*this.groups["enemies"].forEach(function (enemy) {
         enemy.stats.reward.items.forEach(function (item_object){
             this.prefabs.inventory.collect_item(item_object);
         }, this);
-    }, this);
+    }, this);*/
     
     this.game.world.removeAll();
     
     // go back to WorldState with the current party data
     if (tutorial) {
-        this.game.state.start(this.nextState, true, false, [1000,1000,1000],[10,10]);
+        this.game.state.start(this.nextState, true, false, [this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP],[10,10]);
     }
     else {
-        this.game.state.start(this.nextState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+        this.game.state.start(this.nextState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
     }
     
 };

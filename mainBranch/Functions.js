@@ -4,12 +4,20 @@ changeStatsInvent = function (charStats, invent) {
         characterEnergy = charStats[0];
         characterMana = charStats[1];
         characterStamina = charStats[2];
+        charMaxEnergy = charStats[3];
+        charMaxMana = charStats[4];
+        charMaxStamina = charStats[5];
     }
     
     if (!!invent) {
         wineQ = invent[0];
         breadQ = invent[1];
-        scrollQ = 1; //use invent[2] when existing!!!
+        if (!!invent[2]) {
+            scrollQ = invent[2];
+        }
+        else {
+            scrollQ = 1;
+        }
     }
 };
 
@@ -147,9 +155,9 @@ createHUD = function (game_state) {
 updateHUD = function (game_state) {
     
      // Scales(important, else not working!!!)
-    game_state.healthscale = characterEnergy/2000;
-    game_state.manascale = characterMana/2000;
-    game_state.staminascale = characterStamina/2000;
+    game_state.healthscale = (0.5) * (characterEnergy/charMaxEnergy);
+    game_state.manascale = (0.5) * (characterMana/charMaxMana);
+    game_state.staminascale = (0.5) * (characterStamina/charMaxStamina);
     
     
     game_state.blood_bar.scale.set(game_state.healthscale, 1);

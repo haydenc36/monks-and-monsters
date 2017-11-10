@@ -13,6 +13,11 @@ demo.Heal.prototype.constructor = demo.Heal;
  
 demo.Heal.prototype.use = function () {
     "use strict";
-    this.game_state.prefabs.Monk.stats.health += this.health_power;
+    if (this.game_state.prefabs.Monk.stats.health + this.health_power > this.game_state.prefabs.Monk.stats.maxHP) {
+        this.game_state.prefabs.Monk.stats.health = this.game_state.prefabs.Monk.stats.maxHP;
+    }
+    else {
+        this.game_state.prefabs.Monk.stats.health += this.health_power;
+    }
     this.game_state.prefabs.Monk.stats.mana -= this.req_mana;
 };
