@@ -104,6 +104,10 @@ demo.state2.prototype = {
         
         // Controls
         cursors = game.input.keyboard.createCursorKeys();
+        w = game.input.keyboard.addKey(Phaser.Keyboard.W);
+        a = game.input.keyboard.addKey(Phaser.Keyboard.A);
+        s = game.input.keyboard.addKey(Phaser.Keyboard.S);
+        d = game.input.keyboard.addKey(Phaser.Keyboard.D);
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         
         createHUD(this);

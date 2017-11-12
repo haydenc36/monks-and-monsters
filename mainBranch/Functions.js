@@ -23,10 +23,10 @@ changeStatsInvent = function (charStats, invent) {
 
 // Controls
 cursorControl = function (scale) {
-    if (cursors.up.isDown || cursors.down.isDown || cursors.left.isDown || cursors.right.isDown) {
-        if (cursors.up.isDown){
+    if (cursors.up.isDown || cursors.down.isDown || cursors.left.isDown || cursors.right.isDown || a.isDown || d.isDown || w.isDown || s.isDown) {
+        if (cursors.up.isDown || w.isDown){
             monk.body.velocity.y = -vel;
-            if (cursors.left.isDown || cursors.right.isDown) {
+            if (cursors.left.isDown || a.isDown || cursors.right.isDown || d.isDown) {
                 monk.animations.play('walk');
             }
             else {
@@ -34,7 +34,7 @@ cursorControl = function (scale) {
             }
         }
 
-        else if (cursors.down.isDown){
+        else if (cursors.down.isDown || s.isDown){
             monk.body.velocity.y = vel;
             monk.animations.play('walk');
         }
@@ -43,13 +43,13 @@ cursorControl = function (scale) {
             monk.body.velocity.y = 0;
         }
 
-        if (cursors.left.isDown){
+        if (cursors.left.isDown || a.isDown){
             monk.body.velocity.x = -vel;
             monk.scale.set(-scale,scale);
             monk.animations.play('walk');
         }
 
-        else if (cursors.right.isDown){
+        else if (cursors.right.isDown || d.isDown){
             monk.body.velocity.x = vel;
             monk.scale.set(scale,scale);
             monk.animations.play('walk');
