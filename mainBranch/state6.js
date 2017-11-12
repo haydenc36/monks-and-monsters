@@ -7,6 +7,7 @@ demo.state6.prototype = {
     preload: function(){
         this.load.image('monastery','../assets/backgrounds/monastery2.jpg');
         this.load.image('button','../assets/sprites/scroll_menu.png');
+        this.load.image('instructions', '../assets/backgrounds/instructions.png');
     },
     create:function(){
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
@@ -30,9 +31,11 @@ demo.state6.prototype = {
         scroll.width = 1200;
         scroll.height = 800;
         
+        var instructions = game.add.sprite(320, 220, 'instructions');
+        
         this.createButton(40, "Main Menu", 650, 770, 400, 200, function(){
             //this.state.start("intro", true, false, [1000,1000,1000], [10,10]);
-            this.state.start("state0");
+            this.state.start("state0", true, false, [1000,1000,1000,1000,1000,1000], [10,10]);
         });
     },
     
