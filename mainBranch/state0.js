@@ -32,7 +32,7 @@ demo.state0.prototype = {
         });
         
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
-            this.state.start("BootState", true, false, "../assets/OceanusBattle.JSON", "BattleState", [1000,1000,1000,1000,1000,1000], [10,10],{},tutorial);
+            this.state.start("state6", true, false, [1000,1000,1000,1000,1000,1000], [10,10]);
         });
         
         this.createButton(25, "Settings", 600, 600, 300, 100, function(){
