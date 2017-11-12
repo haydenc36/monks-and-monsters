@@ -26,7 +26,12 @@ cursorControl = function (scale) {
     if (cursors.up.isDown || cursors.down.isDown || cursors.left.isDown || cursors.right.isDown) {
         if (cursors.up.isDown){
             monk.body.velocity.y = -vel;
-            monk.animations.play('walkUp');
+            if (cursors.left.isDown || cursors.right.isDown) {
+                monk.animations.play('walk');
+            }
+            else {
+                monk.animations.play('walkUp');
+            }
         }
 
         else if (cursors.down.isDown){
@@ -971,32 +976,31 @@ function out(){
 
 //Functions for item use
 function useBread(){
-    if(characterEnergy<1000){
+    if(characterEnergy < charMaxEnergy){
         breadQ = breadQ - 1;
-        temp_Restore = 1000 - characterEnergy;
-        if(characterEnergy<=500){
-        characterEnergy = characterEnergy + 500;
+        temp_Restore = charMaxEnergy / 2;
+        if(characterEnergy + temp_Restore > charMaxEnergy){
+            characterEnergy = charMaxEnergy;
         }
         else{
-            characterEnergy=characterEnergy + temp_Restore; // check how much is left to fill
+            characterEnergy = characterEnergy + temp_Restore; // check how much is left to fill
         }
-        }
+    }
     else{
-       usageText = 'You are already fully healed!';
+        usageText = 'You are already fully healed!';
         game.time.events.add(1500, function () { usageText='';}, self);        
         
-        }
-        
+    }    
 }
 function useWine(){
-    if(characterMana<1000){
+    if(characterMana < charMaxMana){
         wineQ = wineQ - 1;
-        temp_Restore = 1000 - characterMana;
-        if(characterMana<=500){
-            characterMana = characterMana + 500;
+        temp_Restore = charMaxMana / 2;
+        if(characterMana + temp_Restore > charMaxMana){
+            characterMana = charMaxMana;
         }
         else{
-            characterMana=characterMana + temp_Restore;
+            characterMana = characterMana + temp_Restore;
         }
     }
     else{
@@ -1006,18 +1010,17 @@ function useWine(){
     
 }
 function useScroll(){
-    if(characterStamina<1000){
+    if(characterStamina < charMaxStamina){
         scrollQ = scrollQ -1;
-        temp_Restore = characterStamina + 500;
-        temp_characterStamina = 1000 - characterStamina;
-        if(characterStamina<=500){
-            characterStamina = characterStamina + 500;
+        temp_Restore = charMaxStamina / 2;
+        if(characterStamina + temp_Restore > charMaxStamina){
+            characterStamina = charMaxStamina;
         }
-         else{
-            characterStamina=characterStamina + temp_Restore;
+        else{
+            characterStamina = characterStamina + temp_Restore;
         }
     }
-     else{
+    else{
         usageText = 'You have already full stamina!';
         game.time.events.add(1500, function () { usageText='';}, self);   
     }

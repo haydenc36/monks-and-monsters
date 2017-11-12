@@ -1,6 +1,4 @@
 {
-    "returnState": "state2",
-    "nextState": "state1",
     "assets": {
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "../../assets/backgrounds/TutorialBG.png"},
@@ -85,12 +83,12 @@
                 "group": "enemies",
                 "scale": {"x": 0.05, "y": 0.05},
                 "stats": {
-                    "attack": 10,
+                    "attack": 15,
                     "defense": 1,
                     "health": 100,
                     "maxHP": 100,
                     "reward": {
-                        "items": [{"text":"Wine", "type": "wine", "properties": {"group": "items", "mana_power": 30}},{"text":"Bread", "type": "bread", "properties": {"group": "items", "health_power": 30}}]
+                        "items": [{"text":"Wine"},{"text":"Bread"}]
                     }
                 }
             }
@@ -161,5 +159,12 @@
                 }
             }
         }
+    },
+    "extraInfo": {
+        "prevState": "state2",
+        "nextState": "state1",
+        "HPIncrease": 0,
+        "MPIncrease": 0,
+        "SPIncrease": 0
     }
 }

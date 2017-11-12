@@ -80,7 +80,7 @@ demo.state7.prototype = {
     update: function(){
         
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); game.state.start('state1');});
-        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ], {});});
+        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,characterMaxEnergy,characterMaxMana,characterMaxStamina], [wineQ, breadQ], {});});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7');});
         
         cursorControl(0.2);

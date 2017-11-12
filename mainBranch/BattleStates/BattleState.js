@@ -26,10 +26,9 @@ demo.BattleState = function () {
 demo.BattleState.prototype = Object.create(Phaser.State.prototype);
 demo.BattleState.prototype.constructor = demo.BattleState;
 
-demo.BattleState.prototype.init = function (level_data, charStats, inventQ, extra_parameters) {
+demo.BattleState.prototype.init = function (level_data, charStats, inventQ) {
     "use strict";
     this.level_data = level_data;
-    this.inventory = extra_parameters.inventory;
     this.charHealth = charStats[0];
     this.charMana = charStats[1];
     this.charStamina = charStats[2];
@@ -39,8 +38,6 @@ demo.BattleState.prototype.init = function (level_data, charStats, inventQ, extr
     
     this.wineQ = inventQ[0];
     this.breadQ = inventQ[1];
-    this.prevState = this.level_data.returnState;
-    this.nextState = this.level_data.nextState;
     
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
@@ -169,6 +166,7 @@ demo.BattleState.prototype.create = function () {
     this.prefabs.Monk.stats.health = this.charHealth;
     this.prefabs.Monk.stats.mana = this.charMana;
     this.prefabs.Monk.stats.stamina = this.charStamina;
+    
     this.prefabs.Monk.stats.maxHP = this.charMaxHealth;
     this.prefabs.Monk.stats.maxMP = this.charMaxMana;
     this.prefabs.Monk.stats.maxSP = this.charMaxStamina;
@@ -379,7 +377,7 @@ demo.BattleState.prototype.game_over = function () {
     
     this.game.world.removeAll();
     
-    this.game.state.start(this.prevState, true, false, [this.prefabs.Monk.stats.health + 10, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP], [this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+    this.game.state.start(this.level_data.extraInfo.prevState, true, false, [this.prefabs.Monk.stats.health + 10, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP], [this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
 };
 
 demo.BattleState.prototype.end_battle = function () {
@@ -397,10 +395,10 @@ demo.BattleState.prototype.end_battle = function () {
     
     // go back to WorldState with the current party data
     if (tutorial) {
-        this.game.state.start(this.nextState, true, false, [this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP],[10,10]);
+        this.game.state.start(this.level_data.extraInfo.nextState, true, false, [this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease, this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease],[10,10]);
     }
     else {
-        this.game.state.start(this.nextState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+        this.game.state.start(this.level_data.extraInfo.nextState, true, false, [this.prefabs.Monk.stats.health + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.mana + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.stamina + this.level_data.extraInfo.SPIncrease, this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
     }
     
 };

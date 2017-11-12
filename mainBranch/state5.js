@@ -99,7 +99,7 @@ demo.state5.prototype = {
         
         createHUD(this);
         createInventory(this);
-        createNPC(this,"Sicarius",{"x":225, "y":1550},"sicarius",{"x":-.65, "y":.65});
+        createNPC(this,"Sicarius",{"x":225, "y":1550},"sicarius",{"x":-0.65, "y":0.65});
         //createNPC (this,"Self",{"x":225, "y":300},"monk",{"x":0.5, "y":0.5});
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);

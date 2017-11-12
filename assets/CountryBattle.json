@@ -1,6 +1,4 @@
 {
-    "returnState": "state7",
-    "nextState": "state7",
     "assets": {
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "../../assets/backgrounds/cave.png"},
@@ -73,10 +71,7 @@
                 "stats": {
                     "attack": 10,
                     "defense": 5,
-                    "miracles_attack":10,
-                    "maxHP":1000,
-                    "maxMP":1000,
-                    "maxSP":1000
+                    "miracles_attack":10
                 }
             }
         },
@@ -93,7 +88,7 @@
                     "health": 1000,
                     "maxHP": 1000,
                     "reward": {
-                        "items": [{"text":"Wine", "type": "wine", "properties": {"group": "items", "mana_power": 30}},{"text":"Bread", "type": "bread", "properties": {"group": "items", "health_power": 30}}]
+                        "items": [{"text":"Wine"},{"text":"Bread"}]
                     }
                 }
             }
@@ -164,5 +159,12 @@
                 }
             }
         }
+    },
+    "extraInfo": {
+        "prevState": "state7",
+        "nextState": "state7",
+        "HPIncrease": 0,
+        "MPIncrease": 0,
+        "SPIncrease": 0
     }
 }
