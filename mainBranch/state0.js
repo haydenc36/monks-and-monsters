@@ -32,12 +32,12 @@ demo.state0.prototype = {
         });
         
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
-            this.state.start("state6", true, false, [100,100,100,100,100,100], [1,1]);
+            this.state.start("state6");
         });
-        
+        /*
         this.createButton(25, "Settings", 600, 600, 300, 100, function(){
-            this.state.start("state1");
-        });
+            //this.state.start("state1");
+        });*/
     },
     
     update: function(){
