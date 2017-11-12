@@ -508,7 +508,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Head Abbot Tutorial";
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "I've just received a letter from Theo. Whatever it may mean, bring this epistle to the lord of the land.",
+                    "npcDialogue": "I've just received an epistle from Theo. Whatever it may mean, bring it to the lord of the land.",
                     "charResponse":"Father, send me."
                 },
                 "1": {
@@ -520,33 +520,25 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "Perhaps he senses that this conflict is not amenable to the force of Lord William. Send me."
                 },
                 "3": {
-                    "extra": "If I may..."
-                },
-                "4": {
-                    "npcDialogue": "Yes, yes.",
-                    "extra": "As I departed from his quarters, Sir Theo made great note to deliver this epistle to this abbey, and this abbey alone. ‘For no other eyes,’ he said."
-                },
-                "5": {
-                    "npcDialogue": "...Then perhaps that settles the matter. Parvos, collect your things. But for your sake, I will request the arms of Lord William if we receive no word from you. If we ourselves were not embroiled in this miserable groundswell, I would send you in good company.",
+                    "npcDialogue": "That said... Theo specifically requested your assistance. Fine. Go. But if we receive no word, I will send the arms of Lord William.",
                     "charResponse": "I will be in good company. Bless you, Father."
                 },
-                "6": {
-                    "npcDialogue": "Before you leave, meet with Thomas at the door. He will ensure that you haven’t forgotten your training!",
+                "4": {
+                    "npcDialogue": "Meet with Thomas at the door. He will review your training!",
                     "charResponse": ""
                 }
             }; 
         }
         else if (npcName == "Thomas") {
             if (dialogueCheck.indexOf("Head Abbot Tutorial") != -1) {
-            // Scene 1: Before Tutorial Battle
             NPC.checkpointID = "Thomas Tutorial";
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Alright, show me what you remember!",
-                    "charResponse": "....."
+                    "charResponse": "."
                 },
                 "1": {
-                    "charResponse": "....."
+                    "charResponse": "."
                 }
             };
             }
@@ -554,7 +546,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Default"
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "[Default Dialogue]",
+                    "npcDialogue": "I believe Father Hopko wishes to see you.",
                     "charResponse": ""
                 }
             };
@@ -572,35 +564,31 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "Father, I am looking for the monk named Theo."
                 },
                 "1": {
-                    "npcDialogue": "Theo? Theo? Theo! That precious little man, what had he done? That’s all I’ve thought all night.. ‘Good God, Theo?’ I ask, ‘Theo!’ I can’t understand it… Perhaps the poor of our village could take the weights no longer? But Theo? One tiff between a duke and a laborer, then the village was swallowed in flames!",
-                    "charResponse": "Don’t cry, Father! Let the dead bury their dead, but let us honor the dead."
+                    "npcDialogue": "Theo? Theo? Theo! That precious little man, what had he done? That’s all I’ve thought all night.. ‘Good God, Theo?’ I ask, ‘Theo!’",
+                    "charResponse": "What has happened, Father—?"
                 },
                 "2": {
-                    "npcDialogue": "A wise heart you have—",
-                    "charResponse": "Parvos, good sir."
+                    "npcDialogue": "Father Seth. And Theo was murdered!",
+                    "charResponse": "God forbid! What happened?"
                 },
                 "3": {
-                    "npcDialogue": "Parvos, a wise heart indeed. Yes, yes. Well how may we honor them? Their bodies dangle from trees: ‘strange fruit,’ as those accustomed to agony have said.",
-                    "charResponse": "Tell me more about the conflict. What crimes were committed, by whom, against whom?"
+                    "npcDialogue": "Hangings, decapitations, slit throats, castrations. What didn't happen?! And good Theo is among the corpses!",
+                    "charResponse": "Other villagers committing such atrocities?"
                 },
                 "4": {
-                    "npcDialogue": "Oh mercy, there were hangings—as you no doubt witnessed—decapitations, slit throats. I tell the truth, reports tell that even one of our village’s finest was dragged by horses to the brothel down in the valley. A motley of henchmen—Can I even say it?—no, no, I could not say it aloud. Suffice it to say that they performed a minor decapitation in full view of that establishment.",
-                    "charResponse": "These were other villagers committing such atrocities?"
+                    "npcDialogue": "I couldn’t believe it myself! And what am I to do? The people see nothing in us religious any longer. Bread and blood, bread and blood. In all truth, the peasants have been banned from this church for months.",
+                    "charResponse": "A time like this hardly seems like the moment to keep folks from the church."
                 },
                 "5": {
-                    "npcDialogue": "I couldn’t believe it myself! Sweet Parvos, do recall that there was a time many ages ago when saints and priests could inspire peace and moral splendor in their disciples… Now, now there is drunkenness and philandering with the rich, drunkenness and ignorance with our poor! And what am I to do? The people see nothing in us religious any longer. Bread and blood, bread and blood.",
-                    "charResponse": "Seems like an inopportune moment to withhold God from the people."
+                    "npcDialogue": "What was I to do? I am a simple man—what was a simple man to do? Someone stole the blood of Christ! ‘This won’t stand,’ I said to them, the peasants. ‘Expose the thief or suffer excommunication.’ So for months, they went without the Mass. What was I to do? It could not stand!",
+                    "charResponse": "Well I must do something? What villager could help me solve this crisis?"
                 },
                 "6": {
-                    "npcDialogue": "What was I to do? I am a simple man—what was I to do? Stealing the blood of Christ—despicable! It could not stand; no, I could not let it stand. ‘This won’t stand,’ I said to them, the peasants. ‘Expose the thief or suffer excommunication.’ So for months, they went without the Mass. What was I to do? It could not stand!",
-                    "charResponse": "You are not to blame father. Alas, do you know a man by the name of Oceanus? I would like to have a word with him."
+                    "npcDialogue": "Oceanus! Oceanus, yes, a good man if ever there was one! A well-connected man, I may add. I could not see all faces from the turrets, but I did not see his among the rabble rousers. He lives in the south-west corner of the village. Win him, win the people!",
+                    "charResponse": "Your help is greatly appreciated!"
                 },
                 "7": {
-                    "npcDialogue": "Oceanus, yes, a good man if ever there was one! A well-connected man, I may add. I could not see all faces from the turrets, but I did not see his among the rabble rousers. If you can win his heart, he can persuade the others to return Lady Silva and the young princes. He sometimes conducts business from his hut in the lower part of the village. You may find him there.",
-                    "charResponse": "Your help is greatly appreciated!"
-                },
-                "8": {
-                    "charResponse": "Your help is greatly appreciated!"
+                    "charResponse": "."
                 }
             };
             }
@@ -608,8 +596,8 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Default"
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "[Default Dialogue]",
-                    "charResponse": ""
+                    "npcDialogue": "Do I know you?",
+                    "charResponse": "You're too fat to be the man I'm seeking. Apologies!"
                 }
             };
             }
