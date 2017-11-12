@@ -73,10 +73,7 @@
                 "stats": {
                     "attack": 10,
                     "defense": 5,
-                    "miracles_attack":10,
-                    "maxHP":1000,
-                    "maxMP":1000,
-                    "maxSP":1000
+                    "miracles_attack":10
                 }
             }
         },
@@ -132,13 +129,13 @@
                 }
             }
         },
-        "Scroll Sword": {
+        "Sword Scroll": {
             "type": "scroll",
             "position": {"x": 0, "y": 0},
             "properties": {
                 "group": "attackskills",
                 "stats": {
-                    "attack_mult": 1.5,
+                    "attack_mult": 1.25,
                     "req_stam": 30
                 }
             }

@@ -19,6 +19,8 @@ demo.BattleState = function () {
     };
     
     this.TEXT_STYLE = {font: "20px Zapfino", fill: "#FFFFFF"};
+    
+    this.textStyle = {font: "18px Zapfino", fill: "#FFFFFF", lineHeight: "10%"};
 };
 
 demo.BattleState.prototype = Object.create(Phaser.State.prototype);
@@ -31,6 +33,9 @@ demo.BattleState.prototype.init = function (level_data, charStats, inventQ, extr
     this.charHealth = charStats[0];
     this.charMana = charStats[1];
     this.charStamina = charStats[2];
+    this.charMaxHealth = charStats[3];
+    this.charMaxMana = charStats[4];
+    this.charMaxStamina = charStats[5];
     
     this.wineQ = inventQ[0];
     this.breadQ = inventQ[1];
@@ -82,12 +87,14 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.attackskills = new demo.AttackInventory(this, "attackskills", {x: 477, y: 480}, {group: "skills"});
     }
     
-    // Scroll Sword Requirements
+    // Sword Scroll Requirements
     if (this.SwordReq){
         this.prefabs.SwordReq = this.SwordReq;
         this.prefabs.SwordReq.visible = false;
     } else {
-        this.prefabs.SwordReq = game.add.text(904, 465, "Sword Requirements", this.TEXT_STYLE);
+        this.prefabs.SwordReq = game.add.text(904, 465, "Sword Scroll requires " + this.prefabs.attackskills.skills[0].req_stam + " stamina points to increase user attack by 25% ", this.textStyle);
+        this.prefabs.SwordReq.wordWrapWidth = "350";
+        this.prefabs.SwordReq.wordWrap = true;
         this.prefabs.SwordReq.visible = false;
     }
     
@@ -96,7 +103,9 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.MiraclesReq = this.MiraclesReq;
         this.prefabs.MiraclesReq.visible = false;
     } else {
-        this.prefabs.MiraclesReq = game.add.text(904, 465, "Miracles Requirments", this.TEXT_STYLE);
+        this.prefabs.MiraclesReq = game.add.text(904, 465, "Miracle requires " + this.prefabs.attackskills.skills[1].req_mana + " mana points to increase user attack by 50% ", this.textStyle);
+        this.prefabs.MiraclesReq.wordWrapWidth = "350";
+        this.prefabs.MiraclesReq.wordWrap = true;
         this.prefabs.MiraclesReq.visible = false;
     }
     
@@ -105,7 +114,9 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.AODReq = this.AODReq;
         this.prefabs.AODReq.visible = false;
     } else {
-        this.prefabs.AODReq = game.add.text(904, 465, "Angel of Death Requirements", this.TEXT_STYLE);
+        this.prefabs.AODReq = game.add.text(904, 465, "Angel of Death requires " + this.prefabs.attackskills.skills[2].req_mana + " mana points to reduce the enemies current health by half ", this.textStyle);
+        this.prefabs.AODReq.wordWrapWidth = "350";
+        this.prefabs.AODReq.wordWrap = true;
         this.prefabs.AODReq.visible = false;
     }
     
@@ -114,7 +125,9 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.HealReq = this.HealReq;
         this.prefabs.HealReq.visible = false;
     } else {
-        this.prefabs.HealReq = game.add.text(904, 465, "Heal Requirements", this.TEXT_STYLE);
+        this.prefabs.HealReq = game.add.text(904, 465, "Heal requires " + this.prefabs.miraclesskills.miracles[0].req_mana + " mana points to restore " + this.prefabs.miraclesskills.miracles[0].health_power + " health points ", this.textStyle);
+        this.prefabs.HealReq.wordWrapWidth = "350";
+        this.prefabs.HealReq.wordWrap = true;
         this.prefabs.HealReq.visible = false;
     }
     
@@ -123,7 +136,9 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.WineReq = this.WineReq;
         this.prefabs.WineReq.visible = false;
     } else {
-        this.prefabs.WineReq = game.add.text(904, 465, "Wine Requirements", this.TEXT_STYLE);
+        this.prefabs.WineReq = game.add.text(904, 465, "Wine restores " + this.prefabs.Wine.mana_power + " mana points ", this.textStyle);
+        this.prefabs.WineReq.wordWrapWidth = "350";
+        this.prefabs.WineReq.wordWrap = true;
         this.prefabs.WineReq.visible = false;
     }
     
@@ -132,11 +147,11 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.BreadReq = this.BreadReq;
         this.prefabs.BreadReq.visible = false;
     } else {
-        this.prefabs.BreadReq = game.add.text(904, 465, "Bread Requirements", this.TEXT_STYLE);
+        this.prefabs.BreadReq = game.add.text(904, 465, "Bread restores " + this.prefabs.Bread.health_power + " health points ", this.textStyle);
+        this.prefabs.BreadReq.wordWrapWidth = "350";
+        this.prefabs.BreadReq.wordWrap = true;
         this.prefabs.BreadReq.visible = false;
     }
-    
-    this.init_hud();
     
     // store units in a priority queue which compares the units act turn
     this.units = new PriorityQueue({comparator: function (unit_a, unit_b) {
@@ -154,27 +169,28 @@ demo.BattleState.prototype.create = function () {
     this.prefabs.Monk.stats.health = this.charHealth;
     this.prefabs.Monk.stats.mana = this.charMana;
     this.prefabs.Monk.stats.stamina = this.charStamina;
+    this.prefabs.Monk.stats.maxHP = this.charMaxHealth;
+    this.prefabs.Monk.stats.maxMP = this.charMaxMana;
+    this.prefabs.Monk.stats.maxSP = this.charMaxStamina;
     
     this.prefabs.Wine.stats.quantity = this.wineQ;
     this.prefabs.Bread.stats.quantity = this.breadQ;
+    
+    this.init_hud();
     
     this.next_turn();
 };
 
 demo.BattleState.prototype.update = function (){
-    this.healthscale = 0.5 * this.prefabs.Monk.stats.health / this.prefabs.Monk.stats.health;
-    this.manascale = 0.5 * this.prefabs.Monk.stats.mana / this.prefabs.Monk.stats.health;
-    this.staminascale = 0.5 * this.prefabs.Monk.stats.stamina / this.prefabs.Monk.stats.health;
+    this.healthscale = 0.5 * this.prefabs.Monk.stats.health / this.prefabs.Monk.stats.maxHP;
+    this.manascale = 0.5 * this.prefabs.Monk.stats.mana / this.prefabs.Monk.stats.maxMP;
+    this.staminascale = 0.5 * this.prefabs.Monk.stats.stamina / this.prefabs.Monk.stats.maxSP;
     
     this.blood_bar.scale.set(this.healthscale, 1);
     this.mana_bar.scale.set(this.manascale, 1);
     this.stamina_bar.scale.set(this.staminascale, 1);
     
     this.enemyhealthscale = 3.5 * this.enemy.stats.health / this.enemy.stats.maxHP;
-    
-    /*this.groups["enemies"].forEach(function (enemy) {
-        this.enemyhealthscale = 3.5 * enemy.stats.health / enemy.stats.maxHP;
-    }, this);*/
     
     this.enemyblood_bar.scale.set(this.enemyhealthscale, 1.5);
     
@@ -210,14 +226,10 @@ demo.BattleState.prototype.init_hud = function () {
     
     // show player actions
     this.show_player_actions({x: 50, y: 465});
-    this.showPlayerStats(this.prefabs.Monk);
+    this.showPlayerStats();
     
-    this.label_stats(this.prefabs.Monk);
+    this.label_stats();
     this.showEnemyHealth(this.enemy);
-    
-    /*this.groups["enemies"].forEach(function(enemy) {
-        this.showEnemyHealth(enemy);
-    }, this);*/
 };
 
 demo.BattleState.prototype.make_units = function (group_name, position, menu_item_constructor) {
@@ -243,13 +255,13 @@ demo.BattleState.prototype.make_units = function (group_name, position, menu_ite
     }
 };
 
-demo.BattleState.prototype.label_stats = function (player) {
+demo.BattleState.prototype.label_stats = function () {
     game.add.text(258, 342, "Health: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 366, "/" + player.stats.maxHP, {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(455, 366, "/" + this.prefabs.Monk.stats.maxHP, {font: '10px Book Antiqua', fill: '#ffffff'});
     game.add.text(261, 372, "Mana: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 396, "/" + player.stats.maxMP, {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(455, 396, "/" + this.prefabs.Monk.stats.maxMP, {font: '10px Book Antiqua', fill: '#ffffff'});
     game.add.text(253, 402, "Stamina: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 426, "/" + player.stats.maxSP, {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(455, 426, "/" + this.prefabs.Monk.stats.maxSP, {font: '10px Book Antiqua', fill: '#ffffff'});
 }
 
 demo.BattleState.prototype.show_player_actions = function (position) {
@@ -271,7 +283,7 @@ demo.BattleState.prototype.show_player_actions = function (position) {
     actions_menu = new demo.Menu(this, "actions_menu", position, {group: "hud", menu_items: actions_menu_items});
 };
 
-demo.BattleState.prototype.showPlayerStats = function (player) {
+demo.BattleState.prototype.showPlayerStats = function () {
     "use strict";
     //GUI - black bars as background for life and mana
     this.black_bar = this.add.sprite(308, 350, 'blackBar');
@@ -307,9 +319,9 @@ demo.BattleState.prototype.showPlayerStats = function (player) {
     this.stamina_bar.anchor.setTo(0, 0);
     this.stamina_bar.scale.set(0.5, 1);
     
-    this.healthscale = 0.5 * player.stats.health/ player.stats.maxHP;
-    this.manascale = 0.5 * player.stats.mana/ player.stats.maxMP;
-    this.staminascale = player.stats.stamina/ player.stats.maxSP;
+    this.healthscale = 0.5 * this.prefabs.Monk.stats.health/ this.prefabs.Monk.stats.maxHP;
+    this.manascale = 0.5 * this.prefabs.Monk.stats.mana/ this.prefabs.Monk.stats.maxMP;
+    this.staminascale = 0.5 * this.prefabs.Monk.stats.stamina/ this.prefabs.Monk.stats.maxSP;
 }
 
 demo.BattleState.prototype.showEnemyHealth = function (enemy) {
@@ -360,9 +372,14 @@ demo.BattleState.prototype.next_turn = function () {
 demo.BattleState.prototype.game_over = function () {
     "use strict";
     // go back to WorldState restarting the player position
+    this.prefabs.attackskills_menu = null;
+    this.prefabs.actions_menu = null;
+    this.prefabs.items_menu = null;
+    this.prefabs.miraclesskills_menu = null;
+    
     this.game.world.removeAll();
     
-    this.game.state.start(this.prevState, true, false, [this.prefabs.Monk.stats.health, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity]);
+    this.game.state.start(this.prevState, true, false, [this.prefabs.Monk.stats.health + 10, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP], [this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
 };
 
 demo.BattleState.prototype.end_battle = function () {
@@ -370,11 +387,11 @@ demo.BattleState.prototype.end_battle = function () {
     this.enemy.stats.reward.items.forEach(function (item_object){
         this.prefabs.inventory.collect_item(item_object);
     }, this);
-    /*this.groups["enemies"].forEach(function (enemy) {
-        enemy.stats.reward.items.forEach(function (item_object){
-            this.prefabs.inventory.collect_item(item_object);
-        }, this);
-    }, this);*/
+    
+    this.prefabs.attackskills_menu = null;
+    this.prefabs.actions_menu = null;
+    this.prefabs.items_menu = null;
+    this.prefabs.miraclesskills_menu = null;
     
     this.game.world.removeAll();
     

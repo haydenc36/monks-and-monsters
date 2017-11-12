@@ -18,8 +18,7 @@ demo.state4.prototype = {
         game.load.image('poor_art', '../assets/tilemaps/tilesets/poor_art.png');
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
         
-        this.load.image('npcbox', '../assets/boxes/paper-dialog.png');
-        this.load.spritesheet('npc1', '../assets/boxes/wandering_trader1.png', 64, 126);
+        game.load.spritesheet('oceanus', '../assets/sprites/oceanus.png', 159, 319);
         
     },
     
@@ -81,7 +80,7 @@ demo.state4.prototype = {
         
         createHUD(this);
         createInventory(this);
-        createNPC(this,"Oceanus",{"x":1000, "y":700},"npc",{"x":2, "y":2},"");
+        createNPC(this,"Oceanus",{"x":1000, "y":700},"oceanus",{"x":2, "y":2},"");
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },

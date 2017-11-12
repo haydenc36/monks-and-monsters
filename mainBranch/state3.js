@@ -22,6 +22,9 @@ demo.state3.prototype = {
         game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
         game.load.image('spooky', '../assets/tilemaps/tilesets/spooky.png');
         
+        game.load.spritesheet('seth', '../assets/sprites/seth.png', 124, 319);
+        game.load.spritesheet('silva', '../assets/sprites/silva.png', 117, 319);
+        
     },
     
     create:function(){
@@ -100,10 +103,10 @@ demo.state3.prototype = {
         
         //Check for checkpoint before Silva Appears
 	    if (dialogueCheck.indexOf("") != -1){
-            createNPC(this,"Silva",{"x":700, "y":700},"npc",{"x":1, "y":1});
+            createNPC(this,"Silva",{"x":700, "y":700},"silva",{"x":0.3, "y":0.3});
         }
         else {
-            createNPC(this,"Seth",{"x":700, "y":700},"npc",{"x":1, "y":1});
+            createNPC(this,"Seth",{"x":700, "y":700},"seth",{"x":-0.35, "y":0.35});
             
         }
         

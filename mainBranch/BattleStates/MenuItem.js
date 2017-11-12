@@ -13,39 +13,57 @@ demo.MenuItem.prototype.selection_over = function (curs) {
     this.fill = "#CCF";
     if (this.text == "Attacks") {
         this.showmenu = this.game_state.prefabs.attackskills_menu;
-        this.showmenu.show();
+        if (!!this.showmenu) {
+            this.showmenu.show();
+        }
     }
     else if (this.text == "Miracles") {
         this.showmenu = this.game_state.prefabs.miraclesskills_menu;
-        this.showmenu.show();
+        if (!!this.showmenu) {
+            this.showmenu.show();
+        }
     }
     else if (this.text == "Item") {
         this.showmenu = this.game_state.prefabs.items_menu;
-        this.showmenu.show();
+        if (!!this.showmenu) {
+            this.showmenu.show();
+        }
     }
-    else if (this.text == "ScrollSword"){
+    else if (this.text == "Sword Scroll"){
         this.showmenu = this.game_state.prefabs.SwordReq;
-        this.showmenu.visible = true;
+        if (!!this.showmenu) {
+            this.showmenu.visible = true;
+        }
     }
     else if (this.text == "Miracle"){
         this.showmenu = this.game_state.prefabs.MiraclesReq;
-        this.showmenu.visible = true;
+        if (!!this.showmenu) {
+            this.showmenu.visible = true;
+        }
     }
-    else if (this.text == "AngelofDeath"){
+    else if (this.text == "Angel of Death"){
         this.showmenu = this.game_state.prefabs.AODReq;
-        this.showmenu.visible = true;
+        if (!!this.showmenu) {
+            this.showmenu.visible = true;
+        }
     }
     else if (this.text == "Heal"){
         this.showmenu = this.game_state.prefabs.HealReq;
-        this.showmenu.visible = true;
+        if (!!this.showmenu) {
+            this.showmenu.visible = true;
+        }
     }
     else if (this.text == "Wine"){
         this.showmenu = this.game_state.prefabs.WineReq;
-        this.showmenu.visible = true;
+        if (!!this.showmenu) {
+            this.showmenu.visible = true;
+        }
     }
     else if (this.text == "Bread"){
         this.showmenu = this.game_state.prefabs.BreadReq;
-        this.showmenu.visible = true;
+        if (!!this.showmenu) {
+            this.showmenu.visible = true;
+        }
     }
 };
  

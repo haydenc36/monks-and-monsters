@@ -7,6 +7,7 @@ demo.AttackInventory = function (game_state, name, position, properties) {
     this.game_state.groups["attackskills"].forEach(function(item_object){
         this.skills.push(item_object);
     }, this);
+    this.game_state = game_state;
 };
  
 demo.AttackInventory.prototype = Object.create(demo.Prefab.prototype);
@@ -35,35 +36,25 @@ demo.AttackInventory.prototype.create_menu = function (position) {
 demo.AttackInventory.prototype.use_skill = function (skill_name, target) {
     "use strict";
     var attack_index;
-    // remove item from items list
-    for (attack_index = 0; attack_index < this.skills.length; attack_index += 1) {
-        if (this.skills[attack_index].name === skill_name) {
-            if (!!this.skills[attack_index].req_stam){
-                if (this.game_state.current_unit.stats.stamina > this.skills[attack_index].req_stam) {
-                    this.skills[attack_index].hit(target);
-                    break;
-                }
-                else {
-                    //this.game_state.prefabs.actions_menu.show();
-                    this.game_state.prefabs.actions_menu.enable();
-                    break;
-                }
-            }
-            else if (!!this.skills[attack_index].req_mana) {
-                if (this.game_state.current_unit.stats.mana > this.skills[attack_index].req_mana) {
-                    this.skills[attack_index].hit(target);
-                    break;
-                }
-                else {
-                    //this.game_state.prefabs.actions_menu.show();
-                    this.game_state.prefabs.actions_menu.enable();
-                    break;
-                }
-            }
-            else {
-                this.skills[attack_index].hit(target);
-                break;
-            }
+    attack_index = this.game_state.prefabs.attackskills_menu.find_item_index(skill_name);
+    
+    if (!!this.skills[attack_index].req_stam) {
+        if (this.game_state.current_unit.stats.stamina >= this.skills[attack_index].req_stam) {
+            this.skills[attack_index].hit(target);
         }
+        else {
+            this.game_state.prefabs.actions_menu.enable();
+        }
+    }
+    else if (!!this.skills[attack_index].req_mana) {
+        if (this.game_state.current_unit.stats.mana >= this.skills[attack_index].req_mana) {
+            this.skills[attack_index].hit(target);
+        }
+        else {
+            this.game_state.prefabs.actions_menu.enable();
+        }
+    }
+    else {
+        this.skills[attack_index].hit(target);
     }
 };

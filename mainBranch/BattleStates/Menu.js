@@ -18,6 +18,7 @@ demo.Menu.prototype.constructor = demo.Menu;
 
 demo.Menu.prototype.process_input = function (event) {
     "use strict";
+    if (!!this) {
     switch (event.keyCode) {
     case Phaser.Keyboard.UP:
         if (this.current_item_index > 0) {
@@ -42,23 +43,28 @@ demo.Menu.prototype.process_input = function (event) {
         }
         break;
     }
+    }
 };
 
 demo.Menu.prototype.move_selection = function (item_index) {
     "use strict";
+    if (!!this){
     this.menu_items[this.current_item_index].selection_out();
     this.current_item_index = item_index;
     this.menu_items[this.current_item_index].selection_over();
     this.move_cursor(this.menu_items[this.current_item_index]);
+    }
 };
 
 demo.Menu.prototype.find_item_index = function (text) {
     "use strict";
+    if (!!this){
     var item_index;
     for (item_index = 0; item_index < this.menu_items.length; item_index += 1) {
         if (this.menu_items[item_index].text === text) {
             return item_index;
         }
+    }
     }
 };
 
@@ -77,6 +83,7 @@ demo.Menu.prototype.remove_item = function (index) {
 
 demo.Menu.prototype.enable = function () {
     "use strict";
+    if (!!this){
     this.curs = game.add.sprite(this.position.x - 20, this.position.y + 18, "arrow");
     
     if (this.menu_items.length > 0) {
@@ -86,10 +93,12 @@ demo.Menu.prototype.enable = function () {
         this.move_cursor(this.menu_items[this.current_item_index]);
     }
     this.game_state.game.input.keyboard.addCallbacks(this, this.process_input);
+    }
 };
 
 demo.Menu.prototype.disable = function () {
     "use strict";
+    if (!!this){
     if (this.menu_items.length > 0) {
         this.menu_items[this.current_item_index].selection_out();
     }
@@ -97,10 +106,12 @@ demo.Menu.prototype.disable = function () {
     if (!!(this.curs)){
         this.curs.destroy();
     }
+    }
 };
 
 demo.Menu.prototype.show = function () {
     "use strict";
+    if (!!this){
     this.menu_items.forEach(function (menu_item) {
         menu_item.visible = true;
         if (!!(menu_item.item_quantity)){
@@ -108,10 +119,12 @@ demo.Menu.prototype.show = function () {
             menu_item.item_quantity.visible = true;
         }
     }, this);
+    }
 };
 
 demo.Menu.prototype.hide = function () {
     "use strict";
+    if (!!this){
     this.menu_items.forEach(function (menu_item) {
         menu_item.visible = false;
         if (!!(menu_item.item_quantity)){
@@ -119,12 +132,14 @@ demo.Menu.prototype.hide = function () {
             menu_item.item_quantity.visible = false;
         }
     }, this);
+    }
 };
 
 demo.Menu.prototype.move_cursor = function (toPosition) {
+    if (!!this){
     if (!!(this.curs)){
         this.curs.position.x = toPosition.position.x - 20;
         this.curs.position.y = toPosition.position.y + 18;
     }
-    
-}
+    }  
+};

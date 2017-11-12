@@ -18,7 +18,6 @@ demo.EnemyUnit.prototype.act = function () {
     // randomly choose target
     target_index = this.game_state.rnd.between(0, this.game_state.groups.players.countLiving() - 1);
     target = this.game_state.groups.players.children[target_index];
-    
     this.attack(target);
 };
 

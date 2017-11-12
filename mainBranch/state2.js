@@ -22,7 +22,9 @@ demo.state2.prototype = {
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
 
         game.load.image('npcbox', '../assets/boxes/paper-dialog.png');
-        game.load.spritesheet('npc', '../assets/boxes/wandering_trader1.png', 64, 126);
+        
+        game.load.spritesheet('npc', '../assets/boxes/wandering_trader1.png', 64, 128);
+        game.load.spritesheet('father', '../assets/sprites/father.png', 124, 319);
         
         //load Sprites for HUD
         game.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
@@ -107,7 +109,7 @@ demo.state2.prototype = {
         createHUD(this);
         createInventory(this);
         
-        createNPC(this,"Head Abbot",{"x":600, "y":1450},"npc",{"x":1.75, "y":1.75});
+        createNPC(this,"Head Abbot",{"x":600, "y":1450},"father",{"x":-0.65, "y":0.65});
         createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
@@ -119,7 +121,7 @@ demo.state2.prototype = {
         tutorial = true;
         
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
-            game.physics.arcade.collide(monk, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina], [wineQ, breadQ],{},tutorial);});   
+            game.physics.arcade.collide(monk, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});   
         }
         
         game.physics.arcade.collide(monk, walls_noWalk2, function(){console.log('walls_noWalk');});

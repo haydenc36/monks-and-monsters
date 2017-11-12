@@ -25,8 +25,7 @@ demo.state5.prototype = {
         game.load.image('windows', '../assets/tilemaps/tilesets/windows.png');
         game.load.image('windows2', '../assets/tilemaps/tilesets/windows2.png');
         
-        this.load.image('npcbox', '../assets/boxes/paper-dialog.png');
-        this.load.spritesheet('npc1', '../assets/boxes/wandering_trader1.png', 64, 126);
+        game.load.spritesheet('sicarius', '../assets/sprites/sicarius.png', 119, 319);
         
     },
     
@@ -100,7 +99,7 @@ demo.state5.prototype = {
         
         createHUD(this);
         createInventory(this);
-        createNPC(this,"Sicarius",{"x":225, "y":1550},"npc",{"x":-1.5, "y":1.5});
+        createNPC(this,"Sicarius",{"x":225, "y":1550},"sicarius",{"x":-.65, "y":.65});
         //createNPC (this,"Self",{"x":225, "y":300},"monk",{"x":0.5, "y":0.5});
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);

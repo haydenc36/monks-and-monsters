@@ -13,6 +13,7 @@ demo.Unit = function (game_state, name, position, properties) {
     this.attacked_animation.onComplete.add(this.restore_tint, this);
     
     this.act_turn = 0;
+    this.game_state = game_state;
 };
 
 demo.Unit.prototype = Object.create(demo.Prefab.prototype);
@@ -36,6 +37,7 @@ demo.Unit.prototype.restore_tint = function () {
 demo.Unit.prototype.attack = function (target) {
     "use strict";
     var damage, attack_multiplier, defense_multiplier, action_message_position, action_message_text, attack_message;
+    
     // attack target
     attack_multiplier = this.game_state.game.rnd.realInRange(0.8, 1.2);
     defense_multiplier = this.game_state.game.rnd.realInRange(0.8, 1.2);

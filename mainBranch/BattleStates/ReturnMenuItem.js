@@ -11,18 +11,20 @@ demo.ReturnMenuItem.prototype.constructor = demo.ReturnMenuItem;
 demo.ReturnMenuItem.prototype.select = function () {
     "use strict";
     // hide items
-    this.game_state.prefabs.items_menu.hide();
-    this.game_state.prefabs.items_menu.disable();
-    
-    // hide miracles skills menu
-    this.game_state.prefabs.miraclesskills_menu.hide();
-    this.game_state.prefabs.miraclesskills_menu.disable();
-    
-    // hide attack skills menu
-    this.game_state.prefabs.attackskills_menu.hide();
-    this.game_state.prefabs.attackskills_menu.disable();
-    
-    // show actions menu
-    this.game_state.prefabs.actions_menu.show();
-    this.game_state.prefabs.actions_menu.enable();
+    if ((!!this.game_state.prefabs.items_menu) && (!!this.game_state.prefabs.miraclesskills_menu) && (!!this.game_state.prefabs.attackskills_menu) && (!!this.game_state.prefabs.actions_menu)) {
+        this.game_state.prefabs.items_menu.hide();
+        this.game_state.prefabs.items_menu.disable();
+
+        // hide miracles skills menu
+        this.game_state.prefabs.miraclesskills_menu.hide();
+        this.game_state.prefabs.miraclesskills_menu.disable();
+
+        // hide attack skills menu
+        this.game_state.prefabs.attackskills_menu.hide();
+        this.game_state.prefabs.attackskills_menu.disable();
+
+        // show actions menu
+        this.game_state.prefabs.actions_menu.show();
+        this.game_state.prefabs.actions_menu.enable();
+    }
 };

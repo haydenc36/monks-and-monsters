@@ -74,9 +74,9 @@
                     "attack": 10,
                     "defense": 5,
                     "miracles_attack":10,
-                    "maxHP":1000,
-                    "maxMP":1000,
-                    "maxSP":1000
+                    "maxHP":100,
+                    "maxMP":100,
+                    "maxSP":100
                 }
             }
         },
@@ -132,7 +132,7 @@
                 }
             }
         },
-        "ScrollSword": {
+        "Sword Scroll": {
             "type": "scroll",
             "position": {"x": 0, "y": 0},
             "properties": {
@@ -154,7 +154,7 @@
                 }
             }
         },
-        "AngelofDeath": {
+        "Angel of Death": {
             "type": "aod",
             "position": {"x": 0, "y": 0},
             "properties": {

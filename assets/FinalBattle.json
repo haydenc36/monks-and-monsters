@@ -132,7 +132,7 @@
                 }
             }
         },
-        "ScrollSword": {
+        "Sword Scroll": {
             "type": "scroll",
             "position": {"x": 0, "y": 0},
             "properties": {
@@ -154,7 +154,7 @@
                 }
             }
         },
-        "AngelofDeath": {
+        "Angel of Death": {
             "type": "aod",
             "position": {"x": 0, "y": 0},
             "properties": {

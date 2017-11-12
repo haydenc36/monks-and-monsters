@@ -12,9 +12,11 @@ demo.AttackInventoryMenuItem.prototype.select = function () {
     "use strict";
     
     // disable actions menu
-    this.game_state.prefabs.actions_menu.disable();
-    //this.game_state.prefabs.actions_menu.hide();
-    // enable enemy units menu so the player can choose the target
-    this.game_state.prefabs.attackskills_menu.show();
-    this.game_state.prefabs.attackskills_menu.enable();
+    if ((!!this.game_state.prefabs.actions_menu) && (!!this.game_state.prefabs.attackskills_menu)){
+        this.game_state.prefabs.actions_menu.disable();
+
+        // enable enemy units menu so the player can choose the target
+        this.game_state.prefabs.attackskills_menu.show();
+        this.game_state.prefabs.attackskills_menu.enable();
+    }
 };

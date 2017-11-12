@@ -35,11 +35,10 @@ demo.miraclesInventory.prototype.create_menu = function (position) {
 demo.miraclesInventory.prototype.use_skill = function (skill_name, target) {
     "use strict";
     var miracles_index;
-    // remove item from items list
-    for (miracles_index = 0; miracles_index < this.miracles.length; miracles_index += 1) {
-        if (this.miracles[miracles_index].name === skill_name) {
-            this.miracles[miracles_index].use(target);
-            break;
+    console.log(this.miracles[0].req_mana);
+    if (!!this.miracles[0].req_mana) {
+        if (this.game_state.current_unit.stats.mana >= this.miracles[0].req_mana) {
+            this.miracles[0].use(target);
         }
     }
 };
