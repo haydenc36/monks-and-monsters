@@ -93,9 +93,9 @@ demo.state4.prototype = {
         cursorControl(0.6);
         updateHUD(this);
         updateInventory(this);
-        distTrigger(this,{"x":-170,"y":-85},{"x":80,"y":35});
+        distTrigger(this,{"x":-170,"y":-100},{"x":80,"y":150});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":-170,"y":-85},{"x":80,"y":35});
+        NPCBoxVis(this,this.currentNPC,{"x":-170,"y":-100},{"x":80,"y":150});
         
     }
 };

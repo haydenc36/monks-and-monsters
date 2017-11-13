@@ -143,8 +143,8 @@ demo.state2.prototype = {
             }
         }
         
-        distTrigger(this,{"x":-175,"y":-160},{"x":50,"y":60});
+        distTrigger(this,{"x":-175,"y":-100},{"x":50,"y":150});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":-175,"y":-160},{"x":50,"y":60});
+        NPCBoxVis(this,this.currentNPC,{"x":-175,"y":-100},{"x":50,"y":150});
     }
 };

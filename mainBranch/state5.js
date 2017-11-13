@@ -122,9 +122,9 @@ demo.state5.prototype = {
         
         updateHUD(this);
         updateInventory(this);
-        distTrigger(this,{"x":100,"y":-85},{"x":50,"y":35});
+        distTrigger(this,{"x":100,"y":-100},{"x":50,"y":150});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":100,"y":-85},{"x":50,"y":35});
+        NPCBoxVis(this,this.currentNPC,{"x":100,"y":-100},{"x":50,"y":150});
         
     }
     
