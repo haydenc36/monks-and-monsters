@@ -79,8 +79,23 @@ demo.state3.prototype = {
         garden.setScale(1.875);
         roof3.setScale(1.875);
         
+        //Check for checkpoint before Silva Appears
+	    if (dialogueCheck.indexOf("Oceanus After Battle") != -1){
+            createNPC(this,"Silva",{"x":700, "y":700},"silva",{"x":0.3, "y":0.3});
+        }
+        else {
+            createNPC(this,"Seth",{"x":700, "y":700},"seth",{"x":-0.35, "y":0.35});
+            
+        }
+        
         // Initialize the monk character
-        monk = game.add.sprite(1175, 2300, 'monk');
+        if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate = 'battle')) {
+            //Somewhere in front of Silva
+            monk = game.add.sprite(950, 700, 'monk');
+        }
+        else {
+            monk = game.add.sprite(1175, 2300, 'monk');
+        }
         monk.scale.set(0.35);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -94,21 +109,12 @@ demo.state3.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
+        //game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
         
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         
         createHUD(this);
         createInventory(this);
-        
-        //Check for checkpoint before Silva Appears
-	    if (dialogueCheck.indexOf("") != -1){
-            createNPC(this,"Silva",{"x":700, "y":700},"silva",{"x":0.3, "y":0.3});
-        }
-        else {
-            createNPC(this,"Seth",{"x":700, "y":700},"seth",{"x":-0.35, "y":0.35});
-            
-        }
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);

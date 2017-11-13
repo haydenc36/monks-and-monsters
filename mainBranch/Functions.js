@@ -184,9 +184,31 @@ createNPC = function (game_state, npcName, position, sprite, scale) {
     newNPC.spriteObj.scale.set(scale.x,scale.y);
     if (scale.x < 0) {
         newNPC.spriteObj.anchor.setTo(0,1);
+        newNPC.text = game_state.add.text(position.x, position.y + 5, npcName, {
+            font: "Book Antiqua",
+            fontSize: "20px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#FFF', 
+            align:'center'
+        });
+        newNPC.text.anchor.setTo(1,0);
+        newNPC.text.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
+        newNPC.text.shadowBlur = 5;
     }
     else {
         newNPC.spriteObj.anchor.setTo(1,1);
+        newNPC.text = game_state.add.text(position.x, position.y + 5, npcName, {
+            font: "Book Antiqua",
+            fontSize: "20px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#FFF', 
+            align:'center'
+        });
+        newNPC.text.anchor.setTo(1,0);
+        newNPC.text.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
+        newNPC.text.shadowBlur = 5;
     }
     //newNPC.spriteObj.animations.add('idle', [0,1,2,3,4,5], 5, true);
     //newNPC.spriteObj.animations.play('idle');
@@ -488,6 +510,9 @@ dialogueList = function (game_state, NPC, npcName) {
                 "9": {
                     "npcDialogue": "I am the one whom the gods wished to lock away. I am the god of devastating winds, of volcanoes, and of serpents. And you are the puny minister of the Evil One who has stolen my slaves.",
                     "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
+                },
+                "10": {
+                    "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
                 }
             };
             }
@@ -535,10 +560,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Alright, show me what you remember!",
-                    "charResponse": "."
-                },
-                "1": {
-                    "charResponse": "."
+                    "charResponse": ""
                 }
             };
             }
@@ -588,7 +610,7 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "Your help is greatly appreciated!"
                 },
                 "7": {
-                    "charResponse": "."
+                    "charResponse": "Your help is greatly appreciated!"
                 }
             };
             }
@@ -597,6 +619,9 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Do I know you?",
+                    "charResponse": "You're too fat to be the man I'm seeking. Apologies!"
+                },
+                "1": {
                     "charResponse": "You're too fat to be the man I'm seeking. Apologies!"
                 }
             };
@@ -796,6 +821,9 @@ dialogueList = function (game_state, NPC, npcName) {
                 "4": {
                     "npcDialogue":"Certainly not. You are a lucky monk. Had I not known of your friendship with Oceanus, this encounter would have ended sourly for you. That aside, you will find our leader in the basement, hiding.",
                     "charResponse": "Many thanks."
+                },
+                "5": {
+                    "charResponse": "Many thanks."
                 }
             };
             }
@@ -809,7 +837,7 @@ dialogueList = function (game_state, NPC, npcName) {
             };
             }
         }
-        else if (npcName == "Self"){
+        else if (npcName == "Parvos"){
             if (dialogueCheck.indexOf("Sicarius To Basement") != -1) {
                 NPC.checkpointID = "Self Dialogue";
                 NPC.dialogue = {

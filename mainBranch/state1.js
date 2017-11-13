@@ -1,6 +1,6 @@
 // English Village
 var demo = demo || {};
-var monk, cursors, w, a, s, d, vel = 200, trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina;
+var trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -98,7 +98,7 @@ demo.state1.prototype = {
         
         
         // Initialize the monk character
-        if (coordinate == 'start')
+        if ((coordinate == 'start') || (coordinate == 'battle'))
             {
                 monk = game.add.sprite(5, 1200, 'monk');
             }
@@ -139,7 +139,7 @@ demo.state1.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
+        //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
         createHUD(this);
         createInventory(this);

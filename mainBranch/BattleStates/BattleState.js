@@ -42,11 +42,14 @@ demo.BattleState.prototype.init = function (level_data, charStats, inventQ) {
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
+    coordinate = 'battle'
 };
 
 demo.BattleState.prototype.create = function () {
     "use strict";
     var group_name, prefab_name, player_unit_name, enemy_unit_name;
+    
+    console.log();
     
     // create groups
     this.groups = {};
@@ -390,6 +393,8 @@ demo.BattleState.prototype.end_battle = function () {
     this.prefabs.actions_menu = null;
     this.prefabs.items_menu = null;
     this.prefabs.miraclesskills_menu = null;
+    
+    BattlesCompleted.push(this.enemy.name);
     
     this.game.world.removeAll();
     

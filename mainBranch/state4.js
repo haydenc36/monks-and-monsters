@@ -61,8 +61,15 @@ demo.state4.prototype = {
         background_decor4.setScale(5);
         foreground_decor4.setScale(5);
         
+        createNPC(this,"Oceanus",{"x":1000, "y":700},"oceanus",{"x":-0.65, "y":0.65});
+        
         // Initialize the monk character
-        monk = game.add.sprite(635, 110, 'monk');
+        if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate = 'battle')) {
+            monk = game.add.sprite(950, 700, 'monk');
+        }
+        else {
+            monk = game.add.sprite(635, 110, 'monk');
+        }
         monk.scale.set(0.6);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -76,11 +83,11 @@ demo.state4.prototype = {
         
         //Camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(340, 300, 800, 100);
+        //game.camera.deadzone = new Phaser.Rectangle(340, 300, 800, 100);
         
         createHUD(this);
         createInventory(this);
-        createNPC(this,"Oceanus",{"x":1000, "y":700},"oceanus",{"x":-0.65, "y":0.65});
+        
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },
@@ -89,6 +96,10 @@ demo.state4.prototype = {
         
         game.physics.arcade.collide(monk, trigger4, function(){console.log('Main Village'); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
+        
+        if ((dialogueCheck.indexOf("Oceanus Before Battle") != -1)  && (BattlesCompleted.indexOf("Oceanus") == -1)) {
+            game.state.start("BootState", true, false, "../assets/OceanusBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
+        }
         
         cursorControl(0.6);
         updateHUD(this);
