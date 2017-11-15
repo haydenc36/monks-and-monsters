@@ -31,6 +31,9 @@ demo.state5.prototype = {
     
     create:function(){
         
+        // Update the coodinate variable
+        coordinate = 'brothel';
+        
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
         //vel = 400; 
@@ -87,6 +90,7 @@ demo.state5.prototype = {
         // Initialize the monk character
         if ((BattlesCompleted.indexOf("Demon Wolf") != -1) && (coordinate = 'battle')) {
             monk = game.add.sprite(158, 450, 'monk');
+            coordinate = 'brothel';
         }
         else {
             monk = game.add.sprite(1230, 150, 'monk');
@@ -111,9 +115,6 @@ demo.state5.prototype = {
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
-        
-        // Update the coodinate variable
-        coordinate = 'brothel';
     },
     
     update: function(){
@@ -121,7 +122,7 @@ demo.state5.prototype = {
         game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk5, function(){console.log('noWalk5');});
         
-        if ((monk.x <= 160) && (monk.x >= 159) && (monk.y <= 480) && (monk.y >= 400)) {
+        if ((monk.x <= 160) && (monk.x >= 158) && (monk.y <= 480) && (monk.y >= 370)) {
             console.log("Location for Battle");
             if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Demon Wolf") == -1)) {
                 console.log("Went to battle");
@@ -131,23 +132,12 @@ demo.state5.prototype = {
         
         cursorControl(0.5);
         
-        // Update Dialogue list if met requirements (multiple sets of dialogue within one state)
-        if (!!this.currentNPC){
-            if ((this.currentNPC.name == "Self") && (dialogueCheck.indexOf("Self Dialogue") != -1)) {
-                this.NPCs["Self"].dialogue = {};
-            }
-        }
-        
         updateHUD(this);
         updateInventory(this);
         distTrigger(this,{"x":100,"y":-100},{"x":50,"y":150});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":100,"y":-100},{"x":50,"y":150});
         
-    },
-    render: function () {
-        game.debug.cameraInfo(game.camera, 32, 32);
-        game.debug.spriteCoords(monk, 32, 500);
     }
     
 };

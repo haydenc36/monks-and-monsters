@@ -65,7 +65,8 @@ demo.state4.prototype = {
         
         // Initialize the monk character
         if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate = 'battle')) {
-            monk = game.add.sprite(950, 700, 'monk');
+            monk = game.add.sprite(836, 606, 'monk');
+            coordinate = 'hut';
         }
         else {
             monk = game.add.sprite(635, 110, 'monk');
@@ -108,5 +109,9 @@ demo.state4.prototype = {
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-170,"y":-100},{"x":80,"y":150});
         
+    },
+    render: function () {
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(monk, 32, 500);
     }
 };

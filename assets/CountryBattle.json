@@ -75,7 +75,7 @@
                 }
             }
         },
-        "HeresyMonster": {
+        "Heresy Monster": {
             "type": "enemy_unit",
             "position": {"x": 950, "y": 375},
             "properties": {

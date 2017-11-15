@@ -474,56 +474,72 @@ chooseStr = function (game_state,NPC,extraNPC) {
 // List of all the Dialogue
 dialogueList = function (game_state, NPC, npcName) {
     if(game_state.key == "state1") {
-        if (npcName == "Typhon") {
-            if (dialogueCheck.indexOf("Last Battle") != -1) {
-            //Scene 9: Seth/Typhon
-            NPC.checkpointID = "Seth is Typhon";
-            NPC.dialogue = {
-                "0": {
-                    "charResponse": "Seth, explain yourself."
-                },
-                "1": {
-                    "extra": "You’ve ruined everything! The church is ruined! I am ruined!"
-                },
-                "2": {
-                    "charResponse": "What have you done?"
-                },
-                "3": {
-                    "extra": "I had to, I had to! I framed the poor for the theft; I poisoned Theo; I provoked the lords."
-                },
-                "4": {
-                    "charResponse": "But why?"
-                },
-                "5": {
-                    "extra": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! But now, he is not pleased."
-                },
-                "6": {
-                    "charResponse": "Who—?"
-                },
-                "7": {
-                    "extra": "*Screaming*"
-                },
-                "8": {
-                    "npcDialogue": "Scum!",
-                    "charResponse": "Identify yourself."
-                },
-                "9": {
-                    "npcDialogue": "I am the one whom the gods wished to lock away. I am the god of devastating winds, of volcanoes, and of serpents. And you are the puny minister of the Evil One who has stolen my slaves.",
-                    "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
-                },
-                "10": {
-                    "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
-                }
-            };
+        if (npcName == "Seth") {
+            if (dialogueCheck.indexOf("Heresy Monster After Battle") != -1) {
+                //Scene 9: Seth/Typhon
+                NPC.checkpointID = "Seth is Typhon";
+                NPC.dialogue = {
+                    "0": {
+                        "charResponse": "Seth, explain yourself."
+                    },
+                    "1": {
+                        "extra": "You’ve ruined everything! The church is ruined! I am ruined!"
+                    },
+                    "2": {
+                        "charResponse": "What have you done?"
+                    },
+                    "3": {
+                        "extra": "I had to, I had to! I framed the poor for the theft; I poisoned Theo; I provoked the lords."
+                    },
+                    "4": {
+                        "charResponse": "But why?"
+                    },
+                    "5": {
+                        "extra": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! But now, he is not pleased."
+                    },
+                    "6": {
+                        "charResponse": "Who—?"
+                    },
+                    "7": {
+                        "extra": "*Screaming*"
+                    }
+                };
             }
             else {
-            NPC.checkpointID = "Default"
-            NPC.dialogue = {
-                "0": {
-                    "npcDialogue": "[Default Dialogue]",
-                    "charResponse": ""
-                }
-            };
+                NPC.checkpointID = "Default"
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "I believe Father Hopko wishes to see you.",
+                        "charResponse": ""
+                    }
+                };
+            }
+        }
+        else if (npcName == "Typhon") {
+            if (dialogueCheck.indexOf("Seth is Typhon") != -1) {
+                NPC.checkpointID = "Typhon Mastermind";
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "Scum!",
+                        "charResponse": "Identify yourself."
+                    },
+                    "1": {
+                        "npcDialogue": "I am the one whom the gods wished to lock away. I am the god of devastating winds, of volcanoes, and of serpents. And you are the puny minister of the Evil One who has stolen my slaves.",
+                        "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
+                    },
+                    "2": {
+                        "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
+                    }
+                };
+            }
+            else {
+                NPC.checkpointID = "Default"
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "I believe Father Hopko wishes to see you.",
+                        "charResponse": ""
+                    }
+                };
             }
         }
     }
@@ -838,14 +854,16 @@ dialogueList = function (game_state, NPC, npcName) {
             }
         }
         else if (npcName == "Parvos"){
-            if (dialogueCheck.indexOf("Sicarius To Basement") != -1) {
+            if (dialogueCheck.indexOf("Oceanus After Battle") != -1) {
+                NPC.checkpointID = "Default";
+                NPC.dialogue = {}
+            }
+            else if (dialogueCheck.indexOf("Sicarius To Basement") != -1) {
                 NPC.checkpointID = "Self Dialogue";
                 NPC.dialogue = {
                     "0": {
-                        "charResponse": "Let’s pay another visit to dear Oceanus."
-                    },
-                    "1": {
-                        "charResponse": "Let’s pay another visit to dear Oceanus."
+                        "npcDialogue": "Let’s pay another visit to dear Oceanus.",
+                        "charResponse": ""
                     }
                 }
             }

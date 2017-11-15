@@ -1,6 +1,6 @@
 // English Village
 var demo = demo || {};
-var trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1;
+var trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1, makeTyphon = true;
 
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -34,7 +34,7 @@ demo.state1.prototype = {
         game.load.image('walltowers', '../assets/tilemaps/tilesets/towers.png');
         game.load.image('brothel', '../assets/tilemaps/tilesets/brothel.png');
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
-        game.load.image('sky', '../assets/tilemaps/tilesets/sky.png');        
+        game.load.image('sky', '../assets/tilemaps/tilesets/sky.png');
     },
     
     create: function(){
@@ -95,6 +95,10 @@ demo.state1.prototype = {
         buildings1_noWalk1 = map.createLayer('buildings1_noWalk1');
         var buildings1_walk1 = map.createLayer('buildings1_walk1');
         var flowers1 = map.createLayer('flowers1');
+        
+        if (BattlesCompleted.indexOf("Heresy Monster") != -1) {
+            createNPC(this,"Seth",{"x":700, "y":700},"seth",{"x":-0.35, "y":0.35});
+        }
         
         
         // Initialize the monk character
@@ -160,9 +164,21 @@ demo.state1.prototype = {
         game.physics.arcade.collide(monk, trigger1c, function(){console.log('Monastery'); game.state.start('state3');});
         game.physics.arcade.collide(monk, trigger1d, function(){console.log('Country'); game.state.start('state7');});
         
+        /*if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") != -1) && (makeTyphon)) {
+            this.NPCs["Seth"].spriteObj.destroy();
+            this.NPCs["Seth].text.destroy();
+            delete this.NPCs["Seth];
+            createNPC(this,"Typhon",{"x":700, "y":700},"typhon",{"x":-0.35, "y":0.35});
+            makeTyphon = false;
+        }*/
+        
         
         cursorControl(0.3);
         updateHUD(this);
         updateInventory(this);
+    },
+    render: function () {
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(monk, 32, 500);
     }
 };
