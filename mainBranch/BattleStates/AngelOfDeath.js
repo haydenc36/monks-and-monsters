@@ -18,6 +18,6 @@ demo.AngelOfDeath.prototype.hit = function (target) {
     
     // reduce the unit mana
     this.game_state.current_unit.stats.mana -= this.req_mana;
-    
     this.show_message(target, damage);
+    
 };

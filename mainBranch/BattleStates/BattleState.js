@@ -51,6 +51,7 @@ demo.BattleState.prototype.create = function () {
     "use strict";
     var group_name, prefab_name, player_unit_name, enemy_unit_name;
     
+    medievalMusic.stop();
     battleSong = game.add.audio('battleSong');
     battleSong.play();
     battleSong.loopFull(0.6);
@@ -392,6 +393,11 @@ demo.BattleState.prototype.end_battle = function () {
     this.enemy.stats.reward.items.forEach(function (item_object){
         this.prefabs.inventory.collect_item(item_object);
     }, this);
+    
+    // End the battle music; resume navigation music
+    battleSong.stop();
+    medievalMusic.play();
+    medievalMusic.loopFull(0.6); 
     
     this.prefabs.attackskills_menu = null;
     this.prefabs.actions_menu = null;

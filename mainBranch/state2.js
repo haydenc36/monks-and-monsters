@@ -45,10 +45,6 @@ demo.state2.prototype = {
         //load chest
         game.load.spritesheet('chest', '../assets/sprites/chest.png',32,32);
         
-        // Load Audio Files
-        game.load.audio('timpani', '../assets/audio/timpani.wav');
-        game.load.audio('medievalMusic', '../assets/audio/medieval.m4a');
-        game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
     },
     
     create:function(){

@@ -1,14 +1,27 @@
 // Main Menu
 var demo = demo || {};
 var coordinate = 'start';
-var intro;
+
+// Initialize audio variables
+var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walk;
 
 demo.state0 = function(){};
 demo.state0.prototype = {
     preload: function(){
         this.load.image('Barcelona','../assets/backgrounds/Barcelona.png');
         this.load.image('button','../assets/sprites/scroll_menu.png');
+        
+        // Load Audio Files
+        game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
+        game.load.audio('chew', '../assets/audio/chew.mp3');
+        game.load.audio('death', '../assets/audio/death.wav');
+        game.load.audio('demon', '../assets/audio/demon.mp3');
         game.load.audio('intro', '../assets/audio/intro.mp3');
+        game.load.audio('medievalMusic', '../assets/audio/medieval.m4a');
+        game.load.audio('sword', '../assets/audio/sword.wav');
+        game.load.audio('timpani', '../assets/audio/timpani.wav');
+        game.load.audio('walk', '../assets/audio/walk.wav');
+        game.load.audio('doorSound', '../assets/audio/doorSound.wav');
         
     },
     create:function(){
