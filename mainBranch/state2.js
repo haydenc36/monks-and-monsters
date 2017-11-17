@@ -136,7 +136,7 @@ demo.state2.prototype = {
         initInfoBox(this);
         
         // Create chest
-        chest = game.add.sprite(600, 1600, 'chest');
+        chest = game.add.sprite(800, 300, 'chest');
         chest.scale.set(2);
         chest.frame = 0;
         chest.active = true;

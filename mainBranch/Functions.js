@@ -575,7 +575,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Thomas Tutorial";
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "Alright, show me what you remember!",
+                    "npcDialogue": "Alright, get whatever you need from that chest and show me what you remember!",
                     "charResponse": ""
                 }
             };
@@ -883,8 +883,8 @@ createInventory = function (game_state){
 	   //GUI - the background image for the inventory
 	   game_state.inventory_base = game_state.add.sprite(game.world.centerX, game.world.centerY,  'inventory_base');
 	   game_state.inventory_base.fixedToCamera = true;
-	   game_state.inventory_base.cameraOffset.x = 500;
-	   game_state.inventory_base.cameraOffset.y = 500;
+	   game_state.inventory_base.cameraOffset.x = 365;
+	   game_state.inventory_base.cameraOffset.y = 190;
         game_state.inventory_base.visible = false;
         game_state.inventory_base.scale.set(1.5);
         
