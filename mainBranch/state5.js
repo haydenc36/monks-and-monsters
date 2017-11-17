@@ -81,14 +81,14 @@ demo.state5.prototype = {
         stairs5.setScale(3.5);
         
         createNPC(this,"Sicarius",{"x":225, "y":1550},"sicarius",{"x":0.5, "y":0.5});
-        if ((BattlesCompleted.indexOf("Demon Wolf") != -1) && (dialogueCheck.indexOf("Self Dialogue") == -1)) {
+        if ((BattlesCompleted.indexOf("Serpent") != -1) && (dialogueCheck.indexOf("Self Dialogue") == -1)) {
             createNPC (this,"Parvos",{"x":105, "y": 500},"monk",{"x":-0.5, "y":0.5});
             this.NPCs["Parvos"].spriteObj.visible = false;
             this.NPCs["Parvos"].text.visible = false;
         }
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Demon Wolf") != -1) && (coordinate = 'battle')) {
+        if ((BattlesCompleted.indexOf("Serpent") != -1) && (coordinate = 'battle')) {
             monk = game.add.sprite(158, 450, 'monk');
             coordinate = 'brothel';
         }
@@ -124,7 +124,7 @@ demo.state5.prototype = {
         
         if ((monk.x <= 160) && (monk.x >= 158) && (monk.y <= 480) && (monk.y >= 370)) {
             console.log("Location for Battle");
-            if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Demon Wolf") == -1)) {
+            if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Serpent") == -1)) {
                 console.log("Went to battle");
                 game.state.start("BootState", true, false, "../assets/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
             }

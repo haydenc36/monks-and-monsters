@@ -3,7 +3,7 @@
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "../../assets/backgrounds/basement.png"},
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "wolf_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/Wolf.png", "frame_width": 459, "frame_height": 450},
+        "serpent_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/serpent.png", "frame_width": 400, "frame_height": 407},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
         "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
@@ -75,11 +75,11 @@
                 }
             }
         },
-        "Demon Wolf": {
+        "Serpent": {
             "type": "enemy_unit",
             "position": {"x": 1000, "y": 225},
             "properties": {
-                "texture": "wolf_spritesheet",
+                "texture": "serpent_spritesheet",
                 "group": "enemies",
                 "scale": {"x": 0.05, "y": 0.05},
                 "stats": {

@@ -35,6 +35,7 @@ demo.state0.prototype = {
         
         this.createButton(40, "Play", 600, 375, 400, 200, function(){
             this.state.start("state2", true, false, [100,100,100,100,100,100], [1,1]);
+            //this.state.start("BootState", true, false, "../assets/BrothelBattle.JSON", "BattleState", [100,100,100,100,100,100], [1,1], {},tutorial);
         });
         
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){

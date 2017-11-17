@@ -1,7 +1,7 @@
 // Parvos' Monastery
 var demo = demo || {};
 var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 200, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina;
-var dialogueCheck = [];
+var dialogueCheck = ["Self Dialogue","Sicarius To Basement","Oceanus Recommends Brothel","Oceanus Before Battle","Oceanus After Battle","Silva Training","Silva to Cemetery","Seth Recommends Oceanus","Thomas Tutorial","Head Abbot Tutorial"];
 var BattlesCompleted = [];
 
 demo.state2 = function(){};
@@ -48,6 +48,7 @@ demo.state2.prototype = {
         // Load Audio Files
         game.load.audio('timpani', '../assets/audio/timpani.wav');
         game.load.audio('medievalMusic', '../assets/audio/medieval.m4a');
+        game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
     },
     
     create:function(){

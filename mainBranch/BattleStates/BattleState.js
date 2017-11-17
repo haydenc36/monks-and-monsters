@@ -1,11 +1,7 @@
 var demo = demo || {};
+var battleSong;
 
-// Tutorial Battle
-game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
-var battleSong = game.add.audio('battleSong');
-battleSong.play();
-battleSong.loopFull(0.6); 
-
+// Tutorial Battle 
 demo.BattleState = function () {
     "use strict";
     Phaser.State.call(this);
@@ -48,14 +44,16 @@ demo.BattleState.prototype.init = function (level_data, charStats, inventQ) {
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true;
-    coordinate = 'battle'
+    coordinate = 'battle';
 };
 
 demo.BattleState.prototype.create = function () {
     "use strict";
     var group_name, prefab_name, player_unit_name, enemy_unit_name;
     
-    console.log();
+    battleSong = game.add.audio('battleSong');
+    battleSong.play();
+    battleSong.loopFull(0.6);
     
     // create groups
     this.groups = {};
