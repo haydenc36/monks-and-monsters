@@ -49,14 +49,20 @@ demo.state2.prototype = {
     
     create:function(){
         
-        // Opening Timpani Sound
+        // AUDIO
+        // Timpani Sound
         timpani = game.add.audio('timpani');
         timpani.play();
         
-        // Begin background music
+        // Background Music
         medievalMusic = game.add.audio('medievalMusic');
         medievalMusic.play();
         medievalMusic.loopFull(0.6); 
+        
+        // Door Audio
+        doorSound = game.add.audio('doorSound');
+        roosterSound = game.add.audio('roosterSound');
+        
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -146,7 +152,10 @@ demo.state2.prototype = {
         tutorial = true;
         
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
-            game.physics.arcade.collide(monk, trigger2a, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});   
+            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});
+            
+            // Play the door sound
+            //doorSound.play();
         }
         
         game.physics.arcade.collide(monk, walls_noWalk2, function(){console.log('walls_noWalk');});

@@ -159,10 +159,10 @@ demo.state1.prototype = {
         
         
         // Transitioning between maps
-        game.physics.arcade.collide(monk, trigger1a, function(){console.log('Peasants House'); game.state.start('state4');});
-        game.physics.arcade.collide(monk, trigger1b, function(){console.log('Brothel'); game.state.start('state5');});
-        game.physics.arcade.collide(monk, trigger1c, function(){console.log('Monastery'); game.state.start('state3');});
-        game.physics.arcade.collide(monk, trigger1d, function(){console.log('Country'); game.state.start('state7');});
+        game.physics.arcade.collide(monk, trigger1a, function(){doorSound.play(); game.state.start('state4');});
+        game.physics.arcade.collide(monk, trigger1b, function(){doorSound.play(); game.state.start('state5');});
+        game.physics.arcade.collide(monk, trigger1c, function(){doorSound.play(); game.state.start('state3');});
+        game.physics.arcade.collide(monk, trigger1d, function(){roosterSound.play(); game.state.start('state7');});
         
         /*if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") != -1) && (makeTyphon)) {
             this.NPCs["Seth"].spriteObj.destroy();

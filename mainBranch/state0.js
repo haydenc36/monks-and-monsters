@@ -3,7 +3,7 @@ var demo = demo || {};
 var coordinate = 'start';
 
 // Initialize audio variables
-var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walk;
+var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walk, roosterSound, footsteps_outside, footsteps_inside;
 
 demo.state0 = function(){};
 demo.state0.prototype = {
@@ -22,6 +22,9 @@ demo.state0.prototype = {
         game.load.audio('timpani', '../assets/audio/timpani.wav');
         game.load.audio('walk', '../assets/audio/walk.wav');
         game.load.audio('doorSound', '../assets/audio/doorSound.wav');
+        game.load.audio('roosterSound', '../assets/audio/roosterSound.wav');
+        game.load.audio('footsteps_outside', '../assets/audio/footsteps_outside.wav');
+        game.load.audio('footsteps_inside', '../assets/audio/footsteps_inside.wav');
         
     },
     create:function(){
