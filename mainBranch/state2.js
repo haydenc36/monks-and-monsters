@@ -1,7 +1,8 @@
 // Parvos' Monastery
 var demo = demo || {};
-var trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial;
+var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 200, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina;
 var dialogueCheck = [];
+var BattlesCompleted = [];
 
 demo.state2 = function(){};
 demo.state2.prototype = {
@@ -40,6 +41,9 @@ demo.state2.prototype = {
         game.load.spritesheet('bread', '../assets/sprites/bread.png');
         game.load.spritesheet('wine', '../assets/sprites/wine.png');
         game.load.spritesheet('scroll', '../assets/sprites/scroll_menu.png');
+        
+        //load chest
+        game.load.spritesheet('chest', '../assets/sprites/chest.png',32,32);
     },
     
     create:function(){
@@ -82,6 +86,9 @@ demo.state2.prototype = {
         fixtures_noWalk2b.setScale(2.75);
         fixtures_walk2a.setScale(2.75);
         
+        createNPC(this,"Head Abbot",{"x":600, "y":1450},"father",{"x":-0.65, "y":0.65});
+        createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
+        
         // Initialize the monk character
         monk = game.add.sprite(100, 1450, 'monk');
         monk.scale.set(0.6);
@@ -96,10 +103,9 @@ demo.state2.prototype = {
         map.setCollisionBetween(33, 324, true, 'walls_noWalk2');
         map.setCollisionBetween(23, 1316, true, 'fixtures_noWalk2b');
         
-        
         // Adjust the camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
+        //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
         
         // Controls
@@ -113,10 +119,14 @@ demo.state2.prototype = {
         createHUD(this);
         createInventory(this);
         
-        createNPC(this,"Head Abbot",{"x":600, "y":1450},"father",{"x":-0.65, "y":0.65});
-        createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
+        
+        // Create chest
+        chest = game.add.sprite(600, 1600, 'chest');
+        chest.scale.set(2);
+        chest.frame = 0;
+        chest.active = true;
         
     },
     
@@ -143,8 +153,9 @@ demo.state2.prototype = {
             }
         }
         
-        distTrigger(this,{"x":-175,"y":-160},{"x":50,"y":60});
+        distTrigger(this,{"x":-175,"y":-100},{"x":50,"y":150});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":-175,"y":-160},{"x":50,"y":60});
+        NPCBoxVis(this,this.currentNPC,{"x":-175,"y":-100},{"x":50,"y":150});
+        pickup(this);
     }
 };

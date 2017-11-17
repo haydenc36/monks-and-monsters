@@ -71,7 +71,7 @@ demo.state7.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
+        //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
         createHUD(this);
         createInventory(this);
@@ -80,8 +80,9 @@ demo.state7.prototype = {
     update: function(){
         
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); game.state.start('state1');});
-        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,characterMaxEnergy,characterMaxMana,characterMaxStamina], [wineQ, breadQ], {});});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7');});
+        
+        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); game.state.start("BootState", true, false, "../assets/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,characterMaxEnergy,characterMaxMana,characterMaxStamina], [wineQ, breadQ]);});
         
         cursorControl(0.2);
         updateHUD(this);

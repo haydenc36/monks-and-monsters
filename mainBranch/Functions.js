@@ -184,9 +184,31 @@ createNPC = function (game_state, npcName, position, sprite, scale) {
     newNPC.spriteObj.scale.set(scale.x,scale.y);
     if (scale.x < 0) {
         newNPC.spriteObj.anchor.setTo(0,1);
+        newNPC.text = game_state.add.text(position.x, position.y + 5, npcName, {
+            font: "Book Antiqua",
+            fontSize: "20px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#FFF', 
+            align:'center'
+        });
+        newNPC.text.anchor.setTo(1,0);
+        newNPC.text.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
+        newNPC.text.shadowBlur = 5;
     }
     else {
         newNPC.spriteObj.anchor.setTo(1,1);
+        newNPC.text = game_state.add.text(position.x, position.y + 5, npcName, {
+            font: "Book Antiqua",
+            fontSize: "20px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#FFF', 
+            align:'center'
+        });
+        newNPC.text.anchor.setTo(1,0);
+        newNPC.text.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
+        newNPC.text.shadowBlur = 5;
     }
     //newNPC.spriteObj.animations.add('idle', [0,1,2,3,4,5], 5, true);
     //newNPC.spriteObj.animations.play('idle');
@@ -452,53 +474,72 @@ chooseStr = function (game_state,NPC,extraNPC) {
 // List of all the Dialogue
 dialogueList = function (game_state, NPC, npcName) {
     if(game_state.key == "state1") {
-        if (npcName == "Typhon") {
-            if (dialogueCheck.indexOf("Last Battle") != -1) {
-            //Scene 9: Seth/Typhon
-            NPC.checkpointID = "Seth is Typhon";
-            NPC.dialogue = {
-                "0": {
-                    "charResponse": "Seth, explain yourself."
-                },
-                "1": {
-                    "extra": "You’ve ruined everything! The church is ruined! I am ruined!"
-                },
-                "2": {
-                    "charResponse": "What have you done?"
-                },
-                "3": {
-                    "extra": "I had to, I had to! I framed the poor for the theft; I poisoned Theo; I provoked the lords."
-                },
-                "4": {
-                    "charResponse": "But why?"
-                },
-                "5": {
-                    "extra": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! But now, he is not pleased."
-                },
-                "6": {
-                    "charResponse": "Who—?"
-                },
-                "7": {
-                    "extra": "*Screaming*"
-                },
-                "8": {
-                    "npcDialogue": "Scum!",
-                    "charResponse": "Identify yourself."
-                },
-                "9": {
-                    "npcDialogue": "I am the one whom the gods wished to lock away. I am the god of devastating winds, of volcanoes, and of serpents. And you are the puny minister of the Evil One who has stolen my slaves.",
-                    "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
-                }
-            };
+        if (npcName == "Seth") {
+            if (dialogueCheck.indexOf("Heresy Monster After Battle") != -1) {
+                //Scene 9: Seth/Typhon
+                NPC.checkpointID = "Seth is Typhon";
+                NPC.dialogue = {
+                    "0": {
+                        "charResponse": "Seth, explain yourself."
+                    },
+                    "1": {
+                        "extra": "You’ve ruined everything! The church is ruined! I am ruined!"
+                    },
+                    "2": {
+                        "charResponse": "What have you done?"
+                    },
+                    "3": {
+                        "extra": "I had to, I had to! I framed the poor for the theft; I poisoned Theo; I provoked the lords."
+                    },
+                    "4": {
+                        "charResponse": "But why?"
+                    },
+                    "5": {
+                        "extra": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! But now, he is not pleased."
+                    },
+                    "6": {
+                        "charResponse": "Who—?"
+                    },
+                    "7": {
+                        "extra": "*Screaming*"
+                    }
+                };
             }
             else {
-            NPC.checkpointID = "Default"
-            NPC.dialogue = {
-                "0": {
-                    "npcDialogue": "[Default Dialogue]",
-                    "charResponse": ""
-                }
-            };
+                NPC.checkpointID = "Default"
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "I believe Father Hopko wishes to see you.",
+                        "charResponse": ""
+                    }
+                };
+            }
+        }
+        else if (npcName == "Typhon") {
+            if (dialogueCheck.indexOf("Seth is Typhon") != -1) {
+                NPC.checkpointID = "Typhon Mastermind";
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "Scum!",
+                        "charResponse": "Identify yourself."
+                    },
+                    "1": {
+                        "npcDialogue": "I am the one whom the gods wished to lock away. I am the god of devastating winds, of volcanoes, and of serpents. And you are the puny minister of the Evil One who has stolen my slaves.",
+                        "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
+                    },
+                    "2": {
+                        "charResponse": "This village no longer belongs to you. You will be crushed alongside your minions."
+                    }
+                };
+            }
+            else {
+                NPC.checkpointID = "Default"
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "I believe Father Hopko wishes to see you.",
+                        "charResponse": ""
+                    }
+                };
             }
         }
     }
@@ -535,10 +576,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Alright, show me what you remember!",
-                    "charResponse": "."
-                },
-                "1": {
-                    "charResponse": "."
+                    "charResponse": ""
                 }
             };
             }
@@ -588,7 +626,7 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "Your help is greatly appreciated!"
                 },
                 "7": {
-                    "charResponse": "."
+                    "charResponse": "Your help is greatly appreciated!"
                 }
             };
             }
@@ -597,6 +635,9 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.dialogue = {
                 "0": {
                     "npcDialogue": "Do I know you?",
+                    "charResponse": "You're too fat to be the man I'm seeking. Apologies!"
+                },
+                "1": {
                     "charResponse": "You're too fat to be the man I'm seeking. Apologies!"
                 }
             };
@@ -796,6 +837,9 @@ dialogueList = function (game_state, NPC, npcName) {
                 "4": {
                     "npcDialogue":"Certainly not. You are a lucky monk. Had I not known of your friendship with Oceanus, this encounter would have ended sourly for you. That aside, you will find our leader in the basement, hiding.",
                     "charResponse": "Many thanks."
+                },
+                "5": {
+                    "charResponse": "Many thanks."
                 }
             };
             }
@@ -809,15 +853,17 @@ dialogueList = function (game_state, NPC, npcName) {
             };
             }
         }
-        else if (npcName == "Self"){
-            if (dialogueCheck.indexOf("Sicarius To Basement") != -1) {
+        else if (npcName == "Parvos"){
+            if (dialogueCheck.indexOf("Oceanus After Battle") != -1) {
+                NPC.checkpointID = "Default";
+                NPC.dialogue = {}
+            }
+            else if (dialogueCheck.indexOf("Sicarius To Basement") != -1) {
                 NPC.checkpointID = "Self Dialogue";
                 NPC.dialogue = {
                     "0": {
-                        "charResponse": "Let’s pay another visit to dear Oceanus."
-                    },
-                    "1": {
-                        "charResponse": "Let’s pay another visit to dear Oceanus."
+                        "npcDialogue": "Let’s pay another visit to dear Oceanus.",
+                        "charResponse": ""
                     }
                 }
             }
@@ -831,7 +877,7 @@ dialogueList = function (game_state, NPC, npcName) {
 
 createInventory = function (game_state){
 
-          //spacebar toggles the inventory
+          //Spacebar toggles the inventory
           toggle_inventory = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); 
 	
 	   //GUI - the background image for the inventory
@@ -846,7 +892,7 @@ createInventory = function (game_state){
         game_state.styleInventory2 = {font: '15px Book Antiqua', fill: '#000000', align: 'left', fontWeight: 'bold'};
          game_state.styleInventory3 = {font: '15px Book Antiqua', fill: '#000000', align: 'center', fontWeight: 'bold', stroke: '#ffffff', strokeThickness: 3};
         
-        //create empty slots
+        //Create empty slots
         game_state.slot1 = game_state.add.sprite(90, 80, 'slot');
         game_state.inventory_base.addChild(game_state.slot1);
         game_state.slot1.scale.set(1.25);
@@ -900,43 +946,113 @@ createInventory = function (game_state){
         game_state.items[4] = new Array();
 	   // Description
 	   game_state.items[5] = new Array(); 	   
+       //Slot X
+        game_state.items[6] = new Array();
+        //Slot Y
+        game_state.items[7] = new Array();
+        //Item SlotID
+        game_state.items[8] = new Array();
+        //Item ID
+        game_state.items[9] = new Array();
+    
         
+        //Auto sort function      
+        
+        //Slot 1
+        game_state.items[6][0] = game_state.slot1.centerX
+        game_state.items[7][0] = game_state.slot1.centerY
+        //Slot 2
+        game_state.items[6][1] = game_state.slot2.centerX
+        game_state.items[7][1] = game_state.slot2.centerY
+        //Slot 3
+        game_state.items[6][2] = game_state.slot3.centerX
+        game_state.items[7][2] = game_state.slot3.centerY
+        //Slot 4
+        game_state.items[6][3] = game_state.slot4.centerX
+        game_state.items[7][3] = game_state.slot4.centerY
+        //Slot 5
+        game_state.items[6][4] = game_state.slot5.centerX
+        game_state.items[7][4] = game_state.slot5.centerY
+        //Slot 6
+        game_state.items[6][5] = game_state.slot6.centerX
+        game_state.items[7][5] = game_state.slot6.centerY
+    
         //Item 1
         game_state.items[1][0] = "Bread";
-        game_state.items[2][0] = game_state.add.button(game_state.slot1.x, game_state.slot1.centerY-10,  'bread', useBread);
+        game_state.items[2][0] = game_state.add.button(game_state.items[6][0]-30, game_state.items[7][0]-10,  'bread', useBread);
         game_state.items[2][0].alpha = 0.5;
         game_state.items[2][0].scale.set(0.2);
         game_state.items[2][0].onInputOver.add(over_bread, this);
         game_state.items[2][0].onInputOut.add(out, this);
         game_state.inventory_base.addChild(game_state.items[2][0]);
         game_state.items[3][0] = breadQ;
-        game_state.items[4][0] = game_state.add.text(game_state.slot1.centerX+20, game_state.slot1.centerY+20, game_state.items[3][0], game_state.styleInventory2);
+        game_state.items[4][0] = game_state.add.text(game_state.items[6][0]+20, game_state.items[7][0]+20, game_state.items[3][0], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][0]);
         game_state.items[5][0] = "Restores 50% health once";
+        game_state.items[8][0] = 1; //slot 1 (inital)
+        game_state.items[9][0] = 1; //ITEM 1
+        
         //Item 2
         game_state.items[1][1] ="Wine";
-        game_state.items[2][1] = game_state.add.button(game_state.slot2.centerX-20, game_state.slot2.centerY-20,  'wine', useWine);
+        game_state.items[2][1] = game_state.add.button(game_state.items[6][1]-20, game_state.items[7][1]-20,  'wine', useWine);
         game_state.items[2][1].alpha = 0.5;
         game_state.items[2][1].scale.set(0.1);
         game_state.items[2][1].onInputOver.add(over_wine, this);
         game_state.items[2][1].onInputOut.add(out, this);
         game_state.inventory_base.addChild(game_state.items[2][1]);
         game_state.items[3][1] = wineQ;
-        game_state.items[4][1] = game_state.add.text(game_state.slot2.centerX+20, game_state.slot2.centerY+20, game_state.items[3][1], game_state.styleInventory2);
+        game_state.items[4][1] = game_state.add.text(game_state.items[6][1]+20, game_state.items[7][1]+20, game_state.items[3][1], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][1]);
         game_state.items[5][1] = "Restores 50% mana once";
+        game_state.items[8][1] = 2; //slot 2 (inital)
+        game_state.items[9][1] = 2; //ITEM 2
+        
         //Item 3
         game_state.items[1][2] ="Scrolls";
-        game_state.items[2][2] = game_state.add.button(game_state.slot3.centerX-20, game_state.slot3.centerY-20,  'scroll', useScroll);
+        game_state.items[2][2] = game_state.add.button(game_state.items[6][2]-20, game_state.items[7][2]-20,  'scroll', useScroll);
         game_state.items[2][2].alpha = 0.5;
         game_state.items[2][2].scale.set(0.1);
         game_state.items[2][2].onInputOver.add(over_scroll, this);
         game_state.items[2][2].onInputOut.add(out, this);
         game_state.inventory_base.addChild(game_state.items[2][2]);
         game_state.items[3][2] = scrollQ;
-        game_state.items[4][2] = game_state.add.text(game_state.slot3.centerX+20, game_state.slot3.centerY+20, game_state.items[3][2], game_state.styleInventory2);
+        game_state.items[4][2] = game_state.add.text(game_state.items[6][2]+20, game_state.items[7][2]+20, game_state.items[3][2], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][2]);
         game_state.items[5][2] = "Restores 50% stamina once";
+        game_state.items[8][2] = 3; //slot 3 (inital)
+        game_state.items[9][2] = 3; //ITEM 3
+
+        // Empty item
+          //Item 4
+        game_state.items[1][3] ="";
+        game_state.items[2][3] = game_state.add.button(game_state.items[6][3]-20, game_state.items[7][3]-20,  '');
+        game_state.items[2][3].alpha = 0.5;
+        game_state.items[2][3].scale.set(0.1);
+        game_state.items[2][3].onInputOver.add(over_scroll, this);
+        game_state.items[2][3].onInputOut.add(out, this);
+        game_state.inventory_base.addChild(game_state.items[2][3]);
+        game_state.items[3][3] = 0;
+        game_state.items[4][3] = game_state.add.text(game_state.items[6][3]+20, game_state.items[7][3]+20, game_state.items[3][3], game_state.styleInventory2);
+        game_state.inventory_base.addChild(game_state.items[4][3]);
+        game_state.items[5][3] = "";
+        game_state.items[8][3] = 4;
+        game_state.items[9][3] = 4;
+        
+        // Empty item
+          //Item 5
+        game_state.items[1][4] ="";
+        game_state.items[2][4] = game_state.add.button(game_state.items[6][4]-20, game_state.items[7][4]-20,  '');
+        game_state.items[2][4].alpha = 0.5;
+        game_state.items[2][4].scale.set(0.1);
+        game_state.items[2][4].onInputOver.add(over_scroll, this);
+        game_state.items[2][4].onInputOut.add(out, this);
+        game_state.inventory_base.addChild(game_state.items[2][4]);
+        game_state.items[3][4] = 0;
+        game_state.items[4][4] = game_state.add.text(game_state.items[6][4]+20, game_state.items[7][4]+20, game_state.items[3][4], game_state.styleInventory2);
+        game_state.inventory_base.addChild(game_state.items[4][4]);
+        game_state.items[5][4] = "";
+        game_state.items[8][4] = 5; //slot 4 (inital)
+        game_state.items[9][4] = 5; //ITEM 4
         
         //Global function variables
     
@@ -1029,6 +1145,99 @@ updateInventory = function (game_state){
         
         game_state.usedItem.setText(usageText);
     
+    //Auto sort
+        for(var i=0; i<3; i++)
+            {
+            //Set slots to empty
+            if(game_state.items[3][i]==0){
+                
+                if(game_state.items[8][i]==1)
+                {game_state.items[0][0]=0;
+                }
+                else if(game_state.items[8][i]==2)
+                {game_state.items[0][1]=0;
+                }
+                else if(game_state.items[8][i]==3)
+                {game_state.items[0][2]=0;
+                }
+            }
+                //Set slots to full
+                else{
+
+                if(game_state.items[8][i]==1)
+                {game_state.items[0][0]=1;
+                }
+                else if(game_state.items[8][i]==2)
+                {game_state.items[0][1]=1;
+                }
+                else if(game_state.items[8][i]==3)
+                {game_state.items[0][2]=1;
+                }
+                }
+                
+                //Search for empty slot
+                if(game_state.items[0][i]==0){
+                    if(game_state.items[0][i+1]==1){
+                game_state.items[0][i] = 1; 
+                game_state.items[0][i+1] = 0;
+
+                if(i==0){
+                slotID = 1;
+                }
+                else if(i==1){
+                slotID = 2;
+                }
+                else if(i==2){
+                slotID = 3;
+                } for(var u=0; u<3; u++)
+                    {
+                        if(game_state.items[8][u]==slotID){
+                            ID = u;
+                        }
+                    }  
+                game_state.items[8][ID] = game_state.items[8][i+1];
+                game_state.items[8][i+1] = ID;
+                temp_slot_button = game_state.items[2][i+1].x;
+                temp_slot_number = game_state.items[4][i+1].x
+                game_state.items[2][i+1].x = game_state.items[2][ID].x;
+                game_state.items[4][i+1].x = game_state.items[4][ID].x;
+                game_state.items[2][ID].x = temp_slot_button;
+                game_state.items[4][ID].x = temp_slot_number;
+                    }
+
+                   else if(game_state.items[0][i+1]==0){
+                       game_state.items[0][i] = 1;
+                     game_state.items[0][i+1] = 0;   
+                game_state.items[0][i+2] = 0;
+
+                if(i==0){
+                slotID = 1;
+                }
+                else if(i==1){
+                slotID = 2;
+                }
+                else if(i==2){
+                slotID = 3;
+                } for(var u=0; u<3; u++)
+                    {
+                        if(game_state.items[8][u]==slotID){
+                            ID = u;
+                        }
+                    }  
+                game_state.items[8][ID] = 3;
+                game_state.items[8][3] = ID;
+                temp_slot_button = game_state.items[2][ID].x;
+                temp_slot_number = game_state.items[4][ID].x
+                game_state.items[2][i+2].x = game_state.items[2][ID].x;
+                game_state.items[4][i+2].x = game_state.items[4][ID].x;
+                game_state.items[2][ID].x = temp_slot_button;
+                game_state.items[4][ID].x = temp_slot_number;
+                    }
+                       
+                      
+            }
+            }
+    
               
           //Inventory toggle
       if(toggle_inventory.isDown){
@@ -1080,7 +1289,7 @@ updateInventory = function (game_state){
                }
             game_state.item_name.setText(game_state.item_name_text);
             game_state.item_description.setText(game_state.item_description_text);
-            for(var i=0; i<7; i++)
+            for(var i=0; i<5; i++)
                 {
                 //Remove item from inventory if quantity is 0
                 if(game_state.items[3][i]==0)
@@ -1088,6 +1297,11 @@ updateInventory = function (game_state){
                     game_state.items[2][i].visible = false;
                     game_state.items[4][i].visible = false;
                     }
+                else if(game_state.items[3][i]>0) {
+                    
+                    game_state.items[2][i].visible = true;
+                    game_state.items[4][i].visible = true;
+                }
                 };
         }
 };
@@ -1098,4 +1312,26 @@ wait = function(ms) {
     while (end < start + ms) {
         end = new Date().getTime();
     }
+};
+
+pickup = function (game_state){
+
+if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
+    
+   chest.frame = 1;
+pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
+      chest.active = false;
+ 
+    if(pickedItem==1)
+        {
+            breadQ = breadQ + 1;
+        }
+    else if(pickedItem == 2){
+        
+        wineQ = wineQ + 1;
+    }
+    else if(pickedItem == 3){
+        scrollQ = scrollQ +1;
+    }
 }
+};

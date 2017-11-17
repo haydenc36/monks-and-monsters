@@ -123,7 +123,7 @@
                 "group": "selfskills",
                 "stats": {
                     "health_power": 30,
-                    "req_mana": 30
+                    "req_mana": 20
                 }
             }
         },
@@ -134,7 +134,7 @@
                 "group": "attackskills",
                 "stats": {
                     "attack_mult": 1.25,
-                    "req_stam": 30
+                    "req_stam": 20
                 }
             }
         },
@@ -145,7 +145,7 @@
                 "group": "attackskills",
                 "stats": {
                     "attack_mult": 1.5,
-                    "req_mana": 30
+                    "req_mana": 20
                 }
             }
         },
@@ -155,7 +155,7 @@
             "properties": {
                 "group": "attackskills",
                 "stats": {
-                    "req_mana": 1000
+                    "req_mana": 0
                 }
             }
         }

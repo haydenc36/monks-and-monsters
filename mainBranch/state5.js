@@ -80,8 +80,21 @@ demo.state5.prototype = {
         furniture5b.setScale(3.5);
         stairs5.setScale(3.5);
         
+        createNPC(this,"Sicarius",{"x":225, "y":1550},"sicarius",{"x":0.5, "y":0.5});
+        if ((BattlesCompleted.indexOf("Demon Wolf") != -1) && (dialogueCheck.indexOf("Self Dialogue") == -1)) {
+            createNPC (this,"Parvos",{"x":105, "y": 500},"monk",{"x":-0.5, "y":0.5});
+            this.NPCs["Parvos"].spriteObj.visible = false;
+            this.NPCs["Parvos"].text.visible = false;
+        }
+        
         // Initialize the monk character
-        monk = game.add.sprite(1230, 150, 'monk');
+        if ((BattlesCompleted.indexOf("Demon Wolf") != -1) && (coordinate = 'battle')) {
+            monk = game.add.sprite(158, 450, 'monk');
+            coordinate = 'brothel';
+        }
+        else {
+            monk = game.add.sprite(1230, 150, 'monk');
+        }
         monk.scale.set(0.5);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -95,12 +108,11 @@ demo.state5.prototype = {
         
         //Camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
+        //game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
         
         createHUD(this);
         createInventory(this);
-        createNPC(this,"Sicarius",{"x":225, "y":1550},"sicarius",{"x":-0.65, "y":0.65});
-        //createNPC (this,"Self",{"x":225, "y":300},"monk",{"x":0.5, "y":0.5});
+        
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },
@@ -110,21 +122,21 @@ demo.state5.prototype = {
         game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk5, function(){console.log('noWalk5');});
         
-        cursorControl(0.5);
-        
-        // Update Dialogue list if met requirements (multiple sets of dialogue within one state)
-        if (!!this.currentNPC){
-            if ((this.currentNPC.name == "Self") && (dialogueCheck.indexOf("Sicarius To Basement") != -1)) {
-                dialogueList(this, this.currentNPC,"Self");
-                this.currentNPC.readDialogue = false;
+        if ((monk.x <= 160) && (monk.x >= 158) && (monk.y <= 480) && (monk.y >= 370)) {
+            console.log("Location for Battle");
+            if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Demon Wolf") == -1)) {
+                console.log("Went to battle");
+                game.state.start("BootState", true, false, "../assets/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
             }
         }
         
+        cursorControl(0.5);
+        
         updateHUD(this);
         updateInventory(this);
-        distTrigger(this,{"x":100,"y":-85},{"x":50,"y":35});
+        distTrigger(this,{"x":100,"y":-100},{"x":50,"y":150});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":100,"y":-85},{"x":50,"y":35});
+        NPCBoxVis(this,this.currentNPC,{"x":100,"y":-100},{"x":50,"y":150});
         
     }
     

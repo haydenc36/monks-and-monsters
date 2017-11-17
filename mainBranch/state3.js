@@ -79,8 +79,24 @@ demo.state3.prototype = {
         garden.setScale(1.875);
         roof3.setScale(1.875);
         
+        //Check for checkpoint before Silva Appears
+	    if (dialogueCheck.indexOf("Oceanus After Battle") != -1){
+            createNPC(this,"Silva",{"x":700, "y":700},"silva",{"x":-0.50, "y":0.50});
+        }
+        else {
+            createNPC(this,"Seth",{"x":700, "y":700},"seth",{"x":-0.40, "y":0.40});
+            
+        }
+        
         // Initialize the monk character
-        monk = game.add.sprite(1175, 2300, 'monk');
+        if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate = 'battle')) {
+            //Somewhere in front of Silva
+            monk = game.add.sprite(594, 647, 'monk');
+            coordinate = 'monastery';
+        }
+        else {
+            monk = game.add.sprite(1175, 2300, 'monk');
+        }
         monk.scale.set(0.35);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -94,27 +110,21 @@ demo.state3.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
+        //game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
         
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         
         createHUD(this);
         createInventory(this);
         
-        //Check for checkpoint before Silva Appears
-	    if (dialogueCheck.indexOf("") != -1){
-            createNPC(this,"Silva",{"x":700, "y":700},"silva",{"x":0.3, "y":0.3});
-        }
-        else {
-            createNPC(this,"Seth",{"x":700, "y":700},"seth",{"x":-0.35, "y":0.35});
-            
-        }
-        
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },
     
     update: function(){
+        if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) {
+            game.state.start("BootState", true, false, "../assets/SilvaBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
+        }
         game.physics.arcade.collide(monk, trigger3, function(){console.log('Main Village'); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk3, function(){console.log('noWalk3');});
         
@@ -122,8 +132,12 @@ demo.state3.prototype = {
         
         updateHUD(this);
         updateInventory(this);
-        distTrigger(this,{"x":-150,"y":-85},{"x":50,"y":35});
+        distTrigger(this,{"x":-150,"y":-50},{"x":50,"y":100});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":-150,"y":-85},{"x":50,"y":35});
+        NPCBoxVis(this,this.currentNPC,{"x":-150,"y":-50},{"x":50,"y":100});
+    },
+    render: function () {
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(monk, 32, 500);
     }
 };
