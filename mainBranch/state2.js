@@ -131,6 +131,7 @@ demo.state2.prototype = {
     },
     
     update: function(){
+        intro.stop();
         
         tutorial = true;
         

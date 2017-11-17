@@ -1,14 +1,21 @@
 // Main Menu
 var demo = demo || {};
 var coordinate = 'start';
+var intro;
 
 demo.state0 = function(){};
 demo.state0.prototype = {
     preload: function(){
         this.load.image('Barcelona','../assets/backgrounds/Barcelona.png');
         this.load.image('button','../assets/sprites/scroll_menu.png');
+        game.load.audio('intro', '../assets/audio/intro.mp3');
+        
     },
     create:function(){
+        intro = game.add.audio('intro');
+        intro.play();
+        intro.loopFull(0.6); 
+        
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         var bg = game.add.sprite(0,-100,'Barcelona');
@@ -27,21 +34,12 @@ demo.state0.prototype = {
         title.shadowBlur = 5;
         
         this.createButton(40, "Play", 600, 375, 400, 200, function(){
-            //this.state.start("intro", true, false, [100,100,100,100,100,100], [1,1]);
             this.state.start("state2", true, false, [100,100,100,100,100,100], [1,1]);
         });
         
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
             this.state.start("state6");
         });
-        /*
-        this.createButton(25, "Settings", 600, 600, 300, 100, function(){
-            //this.state.start("state1");
-        });*/
-    },
-    
-    update: function(){
-        
     },
     
     createButton:function(s, string, x, y, w, h, callback){
