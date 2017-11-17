@@ -44,9 +44,22 @@ demo.state2.prototype = {
         
         //load chest
         game.load.spritesheet('chest', '../assets/sprites/chest.png',32,32);
+        
+        // Load Audio Files
+        game.load.audio('timpani', '../assets/audio/timpani.wav');
+        game.load.audio('medievalMusic', '../assets/audio/medieval.m4a');
     },
     
     create:function(){
+        
+        // Opening Timpani Sound
+        timpani = game.add.audio('timpani');
+        timpani.play();
+        
+        // Begin background music
+        medievalMusic = game.add.audio('medievalMusic');
+        medievalMusic.play();
+        medievalMusic.loopFull(0.6); 
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);

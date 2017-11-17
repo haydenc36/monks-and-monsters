@@ -1,5 +1,11 @@
 var demo = demo || {};
 
+// Tutorial Battle
+game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
+var battleSong = game.add.audio('battleSong');
+battleSong.play();
+battleSong.loopFull(0.6); 
+
 demo.BattleState = function () {
     "use strict";
     Phaser.State.call(this);
