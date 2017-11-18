@@ -14,6 +14,10 @@ demo.SwordScroll.prototype.constructor = demo.SwordScroll;
 demo.SwordScroll.prototype.hit = function (target) {
     "use strict";
     var damage, attack_multiplier, defense_multiplier, action_message_position, action_message_text, attack_message;
+    
+    // Sword Audio
+    sword.play();
+    
     // the attack multiplier for Sword attacks is higher
     attack_multiplier = this.game_state.game.rnd.realInRange(0.9, 1.3);
     defense_multiplier = this.game_state.game.rnd.realInRange(0.8, 1.2);

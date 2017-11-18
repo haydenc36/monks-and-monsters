@@ -13,6 +13,10 @@ demo.Miracle.prototype.constructor = demo.Miracle;
  
 demo.Miracle.prototype.hit = function (target) {
     "use strict";
+    
+    // Thunder Audio
+    thunder.play();
+    
     var damage, attack_multiplier, defense_multiplier, action_message_position, action_message_text, attack_message;
     // the attack multiplier for Sword attacks is higher
     attack_multiplier = this.game_state.game.rnd.realInRange(0.9, 1.3);

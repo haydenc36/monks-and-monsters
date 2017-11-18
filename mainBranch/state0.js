@@ -3,7 +3,7 @@ var demo = demo || {};
 var coordinate = 'start';
 
 // Initialize audio variables
-var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside;
+var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom;
 
 // Global variables to control audio
 var audioCoordinate;
@@ -16,7 +16,7 @@ demo.state0.prototype = {
         
         // Load Audio Files
         game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
-        game.load.audio('chew', '../assets/audio/chew.mp3');
+        game.load.audio('chew', '../assets/audio/chew.m4a');
         game.load.audio('death', '../assets/audio/death.wav');
         game.load.audio('demon', '../assets/audio/demon.mp3');
         game.load.audio('intro', '../assets/audio/intro.mp3');
@@ -28,6 +28,7 @@ demo.state0.prototype = {
         game.load.audio('roosterSound', '../assets/audio/roosterSound.wav');
         game.load.audio('footsteps_outside', '../assets/audio/footsteps_outside.wav');
         game.load.audio('footsteps_inside', '../assets/audio/footsteps_inside.m4a');
+        game.load.audio('sonicBoom', '../assets/audio/sonicBoom.wav');
         
     },
     create:function(){
@@ -46,9 +47,7 @@ demo.state0.prototype = {
         roosterSound = game.add.audio('roosterSound');
         footsteps_inside = game.add.audio('footsteps_inside');
         footsteps_outside = game.add.audio('footsteps_outside');
-        
-        
-        footsteps_inside.volume = 1 * 10;
+        sonicBoom = game.add.audio('sonicBoom');
         
         
         // Play the intro music

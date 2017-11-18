@@ -11,6 +11,7 @@ demo.AngelOfDeath.prototype.constructor = demo.AngelOfDeath;
  
 demo.AngelOfDeath.prototype.hit = function (target) {
     "use strict";
+    sonicBoom.play();
     var damage, action_message_position, action_message_text, attack_message;
     //damage using the Angel of Death attack
     damage = target.stats.health / 2;
