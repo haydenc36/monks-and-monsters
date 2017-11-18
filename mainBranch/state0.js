@@ -3,10 +3,11 @@ var demo = demo || {};
 var coordinate = 'start';
 
 // Initialize audio variables
-var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom;
+var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound;
 
 // Global variables to control audio
 var audioCoordinate;
+var battleAudio;
 
 demo.state0 = function(){};
 demo.state0.prototype = {
@@ -18,7 +19,6 @@ demo.state0.prototype = {
         game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
         game.load.audio('chew', '../assets/audio/chew.m4a');
         game.load.audio('death', '../assets/audio/death.wav');
-        game.load.audio('demon', '../assets/audio/demon.mp3');
         game.load.audio('intro', '../assets/audio/intro.mp3');
         game.load.audio('medievalMusic', '../assets/audio/medieval.m4a');
         game.load.audio('sword', '../assets/audio/sword.wav');
@@ -29,6 +29,9 @@ demo.state0.prototype = {
         game.load.audio('footsteps_outside', '../assets/audio/footsteps_outside.wav');
         game.load.audio('footsteps_inside', '../assets/audio/footsteps_inside.m4a');
         game.load.audio('sonicBoom', '../assets/audio/sonicBoom.wav');
+        game.load.audio('thunder', '../assets/audio/thunder.wav');
+        game.load.audio('sparkle', '../assets/audio/sparkle.wav');
+        game.load.audio('wineSound', '../assets/audio/wineSound.m4a');
         
     },
     create:function(){
@@ -37,7 +40,6 @@ demo.state0.prototype = {
         battleSong = game.add.audio('battleSong');
         chew = game.add.audio('chew');
         death = game.add.audio('death');
-        demon = game.add.audio('demon');
         intro = game.add.audio('intro');
         medievalMusic = game.add.audio('medievalMusic');
         sword = game.add.audio('sword');
@@ -48,6 +50,9 @@ demo.state0.prototype = {
         footsteps_inside = game.add.audio('footsteps_inside');
         footsteps_outside = game.add.audio('footsteps_outside');
         sonicBoom = game.add.audio('sonicBoom');
+        thunder = game.add.audio('thunder');
+        sparkle = game.add.audio('sparkle');
+        wineSound = game.add.audio('wineSound');
         
         
         // Play the intro music

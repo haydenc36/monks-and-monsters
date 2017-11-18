@@ -13,6 +13,10 @@ demo.Heal.prototype.constructor = demo.Heal;
  
 demo.Heal.prototype.use = function () {
     "use strict";
+    
+    //Heal Audio
+    sparkle.play();
+    
     if (this.game_state.prefabs.Monk.stats.health + this.health_power > this.game_state.prefabs.Monk.stats.maxHP) {
         this.game_state.prefabs.Monk.stats.health = this.game_state.prefabs.Monk.stats.maxHP;
     }

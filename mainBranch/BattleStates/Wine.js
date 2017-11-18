@@ -11,6 +11,10 @@ demo.Wine.prototype.constructor = demo.Wine;
  
 demo.Wine.prototype.use = function () {
     "use strict";
+    
+    // Wine Audio
+    wineSound.play();
+    
     if (this.game_state.prefabs[this.name].stats.quantity > 0){
         demo.Item.prototype.use.call(this);
         if (this.game_state.prefabs.Monk.stats.mana + this.mana_power > this.game_state.prefabs.Monk.stats.maxMP) {

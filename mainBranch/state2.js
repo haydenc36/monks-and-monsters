@@ -99,7 +99,7 @@ demo.state2.prototype = {
         createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
         
         // Initialize the monk character
-        monk = game.add.sprite(100, 1450, 'monk');
+        monk = game.add.sprite(170, 1450, 'monk');
         monk.scale.set(0.6);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -147,7 +147,7 @@ demo.state2.prototype = {
         tutorial = true;
         
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
-            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); deactivateSounds(); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});
+            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); battleAudio = "tutorial"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});
             
             // Play the door sound
             //doorSound.play();

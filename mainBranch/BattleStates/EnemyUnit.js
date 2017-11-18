@@ -14,6 +14,39 @@ demo.EnemyUnit.prototype.constructor = demo.EnemyUnit;
 
 demo.EnemyUnit.prototype.act = function () {
     "use strict";
+    
+    // Enemy Audio
+    if (battleAudio == "archdemon")
+    {
+        death.play();
+    }
+    
+    else if (battleAudio == "oceanus")
+    {
+        sword.play();
+    }
+    
+    else if (battleAudio == "heresyMonster")
+    {
+        death.play();
+    }
+    
+    else if (battleAudio == "silva")
+    {
+        sword.play();
+    }
+    
+    else if (battleAudio == "serpent")
+    {
+        // Serpent Audio
+    }
+    
+    else if (battleAudio == "tutorial")
+    {
+        sword.play();
+    }
+    
+    
     var target_index, target, damage;
     // randomly choose target
     target_index = this.game_state.rnd.between(0, this.game_state.groups.players.countLiving() - 1);
