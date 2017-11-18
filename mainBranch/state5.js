@@ -115,23 +115,27 @@ demo.state5.prototype = {
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
+        
+        
+        // Audio Variable
+        audioCoordinate = "inside";
     },
     
     update: function(){
         
-        game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); game.state.start('state1');});
+        game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk5, function(){console.log('noWalk5');});
         
         if ((monk.x <= 160) && (monk.x >= 158) && (monk.y <= 480) && (monk.y >= 370)) {
             console.log("Location for Battle");
             if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Serpent") == -1)) {
                 console.log("Went to battle");
+                deactivateSounds();
                 game.state.start("BootState", true, false, "../assets/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
             }
         }
         
         cursorControl(0.5);
-        
         updateHUD(this);
         updateInventory(this);
         distTrigger(this,{"x":100,"y":-100},{"x":50,"y":150});

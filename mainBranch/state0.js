@@ -5,6 +5,9 @@ var coordinate = 'start';
 // Initialize audio variables
 var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walk, roosterSound, footsteps_outside, footsteps_inside;
 
+// Global variables to control audio
+var audioCoordinate;
+
 demo.state0 = function(){};
 demo.state0.prototype = {
     preload: function(){
@@ -28,9 +31,14 @@ demo.state0.prototype = {
         
     },
     create:function(){
+        
+        // Initialize Audio Samples
         intro = game.add.audio('intro');
         intro.play();
-        intro.loopFull(0.6); 
+        intro.loopFull(0.6);
+        
+        footsteps_inside = game.add.audio('footsteps_inside');
+        footsteps_outside = game.add.audio('footsteps_outside');
         
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         

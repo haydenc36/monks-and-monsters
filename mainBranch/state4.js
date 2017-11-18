@@ -91,11 +91,16 @@ demo.state4.prototype = {
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
+        
+        
+        // Audio Variable
+        audioCoordinate = "inside";
+    
     },
     
     update: function(){
         
-        game.physics.arcade.collide(monk, trigger4, function(){console.log('Main Village'); game.state.start('state1');});
+        game.physics.arcade.collide(monk, trigger4, function(){console.log('Main Village'); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
         
         if ((dialogueCheck.indexOf("Oceanus Before Battle") != -1)  && (BattlesCompleted.indexOf("Oceanus") == -1)) {

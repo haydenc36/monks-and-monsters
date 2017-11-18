@@ -123,6 +123,8 @@ demo.state1.prototype = {
                 monk = game.add.sprite(2012, 500, 'monk');
             }
         
+        
+        // Controlling physics and animations
         monk.scale.set(0.3);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -145,6 +147,12 @@ demo.state1.prototype = {
         game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
+        
+        // Audio Variable
+        audioCoordinate = "outside";
+        
+        
+        // HUD and Inventory
         createHUD(this);
         createInventory(this);
     },
@@ -159,10 +167,10 @@ demo.state1.prototype = {
         
         
         // Transitioning between maps
-        game.physics.arcade.collide(monk, trigger1a, function(){doorSound.play(); game.state.start('state4');});
-        game.physics.arcade.collide(monk, trigger1b, function(){doorSound.play(); game.state.start('state5');});
-        game.physics.arcade.collide(monk, trigger1c, function(){doorSound.play(); game.state.start('state3');});
-        game.physics.arcade.collide(monk, trigger1d, function(){roosterSound.play(); game.state.start('state7');});
+        game.physics.arcade.collide(monk, trigger1a, function(){doorSound.play(); deactivateSounds(); game.state.start('state4');});
+        game.physics.arcade.collide(monk, trigger1b, function(){doorSound.play(); deactivateSounds(); game.state.start('state5');});
+        game.physics.arcade.collide(monk, trigger1c, function(){doorSound.play(); deactivateSounds(); game.state.start('state3');});
+        game.physics.arcade.collide(monk, trigger1d, function(){roosterSound.play(); deactivateSounds(); game.state.start('state7');});
         
         /*if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") != -1) && (makeTyphon)) {
             this.NPCs["Seth"].spriteObj.destroy();
@@ -182,3 +190,13 @@ demo.state1.prototype = {
         game.debug.spriteCoords(monk, 32, 500);
     }
 };
+
+function deactivateSounds()
+{
+    monk.frame = 0;
+    monk.body.velocity.x = 0;
+    monk.body.velocity.y = 0;
+    footsteps_inside.stop();
+    footsteps_outside.stop();
+    avoidInfinite = 1;
+}

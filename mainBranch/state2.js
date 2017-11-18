@@ -54,10 +54,12 @@ demo.state2.prototype = {
         timpani = game.add.audio('timpani');
         timpani.play();
         
+        
         // Background Music
         medievalMusic = game.add.audio('medievalMusic');
         medievalMusic.play();
         medievalMusic.loopFull(0.6); 
+        
         
         // Door Audio
         doorSound = game.add.audio('doorSound');
@@ -66,13 +68,15 @@ demo.state2.prototype = {
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-                
+        
+        
         //Adjust the camera settings
         bounds_x = 1320; //important to avoid textbox overlapping with world borders
         bounds_y = 1760;
         game.world.setBounds(0,0, bounds_x, bounds_y);
         //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        
         
         // Initialize the tilemap and tilesets
         var map = game.add.tilemap('england_parvos');
@@ -144,15 +148,17 @@ demo.state2.prototype = {
         chest.frame = 0;
         chest.active = true;
         
+        
+        // Audio Variable
+        audioCoordinate = "inside";
     },
     
     update: function(){
         intro.stop();
-        
         tutorial = true;
         
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
-            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});
+            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); deactivateSounds(); game.state.start("BootState", true, false, "../assets/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});
             
             // Play the door sound
             //doorSound.play();

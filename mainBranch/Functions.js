@@ -22,8 +22,28 @@ changeStatsInvent = function (charStats, invent) {
 };
 
 // Controls
+// avoidInfinite allows the walking variable to active once, at the beginning of a walk
+var avoidInfinite = 0;
 cursorControl = function (scale) {
     if (cursors.up.isDown || cursors.down.isDown || cursors.left.isDown || cursors.right.isDown || a.isDown || d.isDown || w.isDown || s.isDown) {
+        
+        // This nest controls walking sounds
+        if (avoidInfinite == 0)
+        {
+            if (audioCoordinate == "inside")
+            {
+                footsteps_inside.play();
+                footsteps_inside.loopFull(0.6);
+            }
+
+            else if (audioCoordinate == "outside")
+            {
+                footsteps_outside.play();
+                footsteps_outside.loopFull(0.6);
+            }
+            avoidInfinite += 1;
+        }
+        
         if (cursors.up.isDown || w.isDown){
             monk.body.velocity.y = -vel;
             if (cursors.left.isDown || a.isDown || cursors.right.isDown || d.isDown) {
@@ -63,6 +83,9 @@ cursorControl = function (scale) {
         monk.frame = 0;
         monk.body.velocity.x = 0;
         monk.body.velocity.y = 0;
+        footsteps_inside.stop();
+        footsteps_outside.stop();
+        avoidInfinite = 0;
     }
 };
 

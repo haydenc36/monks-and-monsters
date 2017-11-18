@@ -119,13 +119,20 @@ demo.state3.prototype = {
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
+        
+        
+        // Audio Variable
+        audioCoordinate = "inside";
     },
     
     update: function(){
-        if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) {
+        if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) 
+        {
             game.state.start("BootState", true, false, "../assets/SilvaBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
+            
+            deactivateSounds();
         }
-        game.physics.arcade.collide(monk, trigger3, function(){console.log('Main Village'); game.state.start('state1');});
+        game.physics.arcade.collide(monk, trigger3, function(){console.log('Main Village'); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk3, function(){console.log('noWalk3');});
         
         cursorControl(0.35);
