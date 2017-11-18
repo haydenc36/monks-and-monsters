@@ -1,5 +1,4 @@
 var demo = demo || {};
-var battleSong;
 
 // Tutorial Battle 
 demo.BattleState = function () {
@@ -51,8 +50,8 @@ demo.BattleState.prototype.create = function () {
     "use strict";
     var group_name, prefab_name, player_unit_name, enemy_unit_name;
     
+    // Audio Controls
     medievalMusic.stop();
-    battleSong = game.add.audio('battleSong');
     battleSong.play();
     battleSong.loopFull(0.6);
     

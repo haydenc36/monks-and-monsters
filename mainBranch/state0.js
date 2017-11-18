@@ -3,7 +3,7 @@ var demo = demo || {};
 var coordinate = 'start';
 
 // Initialize audio variables
-var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walk, roosterSound, footsteps_outside, footsteps_inside;
+var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside;
 
 // Global variables to control audio
 var audioCoordinate;
@@ -23,28 +23,49 @@ demo.state0.prototype = {
         game.load.audio('medievalMusic', '../assets/audio/medieval.m4a');
         game.load.audio('sword', '../assets/audio/sword.wav');
         game.load.audio('timpani', '../assets/audio/timpani.wav');
-        game.load.audio('walk', '../assets/audio/walk.wav');
+        game.load.audio('walkAudio', '../assets/audio/walk.wav');
         game.load.audio('doorSound', '../assets/audio/doorSound.wav');
         game.load.audio('roosterSound', '../assets/audio/roosterSound.wav');
         game.load.audio('footsteps_outside', '../assets/audio/footsteps_outside.wav');
-        game.load.audio('footsteps_inside', '../assets/audio/footsteps_inside.wav');
+        game.load.audio('footsteps_inside', '../assets/audio/footsteps_inside.m4a');
         
     },
     create:function(){
         
         // Initialize Audio Samples
+        battleSong = game.add.audio('battleSong');
+        chew = game.add.audio('chew');
+        death = game.add.audio('death');
+        demon = game.add.audio('demon');
         intro = game.add.audio('intro');
-        intro.play();
-        intro.loopFull(0.6);
-        
+        medievalMusic = game.add.audio('medievalMusic');
+        sword = game.add.audio('sword');
+        timpani = game.add.audio('timpani');
+        walkAudio = game.add.audio('walkAudio');
+        doorSound = game.add.audio('doorSound');
+        roosterSound = game.add.audio('roosterSound');
         footsteps_inside = game.add.audio('footsteps_inside');
         footsteps_outside = game.add.audio('footsteps_outside');
         
+        
+        footsteps_inside.volume = 1 * 10;
+        
+        
+        // Play the intro music
+        intro.play();
+        intro.loopFull(0.6);
+        
+        
+        // Scale the Map
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
+        
+        // Set the background
         var bg = game.add.sprite(0,-100,'Barcelona');
         bg.scale.set(0.45);
         
+        
+        // Create the main title
         var title = game.add.text(600, 200, "Monks & Monsters");
         title.anchor.set(0.5,0.5);
         title.align = 'center';
@@ -57,11 +78,15 @@ demo.state0.prototype = {
         title.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
         title.shadowBlur = 5;
         
+        
+        // Create the Play button
         this.createButton(40, "Play", 600, 375, 400, 200, function(){
             this.state.start("state2", true, false, [100,100,100,100,100,100], [1,1]);
             //this.state.start("BootState", true, false, "../assets/BrothelBattle.JSON", "BattleState", [100,100,100,100,100,100], [1,1], {},tutorial);
         });
         
+        
+        // Instructions Button
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
             this.state.start("state6");
         });

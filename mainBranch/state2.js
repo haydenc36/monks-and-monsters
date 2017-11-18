@@ -50,20 +50,9 @@ demo.state2.prototype = {
     create:function(){
         
         // AUDIO
-        // Timpani Sound
-        timpani = game.add.audio('timpani');
         timpani.play();
-        
-        
-        // Background Music
-        medievalMusic = game.add.audio('medievalMusic');
         medievalMusic.play();
-        medievalMusic.loopFull(0.6); 
-        
-        
-        // Door Audio
-        doorSound = game.add.audio('doorSound');
-        roosterSound = game.add.audio('roosterSound');
+        medievalMusic.loopFull(0.6);         
         
         
         // Initialize Physics
