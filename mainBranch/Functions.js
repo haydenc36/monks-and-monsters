@@ -338,11 +338,8 @@ updateDialogue = function (game_state, NPC) {
     if ((game_state.NPCBoxActive == 1) && (game_state.NPCBoxTextPosition <= Object.keys(NPC.dialogue).length)) {
         if (game_state.nextTextNPCBox < game_state.time.now) {
             if (game_state.NPCBoxTextPosition >= Object.keys(NPC.dialogue).length) {
-                if (!NPC.readDialogue) {
-                    if ((NPC.checkpointID != "Default")  && (dialogueCheck.indexOf(NPC.checkpointID) == -1)){
-                        dialogueCheck.push(NPC.checkpointID);
-                    }
-                    NPC.readDialogue = true;
+                if ((NPC.checkpointID != "Default")  && (dialogueCheck.indexOf(NPC.checkpointID) == -1)){
+                    dialogueCheck.push(NPC.checkpointID);
                     console.log(dialogueCheck);
                 }
                 

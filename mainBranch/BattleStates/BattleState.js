@@ -384,6 +384,22 @@ demo.BattleState.prototype.game_over = function () {
     
     this.game.world.removeAll();
     
+    // End the battle music; resume navigation music
+    battleSong.stop();
+    medievalMusic.play();
+    medievalMusic.loopFull(0.6); 
+    
+    if (!!this.level_data.extraInfo.removeDialogue) {
+        
+        for (var i = 0, len = this.level_data.extraInfo.removeDialogue.length; i < len; i++) {
+            index = dialogueCheck.indexOf(this.level_data.extraInfo.removeDialogue[i]);
+            if (index != -1){
+                dialogueCheck.splice(index, 1);
+                console.log(dialogueCheck);
+            }
+        }
+    }
+    
     this.game.state.start(this.level_data.extraInfo.prevState, true, false, [this.prefabs.Monk.stats.health + 10, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP], [this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
 };
 

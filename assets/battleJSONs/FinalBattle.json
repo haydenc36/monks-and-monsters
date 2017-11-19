@@ -163,6 +163,7 @@
     "extraInfo": {
         "prevState": "state1",
         "nextState": "state1",
+        "removeDialogue": ["Seth is Typhon","Typhon Mastermind"],
         "HPIncrease": 0,
         "MPIncrease": 0,
         "SPIncrease": 0

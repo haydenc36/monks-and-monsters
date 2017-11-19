@@ -104,7 +104,7 @@ demo.state4.prototype = {
         game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
         
         if ((dialogueCheck.indexOf("Oceanus Before Battle") != -1)  && (BattlesCompleted.indexOf("Oceanus") == -1)) {
-            game.state.start("BootState", true, false, "../assets/OceanusBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
+            game.state.start("BootState", true, false, "../assets/battleJSONs/OceanusBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
         }
         
         cursorControl(0.6);
