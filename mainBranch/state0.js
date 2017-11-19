@@ -5,6 +5,8 @@ var coordinate = 'start';
 // Initialize audio variables
 var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound;
 
+var introCounter = 0;
+
 // Global variables to control audio
 var audioCoordinate;
 var battleAudio;
@@ -56,10 +58,12 @@ demo.state0.prototype = {
         
         
         // Play the intro music
-        intro.play();
-        intro.loopFull(0.6);
-        
-        
+        if (introCounter == 0)
+        {
+            intro.play();
+            intro.loopFull(0.6);
+        }
+                
         // Scale the Map
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
