@@ -62,6 +62,8 @@ demo.state0.prototype = {
         {
             intro.play();
             intro.loopFull(0.6);
+            introCounter += 1;
+            console.log("Again");
         }
                 
         // Scale the Map

@@ -10,7 +10,7 @@ demo.intro.prototype = {
 preload: function(){
     game.load.spritesheet('fade', '../assets/sprites/rectangle.png');
     game.load.spritesheet('paper', '../assets/boxes/paper-dialog.png');
-    game.load.audio('introsound', '../assets/audio/intro.mp3');
+    //game.load.audio('introsound', '../assets/audio/intro.mp3');
 },
 create: function(){
        bounds_x=1320;
@@ -40,9 +40,9 @@ create: function(){
     
     //Add music
     
-    this.music = game.add.audio('introsound');
-    this.music.play();
-    this.music.volume = 1.1;
+//    this.music = game.add.audio('introsound');
+//    this.music.play();
+//    this.music.volume = 1.1;
 },
 update : function(){
 
@@ -50,9 +50,11 @@ update : function(){
         {
             this.fade.alpha = this.fade.alpha + 0.012;
             console.log(this.fade.alpha);
-            if(this.fade.alpha>=1){
-            this.music.stop();
-           game.state.start("state2"); 
+            if(this.fade.alpha>=1)
+            {
+                intro.stop();
+                game.state.start("state2"); 
+            
             }
         }
 else{
