@@ -135,7 +135,7 @@ demo.state3.prototype = {
             
             deactivateSounds();
         }
-        game.physics.arcade.collide(monk, trigger3, function(){console.log('Main Village'); deactivateSounds(); game.state.start('state1');});
+        game.physics.arcade.collide(monk, trigger3, function(){console.log('Main Village'); doorSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk3, function(){console.log('noWalk3');});
         
         cursorControl(0.35);

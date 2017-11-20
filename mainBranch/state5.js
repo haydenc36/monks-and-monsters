@@ -127,7 +127,7 @@ demo.state5.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); deactivateSounds(); game.state.start('state1');});
+        game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); doorSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk5, function(){console.log('noWalk5');});
         
         if ((monk.x <= 160) && (monk.x >= 158) && (monk.y <= 480) && (monk.y >= 370)) {

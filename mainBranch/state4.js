@@ -104,7 +104,7 @@ demo.state4.prototype = {
     
     update: function(){
         
-        game.physics.arcade.collide(monk, trigger4, function(){console.log('Main Village'); deactivateSounds(); game.state.start('state1');});
+        game.physics.arcade.collide(monk, trigger4, function(){console.log('Main Village'); doorSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
         
         if ((dialogueCheck.indexOf("Oceanus Before Battle") != -1)  && (BattlesCompleted.indexOf("Oceanus") == -1)) {
