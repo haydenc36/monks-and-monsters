@@ -72,6 +72,15 @@ demo.state7.prototype = {
         // Adjust the camera
         game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
+         chest = game.add.sprite(600, 200, 'chest');
+        chest_state7 = true;
+        chest.active = true;
+        
+        createNPC(this,"",{"x":100, "y":450},"",{"x":0.3, "y":0.3});
+        createHUD(this);
+        createInventory(this);
+        createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
+        initInfoBox(this);
         
         createHUD(this);
         createInventory(this);
@@ -90,13 +99,18 @@ demo.state7.prototype = {
         
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7'); deactivateSounds;});
-        
-        game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); battleAudio = "heresyMonster"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,characterMaxEnergy,characterMaxMana,characterMaxStamina], [wineQ, breadQ]);});
+        if(keyQ==1){
+         game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); battleAudio = "heresyMonster"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);});
+        }
+        else{
+        game.physics.arcade.collide(monk, trigger7b, function(){console.log('NoKey');distTrigger(this,{"x":0,"y":0},{"x":100,"y":300});updateDialogue(this,this.currentNPC);NPCBoxVis(this,this.currentNPC,{"x":0,"y":0},{"x":100,"y":300});});
+        }
         
         cursorControl(0.2);
         updateHUD(this);
         updateInventory(this);
         updateHintBtn();
         AllHintUpdate(this);
+          pickup(this);
     }
 };

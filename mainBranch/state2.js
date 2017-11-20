@@ -61,6 +61,7 @@ demo.state2.prototype = {
         game.load.spritesheet('bread', '../assets/sprites/bread.png');
         game.load.spritesheet('wine', '../assets/sprites/wine.png');
         game.load.spritesheet('scroll', '../assets/sprites/scroll_menu.png');
+        game.load.spritesheet('key', '../assets/sprites/key.png');
         
         //load chest
         game.load.spritesheet('chest', '../assets/sprites/chest.png',32,32);
@@ -162,15 +163,21 @@ demo.state2.prototype = {
         chest.scale.set(2);
         chest.frame = 0;
         chest.active = true;
+         chest_state7 = false;
         chest.alpha = 0;
-        
+          
         
         // Audio Variable
         audioCoordinate = "inside";
+
     },
     
     update: function(){
         intro.stop();
+                 
+        //Skipping to state 7 to test key
+        //game.state.start("state7");
+        
         tutorial = true;
     
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {

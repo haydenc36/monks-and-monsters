@@ -12,6 +12,7 @@ changeStatsInvent = function (charStats, invent) {
     if (!!invent) {
         wineQ = invent[0];
         breadQ = invent[1];
+        keyQ = 0;
         if (!!invent[2]) {
             scrollQ = invent[2];
         }
@@ -893,6 +894,15 @@ dialogueList = function (game_state, NPC, npcName) {
             }
         }
     }
+    else if (game_state.key == "state7") {
+            NPC.checkpointID = "Self Dialogue";
+            NPC.dialogue = {
+                "0": {
+                    "npcDialogue": "The cave is locked!",
+                }
+
+                }
+     }
 };
 
 createInventory = function (game_state){
@@ -954,17 +964,17 @@ createInventory = function (game_state){
                         
         //Item traits for inventory stored in array
         game_state.items = new Array();
-        // Slot empty/full (0/1)
+        //Slot empty/full (0/1)
 	   game_state.items[0] = new Array(); //not used yet (for auto-sort)
-	   // Item name
+	   //Item name
 	   game_state.items[1] = new Array();
-	   // Item image
+	   //Item image
 	   game_state.items[2] = new Array();
-	   // Quantity of items
+	   //Quantity of items
 	   game_state.items[3] = new Array();
         //Text for numbers
         game_state.items[4] = new Array();
-	   // Description
+	   //Description
 	   game_state.items[5] = new Array(); 	   
        //Slot X
         game_state.items[6] = new Array();
@@ -1042,28 +1052,28 @@ createInventory = function (game_state){
         game_state.items[8][2] = 3; //slot 3 (inital)
         game_state.items[9][2] = 3; //ITEM 3
 
-        // Empty item
-          //Item 4
-        game_state.items[1][3] ="";
-        game_state.items[2][3] = game_state.add.button(game_state.items[6][3]-20, game_state.items[7][3]-20,  '');
+        
+        //Item 4
+        game_state.items[1][3] ="Key";
+        game_state.items[2][3] = game_state.add.button(game_state.items[6][3]-30, game_state.items[7][3]-30,  'key');
         game_state.items[2][3].alpha = 0.5;
-        game_state.items[2][3].scale.set(0.1);
-        game_state.items[2][3].onInputOver.add(over_scroll, this);
+        game_state.items[2][3].scale.set(0.25);
+        game_state.items[2][3].onInputOver.add(over_key, this);
         game_state.items[2][3].onInputOut.add(out, this);
         game_state.inventory_base.addChild(game_state.items[2][3]);
-        game_state.items[3][3] = 0;
+        game_state.items[3][3] = keyQ;
         game_state.items[4][3] = game_state.add.text(game_state.items[6][3]+20, game_state.items[7][3]+20, game_state.items[3][3], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][3]);
-        game_state.items[5][3] = "";
+        game_state.items[5][3] = "Opens the cave for the Boss Battle";
         game_state.items[8][3] = 4;
         game_state.items[9][3] = 4;
         
-        // Empty item
-          //Item 5
+        //Empty item
+        //Item 5
         game_state.items[1][4] ="";
         game_state.items[2][4] = game_state.add.button(game_state.items[6][4]-20, game_state.items[7][4]-20,  '');
         game_state.items[2][4].alpha = 0.5;
-        game_state.items[2][4].scale.set(0.1);
+        game_state.items[2][4].scale.set(0.5);
         game_state.items[2][4].onInputOver.add(over_scroll, this);
         game_state.items[2][4].onInputOut.add(out, this);
         game_state.inventory_base.addChild(game_state.items[2][4]);
@@ -1078,7 +1088,8 @@ createInventory = function (game_state){
     
         hover_bread = false;
         hover_wine = false;
-        hover_scroll = false;            
+        hover_scroll = false; 
+        hover_key = false;
 	  
 }
 //Hover functions to highlight selected item
@@ -1092,14 +1103,22 @@ function over_wine() {
 function over_scroll() {
     hover_scroll = true;
 }
+function over_key(){
+    hover_key = true;
+}
 function out(){
     hover_bread = false;
     hover_wine = false;
     hover_scroll = false;
+    hover_key = false;
 }
 
 //Functions for item use
 function useBread(){
+    hover_bread = false;
+    hover_wine = false;
+    hover_scroll = false;
+    hover_key = false;
     if(characterEnergy < charMaxEnergy){
         breadQ = breadQ - 1;
         temp_Restore = charMaxEnergy / 2;
@@ -1107,7 +1126,7 @@ function useBread(){
             characterEnergy = charMaxEnergy;
         }
         else{
-            characterEnergy = characterEnergy + temp_Restore; // check how much is left to fill
+            characterEnergy = characterEnergy + temp_Restore; //Check how much is left to fill
         }
     }
     else{
@@ -1117,6 +1136,10 @@ function useBread(){
     }    
 }
 function useWine(){
+    hover_bread = false;
+    hover_wine = false;
+    hover_scroll = false;
+    hover_key = false;
     if(characterMana < charMaxMana){
         wineQ = wineQ - 1;
         temp_Restore = charMaxMana / 2;
@@ -1134,6 +1157,10 @@ function useWine(){
     
 }
 function useScroll(){
+    hover_bread = false;
+    hover_wine = false;
+    hover_scroll = false;
+    hover_key = false;
     if(characterStamina < charMaxStamina){
         scrollQ = scrollQ -1;
         temp_Restore = charMaxStamina / 2;
@@ -1158,15 +1185,135 @@ updateInventory = function (game_state){
         game_state.items[3][0] = breadQ;
         game_state.items[3][1] = wineQ;
         game_state.items[3][2] = scrollQ;
+        game_state.items[3][3] = keyQ;
     
         game_state.items[4][0].setText(game_state.items[3][0]);
         game_state.items[4][1].setText(game_state.items[3][1]);
         game_state.items[4][2].setText(game_state.items[3][2]);
+        game_state.items[4][3].setText(game_state.items[3][3]);
+        
         
         game_state.usedItem.setText(usageText);
     
-    //Auto sort
-        for(var i=0; i<3; i++)
+              
+          //Inventory toggle
+      if(toggle_inventory.isDown){
+          if(game_state.delay_inventory<game_state.time.now){
+          if(game_state.inventory_base.visible == false)
+              {
+              game_state.inventory_base.visible = true;
+             game_state.game.physics.arcade.isPaused=true;
+              }
+          else{
+              game_state.inventory_base.visible = false;
+              game_state.game.physics.arcade.isPaused=false;
+              //Reset if inventory is invisble
+                hover_bread = false;
+                hover_wine = false;
+                hover_scroll = false;
+                hover_key = false;
+            }
+            game_state.delay_inventory = game_state.time.now + 400; //Delay to prevent fast pressing of spacebar
+          }
+      }  
+
+    if(game_state.inventory_base.visible == true)
+        {
+            
+            game_state.inventory_base.bringToTop();
+
+               //Update hovered item        
+                if(hover_bread == true){
+               game_state.item_name_text= game_state.items[1][0];
+                game_state.item_description_text = game_state.items[5][0];
+                game_state.items[2][0].alpha = 1;
+                }
+            
+            else if(hover_wine == true){
+              game_state.item_name_text= game_state.items[1][1];
+              game_state.item_description_text = game_state.items[5][1];
+              game_state.items[2][1].alpha = 1;
+              }
+            
+            else if(hover_scroll == true){
+              game_state.item_name_text= game_state.items[1][2];
+                game_state.item_description_text = game_state.items[5][2];
+                game_state.items[2][2].alpha = 1;
+                }
+            else if(hover_key == true){
+              game_state.item_name_text= game_state.items[1][3];
+                game_state.item_description_text = game_state.items[5][3];
+                game_state.items[2][3].alpha = 1;
+                }
+            
+            else{
+                game_state.item_name_text= '';
+                game_state.item_description_text = '';
+                 for(var u=0; u<5; u++)
+                {
+                game_state.items[2][u].alpha = 0.5;
+                };
+               }
+            game_state.item_name.setText(game_state.item_name_text);
+            game_state.item_description.setText(game_state.item_description_text);
+            for(var i=0; i<5; i++)
+                {
+                //Remove item from inventory if quantity is 0
+                if(game_state.items[3][i]==0)
+                    {
+                    game_state.items[2][i].visible = false;
+                    game_state.items[4][i].visible = false;
+                    }
+                else if(game_state.items[3][i]>0) {
+                    
+                    game_state.items[2][i].visible = true;
+                    game_state.items[4][i].visible = true;
+                }
+                };
+        }
+};
+
+wait = function(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+        end = new Date().getTime();
+    }
+};
+
+pickup = function (game_state){    
+if(chest_state7 == true){
+    if (((chest.x <= monk.x) && chest.x+30>= monk.x) && ((chest.y <= monk.y) && chest.y+30 >=monk.y)&& chest.active == true) {
+    keyQ = 1;
+    chest_state7 == false;
+    chest.active = false;
+    chest.frame = 1;
+}
+}
+    else{
+if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
+ 
+   chest.frame = 1;
+pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
+      chest.active = false;
+ 
+    if(pickedItem==1)
+        {
+            breadQ = breadQ + 1;
+        }
+    else if(pickedItem == 2){
+        
+        wineQ = wineQ + 1;
+    }
+    else if(pickedItem == 3){
+        scrollQ = scrollQ +1;
+    }
+}
+}
+};
+
+/*/     //Auto sort
+        for(var i=0; i<5; i++)
             {
             //Set slots to empty
             if(game_state.items[3][i]==0){
@@ -1216,7 +1363,7 @@ updateInventory = function (game_state){
                         }
                     }  
                 game_state.items[8][ID] = game_state.items[8][i+1];
-                game_state.items[8][i+1] = ID;
+                game_state.items[8][i+1] = 1;
                 temp_slot_button = game_state.items[2][i+1].x;
                 temp_slot_number = game_state.items[4][i+1].x
                 game_state.items[2][i+1].x = game_state.items[2][ID].x;
@@ -1224,11 +1371,9 @@ updateInventory = function (game_state){
                 game_state.items[2][ID].x = temp_slot_button;
                 game_state.items[4][ID].x = temp_slot_number;
                     }
-
-                   else if(game_state.items[0][i+1]==0){
-                       game_state.items[0][i] = 1;
-                     game_state.items[0][i+1] = 0;   
-                game_state.items[0][i+2] = 0;
+                 else if(game_state.items[0][i+1]==0){
+                       game_state.items[0][i] = 1; 
+                        game_state.items[0][i+2] = 0;
 
                 if(i==0){
                 slotID = 1;
@@ -1244,116 +1389,19 @@ updateInventory = function (game_state){
                             ID = u;
                         }
                     }  
-                game_state.items[8][ID] = 3;
-                game_state.items[8][3] = ID;
-                temp_slot_button = game_state.items[2][ID].x;
-                temp_slot_number = game_state.items[4][ID].x
+                game_state.items[8][ID] = game_state.items[8][i+2];
+                game_state.items[8][i+2] = 1;
+                temp_slot_button = game_state.items[2][i+2].x;
+                temp_slot_number = game_state.items[4][i+2].x
                 game_state.items[2][i+2].x = game_state.items[2][ID].x;
                 game_state.items[4][i+2].x = game_state.items[4][ID].x;
                 game_state.items[2][ID].x = temp_slot_button;
                 game_state.items[4][ID].x = temp_slot_number;
-                    }
-                       
-                      
-            }
-            }
-    
-              
-          //Inventory toggle
-      if(toggle_inventory.isDown){
-          if(game_state.delay_inventory<game_state.time.now){
-          if(game_state.inventory_base.visible == false)
-              {
-              game_state.inventory_base.visible = true;
-             game_state.game.physics.arcade.isPaused=true;
-              }
-          else{
-              game_state.inventory_base.visible = false;
-              game_state.game.physics.arcade.isPaused=false;
-            }
-            game_state.delay_inventory = game_state.time.now + 400; //Delay to prevent fast pressing of spacebar
-          }
-      }  
-
-    if(game_state.inventory_base.visible == true)
-        {
-            
-            game_state.inventory_base.bringToTop();
-
-               //Update hovered item        
-                if(hover_bread == true){
-               game_state.item_name_text= game_state.items[1][0];
-                game_state.item_description_text = game_state.items[5][0];
-                game_state.items[2][0].alpha = 1;
+                   }
                 }
-            
-            else if(hover_wine == true){
-              game_state.item_name_text= game_state.items[1][1];
-              game_state.item_description_text = game_state.items[5][1];
-              game_state.items[2][1].alpha = 1;
-              }
-            
-            else if(hover_scroll == true){
-              game_state.item_name_text= game_state.items[1][2];
-                game_state.item_description_text = game_state.items[5][2];
-                game_state.items[2][2].alpha = 1;
-                }
-            
-            else{
-                game_state.item_name_text= '';
-                game_state.item_description_text = '';
-                 for(var u=0; u<3; u++)
-                {
-                game_state.items[2][u].alpha = 0.5;
-                };
-               }
-            game_state.item_name.setText(game_state.item_name_text);
-            game_state.item_description.setText(game_state.item_description_text);
-            for(var i=0; i<5; i++)
-                {
-                //Remove item from inventory if quantity is 0
-                if(game_state.items[3][i]==0)
-                    {
-                    game_state.items[2][i].visible = false;
-                    game_state.items[4][i].visible = false;
-                    }
-                else if(game_state.items[3][i]>0) {
-                    
-                    game_state.items[2][i].visible = true;
-                    game_state.items[4][i].visible = true;
-                }
-                };
-        }
-};
-
-wait = function(ms) {
-    var start = new Date().getTime();
-    var end = start;
-    while (end < start + ms) {
-        end = new Date().getTime();
-    }
-};
-
-pickup = function (game_state){
-
-    if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
-    
-        chest.frame = 1;
-        pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
-        chest.active = false;
- 
-        if(pickedItem==1) {
-                breadQ = breadQ + 1;
+                  
             }
-        else if(pickedItem == 2) {
-        
-            wineQ = wineQ + 1;
-        }
-        else if(pickedItem == 3){
-            scrollQ = scrollQ +1;
-        }
-    }
-};
+            /*/
 
 createHintBtn = function (game_state, callback) {
     HintOpen = false;
