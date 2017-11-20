@@ -97,6 +97,9 @@ demo.state7.prototype = {
     
     update: function(){
         
+        // Update the coodinate variable
+        coordinate = 'country';
+        
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); roosterSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7'); deactivateSounds;});
         if(keyQ==1){

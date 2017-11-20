@@ -53,6 +53,7 @@ demo.state2.prototype = {
         
         //Load Enemies
         game.load.image('serpent', '../assets/sprites/serpent.png');
+        game.load.image('tutorialEnemy', '../assets/sprites/TutorialDevil.png');
         
         //load Sprites for inventory
         game.load.spritesheet('inventory_base', '../assets/sprites/scroll_menu.png');

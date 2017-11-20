@@ -103,6 +103,8 @@ demo.state4.prototype = {
     },
     
     update: function(){
+        // Update the coodinate variable
+        coordinate = 'hut';
         
         game.physics.arcade.collide(monk, trigger4, function(){console.log('Main Village'); doorSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
@@ -121,9 +123,9 @@ demo.state4.prototype = {
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-170,"y":-100},{"x":80,"y":150});
         
-    },
+    }/*,
     render: function () {
         game.debug.cameraInfo(game.camera, 32, 32);
         game.debug.spriteCoords(monk, 32, 500);
-    }
+    }*/
 };

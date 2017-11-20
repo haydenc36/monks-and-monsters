@@ -127,6 +127,9 @@ demo.state5.prototype = {
     
     update: function(){
         
+        // Update the coodinate variable
+        coordinate = 'brothel';
+        
         game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); doorSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk5, function(){console.log('noWalk5');});
         

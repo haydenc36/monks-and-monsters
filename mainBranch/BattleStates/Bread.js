@@ -13,19 +13,17 @@ demo.Bread.prototype.constructor = demo.Bread;
 demo.Bread.prototype.use = function () {
     "use strict";
     
-    // Chewing Audio
-    chew.play();
-    
     if (this.game_state.prefabs[this.name].stats.quantity > 0){
-        demo.Item.prototype.use.call(this);
-        if (this.game_state.prefabs.Monk.stats.health + this.health_power > this.game_state.prefabs.Monk.stats.maxHP) {
-            this.game_state.prefabs.Monk.stats.health = this.game_state.prefabs.Monk.stats.maxHP;
+        if (this.game_state.prefabs.Monk.stats.health < this.game_state.prefabs.Monk.stats.maxHP){
+            // Chewing Audio
+            chew.play();
+            demo.Item.prototype.use.call(this);
+            if (this.game_state.prefabs.Monk.stats.health + this.health_power > this.game_state.prefabs.Monk.stats.maxHP){
+                this.game_state.prefabs.Monk.stats.health = this.game_state.prefabs.Monk.stats.maxHP;
+            }
+            else {
+                this.game_state.prefabs.Monk.stats.health += this.health_power;
+            }
         }
-        else {
-            this.game_state.prefabs.Monk.stats.health += this.health_power;
-        }
-    }
-    else {
-        //Message
     }
 };

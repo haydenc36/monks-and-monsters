@@ -1312,7 +1312,7 @@ pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
 }
 };
 
-/*/     //Auto sort
+    /*//Auto sort
         for(var i=0; i<5; i++)
             {
             //Set slots to empty
@@ -1400,8 +1400,7 @@ pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
                    }
                 }
                   
-            }
-            /*/
+            }*/
 
 createHintBtn = function (game_state, callback) {
     HintOpen = false;
@@ -1682,12 +1681,12 @@ AllHintUpdate = function (game_state) {
     }
     
     if ((dialogueCheck.indexOf("Oceanus After Battle") != -1) && (dialogueCheck.indexOf("Silva Training") == -1)){
-        updateHint(game_state, true, 'Oceanus', 1, 1, 'oceanus', 'Peasant\'s House', 'hintHut');
+        updateHint(game_state, true, 'Silva', 1, 1, 'silva', 'Monastery', 'hintMonastery');
     }
     
     //Go to the Cemetery
     if ((dialogueCheck.indexOf("Silva to Cemetery") != -1) && (dialogueCheck.indexOf("Silva Training") == -1)){
-        updateHint(game_state, true, 'Oceanus', 1, 1, 'oceanus', 'Peasant\'s House', 'hintHut');
+        //updateHint(game_state, true, 'Oceanus', 1, 1, 'oceanus', 'Peasant\'s House', 'hintHut');
     }
     
     

@@ -166,6 +166,9 @@ demo.state1.prototype = {
     
     update: function(){
         
+        // Update the coodinate variable
+        coordinate = 'outside';
+        
         // Enabling collisions
         game.physics.arcade.collide(monk, buildings2_noWalk1, function(){console.log('buildings2');});
         game.physics.arcade.collide(monk, buildings1_noWalk1, function(){console.log('buildings1')});

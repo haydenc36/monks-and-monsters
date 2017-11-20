@@ -129,6 +129,10 @@ demo.state3.prototype = {
     },
     
     update: function(){
+        
+        // Update the coodinate variable
+        coordinate = 'monastery';
+        
         if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) 
         {
             game.state.start("BootState", true, false, "../assets/battleJSONs/SilvaBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
@@ -148,9 +152,9 @@ demo.state3.prototype = {
         distTrigger(this,{"x":-150,"y":-50},{"x":50,"y":100});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-150,"y":-50},{"x":50,"y":100});
-    },
+    }/*,
     render: function () {
         game.debug.cameraInfo(game.camera, 32, 32);
         game.debug.spriteCoords(monk, 32, 500);
-    }
+    }*/
 };
