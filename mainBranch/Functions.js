@@ -596,7 +596,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Thomas Tutorial";
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "Alright, get whatever you need from that chest and show me what you remember!",
+                    "npcDialogue": "Alright, show me what you remember!",
                     "charResponse": ""
                 }
             };
