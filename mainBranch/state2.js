@@ -1,7 +1,7 @@
 // Parvos' Monastery
 var demo = demo || {};
-var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 200, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina;
-var dialogueCheck = ["Self Dialogue","Sicarius To Basement","Oceanus Recommends Brothel","Oceanus Before Battle","Oceanus After Battle","Silva Training","Silva to Cemetery","Seth Recommends Oceanus","Thomas Tutorial","Head Abbot Tutorial"];
+var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 200, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina, timeNow, hintBtn, hintPopup, HintOpen;
+var dialogueCheck = []/* = ["Self Dialogue","Sicarius To Basement","Oceanus Recommends Brothel","Oceanus Before Battle","Oceanus After Battle","Silva Training","Silva to Cemetery","Seth Recommends Oceanus","Thomas Tutorial","Head Abbot Tutorial"]*/;
 var BattlesCompleted = [];
 
 demo.state2 = function(){};
@@ -23,16 +23,36 @@ demo.state2.prototype = {
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
 
         game.load.image('npcbox', '../assets/boxes/paper-dialog.png');
-        
-        game.load.spritesheet('npc', '../assets/boxes/wandering_trader1.png', 64, 128);
-        game.load.spritesheet('father', '../assets/sprites/father.png', 124, 319);
-        
+
         //load Sprites for HUD
         game.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
 		game.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
 		game.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
         game.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
 		game.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
+        game.load.image('ideaBtn', '../assets/sprites/hintBtn.png');
+        game.load.image('hintPopup', '../assets/boxes/hintPopup.png');
+        game.load.image('exitHint', '../assets/sprites/exitHintBtn.png');
+        
+        //Hint Maps
+        game.load.image('tutorialHA', '../assets/backgrounds/hintHAEx.png');
+        game.load.image('tutorialThomas', '../assets/backgrounds/hintThEx.png');
+        game.load.image('tutorialBattle', '../assets/backgrounds/hintBattle.png');
+        game.load.image('hintMonastery', '../assets/backgrounds/hintMonastery.png');
+        game.load.image('hintBrothel', '../assets/backgrounds/hintBrothel.png');
+        game.load.image('hintHut', '../assets/backgrounds/hintHut.png');
+        game.load.image('hintBasement', '../assets/backgrounds/hintBasement.png');
+        
+        //Load NPCs
+        game.load.spritesheet('thomas', '../assets/boxes/wandering_trader1.png', 64, 128);
+        game.load.spritesheet('father', '../assets/sprites/father.png', 124, 319);
+        game.load.spritesheet('seth', '../assets/sprites/seth.png', 124, 319);
+        game.load.spritesheet('silva', '../assets/sprites/silva.png', 117, 319);
+        game.load.spritesheet('oceanus', '../assets/sprites/oceanus.png', 159, 319);
+        game.load.spritesheet('sicarius', '../assets/sprites/sicarius.png', 119, 319);
+        
+        //Load Enemies
+        game.load.image('serpent', '../assets/sprites/serpent.png');
         
         //load Sprites for inventory
         game.load.spritesheet('inventory_base', '../assets/sprites/scroll_menu.png');
@@ -96,7 +116,7 @@ demo.state2.prototype = {
         fixtures_walk2a.setScale(2.75);
         
         createNPC(this,"Head Abbot",{"x":600, "y":1450},"father",{"x":-0.65, "y":0.65});
-        createNPC(this,"Thomas",{"x":875, "y":600},"npc",{"x":1.75, "y":1.75});
+        createNPC(this,"Thomas",{"x":875, "y":600},"thomas",{"x":1.75, "y":1.75});
         
         // Initialize the monk character
         monk = game.add.sprite(170, 1450, 'monk');
@@ -127,6 +147,12 @@ demo.state2.prototype = {
         
         createHUD(this);
         createInventory(this);
+        createHintBtn(this, function() {
+            console.log("Getting the Hint");
+            HintOpen = true;
+            getHint();
+        });
+        HintInfo(this);
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
@@ -136,6 +162,7 @@ demo.state2.prototype = {
         chest.scale.set(2);
         chest.frame = 0;
         chest.active = true;
+        chest.alpha = 0;
         
         
         // Audio Variable
@@ -145,7 +172,7 @@ demo.state2.prototype = {
     update: function(){
         intro.stop();
         tutorial = true;
-        
+    
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
             game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); battleAudio = "tutorial"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});
             
@@ -159,6 +186,8 @@ demo.state2.prototype = {
         cursorControl(0.6);
         updateHUD(this);
         updateInventory(this);
+        updateHintBtn();
+        AllHintUpdate(this);
         
         // Update Dialogue list if met requirements (multiple sets of dialogue within one state)
         if (!!this.currentNPC){

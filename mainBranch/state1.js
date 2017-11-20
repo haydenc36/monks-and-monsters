@@ -155,6 +155,12 @@ demo.state1.prototype = {
         // HUD and Inventory
         createHUD(this);
         createInventory(this);
+        createHintBtn(this, function() {
+            console.log("Getting the Hint");
+            HintOpen = true;
+            getHint();
+        });
+        HintInfo(this);
     },
     
     
@@ -165,12 +171,13 @@ demo.state1.prototype = {
         game.physics.arcade.collide(monk, buildings1_noWalk1, function(){console.log('buildings1')});
         game.physics.arcade.collide(monk, mountains_nowalking1, function(){console.log('mountains');});
         
-        
         // Transitioning between maps
         game.physics.arcade.collide(monk, trigger1a, function(){doorSound.play(); battleAudio = "oceanus"; deactivateSounds(); game.state.start('state4');});
         game.physics.arcade.collide(monk, trigger1b, function(){doorSound.play(); battleAudio = "serpent"; deactivateSounds(); game.state.start('state5');});
         game.physics.arcade.collide(monk, trigger1c, function(){doorSound.play(); battleAudio = "archdemon"; deactivateSounds(); game.state.start('state3');});
         game.physics.arcade.collide(monk, trigger1d, function(){roosterSound.play(); deactivateSounds(); game.state.start('state7');});
+        
+        
         
         /*if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") != -1) && (makeTyphon)) {
             this.NPCs["Seth"].spriteObj.destroy();
@@ -179,16 +186,17 @@ demo.state1.prototype = {
             createNPC(this,"Typhon",{"x":700, "y":700},"typhon",{"x":-0.35, "y":0.35});
             makeTyphon = false;
         }*/
-        
-        
+
         cursorControl(0.3);
         updateHUD(this);
         updateInventory(this);
-    },
+        updateHintBtn();
+        AllHintUpdate(this);
+    }/*,
     render: function () {
         game.debug.cameraInfo(game.camera, 32, 32);
         game.debug.spriteCoords(monk, 32, 500);
-    }
+    }*/
 };
 
 function deactivateSounds()

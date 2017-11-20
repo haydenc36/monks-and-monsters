@@ -25,8 +25,6 @@ demo.state5.prototype = {
         game.load.image('windows', '../assets/tilemaps/tilesets/windows.png');
         game.load.image('windows2', '../assets/tilemaps/tilesets/windows2.png');
         
-        game.load.spritesheet('sicarius', '../assets/sprites/sicarius.png', 119, 319);
-        
     },
     
     create:function(){
@@ -112,6 +110,12 @@ demo.state5.prototype = {
         
         createHUD(this);
         createInventory(this);
+        createHintBtn(this, function() {
+            console.log("Getting the Hint");
+            HintOpen = true;
+            getHint();
+        });
+        HintInfo(this);
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
@@ -138,6 +142,9 @@ demo.state5.prototype = {
         cursorControl(0.5);
         updateHUD(this);
         updateInventory(this);
+        updateHintBtn();
+        AllHintUpdate(this);
+        
         distTrigger(this,{"x":100,"y":-100},{"x":50,"y":150});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":100,"y":-100},{"x":50,"y":150});

@@ -1336,22 +1336,311 @@ wait = function(ms) {
 
 pickup = function (game_state){
 
-if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
+    if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
     
-   chest.frame = 1;
-pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
-      chest.active = false;
+        chest.frame = 1;
+        pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
+        chest.active = false;
  
-    if(pickedItem==1)
-        {
-            breadQ = breadQ + 1;
-        }
-    else if(pickedItem == 2){
+        if(pickedItem==1) {
+                breadQ = breadQ + 1;
+            }
+        else if(pickedItem == 2) {
         
-        wineQ = wineQ + 1;
+            wineQ = wineQ + 1;
+        }
+        else if(pickedItem == 3){
+            scrollQ = scrollQ +1;
+        }
     }
-    else if(pickedItem == 3){
-        scrollQ = scrollQ +1;
-    }
-}
 };
+
+createHintBtn = function (game_state, callback) {
+    HintOpen = false;
+    hintBtn = new Object();
+    hintBtn.button = game.add.button(game.world.centerX,game.world.centerY,'ideaBtn', callback, this);
+    hintBtn.button.input.enabled = false;
+    hintBtn.button.anchor.setTo(0, 0);
+    hintBtn.button.fixedToCamera = true;
+	hintBtn.button.cameraOffset.x = 15;
+	hintBtn.button.cameraOffset.y = 120;
+    hintBtn.button.alpha = 0.35;
+    
+    hintBtn.txt = game.add.text(game.world.centerX, game.world.centerY, "Hint", {
+            font: "Book Antiqua",
+            fontSize: 20,
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#FFF', 
+            align:'center'
+        });
+    hintBtn.txt.anchor.setTo(0, 0.25);
+    hintBtn.txt.fixedToCamera = true;
+	hintBtn.txt.cameraOffset.x = 90;
+	hintBtn.txt.cameraOffset.y = 159;
+    hintBtn.txt.alpha = 0.35;
+    
+    hintBtn.button.bringToTop();
+    hintBtn.txt.bringToTop();
+    hintBtn.timer = new Date().getTime();
+    hintBtn.timer += 1000;
+};
+
+updateHintBtn = function () {
+    timeNow = new Date().getTime();
+    if (hintBtn.timer <= timeNow) {
+        hintBtn.button.input.enabled = true;
+        hintBtn.button.alpha = 1;
+        hintBtn.txt.alpha = 1;
+    }
+};
+
+HintInfo = function (game_state) {
+    hintPopup = new Object();
+    hintPopup.background = game_state.add.sprite(game.world.centerX, game.world.centerY, 'hintPopup');
+    hintPopup.background.anchor.setTo(0, 0);
+    hintPopup.background.fixedToCamera = true;
+    hintPopup.background.cameraOffset.x = 60;
+	hintPopup.background.cameraOffset.y = 0;
+    
+    hintPopup.Title = game_state.add.text(game.world.centerX, game.world.centerY, "Hint", {
+            font: "Book Antiqua",
+            fontSize: "100px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#4d2800', 
+            align:'center'
+        });
+    hintPopup.Title.anchor.setTo(0, 0);
+    hintPopup.Title.fixedToCamera = true;
+	hintPopup.Title.cameraOffset.x = 200;
+	hintPopup.Title.cameraOffset.y = 50;
+    
+    hintPopup.Task = game_state.add.text(game.world.centerX, game.world.centerY, "Task: ", {
+            font: "Book Antiqua",
+            fontSize: "50px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#4d2800', 
+            align:'center'
+        });
+    hintPopup.Task.anchor.setTo(0, 0);
+    hintPopup.Task.fixedToCamera = true;
+    hintPopup.Task.cameraOffset.x = 200;
+	hintPopup.Task.cameraOffset.y = 250;
+    
+    hintPopup.NPCName = game_state.add.text(game.world.centerX, game.world.centerY, "Talk to Head Abbot", {
+            font: "Book Antiqua",
+            fontSize: "35px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#4d2800', 
+            align:'center'
+        });
+    hintPopup.NPCName.anchor.setTo(0, 0);
+    hintPopup.NPCName.fixedToCamera = true;
+	hintPopup.NPCName.cameraOffset.x = 300;
+	hintPopup.NPCName.cameraOffset.y = 350;
+    
+    hintPopup.NPCImage = game_state.add.sprite(game.world.centerX, game.world.centerY, "father");
+    hintPopup.NPCImage.anchor.setTo(0.5, 0.5);
+    hintPopup.NPCImage.fixedToCamera = true;
+	hintPopup.NPCImage.cameraOffset.x = 450;
+	hintPopup.NPCImage.cameraOffset.y = 600;
+    
+    hintPopup.location = game_state.add.text(game.world.centerX, game.world.centerY, "Location: ", {
+            font: "Book Antiqua",
+            fontSize: "50px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#4d2800', 
+            align:'center'
+        });
+    hintPopup.location.anchor.setTo(0, 0);
+    hintPopup.location.fixedToCamera = true;
+    hintPopup.location.cameraOffset.x = 700;
+	hintPopup.location.cameraOffset.y = 250;
+    
+    hintPopup.locationName = game_state.add.text(game.world.centerX, game.world.centerY, "Tutorial", {
+            font: "Book Antiqua",
+            fontSize: "35px",
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#4d2800', 
+            align:'center'
+        });
+    hintPopup.locationName.anchor.setTo(0, 0);
+    hintPopup.locationName.fixedToCamera = true;
+    hintPopup.locationName.cameraOffset.x = 800;
+	hintPopup.locationName.cameraOffset.y = 350;
+    
+    hintPopup.locationImg = game_state.add.sprite(game.world.centerX, game.world.centerY, "tutorialHA");
+    hintPopup.locationImg.anchor.setTo(0, 0);
+    hintPopup.locationImg.fixedToCamera = true;
+	hintPopup.locationImg.cameraOffset.x = 710;
+	hintPopup.locationImg.cameraOffset.y = 400;
+    
+    hintPopup.exit = game_state.add.button(game.world.centerX,game.world.centerY,'exitHint', function () {
+        hintPopup.exit.input.enabled = false;
+        hintPopup.background.alpha = 0;
+        hintPopup.NPCImage.alpha = 0;
+        hintPopup.exit.alpha = 0;
+        hintPopup.Title.alpha = 0;
+        hintPopup.Task.alpha = 0;
+        hintPopup.location.alpha = 0;
+        hintPopup.locationImg.alpha = 0;
+        hintPopup.locationName.alpha = 0;
+        hintPopup.NPCName.alpha = 0;
+        HintOpen = false;
+    });
+    hintPopup.exit.anchor.setTo(0, 0);
+    hintPopup.exit.fixedToCamera = true;
+	hintPopup.exit.cameraOffset.x = 1090;
+	hintPopup.exit.cameraOffset.y = 40;
+    
+    hintPopup.exit.input.enabled = false;
+    hintPopup.background.alpha = 0;
+    hintPopup.NPCImage.alpha = 0;
+    hintPopup.exit.alpha = 0;
+    hintPopup.Title.alpha = 0;
+    hintPopup.Task.alpha = 0;
+    hintPopup.location.alpha = 0;
+    hintPopup.locationImg.alpha = 0;
+    hintPopup.locationName.alpha = 0;
+    hintPopup.NPCName.alpha = 0;
+};
+
+updateHint = function(game_state, talk, npcName, npcScaleX, npcScaleY, npcID, buildingName, spriteID) {
+    if (!HintOpen) {
+        if (talk) {
+            hintPopup.NPCName = game_state.add.text(game.world.centerX, game.world.centerY, "Talk to " + npcName, {
+                font: "Book Antiqua",
+                fontSize: "35px",
+                fontVariant: 'small-caps',
+                fontWeight:"bold",
+                fill:'#4d2800', 
+                align:'center'
+            });
+        }
+        else {
+            hintPopup.NPCName = game_state.add.text(game.world.centerX, game.world.centerY, "Battle the " + npcName, {
+                font: "Book Antiqua",
+                fontSize: "35px",
+                fontVariant: 'small-caps',
+                fontWeight:"bold",
+                fill:'#4d2800', 
+                align:'center'
+            });
+        }
+        
+        hintPopup.NPCName.anchor.setTo(0, 0);
+        hintPopup.NPCName.fixedToCamera = true;
+        hintPopup.NPCName.cameraOffset.x = 300;
+        hintPopup.NPCName.cameraOffset.y = 350;
+
+        hintPopup.NPCImage = game_state.add.sprite(game.world.centerX, game.world.centerY, npcID);
+        hintPopup.NPCImage.scale.set(npcScaleX, npcScaleY);
+        hintPopup.NPCImage.anchor.setTo(0.5, 0.5);
+        hintPopup.NPCImage.fixedToCamera = true;
+        hintPopup.NPCImage.cameraOffset.x = 450;
+	   hintPopup.NPCImage.cameraOffset.y = 600;
+
+        hintPopup.locationName = game_state.add.text(game.world.centerX, game.world.centerY, buildingName, {
+                font: "Book Antiqua",
+                fontSize: "35px",
+                fontVariant: 'small-caps',
+                fontWeight:"bold",
+                fill:'#4d2800', 
+                align:'center'
+            });
+        hintPopup.locationName.anchor.setTo(0, 0);
+        hintPopup.locationName.fixedToCamera = true;
+        hintPopup.locationName.cameraOffset.x = 800;
+        hintPopup.locationName.cameraOffset.y = 350;
+
+        hintPopup.locationImg  = game_state.add.sprite(game.world.centerX, game.world.centerY, spriteID);
+        hintPopup.locationImg.anchor.setTo(0, 0);
+        hintPopup.locationImg.fixedToCamera = true;
+        hintPopup.locationImg.cameraOffset.x = 710;
+        hintPopup.locationImg.cameraOffset.y = 400;
+
+        hintPopup.exit = game_state.add.button(game.world.centerX,game.world.centerY,'exitHint', function () {
+            hintPopup.exit.input.enabled = false;
+            hintPopup.background.alpha = 0;
+            hintPopup.NPCImage.alpha = 0;
+            hintPopup.exit.alpha = 0;
+            hintPopup.Title.alpha = 0;
+            hintPopup.Task.alpha = 0;
+            hintPopup.location.alpha = 0;
+            hintPopup.locationImg.alpha = 0;
+            hintPopup.locationName.alpha = 0;
+            hintPopup.NPCName.alpha = 0; 
+            HintOpen = false;
+        });
+        hintPopup.exit.anchor.setTo(0, 0);
+        hintPopup.exit.fixedToCamera = true;
+        hintPopup.exit.cameraOffset.x = 1090;
+        hintPopup.exit.cameraOffset.y = 40;
+        hintPopup.exit.input.enabled = false;
+        hintPopup.exit.alpha = 0;
+
+        hintPopup.NPCImage.alpha = 0;
+        hintPopup.locationImg.alpha = 0;
+        hintPopup.locationName.alpha = 0;
+        hintPopup.NPCName.alpha = 0;
+        }
+};
+
+getHint = function () {
+    hintPopup.exit.input.enabled = true;
+    hintPopup.background.alpha = 1;
+    hintPopup.NPCImage.alpha = 1;
+    hintPopup.exit.alpha = 1;
+    hintPopup.Title.alpha = 1;
+    hintPopup.Task.alpha = 1;
+    hintPopup.location.alpha = 1;
+    hintPopup.locationImg.alpha = 1;
+    hintPopup.locationName.alpha = 1;
+    hintPopup.NPCName.alpha = 1;
+};
+
+AllHintUpdate = function (game_state) {
+    if ((dialogueCheck.indexOf("Head Abbot Tutorial") != -1) && (dialogueCheck.indexOf("Thomas Tutorial") == -1)) {
+        updateHint(game_state, true, 'Thomas', 3, 3, 'thomas', 'Tutorial', 'tutorialThomas');
+    }
+    
+    if ((dialogueCheck.indexOf("Thomas Tutorial") != -1) && (BattlesCompleted.indexOf("Young Devil") == -1)){
+        updateHint(game_state, false, 'Young Devil', 0.75, 0.75, 'tutorialEnemy', 'Tutorial', 'tutorialBattle');
+    }
+    
+    if ((BattlesCompleted.indexOf("Young Devil") != -1) && (dialogueCheck.indexOf("Seth Recommends Oceanus") == -1)){
+        updateHint(game_state, true, 'Seth', 1, 1, 'seth', 'Monastery', 'hintMonastery');
+    }
+    
+    if ((dialogueCheck.indexOf("Seth Recommends Oceanus") != -1) && (dialogueCheck.indexOf("Oceanus Recommends Brothel") == -1)){
+        updateHint(game_state, true, 'Oceanus', 1, 1, 'oceanus', 'Peasant\'s House', 'hintHut');
+    }
+    
+    if ((dialogueCheck.indexOf("Oceanus Recommends Brothel") != -1) && (dialogueCheck.indexOf("Sicarius To Basement") == -1)){
+        updateHint(game_state, true, 'Sicarius', 1, 1, 'sicarius', 'Brothel', 'hintBrothel');
+    }
+    
+    if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Serpent") == -1)){
+        updateHint(game_state, false, 'Serpent', 0.75, 0.75, 'serpent', 'Basement of the Brothel', 'hintBasement');
+    }
+    
+    if ((BattlesCompleted.indexOf("Serpent") != -1) && (dialogueCheck.indexOf("Oceanus Before Battle") == -1)){
+        updateHint(game_state, true, 'Oceanus', 1, 1, 'oceanus', 'Peasant\'s House', 'hintHut');
+    }
+    
+    if ((dialogueCheck.indexOf("Oceanus After Battle") != -1) && (dialogueCheck.indexOf("Silva Training") == -1)){
+        updateHint(game_state, true, 'Oceanus', 1, 1, 'oceanus', 'Peasant\'s House', 'hintHut');
+    }
+    
+    //Go to the Cemetery
+    if ((dialogueCheck.indexOf("Silva to Cemetery") != -1) && (dialogueCheck.indexOf("Silva Training") == -1)){
+        updateHint(game_state, true, 'Oceanus', 1, 1, 'oceanus', 'Peasant\'s House', 'hintHut');
+    }
+    
+    
+}

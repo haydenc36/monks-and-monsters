@@ -92,13 +92,11 @@ demo.state0.prototype = {
             this.state.start("state2", true, false, [100,100,100,100,100,100], [1,1]);
         });
         
-        
         // Instructions Button
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
             this.state.start("state6");
         });
     },
-    
     createButton:function(s, string, x, y, w, h, callback){
         var btn = game.add.button(x,y,'button',callback,this,2,1,0);
         

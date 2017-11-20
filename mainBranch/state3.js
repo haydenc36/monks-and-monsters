@@ -22,9 +22,6 @@ demo.state3.prototype = {
         game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
         game.load.image('spooky', '../assets/tilemaps/tilesets/spooky.png');
         
-        game.load.spritesheet('seth', '../assets/sprites/seth.png', 124, 319);
-        game.load.spritesheet('silva', '../assets/sprites/silva.png', 117, 319);
-        
     },
     
     create:function(){
@@ -116,6 +113,12 @@ demo.state3.prototype = {
         
         createHUD(this);
         createInventory(this);
+        createHintBtn(this, function() {
+            console.log("Getting the Hint");
+            HintOpen = true;
+            getHint();
+        });
+        HintInfo(this);
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
@@ -139,6 +142,9 @@ demo.state3.prototype = {
         
         updateHUD(this);
         updateInventory(this);
+        updateHintBtn();
+        AllHintUpdate(this);
+        
         distTrigger(this,{"x":-150,"y":-50},{"x":50,"y":100});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-150,"y":-50},{"x":50,"y":100});

@@ -75,7 +75,12 @@ demo.state7.prototype = {
         
         createHUD(this);
         createInventory(this);
-        
+        createHintBtn(this, function() {
+            console.log("Getting the Hint");
+            HintOpen = true;
+            getHint();
+        });
+        HintInfo(this);
         
         // Audio Variable
         audioCoordinate = "outside";
@@ -91,5 +96,7 @@ demo.state7.prototype = {
         cursorControl(0.2);
         updateHUD(this);
         updateInventory(this);
+        updateHintBtn();
+        AllHintUpdate(this);
     }
 };

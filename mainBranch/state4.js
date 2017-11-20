@@ -18,8 +18,6 @@ demo.state4.prototype = {
         game.load.image('poor_art', '../assets/tilemaps/tilesets/poor_art.png');
         game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
         
-        game.load.spritesheet('oceanus', '../assets/sprites/oceanus.png', 159, 319);
-        
     },
     
     create:function(){
@@ -88,6 +86,12 @@ demo.state4.prototype = {
         
         createHUD(this);
         createInventory(this);
+        createHintBtn(this, function() {
+            console.log("Getting the Hint");
+            HintOpen = true;
+            getHint();
+        });
+        HintInfo(this);
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
@@ -110,6 +114,9 @@ demo.state4.prototype = {
         cursorControl(0.6);
         updateHUD(this);
         updateInventory(this);
+        updateHintBtn();
+        AllHintUpdate(this);
+        
         distTrigger(this,{"x":-170,"y":-100},{"x":80,"y":150});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-170,"y":-100},{"x":80,"y":150});
