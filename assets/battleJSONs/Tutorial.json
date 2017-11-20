@@ -155,7 +155,7 @@
             "properties": {
                 "group": "attackskills",
                 "stats": {
-                    "req_mana": 0
+                    "req_mana": 1000
                 }
             }
         }
