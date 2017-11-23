@@ -1,11 +1,10 @@
 // Main Menu
 var demo = demo || {};
 var coordinate = 'start';
+var introBool;
 
 // Initialize audio variables
 var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound;
-
-var introCounter = 0;
 
 // Global variables to control audio
 var audioCoordinate;
@@ -56,14 +55,13 @@ demo.state0.prototype = {
         sparkle = game.add.audio('sparkle');
         wineSound = game.add.audio('wineSound');
         
+        console.log(introBool);
         
         // Play the intro music
-        if (introCounter == 0)
+        if (introBool != "False")
         {
             intro.play();
             intro.loopFull(0.6);
-            introCounter += 1;
-            console.log("Again");
         }
                 
         // Scale the Map
@@ -97,6 +95,7 @@ demo.state0.prototype = {
         
         // Instructions Button
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){
+            introBool = 'False';
             this.state.start("state6");
         });
     },

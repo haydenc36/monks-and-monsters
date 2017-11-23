@@ -2,6 +2,8 @@
 var demo = demo || {};
 var coordinate = 'start';
 
+console.log(introBool);
+
 demo.state6 = function(){};
 demo.state6.prototype = {
     preload: function(){
@@ -10,8 +12,6 @@ demo.state6.prototype = {
         this.load.image('instructions', '../assets/backgrounds/instructions.png');
     },
     create:function(){
-        
-        introCounter += 1;        
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         var bg = game.add.sprite(0,-100,'monastery');

@@ -1,4 +1,5 @@
 var game = new Phaser.Game(2400, 2400, Phaser.AUTO);
+
 game.state.add('state0', demo.state0);
 game.state.add('intro', demo.intro);
 game.state.add('state1', demo.state1);
@@ -13,3 +14,4 @@ game.state.add('LoadingState', demo.LoadingState);
 game.state.add('BattleState', demo.BattleState);
 
 game.state.start('state0');
+//game.state.start("BootState", true, false, "../assets/battleJSONs/SilvaBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
