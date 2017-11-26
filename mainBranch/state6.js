@@ -2,7 +2,6 @@
 var demo = demo || {};
 var coordinate = 'start';
 
-console.log(introBool);
 
 demo.state6 = function(){};
 demo.state6.prototype = {
