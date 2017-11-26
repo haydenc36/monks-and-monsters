@@ -221,16 +221,16 @@ demo.BattleState.prototype.init_hud = function () {
     this.make_units("enemies", {x: 904, y: 465}, demo.EnemyMenuItem.prototype.constructor);
     
     // create items menu
-    this.prefabs.inventory.create_menu({x: 477, y: 465});
+    this.prefabs.inventory.create_menu({x: 597, y: 650});
     
     // create miraclesSkills menu
-    this.prefabs.miraclesskills.create_menu({x: 477, y: 465});
+    this.prefabs.miraclesskills.create_menu({x: 597, y: 650});
     
     // create AttackSkills menu
-    this.prefabs.attackskills.create_menu({x: 477, y: 465});
+    this.prefabs.attackskills.create_menu({x: 597, y: 650});
     
     // show player actions
-    this.show_player_actions({x: 50, y: 465});
+    this.show_player_actions({x: 100, y: 650});
     this.showPlayerStats();
     
     this.label_stats();
@@ -261,12 +261,12 @@ demo.BattleState.prototype.make_units = function (group_name, position, menu_ite
 };
 
 demo.BattleState.prototype.label_stats = function () {
-    game.add.text(258, 342, "Health: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 366, "/" + this.prefabs.Monk.stats.maxHP, {font: '10px Book Antiqua', fill: '#ffffff'});
-    game.add.text(261, 372, "Mana: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 396, "/" + this.prefabs.Monk.stats.maxMP, {font: '10px Book Antiqua', fill: '#ffffff'});
-    game.add.text(253, 402, "Stamina: ", {font: "10px Zapfino", fill: "#FFFFFF"});
-    game.add.text(455, 426, "/" + this.prefabs.Monk.stats.maxSP, {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(256, 510, "Health: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+    game.add.text(455, 537, "/" + this.prefabs.Monk.stats.maxHP, {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(259, 540, "Mana: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+    game.add.text(455, 567, "/" + this.prefabs.Monk.stats.maxMP, {font: '10px Book Antiqua', fill: '#ffffff'});
+    game.add.text(251, 570, "Stamina: ", {font: "10px Zapfino", fill: "#FFFFFF"});
+    game.add.text(455, 597, "/" + this.prefabs.Monk.stats.maxSP, {font: '10px Book Antiqua', fill: '#ffffff'});
 }
 
 demo.BattleState.prototype.show_player_actions = function (position) {
@@ -291,35 +291,35 @@ demo.BattleState.prototype.show_player_actions = function (position) {
 demo.BattleState.prototype.showPlayerStats = function () {
     "use strict";
     //GUI - black bars as background for life and mana
-    this.black_bar = this.add.sprite(308, 350, 'blackBar');
+    this.black_bar = this.add.sprite(308, 520, 'blackBar');
     this.physics.arcade.enableBody(this.black_bar);
     this.black_bar.anchor.setTo(0, 0);
     this.black_bar.scale.set(0.5, 1);
     
-    this.black2_bar = this.add.sprite(308, 380, 'blackBar');
+    this.black2_bar = this.add.sprite(308, 550, 'blackBar');
     this.physics.arcade.enableBody(this.black2_bar);
     this.black2_bar.anchor.setTo(0, 0);
     this.black2_bar.scale.set(0.5, 1);
     
-    this.black3_bar = this.add.sprite(308, 410, 'blackBar');
+    this.black3_bar = this.add.sprite(308, 580, 'blackBar');
     this.physics.arcade.enableBody(this.black3_bar);
     this.black3_bar.anchor.setTo(0, 0);
     this.black3_bar.scale.set(0.5, 1);
     
     //GUI - red bar for health
-    this.blood_bar = this.add.sprite(308, 350, 'redBar');
+    this.blood_bar = this.add.sprite(308, 520, 'redBar');
     this.physics.arcade.enableBody(this.blood_bar);
     this.blood_bar.anchor.setTo(0, 0);
     this.blood_bar.scale.set(0.5, 1);
     
     //GUI - blue bar for mana
-    this.mana_bar = this.add.sprite(308, 380, 'blueBar');
+    this.mana_bar = this.add.sprite(308, 550, 'blueBar');
     this.physics.arcade.enableBody(this.mana_bar);
     this.mana_bar.anchor.setTo(0, 0);
     this.mana_bar.scale.set(0.5, 1);
     
     //GUI - green bar for stamina
-    this.stamina_bar = this.add.sprite(308, 410, 'greenBar');
+    this.stamina_bar = this.add.sprite(308, 580, 'greenBar');
     this.physics.arcade.enableBody(this.stamina_bar);
     this.stamina_bar.anchor.setTo(0, 0);
     this.stamina_bar.scale.set(0.5, 1);
