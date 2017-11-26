@@ -5,6 +5,11 @@ var coordinate = 'start';
 // Initialize audio variables
 var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound;
 
+var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 200, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina, timeNow, hintBtn, hintPopup, HintOpen;
+
+var dialogueCheck = [] = ["Self Dialogue","Sicarius To Basement","Oceanus Recommends Brothel","Oceanus Before Battle","Oceanus After Battle","Silva Training","Silva to Cemetery","Seth Recommends Oceanus","Thomas Tutorial","Head Abbot Tutorial"];
+
+
 // Global variables to control audio
 var audioCoordinate;
 var battleAudio;
@@ -13,7 +18,6 @@ demo.state00 = function(){};
 demo.state00.prototype = {
     preload: function()
     {
-        
         // Load Audio Files
         game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
         game.load.audio('chew', '../assets/audio/chew.m4a');
@@ -31,11 +35,10 @@ demo.state00.prototype = {
         game.load.audio('thunder', '../assets/audio/thunder.wav');
         game.load.audio('sparkle', '../assets/audio/sparkle.wav');
         game.load.audio('wineSound', '../assets/audio/wineSound.m4a');
-        
     },
+    
     create:function()
     {
-        
         // Initialize Audio Samples
         battleSong = game.add.audio('battleSong');
         chew = game.add.audio('chew');
@@ -59,7 +62,5 @@ demo.state00.prototype = {
         intro.loopFull(0.6);
         
         this.state.start("state0");
-        
-    
     },
 };

@@ -4,9 +4,11 @@ demo.intro = function(){};
 
 demo.intro.prototype = {
     
-     init: function(charStats, invent) {
+     init: function(charStats, invent)
+    {
         changeStatsInvent(charStats,invent);
-     },
+    },
+    
 preload: function()
     {
         game.load.spritesheet('fade', '../assets/sprites/blackBox.jpg');
