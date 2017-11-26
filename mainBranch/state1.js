@@ -156,7 +156,6 @@ demo.state1.prototype = {
         createHUD(this);
         createInventory(this);
         createHintBtn(this, function() {
-            console.log("Getting the Hint");
             HintOpen = true;
             getHint();
         });
@@ -170,9 +169,9 @@ demo.state1.prototype = {
         coordinate = 'outside';
         
         // Enabling collisions
-        game.physics.arcade.collide(monk, buildings2_noWalk1, function(){console.log('buildings2');});
-        game.physics.arcade.collide(monk, buildings1_noWalk1, function(){console.log('buildings1')});
-        game.physics.arcade.collide(monk, mountains_nowalking1, function(){console.log('mountains');});
+        game.physics.arcade.collide(monk, buildings2_noWalk1, function(){});
+        game.physics.arcade.collide(monk, buildings1_noWalk1, function(){});
+        game.physics.arcade.collide(monk, mountains_nowalking1, function(){});
         
         // Transitioning between maps
         game.physics.arcade.collide(monk, trigger1a, function(){doorSound.play(); battleAudio = "oceanus"; deactivateSounds(); game.state.start('state4');});

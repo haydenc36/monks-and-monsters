@@ -1,7 +1,10 @@
 // Parvos' Monastery
 var demo = demo || {};
+
 var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 200, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina, timeNow, hintBtn, hintPopup, HintOpen;
+
 var dialogueCheck = [] = ["Self Dialogue","Sicarius To Basement","Oceanus Recommends Brothel","Oceanus Before Battle","Oceanus After Battle","Silva Training","Silva to Cemetery","Seth Recommends Oceanus","Thomas Tutorial","Head Abbot Tutorial"];
+
 var BattlesCompleted = [];
 
 demo.state2 = function(){};
@@ -70,7 +73,7 @@ demo.state2.prototype = {
     },
     
     create:function(){
-            
+        
         // AUDIO
         timpani.play();
         medievalMusic.play();
@@ -173,7 +176,7 @@ demo.state2.prototype = {
     },
     
     update: function(){
-        //intro.stop();
+        intro.stop();
                  
         //Skipping to state 7 to test key
         //game.state.start("state7");

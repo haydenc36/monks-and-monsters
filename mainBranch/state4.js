@@ -27,7 +27,6 @@ demo.state4.prototype = {
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        //vel = 800; 
         
         //Adjust the camera settings
         bounds_x = 1280; //important to avoid text box overlapping with world borders
