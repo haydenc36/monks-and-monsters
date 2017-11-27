@@ -92,9 +92,12 @@ demo.state4.prototype = {
         });
         HintInfo(this);
         
+        
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
         
+             //Create Variables to Show picked up item
+        createshowItem(this);;
         
         // Audio Variable
         audioCoordinate = "inside";
@@ -121,6 +124,8 @@ demo.state4.prototype = {
         distTrigger(this,{"x":-170,"y":-100},{"x":80,"y":150});
         updateDialogue(this,this.currentNPC);
         NPCBoxVis(this,this.currentNPC,{"x":-170,"y":-100},{"x":80,"y":150});
+        
+        pickup(this);
         
     }/*,
     render: function () {

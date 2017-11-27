@@ -63,6 +63,8 @@ demo.state2.prototype = {
         game.load.spritesheet('scroll', '../assets/sprites/scroll_menu.png');
         game.load.spritesheet('key', '../assets/sprites/key.png');
         
+        game.load.spritesheet('shiny', '../assets/sprites/shiny.png');
+        
         //load chest
         game.load.spritesheet('chest', '../assets/sprites/chest.png',32,32);
         
@@ -158,12 +160,15 @@ demo.state2.prototype = {
         initInfoBox(this);
         
         // Create chest
-        chest = game.add.sprite(800, 300, 'chest');
+        chest = game.add.sprite(700, 1200, 'chest');
         chest.scale.set(2);
         chest.frame = 0;
         chest.active = true;
          chest_state7 = false;
-        chest.alpha = 0;
+        chest.alpha = 1;
+        
+                //Create Variables to Show picked up item
+        createshowItem(this);
           
         
         // Audio Variable

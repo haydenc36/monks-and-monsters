@@ -1281,36 +1281,96 @@ wait = function(ms) {
     }
 };
 
-pickup = function (game_state){    
+//Create Variables to show item from chest
+createshowItem = function(game_state){
+pickedItemName = '';
+shiny = game_state.add.sprite(chest.x-125, chest.y-120, "shiny");
+shiny.scale.set(0.75);
+item = game_state.add.sprite(shiny.centerX-50, shiny.centerY-50, pickedItemName);
+shiny.visible = false;
+item.visible = false;
+};
+
+//Pick Up Items from Chest
+pickup = function (game_state){
+monk.bringToTop();
+shiny.bringToTop();
+item.bringToTop();
+    //Pick Up Key in State7
 if(chest_state7 == true){
     if (((chest.x <= monk.x) && chest.x+30>= monk.x) && ((chest.y <= monk.y) && chest.y+30 >=monk.y)&& chest.active == true) {
     keyQ = 1;
     chest_state7 == false;
     chest.active = false;
     chest.frame = 1;
+    pickeditem =4;
+    pickedItemName ="key";
+    showItem(game_state);
 }
 }
+    //Pick Up Items in every other state
     else{
 if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
- 
    chest.frame = 1;
 pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
       chest.active = false;
- 
     if(pickedItem==1)
         {
             breadQ = breadQ + 1;
+            pickeditem = 1;
+            pickedItemName ="bread";
+            
         }
     else if(pickedItem == 2){
         
         wineQ = wineQ + 1;
+        pickeditem =2;
+        pickedItemName ="wine";
     }
     else if(pickedItem == 3){
         scrollQ = scrollQ +1;
+        pickeditem =3;
+        pickedItemName ="scroll";
+        
     }
+showItem(game_state);
 }
 }
 };
+
+//Show picked up item on chest for 1.5 secs
+showItem = function(game_state){
+    pickupSound.play();
+    item = game_state.add.sprite(shiny.centerX-50, shiny.centerY-50, pickedItemName);
+    
+    if(pickeditem==1)
+        {
+            
+            item.scale.set(0.35);
+            
+        }
+       else if(pickeditem==2)
+        {
+            
+            item.scale.set(0.2);
+        }
+    else if(pickeditem==3)
+        {
+            
+            item.scale.set(0.3);
+            
+        }
+    else if(pickeditem==4)
+        {
+           
+            item.scale.set(0.35);
+            
+        }
+    item.visible =true;
+    shiny.visible = true;
+    game.time.events.add(1500, function () { item.visible=false; shiny.visible = false; pickupSound.stop();}, self);
+};
+
 
     /*//Auto sort
         for(var i=0; i<5; i++)

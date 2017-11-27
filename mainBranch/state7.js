@@ -72,15 +72,21 @@ demo.state7.prototype = {
         // Adjust the camera
         game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
-         chest = game.add.sprite(600, 200, 'chest');
+        chest = game.add.sprite(600, 200, 'chest');
         chest_state7 = true;
         chest.active = true;
         
-        createNPC(this,"",{"x":100, "y":450},"",{"x":0.3, "y":0.3});
+               //Create Variables to Show picked up item
+        createshowItem(this);
+        
+        createNPC(this,"",{"x":150, "y":450},"",{"x":0.3, "y":0.3});
         createHUD(this);
         createInventory(this);
-        createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
+        createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":1, "y":1});
         initInfoBox(this);
+        this.textInfoboxNPC = this.add.text(70,70,'',this.styleInfobox1);
+        this.textInfoboxNPC.scale.set(0.5);
+        this.NPCBox.addChild(this.textInfoboxNPC);
         
         createHUD(this);
         createInventory(this);
@@ -102,11 +108,14 @@ demo.state7.prototype = {
         
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); roosterSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7'); deactivateSounds;});
-        if(keyQ==1){
+         if(keyQ==1){
          game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); battleAudio = "heresyMonster"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);});
         }
         else{
-        game.physics.arcade.collide(monk, trigger7b, function(){console.log('NoKey');distTrigger(this,{"x":0,"y":0},{"x":100,"y":300});updateDialogue(this,this.currentNPC);NPCBoxVis(this,this.currentNPC,{"x":0,"y":0},{"x":100,"y":300});});
+        game.physics.arcade.collide(monk, trigger7b, function(){console.log('NoKey');});
+        distTrigger(this,{"x":-10,"y":-200},{"x":50,"y":140});
+        updateDialogue(this,this.currentNPC);
+        NPCBoxVis(this,this.currentNPC,{"x":-10,"y":-200},{"x":50,"y":140});
         }
         
         cursorControl(0.2);

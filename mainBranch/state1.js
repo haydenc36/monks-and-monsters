@@ -147,6 +147,8 @@ demo.state1.prototype = {
         game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
+                //Create Variables to Show picked up item
+        createshowItem(this);
         
         // Audio Variable
         audioCoordinate = "outside";
@@ -194,6 +196,9 @@ demo.state1.prototype = {
         updateInventory(this);
         updateHintBtn();
         AllHintUpdate(this);
+        
+        pickup(this);
+        
     }/*,
     render: function () {
         game.debug.cameraInfo(game.camera, 32, 32);
