@@ -39,6 +39,7 @@ demo.EnemyUnit.prototype.act = function () {
     else if (battleAudio == "serpent")
     {
         // Serpent Audio
+        snake.play();
     }
     
     else if (battleAudio == "tutorial")

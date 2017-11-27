@@ -35,7 +35,10 @@ demo.state00.prototype = {
         game.load.audio('thunder', '../assets/audio/thunder.wav');
         game.load.audio('sparkle', '../assets/audio/sparkle.wav');
         game.load.audio('wineSound', '../assets/audio/wineSound.m4a');
-        game.load.audio('picked', '../assets/audio/itempicked.mp3')
+        game.load.audio('picked', '../assets/audio/itempicked.mp3');
+        game.load.audio('snake', '../assets/audio/snake.wav');
+        game.load.audio('scrollSound', '../assets/audio/scrollSound.wav');
+        
     },
     
     create:function()
@@ -58,6 +61,8 @@ demo.state00.prototype = {
         sparkle = game.add.audio('sparkle');
         wineSound = game.add.audio('wineSound');
         pickupSound = game.add.audio('picked');
+        snake = game.add.audio('snake');
+        scrollSound = game.add.audio('scrollSound');
         
         // Play the opening music
         intro.play();

@@ -185,7 +185,7 @@ demo.state1.prototype = {
         // Transitioning between maps
         game.physics.arcade.collide(monk, trigger1a, function(){doorSound.play(); battleAudio = "oceanus"; deactivateSounds(); game.state.start('state4');});
         game.physics.arcade.collide(monk, trigger1b, function(){doorSound.play(); battleAudio = "serpent"; deactivateSounds(); game.state.start('state5');});
-        game.physics.arcade.collide(monk, trigger1c, function(){doorSound.play(); battleAudio = "archdemon"; deactivateSounds(); game.state.start('state3');});
+        game.physics.arcade.collide(monk, trigger1c, function(){doorSound.play(); deactivateSounds(); game.state.start('state3');});
         game.physics.arcade.collide(monk, trigger1d, function(){roosterSound.play(); deactivateSounds(); game.state.start('state7');});
         
         
