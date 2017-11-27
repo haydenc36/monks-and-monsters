@@ -22,9 +22,6 @@ demo.state4.prototype = {
     
     create:function(){
         
-        // Update the coodinate variable
-        coordinate = 'hut';
-        
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
         
@@ -61,7 +58,7 @@ demo.state4.prototype = {
         createNPC(this,"Oceanus",{"x":1000, "y":700},"oceanus",{"x":-0.65, "y":0.65});
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate = 'battle')) {
+        if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate == 'battle')) {
             monk = game.add.sprite(836, 606, 'monk');
             coordinate = 'hut';
         }
@@ -105,6 +102,7 @@ demo.state4.prototype = {
     },
     
     update: function(){
+        
         // Update the coodinate variable
         coordinate = 'hut';
         
@@ -112,7 +110,7 @@ demo.state4.prototype = {
         game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
         
         if ((dialogueCheck.indexOf("Oceanus Before Battle") != -1)  && (BattlesCompleted.indexOf("Oceanus") == -1)) {
-            game.state.start("BootState", true, false, "../assets/battleJSONs/OceanusBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);
+            game.state.start("BootState", true, false, "../assets/battleJSONs/OceanusBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
         }
         
         cursorControl(0.6);

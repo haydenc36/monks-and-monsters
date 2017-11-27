@@ -26,9 +26,6 @@ demo.state3.prototype = {
     
     create:function(){
         
-        // Update the coodinate variable
-        coordinate = 'monastery';
-        
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
                 
@@ -86,7 +83,7 @@ demo.state3.prototype = {
         }
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate = 'battle')) {
+        if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate == 'battle')) {
             //Somewhere in front of Silva
             monk = game.add.sprite(594, 647, 'monk');
             coordinate = 'monastery';

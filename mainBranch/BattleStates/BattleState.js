@@ -13,8 +13,9 @@ demo.BattleState = function () {
         "inventory": demo.Inventory.prototype.constructor,
         "wine": demo.Wine.prototype.constructor,
         "bread": demo.Bread.prototype.constructor,
+        "scroll": demo.Scroll.prototype.constructor,
         "heal": demo.Heal.prototype.constructor,
-        "scroll": demo.SwordScroll.prototype.constructor,
+        "scrollAttack": demo.SwordScroll.prototype.constructor,
         "miracle": demo.Miracle.prototype.constructor,
         "aod": demo.AngelOfDeath.prototype.constructor,
     };
@@ -39,6 +40,7 @@ demo.BattleState.prototype.init = function (level_data, charStats, inventQ) {
     
     this.wineQ = inventQ[0];
     this.breadQ = inventQ[1];
+    this.scrollQ = inventQ[2];
     
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
@@ -157,6 +159,17 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.BreadReq.visible = false;
     }
     
+    // Scroll Requirements
+    if (this.ScrollReq){
+        this.prefabs.ScrollReq = this.ScrollReq;
+        this.prefabs.ScrollReq.visible = false;
+    } else {
+        this.prefabs.ScrollReq = game.add.text(1045, 650, "Scroll restores " + this.prefabs.Scroll.stam_power + " stamina points ", this.textStyle);
+        this.prefabs.ScrollReq.wordWrapWidth = "350";
+        this.prefabs.ScrollReq.wordWrap = true;
+        this.prefabs.ScrollReq.visible = false;
+    }
+    
     // store units in a priority queue which compares the units act turn
     this.units = new PriorityQueue({comparator: function (unit_a, unit_b) {
         return unit_a.act_turn - unit_b.act_turn;
@@ -180,6 +193,7 @@ demo.BattleState.prototype.create = function () {
     
     this.prefabs.Wine.stats.quantity = this.wineQ;
     this.prefabs.Bread.stats.quantity = this.breadQ;
+    this.prefabs.Scroll.stats.quantity = this.scrollQ;
     
     this.init_hud();
     
@@ -400,7 +414,7 @@ demo.BattleState.prototype.game_over = function () {
         }
     }
     
-    this.game.state.start(this.level_data.extraInfo.prevState, true, false, [this.prefabs.Monk.stats.health + 10, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP], [this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+    this.game.state.start(this.level_data.extraInfo.prevState, true, false, [this.prefabs.Monk.stats.health + 10, this.prefabs.Monk.stats.mana, this.prefabs.Monk.stats.stamina, this.prefabs.Monk.stats.maxHP, this.prefabs.Monk.stats.maxMP, this.prefabs.Monk.stats.maxSP], [this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity, this.prefabs.Scroll.stats.quantity]);
 };
 
 demo.BattleState.prototype.end_battle = function () {
@@ -425,10 +439,10 @@ demo.BattleState.prototype.end_battle = function () {
     
     // go back to WorldState with the current party data
     if (tutorial) {
-        this.game.state.start(this.level_data.extraInfo.nextState, true, false, [this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease, this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease],[10,10]);
+        this.game.state.start(this.level_data.extraInfo.nextState, true, false, [this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease, this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease],[10,10,10]);
     }
     else {
-        this.game.state.start(this.level_data.extraInfo.nextState, true, false, [this.prefabs.Monk.stats.health + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.mana + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.stamina + this.level_data.extraInfo.SPIncrease, this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity]);
+        this.game.state.start(this.level_data.extraInfo.nextState, true, false, [this.prefabs.Monk.stats.health + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.mana + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.stamina + this.level_data.extraInfo.SPIncrease, this.prefabs.Monk.stats.maxHP + this.level_data.extraInfo.HPIncrease, this.prefabs.Monk.stats.maxMP + this.level_data.extraInfo.MPIncrease, this.prefabs.Monk.stats.maxSP + this.level_data.extraInfo.SPIncrease],[this.prefabs.Wine.stats.quantity,this.prefabs.Bread.stats.quantity,this.prefabs.Scroll.stats.quantity]);
     }
     
 };

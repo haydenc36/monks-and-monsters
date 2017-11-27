@@ -65,13 +65,19 @@ demo.MenuItem.prototype.selection_over = function (curs) {
             this.showmenu.visible = true;
         }
     }
+    else if (this.text == "Scroll"){
+        this.showmenu = this.game_state.prefabs.ScrollReq;
+        if (!!this.showmenu) {
+            this.showmenu.visible = true;
+        }
+    }
 };
  
 demo.MenuItem.prototype.selection_out = function () {
     "use strict";
     this.fill = "#FFF";
     if (!!this.showmenu) {
-        if ((this.showmenu == this.game_state.prefabs.SwordReq) || (this.showmenu == this.game_state.prefabs.MiraclesReq) || (this.showmenu == this.game_state.prefabs.AODReq) || (this.showmenu == this.game_state.prefabs.HealReq) || (this.showmenu == this.game_state.prefabs.WineReq) || (this.showmenu == this.game_state.prefabs.BreadReq)) {
+        if ((this.showmenu == this.game_state.prefabs.SwordReq) || (this.showmenu == this.game_state.prefabs.MiraclesReq) || (this.showmenu == this.game_state.prefabs.AODReq) || (this.showmenu == this.game_state.prefabs.HealReq) || (this.showmenu == this.game_state.prefabs.WineReq) || (this.showmenu == this.game_state.prefabs.BreadReq) || (this.showmenu == this.game_state.prefabs.ScrollReq)) {
             this.showmenu.visible = false;
         }
         else {

@@ -41,6 +41,8 @@ demo.state2.prototype = {
         game.load.image('hintBrothel', '../assets/backgrounds/hintBrothel.png');
         game.load.image('hintHut', '../assets/backgrounds/hintHut.png');
         game.load.image('hintBasement', '../assets/backgrounds/hintBasement.png');
+        game.load.image('hintCountry', '../assets/backgrounds/hintCountry.png');
+        game.load.image('hintCave', '../assets/backgrounds/hintCave.png');
         
         //Load NPCs
         game.load.spritesheet('thomas', '../assets/boxes/wandering_trader1.png', 64, 128);
@@ -51,8 +53,9 @@ demo.state2.prototype = {
         game.load.spritesheet('sicarius', '../assets/sprites/sicarius.png', 119, 319);
         
         //Load Enemies
-        game.load.image('serpent', '../assets/sprites/serpent.png');
+        game.load.image('QMark', '../assets/sprites/QMark.png');
         game.load.image('tutorialEnemy', '../assets/sprites/TutorialDevil.png');
+        game.load.image('heresy', '../assets/sprites/heresymonster.png')
         
         //load Sprites for inventory
         game.load.spritesheet('inventory_base', '../assets/sprites/scroll_menu.png');
@@ -185,7 +188,7 @@ demo.state2.prototype = {
         tutorial = true;
     
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
-            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); battleAudio = "tutorial"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ],{},tutorial);});
+            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); battleAudio = "tutorial"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ],{},tutorial);});
             
             // Play the door sound
             //doorSound.play();

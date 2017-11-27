@@ -97,7 +97,7 @@ demo.state1.prototype = {
         var flowers1 = map.createLayer('flowers1');
         
         if (BattlesCompleted.indexOf("Heresy Monster") != -1) {
-            createNPC(this,"Seth",{"x":700, "y":700},"seth",{"x":-0.35, "y":0.35});
+            createNPC(this,"Seth",{"x":750, "y":1100},"seth",{"x":0.35, "y":0.35});
         }
         
         
@@ -183,19 +183,23 @@ demo.state1.prototype = {
         
         
         
-        /*if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") != -1) && (makeTyphon)) {
+        if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") != -1) && (makeTyphon)) {
             this.NPCs["Seth"].spriteObj.destroy();
-            this.NPCs["Seth].text.destroy();
-            delete this.NPCs["Seth];
-            createNPC(this,"Typhon",{"x":700, "y":700},"typhon",{"x":-0.35, "y":0.35});
+            this.NPCs["Seth"].text.destroy();
+            delete this.NPCs["Seth"];
+            createNPC(this,"Typhon",{"x":750, "y":1100},"typhon",{"x":0.35, "y":0.35});
             makeTyphon = false;
-        }*/
+        }
 
         cursorControl(0.3);
         updateHUD(this);
         updateInventory(this);
         updateHintBtn();
         AllHintUpdate(this);
+        
+        distTrigger(this,{"x":150,"y":50},{"x":50,"y":100});
+        updateDialogue(this,this.currentNPC);
+        NPCBoxVis(this,this.currentNPC,{"x":150,"y":50},{"x":50,"y":100});
         
         pickup(this);
         

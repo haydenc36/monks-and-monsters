@@ -32,6 +32,6 @@ demo.RetreatMenuItem.prototype.select = function () {
         medievalMusic.play();
         medievalMusic.loopFull(0.6); 
 
-        this.game.state.start(this.game_state.level_data.extraInfo.prevState, true, false, [this.game_state.prefabs.Monk.stats.health, this.game_state.prefabs.Monk.stats.mana, this.game_state.prefabs.Monk.stats.stamina, this.game_state.prefabs.Monk.stats.maxHP, this.game_state.prefabs.Monk.stats.maxMP, this.game_state.prefabs.Monk.stats.maxSP], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity]);
+        this.game.state.start(this.game_state.level_data.extraInfo.prevState, true, false, [this.game_state.prefabs.Monk.stats.health, this.game_state.prefabs.Monk.stats.mana, this.game_state.prefabs.Monk.stats.stamina, this.game_state.prefabs.Monk.stats.maxHP, this.game_state.prefabs.Monk.stats.maxMP, this.game_state.prefabs.Monk.stats.maxSP], [this.game_state.prefabs.Wine.stats.quantity,this.game_state.prefabs.Bread.stats.quantity, this.game_state.prefabs.Scroll.stats.quantity]);
     }
 };

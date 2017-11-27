@@ -15,4 +15,3 @@ game.state.add('LoadingState', demo.LoadingState);
 game.state.add('BattleState', demo.BattleState);
 
 game.state.start('state00');
-//game.state.start("BootState", true, false, "../assets/battleJSONs/SilvaBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);

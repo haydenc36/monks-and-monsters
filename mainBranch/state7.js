@@ -21,9 +21,6 @@ demo.state7.prototype = {
     
     create:function(){
         
-        // Update the coodinate variable
-        coordinate = 'country';
-        
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
         //vel = 200;
@@ -55,7 +52,13 @@ demo.state7.prototype = {
         var buildings7 = map.createLayer('buildings7');
         
         // Initialize the monk character
-        monk = game.add.sprite(2382, 407, 'monk');
+        if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (coordinate == "battle")) {
+            monk = game.add.sprite(123, 400, 'monk');
+            coordinate = 'country';
+        }
+        else {
+            monk = game.add.sprite(2382, 407, 'monk');
+        }
         monk.scale.set(-0.2,0.2);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -106,10 +109,12 @@ demo.state7.prototype = {
         // Update the coodinate variable
         coordinate = 'country';
         
+        console.log(coordinate);
+        
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); roosterSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7'); deactivateSounds;});
          if(keyQ==1){
-         game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); battleAudio = "heresyMonster"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ]);});
+         game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); battleAudio = "heresyMonster"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);});
         }
         else{
         game.physics.arcade.collide(monk, trigger7b, function(){console.log('NoKey');});
@@ -124,5 +129,9 @@ demo.state7.prototype = {
         updateHintBtn();
         AllHintUpdate(this);
           pickup(this);
-    }
+    }/*,
+    render: function () {
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(monk, 32, 500);
+    }*/
 };

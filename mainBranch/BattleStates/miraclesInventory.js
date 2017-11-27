@@ -35,7 +35,6 @@ demo.miraclesInventory.prototype.create_menu = function (position) {
 demo.miraclesInventory.prototype.use_skill = function (skill_name, target) {
     "use strict";
     var miracles_index;
-    console.log(this.miracles[0].req_mana);
     if (!!this.miracles[0].req_mana) {
         if (this.game_state.current_unit.stats.mana >= this.miracles[0].req_mana) {
             this.miracles[0].use(target);

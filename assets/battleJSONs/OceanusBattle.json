@@ -34,9 +34,9 @@
                 "height": 2400
             }
         },
-        "enemy_rectangle": {
+        "menu_rectangle": {
             "type": "rectangle",
-            "position": {"x": 0, "y": 550},
+            "position": {"x": 25, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
@@ -45,14 +45,14 @@
         },
         "action_rectangle": {
             "type": "rectangle",
-            "position": {"x": 480, "y": 550},
+            "position": {"x": 525, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
                 "scale": {"x": 1, "y": 1}
             }
         },
-        "player_rectangle": {
+        "def_rectangle": {
             "type": "rectangle",
             "position": {"x": 970, "y": 550},
             "properties": {
@@ -69,24 +69,24 @@
                 "group": "players",
                 "scale": {"x": 0.5, "y": 0.5},
                 "stats": {
-                    "attack": 10,
-                    "defense": 5,
-                    "miracles_attack":10
+                    "attack": 20,
+                    "defense": 9,
+                    "miracles_attack":16
                 }
             }
         },
         "Oceanus": {
             "type": "enemy_unit",
-            "position": {"x": 1200, "y": 550},
+            "position": {"x": 1200, "y": 600},
             "properties": {
                 "texture": "devil_spritesheet",
                 "group": "enemies",
                 "scale": {"x": 0.05, "y": 0.05},
                 "stats": {
-                    "attack": 10,
-                    "defense": 1,
-                    "health": 100,
-                    "maxHP": 100,
+                    "attack": 20,
+                    "defense": 4,
+                    "health": 300,
+                    "maxHP": 300,
                     "reward": {
                         "items": [{"text":"Wine"},{"text":"Bread"}]
                     }
@@ -116,6 +116,17 @@
                 }
             }
         },
+        "Scroll": {
+            "type": "scroll",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "texture": "scroll_img",
+                "group": "items",
+                "stats": {
+                    "stam_power": 30
+                }
+            }
+        },
         "Heal": {
             "type": "heal",
             "position": {"x": 0, "y": 0},
@@ -128,7 +139,7 @@
             }
         },
         "Sword Scroll": {
-            "type": "scroll",
+            "type": "scrollAttack",
             "position": {"x": 0, "y": 0},
             "properties": {
                 "group": "attackskills",
@@ -164,8 +175,8 @@
         "prevState": "state1",
         "nextState": "state4",
         "removeDialogue": ["Oceanus Before Battle"],
-        "HPIncrease": 0,
-        "MPIncrease": 0,
-        "SPIncrease": 0
+        "HPIncrease": 150,
+        "MPIncrease": 150,
+        "SPIncrease": 150
     }
 }

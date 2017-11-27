@@ -6,6 +6,7 @@
         "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/priest.png", "frame_width": 1115, "frame_height": 1500},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
+        "scroll_img": {"type": "image", "source": "../../assets/sprites/closedscroll.png"},
         "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
         "redBar": {"type": "image", "source": "../../assets/boxes/red_bar.png"},
         "blackBar": {"type": "image", "source": "../../assets/boxes/black_bar.png"},
@@ -34,9 +35,9 @@
                 "height": 2400
             }
         },
-        "enemy_rectangle": {
+        "menu_rectangle": {
             "type": "rectangle",
-            "position": {"x": 0, "y": 550},
+            "position": {"x": 25, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
@@ -45,14 +46,14 @@
         },
         "action_rectangle": {
             "type": "rectangle",
-            "position": {"x": 480, "y": 550},
+            "position": {"x": 525, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
                 "scale": {"x": 1, "y": 1}
             }
         },
-        "player_rectangle": {
+        "def_rectangle": {
             "type": "rectangle",
             "position": {"x": 970, "y": 550},
             "properties": {
@@ -101,7 +102,7 @@
                 "group": "items",
                 "scale": {"x": 0.05, "y": 0.05},
                 "stats": {
-                    "mana_power": 30
+                    "mana_power": 50
                 }
             }
         },
@@ -112,7 +113,18 @@
                 "texture": "bread_img",
                 "group": "items",
                 "stats": {
-                    "health_power": 30
+                    "health_power": 50
+                }
+            }
+        },
+        "Scroll": {
+            "type": "scroll",
+            "position": {"x": 0, "y": 0},
+            "properties": {
+                "texture": "scroll_img",
+                "group": "items",
+                "stats": {
+                    "stam_power": 50
                 }
             }
         },
@@ -128,7 +140,7 @@
             }
         },
         "Sword Scroll": {
-            "type": "scroll",
+            "type": "scrollAttack",
             "position": {"x": 0, "y": 0},
             "properties": {
                 "group": "attackskills",
@@ -161,10 +173,10 @@
         }
     },
     "extraInfo": {
-        "prevState": "state2",
+        "prevState": "state1",
         "nextState": "state1",
-        "HPIncrease": 0,
-        "MPIncrease": 0,
-        "SPIncrease": 0
+        "HPIncrease": 75,
+        "MPIncrease": 75,
+        "SPIncrease": 75
     }
 }

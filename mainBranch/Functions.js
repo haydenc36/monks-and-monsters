@@ -12,13 +12,8 @@ changeStatsInvent = function (charStats, invent) {
     if (!!invent) {
         wineQ = invent[0];
         breadQ = invent[1];
+        scrollQ = invent[2];
         keyQ = 0;
-        if (!!invent[2]) {
-            scrollQ = invent[2];
-        }
-        else {
-            scrollQ = 1;
-        }
     }
 };
 
@@ -496,7 +491,7 @@ chooseStr = function (game_state,NPC,extraNPC) {
 dialogueList = function (game_state, NPC, npcName) {
     if(game_state.key == "state1") {
         if (npcName == "Seth") {
-            if (dialogueCheck.indexOf("Heresy Monster After Battle") != -1) {
+            if (BattlesCompleted.indexOf("Heresy Monster") != -1) {
                 //Scene 9: Seth/Typhon
                 NPC.checkpointID = "Seth is Typhon";
                 NPC.dialogue = {
@@ -530,7 +525,7 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Default"
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": "I believe Father Hopko wishes to see you.",
+                        "npcDialogue": " ",
                         "charResponse": ""
                     }
                 };
@@ -557,7 +552,7 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Default"
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": "I believe Father Hopko wishes to see you.",
+                        "npcDialogue": " ",
                         "charResponse": ""
                     }
                 };
@@ -596,7 +591,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Thomas Tutorial";
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "Alright, get whatever you need from that chest and show me what you remember!",
+                    "npcDialogue": "Alright, show me what you remember!",
                     "charResponse": ""
                 }
             };
@@ -1293,49 +1288,49 @@ item.visible = false;
 
 //Pick Up Items from Chest
 pickup = function (game_state){
-monk.bringToTop();
-shiny.bringToTop();
-item.bringToTop();
-    //Pick Up Key in State7
-if(chest_state7 == true){
-    if (((chest.x <= monk.x) && chest.x+30>= monk.x) && ((chest.y <= monk.y) && chest.y+30 >=monk.y)&& chest.active == true) {
-    keyQ = 1;
-    chest_state7 == false;
-    chest.active = false;
-    chest.frame = 1;
-    pickeditem =4;
-    pickedItemName ="key";
-    showItem(game_state);
-}
-}
-    //Pick Up Items in every other state
-    else{
-if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
-   chest.frame = 1;
-pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
-      chest.active = false;
-    if(pickedItem==1)
-        {
-            breadQ = breadQ + 1;
-            pickeditem = 1;
-            pickedItemName ="bread";
-            
+    monk.moveUp();
+    shiny.bringToTop();
+    item.bringToTop();
+        //Pick Up Key in State7
+    if(chest_state7 == true){
+        if (((chest.x <= monk.x) && chest.x+30>= monk.x) && ((chest.y <= monk.y) && chest.y+30 >=monk.y)&& chest.active == true) {
+            keyQ = 1;
+            chest_state7 == false;
+            chest.active = false;
+            chest.frame = 1;
+            pickeditem =4;
+            pickedItemName ="key";
+            showItem(game_state);
         }
-    else if(pickedItem == 2){
-        
-        wineQ = wineQ + 1;
-        pickeditem =2;
-        pickedItemName ="wine";
     }
-    else if(pickedItem == 3){
-        scrollQ = scrollQ +1;
-        pickeditem =3;
-        pickedItemName ="scroll";
-        
+    //Pick Up Items in every other state
+    else {
+        if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
+            chest.frame = 1;
+            pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
+            chest.active = false;
+            if(pickedItem==1)
+                {
+                    breadQ = breadQ + 1;
+                    pickeditem = 1;
+                    pickedItemName ="bread";
+
+                }
+            else if(pickedItem == 2){
+
+                wineQ = wineQ + 1;
+                pickeditem =2;
+                pickedItemName ="wine";
+            }
+            else if(pickedItem == 3){
+                scrollQ = scrollQ +1;
+                pickeditem =3;
+                pickedItemName ="scroll";
+
+            }
+        showItem(game_state);
+        }
     }
-showItem(game_state);
-}
-}
 };
 
 //Show picked up item on chest for 1.5 secs
@@ -1372,7 +1367,7 @@ showItem = function(game_state){
 };
 
 
-    /*//Auto sort
+    /* //Auto sort
         for(var i=0; i<5; i++)
             {
             //Set slots to empty
@@ -1620,7 +1615,8 @@ HintInfo = function (game_state) {
 updateHint = function(game_state, talk, npcName, npcScaleX, npcScaleY, npcID, buildingName, spriteID) {
     if (!HintOpen) {
         if (talk) {
-            hintPopup.NPCName = game_state.add.text(game.world.centerX, game.world.centerY, "Talk to " + npcName, {
+            if (npcName == "key") {
+                hintPopup.NPCName = game_state.add.text(game.world.centerX, game.world.centerY, "Find a " + npcName, {
                 font: "Book Antiqua",
                 fontSize: "35px",
                 fontVariant: 'small-caps',
@@ -1628,6 +1624,17 @@ updateHint = function(game_state, talk, npcName, npcScaleX, npcScaleY, npcID, bu
                 fill:'#4d2800', 
                 align:'center'
             });
+            }
+            else {
+                hintPopup.NPCName = game_state.add.text(game.world.centerX, game.world.centerY, "Talk to " + npcName, {
+                font: "Book Antiqua",
+                fontSize: "35px",
+                fontVariant: 'small-caps',
+                fontWeight:"bold",
+                fill:'#4d2800', 
+                align:'center'
+            });
+            }
         }
         else {
             hintPopup.NPCName = game_state.add.text(game.world.centerX, game.world.centerY, "Battle the " + npcName, {
@@ -1712,6 +1719,7 @@ getHint = function () {
 };
 
 AllHintUpdate = function (game_state) {
+    
     if ((dialogueCheck.indexOf("Head Abbot Tutorial") != -1) && (dialogueCheck.indexOf("Thomas Tutorial") == -1)) {
         updateHint(game_state, true, 'Thomas', 3, 3, 'thomas', 'Tutorial', 'tutorialThomas');
     }
@@ -1733,7 +1741,7 @@ AllHintUpdate = function (game_state) {
     }
     
     if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Serpent") == -1)){
-        updateHint(game_state, false, 'Serpent', 0.75, 0.75, 'serpent', 'Basement of the Brothel', 'hintBasement');
+        updateHint(game_state, false, '?', 0.75, 0.75, 'QMark', 'Basement of the Brothel', 'hintBasement');
     }
     
     if ((BattlesCompleted.indexOf("Serpent") != -1) && (dialogueCheck.indexOf("Oceanus Before Battle") == -1)){
@@ -1743,11 +1751,16 @@ AllHintUpdate = function (game_state) {
     if ((dialogueCheck.indexOf("Oceanus After Battle") != -1) && (dialogueCheck.indexOf("Silva Training") == -1)){
         updateHint(game_state, true, 'Silva', 1, 1, 'silva', 'Monastery', 'hintMonastery');
     }
-    
-    //Go to the Cemetery
-    if ((dialogueCheck.indexOf("Silva to Cemetery") != -1) && (dialogueCheck.indexOf("Silva Training") == -1)){
-        //updateHint(game_state, true, 'Oceanus', 1, 1, 'oceanus', 'Peasant\'s House', 'hintHut');
+
+    if ((dialogueCheck.indexOf("Silva to Cemetery") != -1) && (keyQ == 0)){
+        updateHint(game_state, true, 'key', 1, 1, 'key', 'Countryside', 'hintCountry');
     }
     
+    if ((keyQ == 1) && (BattlesCompleted.indexOf("Heresy Monster") == -1)){
+        updateHint(game_state, false, 'Heresy Monster', 0.75, 0.75, 'heresy', 'Cave', 'hintCave');
+    }
     
+    if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") == -1)){
+        updateHint(game_state, false, 'Seth', 1, 1, 'seth', 'Monastery', 'hintMonastery');
+    }
 }
