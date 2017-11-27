@@ -499,25 +499,25 @@ dialogueList = function (game_state, NPC, npcName) {
                         "charResponse": "Seth, explain yourself."
                     },
                     "1": {
-                        "extra": "You’ve ruined everything! The church is ruined! I am ruined!"
+                        "npcDialogue": "You’ve ruined everything! The church is ruined! I am ruined!"
                     },
                     "2": {
                         "charResponse": "What have you done?"
                     },
                     "3": {
-                        "extra": "I had to, I had to! I framed the poor for the theft; I poisoned Theo; I provoked the lords."
+                        "npcDialogue": "I had to, I had to! I framed the poor for the theft; I poisoned Theo; I provoked the lords."
                     },
                     "4": {
                         "charResponse": "But why?"
                     },
                     "5": {
-                        "extra": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! But now, he is not pleased."
+                        "npcDialogue": "I only wished to cleanse the church—of louts and idiots and adulterers! ‘After violence and upheaval, finally the people will return to the church. They will need Her,’ I thought! But now, he is not pleased."
                     },
                     "6": {
                         "charResponse": "Who—?"
                     },
                     "7": {
-                        "extra": "*Screaming*"
+                        "npcDialogue": "*Screaming*"
                     }
                 };
             }
@@ -552,7 +552,7 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Default"
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": " ",
+                        "npcDialogue": "",
                         "charResponse": ""
                     }
                 };

@@ -97,7 +97,11 @@ demo.state1.prototype = {
         var flowers1 = map.createLayer('flowers1');
         
         if (BattlesCompleted.indexOf("Heresy Monster") != -1) {
-            createNPC(this,"Seth",{"x":750, "y":1100},"seth",{"x":0.35, "y":0.35});
+            createNPC(this,"Typhon",{"x":800, "y":1200},"typhon",{"x":0.35, "y":0.35});
+            this.NPCs["Typhon"].spriteObj.visible = false;
+            this.NPCs["Typhon"].text.visible = false;
+            
+            createNPC(this,"Seth",{"x":800, "y":1200},"seth",{"x":0.35, "y":0.35});
         }
         
         
@@ -162,6 +166,9 @@ demo.state1.prototype = {
             getHint();
         });
         HintInfo(this);
+        
+        createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
+        initInfoBox(this);
     },
     
     
@@ -187,8 +194,14 @@ demo.state1.prototype = {
             this.NPCs["Seth"].spriteObj.destroy();
             this.NPCs["Seth"].text.destroy();
             delete this.NPCs["Seth"];
-            createNPC(this,"Typhon",{"x":750, "y":1100},"typhon",{"x":0.35, "y":0.35});
+            this.NPCs["Typhon"].spriteObj.visible = true;
+            this.NPCs["Typhon"].text.visible = true;
+            dialogueList(this, this.NPCs["Typhon"],"Typhon");
             makeTyphon = false;
+        }
+        
+        if ((dialogueCheck.indexOf("Typhon Mastermind") != -1)  && (BattlesCompleted.indexOf("Typhon") == -1)) {
+            game.state.start("BootState", true, false, "../assets/battleJSONs/FinalBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
         }
 
         cursorControl(0.3);
@@ -197,9 +210,9 @@ demo.state1.prototype = {
         updateHintBtn();
         AllHintUpdate(this);
         
-        distTrigger(this,{"x":150,"y":50},{"x":50,"y":100});
+        distTrigger(this,{"x":50,"y":50},{"x":150,"y":100});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":150,"y":50},{"x":50,"y":100});
+        NPCBoxVis(this,this.currentNPC,{"x":50,"y":50},{"x":150,"y":100});
         
         pickup(this);
         
