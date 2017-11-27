@@ -435,6 +435,10 @@ demo.BattleState.prototype.end_battle = function () {
     
     BattlesCompleted.push(this.enemy.name);
     
+    if (!!this.level_data.extraInfo.nextState) {
+        battleAudio = this.level_data.extraInfo.battleAudioAfter;
+    }
+    
     this.game.world.removeAll();
     
     // go back to WorldState with the current party data
