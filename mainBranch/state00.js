@@ -35,6 +35,7 @@ demo.state00.prototype = {
         game.load.audio('thunder', '../assets/audio/thunder.wav');
         game.load.audio('sparkle', '../assets/audio/sparkle.wav');
         game.load.audio('wineSound', '../assets/audio/wineSound.m4a');
+        game.load.audio('picked', '../assets/audio/itempicked.mp3')
     },
     
     create:function()
@@ -56,6 +57,7 @@ demo.state00.prototype = {
         thunder = game.add.audio('thunder');
         sparkle = game.add.audio('sparkle');
         wineSound = game.add.audio('wineSound');
+        pickupSound = game.add.audio('picked');
         
         // Play the opening music
         intro.play();
