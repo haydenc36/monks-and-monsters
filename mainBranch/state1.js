@@ -97,7 +97,7 @@ demo.state1.prototype = {
         var flowers1 = map.createLayer('flowers1');
         
         if (BattlesCompleted.indexOf("Heresy Monster") != -1) {
-            createNPC(this,"Typhon",{"x":800, "y":1200},"typhon",{"x":0.35, "y":0.35});
+            createNPC(this,"Typhon",{"x":800, "y":1200},"typhon",{"x": -0.15, "y":0.15});
             this.NPCs["Typhon"].spriteObj.visible = false;
             this.NPCs["Typhon"].text.visible = false;
             

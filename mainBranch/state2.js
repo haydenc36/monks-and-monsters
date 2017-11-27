@@ -51,6 +51,7 @@ demo.state2.prototype = {
         game.load.spritesheet('silva', '../assets/sprites/silva.png', 117, 319);
         game.load.spritesheet('oceanus', '../assets/sprites/oceanus.png', 159, 319);
         game.load.spritesheet('sicarius', '../assets/sprites/sicarius.png', 119, 319);
+        game.load.spritesheet('typhon', '../assets/sprites/typhon.png', 752, 1063);
         
         //Load Enemies
         game.load.image('QMark', '../assets/sprites/QMark.png');
