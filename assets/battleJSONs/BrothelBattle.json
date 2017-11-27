@@ -26,12 +26,12 @@
     "prefabs": {
         "background": {
             "type": "background",
-            "position": {"x": 0, "y": -225},
+            "position": {"x": 0, "y": 0},
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
-                "width": 1280,
-                "height": 719
+                "width": 1920,
+                "height": 1079
             }
         },
         "menu_rectangle": {
@@ -77,7 +77,7 @@
         },
         "Serpent": {
             "type": "enemy_unit",
-            "position": {"x": 1200, "y": 550},
+            "position": {"x": 1200, "y": 500},
             "properties": {
                 "texture": "serpent_spritesheet",
                 "group": "enemies",

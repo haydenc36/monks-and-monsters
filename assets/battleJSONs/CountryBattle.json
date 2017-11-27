@@ -26,12 +26,12 @@
     "prefabs": {
         "background": {
             "type": "background",
-            "position": {"x": 0, "y": -225},
+            "position": {"x": -200, "y": -100},
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
-                "width": 2400,
-                "height": 2400
+                "width": 1920,
+                "height": 1080
             }
         },
         "menu_rectangle": {
@@ -77,7 +77,7 @@
         },
         "Heresy Monster": {
             "type": "enemy_unit",
-            "position": {"x": 1200, "y": 600},
+            "position": {"x": 1200, "y": 500},
             "properties": {
                 "texture": "heresy_spritesheet",
                 "group": "enemies",

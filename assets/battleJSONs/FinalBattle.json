@@ -1,7 +1,7 @@
 {
     "assets": {
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
-        "bg_image": {"type": "image", "source": "../../assets/backgrounds/abbey.png"},
+        "bg_image": {"type": "image", "source": "../../assets/backgrounds/abbey.jpg"},
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
         "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/devilMonk.png", "frame_width": 274, "frame_height": 500},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
@@ -30,8 +30,8 @@
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
-                "width": 1280,
-                "height": 721
+                "width": 1920,
+                "height": 1280
             }
         },
         "menu_rectangle": {
@@ -77,7 +77,7 @@
         },
         "Typhon": {
             "type": "enemy_unit",
-            "position": {"x": 1200, "y": 600},
+            "position": {"x": 1200, "y": 500},
             "properties": {
                 "texture": "devil_spritesheet",
                 "group": "enemies",
