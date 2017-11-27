@@ -34,7 +34,7 @@ demo.state0.prototype = {
         
         // Create the Play button
         this.createButton(40, "Play", 600, 375, 400, 200, function(){
-            this.state.start("state2", true, false, [100,100,100,100,100,100], [1,1,1]);
+            this.state.start("intro", true, false, [100,100,100,100,100,100], [1,1,1]);
         });
         
         // Instructions Button

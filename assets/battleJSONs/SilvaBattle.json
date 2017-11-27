@@ -89,7 +89,7 @@
                     "health": 500,
                     "maxHP": 500,
                     "reward": {
-                        "items": [{"text":"Wine"},{"text":"Bread"}]
+                        "items": [{"text":"Wine"},{"text":"Bread"},{"text":"Scroll"}]
                     }
                 }
             }
