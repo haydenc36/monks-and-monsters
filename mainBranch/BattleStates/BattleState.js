@@ -96,7 +96,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.SwordReq = this.SwordReq;
         this.prefabs.SwordReq.visible = false;
     } else {
-        this.prefabs.SwordReq = game.add.text(904, 465, "Sword Scroll requires " + this.prefabs.attackskills.skills[0].req_stam + " stamina points to increase user attack by 25% ", this.textStyle);
+        this.prefabs.SwordReq = game.add.text(1045, 650, "Sword Scroll requires " + this.prefabs.attackskills.skills[0].req_stam + " stamina points to increase user attack by 25% ", this.textStyle);
         this.prefabs.SwordReq.wordWrapWidth = "350";
         this.prefabs.SwordReq.wordWrap = true;
         this.prefabs.SwordReq.visible = false;
@@ -107,7 +107,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.MiraclesReq = this.MiraclesReq;
         this.prefabs.MiraclesReq.visible = false;
     } else {
-        this.prefabs.MiraclesReq = game.add.text(904, 465, "Miracle requires " + this.prefabs.attackskills.skills[1].req_mana + " mana points to increase user attack by 50% ", this.textStyle);
+        this.prefabs.MiraclesReq = game.add.text(1045, 650, "Miracle requires " + this.prefabs.attackskills.skills[1].req_mana + " mana points to increase user attack by 50% ", this.textStyle);
         this.prefabs.MiraclesReq.wordWrapWidth = "350";
         this.prefabs.MiraclesReq.wordWrap = true;
         this.prefabs.MiraclesReq.visible = false;
@@ -118,7 +118,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.AODReq = this.AODReq;
         this.prefabs.AODReq.visible = false;
     } else {
-        this.prefabs.AODReq = game.add.text(904, 465, "Angel of Death requires " + this.prefabs.attackskills.skills[2].req_mana + " mana points to reduce the enemies current health by half ", this.textStyle);
+        this.prefabs.AODReq = game.add.text(1045, 650, "Angel of Death requires " + this.prefabs.attackskills.skills[2].req_mana + " mana points to reduce the enemies current health by half ", this.textStyle);
         this.prefabs.AODReq.wordWrapWidth = "350";
         this.prefabs.AODReq.wordWrap = true;
         this.prefabs.AODReq.visible = false;
@@ -129,7 +129,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.HealReq = this.HealReq;
         this.prefabs.HealReq.visible = false;
     } else {
-        this.prefabs.HealReq = game.add.text(904, 465, "Heal requires " + this.prefabs.miraclesskills.miracles[0].req_mana + " mana points to restore " + this.prefabs.miraclesskills.miracles[0].health_power + " health points ", this.textStyle);
+        this.prefabs.HealReq = game.add.text(1045, 650, "Heal requires " + this.prefabs.miraclesskills.miracles[0].req_mana + " mana points to restore " + this.prefabs.miraclesskills.miracles[0].health_power + " health points ", this.textStyle);
         this.prefabs.HealReq.wordWrapWidth = "350";
         this.prefabs.HealReq.wordWrap = true;
         this.prefabs.HealReq.visible = false;
@@ -140,7 +140,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.WineReq = this.WineReq;
         this.prefabs.WineReq.visible = false;
     } else {
-        this.prefabs.WineReq = game.add.text(904, 465, "Wine restores " + this.prefabs.Wine.mana_power + " mana points ", this.textStyle);
+        this.prefabs.WineReq = game.add.text(1045, 650, "Wine restores " + this.prefabs.Wine.mana_power + " mana points ", this.textStyle);
         this.prefabs.WineReq.wordWrapWidth = "350";
         this.prefabs.WineReq.wordWrap = true;
         this.prefabs.WineReq.visible = false;
@@ -151,7 +151,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.BreadReq = this.BreadReq;
         this.prefabs.BreadReq.visible = false;
     } else {
-        this.prefabs.BreadReq = game.add.text(904, 465, "Bread restores " + this.prefabs.Bread.health_power + " health points ", this.textStyle);
+        this.prefabs.BreadReq = game.add.text(1045, 650, "Bread restores " + this.prefabs.Bread.health_power + " health points ", this.textStyle);
         this.prefabs.BreadReq.wordWrapWidth = "350";
         this.prefabs.BreadReq.wordWrap = true;
         this.prefabs.BreadReq.visible = false;

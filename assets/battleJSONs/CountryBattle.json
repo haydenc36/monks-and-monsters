@@ -30,8 +30,8 @@
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
-                "width": 1280,
-                "height": 720
+                "width": 2400,
+                "height": 2400
             }
         },
         "enemy_rectangle": {

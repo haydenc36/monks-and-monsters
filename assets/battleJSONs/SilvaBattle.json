@@ -1,9 +1,9 @@
 {
     "assets": {
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
-        "bg_image": {"type": "image", "source": "../../assets/backgrounds/abbey.jpg"},
+        "bg_image": {"type": "image", "source": "../../assets/backgrounds/BattleeBG.png"},
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "wise_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/WiseMonk.png", "frame_width": 375, "frame_height": 500},
+        "wise_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/silvaBattle.png", "frame_width": 1000, "frame_height": 2726},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
         "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
@@ -12,6 +12,7 @@
         "blueBar": {"type": "image", "source": "../../assets/boxes/blue_bar.png"},
         "greenBar": {"type": "image", "source": "../../assets/boxes/green_bar.png"}
     },
+    
     "groups": [
         "items",
         "attacks",
@@ -26,17 +27,17 @@
     "prefabs": {
         "background": {
             "type": "background",
-            "position": {"x": 0, "y": -230},
+            "position": {"x": -200, "y": -300},
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
-                "width": 1280,
-                "height": 721
+                "width": 2400,
+                "height": 2400
             }
         },
         "enemy_rectangle": {
             "type": "rectangle",
-            "position": {"x": 0, "y": 432},
+            "position": {"x": 0, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
@@ -45,7 +46,7 @@
         },
         "action_rectangle": {
             "type": "rectangle",
-            "position": {"x": 427, "y": 432},
+            "position": {"x": 480, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
@@ -54,16 +55,16 @@
         },
         "player_rectangle": {
             "type": "rectangle",
-            "position": {"x": 854, "y": 432},
+            "position": {"x": 970, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
-                "scale": {"x": 1, "y": 1}
+                "scale": {"x": 1.25, "y": 1}
             }
         },
         "Monk": {
             "type": "player_unit",
-            "position": {"x": 160, "y": 340},
+            "position": {"x": 160, "y": 500},
             "properties": {
                 "texture": "monk_spritesheet",
                 "group": "players",
@@ -77,11 +78,11 @@
         },
         "Silva": {
             "type": "enemy_unit",
-            "position": {"x": 1000, "y": 300},
+            "position": {"x": 1200, "y": 600},
             "properties": {
                 "texture": "wise_spritesheet",
                 "group": "enemies",
-                "scale": {"x": 0.05, "y": 0.05},
+                "scale": {"x": 1.5, "y": 1.5},
                 "stats": {
                     "attack": 10,
                     "defense": 1,

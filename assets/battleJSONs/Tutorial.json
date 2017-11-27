@@ -3,7 +3,7 @@
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "../../assets/backgrounds/abbey.jpg"},
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/priest.png", "frame_width": 327, "frame_height": 450},
+        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/priest.png", "frame_width": 1115, "frame_height": 1500},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
         "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
@@ -45,7 +45,7 @@
         },
         "action_rectangle": {
             "type": "rectangle",
-            "position": {"x": 547, "y": 550},
+            "position": {"x": 480, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
@@ -54,11 +54,11 @@
         },
         "player_rectangle": {
             "type": "rectangle",
-            "position": {"x": 1084, "y": 550},
+            "position": {"x": 970, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
-                "scale": {"x": 1, "y": 1}
+                "scale": {"x": 1.25, "y": 1}
             }
         },
         "Monk": {
@@ -77,11 +77,11 @@
         },
         "Young Devil": {
             "type": "enemy_unit",
-            "position": {"x": 160, "y": 600},
+            "position": {"x": 1200, "y": 600},
             "properties": {
                 "texture": "devil_spritesheet",
                 "group": "enemies",
-                "scale": {"x": 0.05, "y": 0.05},
+                "scale": {"x": 0.5, "y": 0.5},
                 "stats": {
                     "attack": 15,
                     "defense": 1,

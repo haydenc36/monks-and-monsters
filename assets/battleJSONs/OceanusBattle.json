@@ -3,7 +3,7 @@
         "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "../../assets/backgrounds/OceanusBG.png"},
         "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/devilMonk.png", "frame_width": 274, "frame_height": 500},
+        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/oceanusBattle.png", "frame_width": 274, "frame_height": 500},
         "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
         "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
@@ -30,13 +30,13 @@
             "properties": {
                 "texture": "bg_image",
                 "group": "background",
-                "width": 1280,
-                "height": 721
+                "width": 2400,
+                "height": 2400
             }
         },
         "enemy_rectangle": {
             "type": "rectangle",
-            "position": {"x": 0, "y": 432},
+            "position": {"x": 0, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
@@ -45,7 +45,7 @@
         },
         "action_rectangle": {
             "type": "rectangle",
-            "position": {"x": 427, "y": 432},
+            "position": {"x": 480, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
@@ -54,16 +54,16 @@
         },
         "player_rectangle": {
             "type": "rectangle",
-            "position": {"x": 854, "y": 432},
+            "position": {"x": 970, "y": 550},
             "properties": {
                 "texture": "rectangle_image",
                 "group": "hud",
-                "scale": {"x": 1, "y": 1}
+                "scale": {"x": 1.25, "y": 1}
             }
         },
         "Monk": {
             "type": "player_unit",
-            "position": {"x": 160, "y": 340},
+            "position": {"x": 160, "y": 500},
             "properties": {
                 "texture": "monk_spritesheet",
                 "group": "players",
@@ -77,7 +77,7 @@
         },
         "Oceanus": {
             "type": "enemy_unit",
-            "position": {"x": 1000, "y": 225},
+            "position": {"x": 1200, "y": 550},
             "properties": {
                 "texture": "devil_spritesheet",
                 "group": "enemies",

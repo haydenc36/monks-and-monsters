@@ -4,13 +4,13 @@ demo.PlayerMenuItem = function (game_state, name, position, properties) {
     "use strict";
     demo.MenuItem.call(this, game_state, name, position, properties);
     
-    this.player_unit_health = new demo.ShowStat(this.game_state, this.text + "_health", {x: this.x+405, y: this.y-99}, {group: "hud", text: "", style: {font: '10px Book Antiqua', fill: '#ffffff', align:"right"}, prefab: this.text, stat: "health"});
+    this.player_unit_health = new demo.ShowStat(this.game_state, this.text + "_health", {x: this.x+405, y: this.y + 72}, {group: "hud", text: "", style: {font: '10px Book Antiqua', fill: '#ffffff', align:"right"}, prefab: this.text, stat: "health"});
     this.player_unit_health.anchor.setTo(1,0);
     
-    this.player_unit_mana = new demo.ShowStat(this.game_state, this.text + "_mana", {x: this.x+405, y: this.y-69}, {group: "hud", text: "", style: {font: '10px Book Antiqua', fill: '#ffffff'}, prefab: this.text, stat: "mana"});
+    this.player_unit_mana = new demo.ShowStat(this.game_state, this.text + "_mana", {x: this.x+405, y: this.y + 102}, {group: "hud", text: "", style: {font: '10px Book Antiqua', fill: '#ffffff'}, prefab: this.text, stat: "mana"});
     this.player_unit_mana.anchor.setTo(1,0);
     
-    this.player_unit_stamina = new demo.ShowStat(this.game_state, this.text + "_stamina", {x: this.x+405, y: this.y-39}, {group: "hud", text: "", style: {font: '10px Book Antiqua', fill: '#ffffff'}, prefab: this.text, stat: "stamina"});
+    this.player_unit_stamina = new demo.ShowStat(this.game_state, this.text + "_stamina", {x: this.x+405, y: this.y + 132}, {group: "hud", text: "", style: {font: '10px Book Antiqua', fill: '#ffffff'}, prefab: this.text, stat: "stamina"});
     this.player_unit_stamina.anchor.setTo(1,0);
 };
 
