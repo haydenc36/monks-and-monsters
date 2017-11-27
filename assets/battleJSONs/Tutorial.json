@@ -173,7 +173,7 @@
         }
     },
     "extraInfo": {
-        "prevState": "state1",
+        "prevState": "state2",
         "nextState": "state1",
         "HPIncrease": 75,
         "MPIncrease": 75,
