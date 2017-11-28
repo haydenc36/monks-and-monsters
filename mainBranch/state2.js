@@ -168,12 +168,11 @@ demo.state2.prototype = {
         chest.scale.set(2);
         chest.frame = 0;
         chest.active = true;
-         chest_state7 = false;
+        chest_state7 = false;
         chest.alpha = 1;
         
-                //Create Variables to Show picked up item
+        //Create Variables to Show picked up item
         createshowItem(this);
-          
         
         // Audio Variable
         audioCoordinate = "inside";

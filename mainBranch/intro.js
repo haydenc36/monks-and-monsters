@@ -62,7 +62,7 @@ update : function()
 
             if(this.fade.alpha <= 0)
             {
-                this.intro_text.y = this.intro_text.y - 1;
+                this.intro_text.y = this.intro_text.y - 10;
             }
 
             else

@@ -132,10 +132,10 @@ demo.state5.prototype = {
         // Update the coodinate variable
         coordinate = 'brothel';
         
-        game.physics.arcade.collide(monk, trigger5, function(){console.log('Main Village'); doorSound.play(); deactivateSounds(); game.state.start('state1');});
+        game.physics.arcade.collide(monk, trigger5, function(){doorSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk5, function(){console.log('noWalk5');});
         
-        if ((monk.x <= 160) && (monk.x >= 158) && (monk.y <= 480) && (monk.y >= 370)) {
+        if ((monk.x <= 160) && (monk.y <= 480) && (monk.y >= 370)) {
             console.log("Location for Battle");
             if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Serpent") == -1)) {
                 console.log("Went to battle");

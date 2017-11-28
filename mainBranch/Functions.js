@@ -525,7 +525,7 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Default"
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": " ",
+                        "npcDialogue": "Your girth confirms that monks do indeed make excellent beer.",
                         "charResponse": ""
                     }
                 };
@@ -552,7 +552,7 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Default"
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": "",
+                        "npcDialogue": "Satan told me to tell you, 'hi.'",
                         "charResponse": ""
                     }
                 };
@@ -627,15 +627,15 @@ dialogueList = function (game_state, NPC, npcName) {
                 },
                 "3": {
                     "npcDialogue": "Hangings, decapitations, slit throats, castrations. What didn't happen?! And good Theo is among the corpses!",
-                    "charResponse": "Other villagers committing such atrocities?"
+                    "charResponse": "Other villagers committed such atrocities?"
                 },
                 "4": {
                     "npcDialogue": "I couldn’t believe it myself! And what am I to do? The people see nothing in us religious any longer. Bread and blood, bread and blood. In all truth, the peasants have been banned from this church for months.",
-                    "charResponse": "A time like this hardly seems like the moment to keep folks from the church."
+                    "charResponse": "Well what did you do?"
                 },
                 "5": {
                     "npcDialogue": "What was I to do? I am a simple man—what was a simple man to do? Someone stole the blood of Christ! ‘This won’t stand,’ I said to them, the peasants. ‘Expose the thief or suffer excommunication.’ So for months, they went without the Mass. What was I to do? It could not stand!",
-                    "charResponse": "Well I must do something? What villager could help me solve this crisis?"
+                    "charResponse": "What villager could help me solve this crisis?"
                 },
                 "6": {
                     "npcDialogue": "Oceanus! Oceanus, yes, a good man if ever there was one! A well-connected man, I may add. I could not see all faces from the turrets, but I did not see his among the rabble rousers. He lives in the south-west corner of the village. Win him, win the people!",
@@ -711,7 +711,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Default"
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "[Default Dialogue]",
+                    "npcDialogue": "You are a fat little man. Has the monastery sent you to peddle beer?",
                     "charResponse": ""
                 }
             };
@@ -777,10 +777,10 @@ dialogueList = function (game_state, NPC, npcName) {
                 },
                 "8": {
                     "npcDialogue": "The gentlemen convinced Brentwood clergy that we’re a horde of drunks, swindlers, and louts. So the moment wine vanished from the tabernacle, we looked to be the perfect scapegoats. We were excommunicated until a thief was turned over.",
-                    "charResponse": "And at what point were fathers, mothers, sons, and daughters murdered? Over the span of four decades, from the time I was wee, I have not once observed Father Theo dipping into the holy wine."
+                    "charResponse": "And at what point were fathers, mothers, sons, and daughters murdered? From the time I was wee, I have not once observed Father Theo dipping into the holy wine."
                 },
                 "9": {
-                    "npcDialogue": "Those innocents lived in a world of blood. With all respect, a good man would not associate with scum like Seth or Silva. We did not murder. We initiated our redemption! Affiliates of evil share graves when the roof caves.",
+                    "npcDialogue": "Those innocents lived in a world of blood. A good man would not associate with scum like Seth or Silva. We did not murder. We initiated our redemption!",
                     "charResponse": "You’re spreading lies."
                 },
                 "10": {
@@ -795,14 +795,14 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.dialogue = {
                     "0": {
                         "npcDialogue": "A guest! We don’t see many travelers in these parts. Although I regret to inform you that you have chosen the wrong moon by which to visit, honorable sir.",
-                        "charResponse": "I was told that you may have insights into the kidnapping of Lord Silva’s family, my good man."
+                        "charResponse": "I was told that you may have insights into yesterday's murders, my good man."
                     },
                     "1": {
                         "npcDialogue": "An outrage. I tell you that God will have his vengeance upon those hellraisers. And yes, those devils are known to haunt the brothel. But what good is that to a dove?",
                         "charResponse": "I only wish to reason with the fellows."
                     },
                     "2": {
-                        "npcDialogue": "Commendable, yes. Terribly mistaken. You noted the butchery atop the valley, I imagine. I can’t send you into that den of wolves. Not me.",
+                        "npcDialogue": "Commendable, yes. Terribly mistaken. I can’t send you into that den of wolves. Not me.",
                         "charResponse": "The brothel, you said?"
                     },
                     "3": {
@@ -822,7 +822,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Default"
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "[Default Dialogue]",
+                    "npcDialogue": "You must be lost. Perhaps walk a little further and that beer belly of yours will miraculously vanish!",
                     "charResponse": ""
                 }
             };
@@ -863,7 +863,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Default"
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "[Default Dialogue]",
+                    "npcDialogue": "A husky man like yourself doesn't need another ale. Go home, ale tits.",
                     "charResponse": ""
                 }
             };
@@ -878,7 +878,7 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Self Dialogue";
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": "Let’s pay another visit to dear Oceanus.",
+                        "npcDialogue": "It seems Oceanus is at the root of this. Let's pay him another visit.",
                         "charResponse": ""
                     }
                 }
