@@ -44,7 +44,7 @@ demo.state2.prototype = {
         game.load.image('hintCountry', '../assets/backgrounds/hintCountry.png');
         game.load.image('hintCave', '../assets/backgrounds/hintCave.png');
         
-        //Load NPCs
+        //Load Interactive NPCs
         game.load.spritesheet('thomas', '../assets/boxes/wandering_trader1.png', 64, 128);
         game.load.spritesheet('father', '../assets/sprites/father.png', 124, 319);
         game.load.spritesheet('seth', '../assets/sprites/seth.png', 124, 319);
@@ -52,6 +52,10 @@ demo.state2.prototype = {
         game.load.spritesheet('oceanus', '../assets/sprites/oceanus.png', 159, 319);
         game.load.spritesheet('sicarius', '../assets/sprites/sicarius.png', 119, 319);
         game.load.spritesheet('typhon', '../assets/sprites/typhon.png', 752, 1063);
+        
+        // Load Non-Interactive NPCs
+        game.load.spritesheet('bot1', '../assets/spritesheets/bot1.png', 32, 53);
+        //game.load.spritesheet('bot1', '../assets/spritesheets/bot1.png', 32, 53);
         
         //Load Enemies
         game.load.image('QMark', '../assets/sprites/QMark.png');
@@ -124,6 +128,12 @@ demo.state2.prototype = {
         
         createNPC(this,"Head Abbot",{"x":600, "y":1450},"father",{"x":-0.65, "y":0.65});
         createNPC(this,"Thomas",{"x":875, "y":600},"thomas",{"x":1.75, "y":1.75});
+        
+        
+        // Integrate Non-Interactive Bots
+        var bot1 = game.add.sprite(75, 350, 'bot1');
+        bot1.scale.set(4);
+        
         
         // Initialize the monk character
         monk = game.add.sprite(170, 1450, 'monk');

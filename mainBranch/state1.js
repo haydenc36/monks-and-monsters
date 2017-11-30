@@ -105,6 +105,11 @@ demo.state1.prototype = {
         }
         
         
+        // Integrate the bots
+        //var bot1 = game.add.sprite(1200, )
+        
+        
+        
         // Initialize the monk character
         if ((coordinate == 'start') || (coordinate == 'battle'))
             {
