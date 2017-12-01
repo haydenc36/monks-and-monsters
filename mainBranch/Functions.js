@@ -1288,7 +1288,6 @@ item.visible = false;
 
 //Pick Up Items from Chest
 pickup = function (game_state){
-    monk.moveUp();
     shiny.bringToTop();
     item.bringToTop();
         //Pick Up Key in State7

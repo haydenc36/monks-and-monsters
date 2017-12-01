@@ -51,6 +51,11 @@ demo.state7.prototype = {
         var tree7 = map.createLayer('tree7');
         var buildings7 = map.createLayer('buildings7');
         
+        // Create chest
+        chest = game.add.sprite(600, 200, 'chest');
+        chest_state7 = true;
+        chest.active = true;
+        
         // Initialize the monk character
         if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (coordinate == "battle")) {
             monk = game.add.sprite(123, 400, 'monk');
@@ -75,11 +80,8 @@ demo.state7.prototype = {
         // Adjust the camera
         game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
-        chest = game.add.sprite(600, 200, 'chest');
-        chest_state7 = true;
-        chest.active = true;
         
-               //Create Variables to Show picked up item
+        //Create Variables to Show picked up item
         createshowItem(this);
         
         createNPC(this,"",{"x":150, "y":450},"",{"x":0.3, "y":0.3});
