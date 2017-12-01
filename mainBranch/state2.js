@@ -130,9 +130,7 @@ demo.state2.prototype = {
         createNPC(this,"Thomas",{"x":875, "y":600},"thomas",{"x":1.75, "y":1.75});
         
         
-        // Integrate Non-Interactive Bots
-        var bot1 = game.add.sprite(75, 350, 'bot1');
-        bot1.scale.set(4);
+        
         
         
         // Initialize the monk character

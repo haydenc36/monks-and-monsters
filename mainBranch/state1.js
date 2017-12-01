@@ -2,6 +2,8 @@
 var demo = demo || {};
 var trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1, makeTyphon = true;
 
+var bot1, bot1Walk = 'walkRight';;
+
 demo.state1 = function(){};
 demo.state1.prototype = {
     
@@ -46,6 +48,7 @@ demo.state1.prototype = {
         //Adjust camera settings
         game.world.setBounds(0, 0, 2400, 2400);
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         
         // Integrate the map
@@ -106,8 +109,11 @@ demo.state1.prototype = {
         
         
         // Integrate the bots
-        //var bot1 = game.add.sprite(1200, )
-        
+        // Integrate Non-Interactive Bots
+        bot1 = game.add.sprite(32, 1654, 'bot1');
+        bot1.scale.set(1.5);
+        bot1.animations.add('walkRight', [8, 9, 10, 11], 5, true);
+        bot1.animations.add('walkLeft', [4, 5, 6, 7], 5, true);
         
         
         // Initialize the monk character
@@ -156,7 +162,7 @@ demo.state1.prototype = {
         game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
-                //Create Variables to Show picked up item
+        //Create Variables to Show picked up item
         createshowItem(this);
         
         // Audio Variable
@@ -166,12 +172,8 @@ demo.state1.prototype = {
         // HUD and Inventory
         createHUD(this);
         createInventory(this);
-        createHintBtn(this, function() {
-            HintOpen = true;
-            getHint();
-        });
+        createHintBtn(this, function() {HintOpen = true; getHint();});
         HintInfo(this);
-        
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },
@@ -181,6 +183,36 @@ demo.state1.prototype = {
         
         // Update the coodinate variable
         coordinate = 'outside';
+        
+        // Bot animations
+        //var bot1Walk = 'walkRight';
+        if (bot1Walk == 'walkRight')
+        {
+            console.log("Keep walking right");
+            bot1.animations.play('walkRight');
+            bot1.x += 2;
+            if (bot1.x >= 288)
+            {
+                console.log("Change direction to the left");
+                bot1Walk = 'walkLeft';
+                //bot1.animations.stop();
+            }
+        }
+        
+        else 
+        {
+            console.log("keep walking left");
+            bot1.animations.play('walkLeft');
+            bot1.x -= 2;
+            if (bot1.x <= 15)
+            {
+                console.log("Change Direction to the right");
+                bot1Walk = 'walkRight';
+            }
+        }
+        
+    
+        
         
         // Enabling collisions
         game.physics.arcade.collide(monk, buildings2_noWalk1, function(){});
