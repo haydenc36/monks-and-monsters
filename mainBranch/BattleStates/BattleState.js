@@ -120,7 +120,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.AODReq = this.AODReq;
         this.prefabs.AODReq.visible = false;
     } else {
-        this.prefabs.AODReq = game.add.text(1045, 650, "Angel of Death requires " + this.prefabs.attackskills.skills[2].req_mana + " mana points to reduce the enemies current health by half ", this.textStyle);
+        this.prefabs.AODReq = game.add.text(1045, 650, "Angel of Death requires 90% of your total mana points to reduce the enemies current health by half ", this.textStyle);
         this.prefabs.AODReq.wordWrapWidth = "350";
         this.prefabs.AODReq.wordWrap = true;
         this.prefabs.AODReq.visible = false;
@@ -131,7 +131,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.HealReq = this.HealReq;
         this.prefabs.HealReq.visible = false;
     } else {
-        this.prefabs.HealReq = game.add.text(1045, 650, "Heal requires " + this.prefabs.miraclesskills.miracles[0].req_mana + " mana points to restore " + this.prefabs.miraclesskills.miracles[0].health_power + " health points ", this.textStyle);
+        this.prefabs.HealReq = game.add.text(1045, 650, "Heal requires 5% of your total mana to restore 10% of your total health points ", this.textStyle);
         this.prefabs.HealReq.wordWrapWidth = "350";
         this.prefabs.HealReq.wordWrap = true;
         this.prefabs.HealReq.visible = false;
@@ -142,7 +142,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.WineReq = this.WineReq;
         this.prefabs.WineReq.visible = false;
     } else {
-        this.prefabs.WineReq = game.add.text(1045, 650, "Wine restores " + this.prefabs.Wine.mana_power + " mana points ", this.textStyle);
+        this.prefabs.WineReq = game.add.text(1045, 650, "Wine restores 25% of your mana points ", this.textStyle);
         this.prefabs.WineReq.wordWrapWidth = "350";
         this.prefabs.WineReq.wordWrap = true;
         this.prefabs.WineReq.visible = false;
@@ -153,7 +153,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.BreadReq = this.BreadReq;
         this.prefabs.BreadReq.visible = false;
     } else {
-        this.prefabs.BreadReq = game.add.text(1045, 650, "Bread restores " + this.prefabs.Bread.health_power + " health points ", this.textStyle);
+        this.prefabs.BreadReq = game.add.text(1045, 650, "Bread restores 25% of your health points ", this.textStyle);
         this.prefabs.BreadReq.wordWrapWidth = "350";
         this.prefabs.BreadReq.wordWrap = true;
         this.prefabs.BreadReq.visible = false;
@@ -164,7 +164,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.ScrollReq = this.ScrollReq;
         this.prefabs.ScrollReq.visible = false;
     } else {
-        this.prefabs.ScrollReq = game.add.text(1045, 650, "Scroll restores " + this.prefabs.Scroll.stam_power + " stamina points ", this.textStyle);
+        this.prefabs.ScrollReq = game.add.text(1045, 650, "Scroll restores 25% of your stamina points ", this.textStyle);
         this.prefabs.ScrollReq.wordWrapWidth = "350";
         this.prefabs.ScrollReq.wordWrap = true;
         this.prefabs.ScrollReq.visible = false;

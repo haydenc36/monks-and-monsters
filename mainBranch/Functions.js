@@ -1013,7 +1013,7 @@ createInventory = function (game_state){
         game_state.items[3][0] = breadQ;
         game_state.items[4][0] = game_state.add.text(game_state.items[6][0]+20, game_state.items[7][0]+20, game_state.items[3][0], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][0]);
-        game_state.items[5][0] = "Restores 50% health once";
+        game_state.items[5][0] = "Restores 25% health once";
         game_state.items[8][0] = 1; //slot 1 (inital)
         game_state.items[9][0] = 1; //ITEM 1
         
@@ -1028,7 +1028,7 @@ createInventory = function (game_state){
         game_state.items[3][1] = wineQ;
         game_state.items[4][1] = game_state.add.text(game_state.items[6][1]+20, game_state.items[7][1]+20, game_state.items[3][1], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][1]);
-        game_state.items[5][1] = "Restores 50% mana once";
+        game_state.items[5][1] = "Restores 25% mana once";
         game_state.items[8][1] = 2; //slot 2 (inital)
         game_state.items[9][1] = 2; //ITEM 2
         
@@ -1043,7 +1043,7 @@ createInventory = function (game_state){
         game_state.items[3][2] = scrollQ;
         game_state.items[4][2] = game_state.add.text(game_state.items[6][2]+20, game_state.items[7][2]+20, game_state.items[3][2], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][2]);
-        game_state.items[5][2] = "Restores 50% stamina once";
+        game_state.items[5][2] = "Restores 25% stamina once";
         game_state.items[8][2] = 3; //slot 3 (inital)
         game_state.items[9][2] = 3; //ITEM 3
 
@@ -1116,7 +1116,7 @@ function useBread(){
     hover_key = false;
     if(characterEnergy < charMaxEnergy){
         breadQ = breadQ - 1;
-        temp_Restore = charMaxEnergy / 2;
+        temp_Restore = charMaxEnergy / 4;
         if(characterEnergy + temp_Restore > charMaxEnergy){
             characterEnergy = charMaxEnergy;
         }
@@ -1137,7 +1137,7 @@ function useWine(){
     hover_key = false;
     if(characterMana < charMaxMana){
         wineQ = wineQ - 1;
-        temp_Restore = charMaxMana / 2;
+        temp_Restore = charMaxMana / 4;
         if(characterMana + temp_Restore > charMaxMana){
             characterMana = charMaxMana;
         }
@@ -1158,7 +1158,7 @@ function useScroll(){
     hover_key = false;
     if(characterStamina < charMaxStamina){
         scrollQ = scrollQ -1;
-        temp_Restore = charMaxStamina / 2;
+        temp_Restore = charMaxStamina / 4;
         if(characterStamina + temp_Restore > charMaxStamina){
             characterStamina = charMaxStamina;
         }
