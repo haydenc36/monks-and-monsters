@@ -117,7 +117,10 @@ demo.state1.prototype = {
         
         
         // Initialize the monk character
-        if ((coordinate == 'start') || (coordinate == 'battle'))
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if ((coordinate == 'start') || (coordinate == 'battle'))
             {
                 monk = game.add.sprite(5, 1200, 'monk');
             }
@@ -174,6 +177,12 @@ demo.state1.prototype = {
         createInventory(this);
         createHintBtn(this, function() {HintOpen = true; getHint();});
         HintInfo(this);
+        
+        createMainMenuBtn(this, "state1", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
+        
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
     },

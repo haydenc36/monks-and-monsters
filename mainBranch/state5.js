@@ -86,7 +86,10 @@ demo.state5.prototype = {
         }
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Serpent") != -1) && (coordinate = 'battle')) {
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if ((BattlesCompleted.indexOf("Serpent") != -1) && (coordinate = 'battle')) {
             monk = game.add.sprite(158, 450, 'monk');
             coordinate = 'brothel';
         }
@@ -116,6 +119,11 @@ demo.state5.prototype = {
             getHint();
         });
         HintInfo(this);
+        
+        createMainMenuBtn(this, "state5", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);

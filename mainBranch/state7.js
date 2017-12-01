@@ -57,7 +57,10 @@ demo.state7.prototype = {
         chest.active = true;
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (coordinate == "battle")) {
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (coordinate == "battle")) {
             monk = game.add.sprite(123, 400, 'monk');
             coordinate = 'country';
         }
@@ -101,6 +104,11 @@ demo.state7.prototype = {
             getHint();
         });
         HintInfo(this);
+        
+        createMainMenuBtn(this, "state7", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
         
         // Audio Variable
         audioCoordinate = "outside";

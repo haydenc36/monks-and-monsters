@@ -31,11 +31,18 @@ demo.state0.prototype = {
         title.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
         title.shadowBlur = 5;
         
-        
-        // Create the Play button
-        this.createButton(40, "Play", 600, 375, 400, 200, function(){
-            this.state.start("intro", true, false, [100,100,100,100,100,100], [1,1,1]);
-        });
+        if (!!characterEnergy) {
+            this.createButton(40, "Resume", 600, 375, 400, 200, function(){
+                this.state.start(returnState);
+                returnState = "state0";
+            });
+        }
+        else {
+            // Create the Play button
+            this.createButton(40, "Play", 600, 375, 400, 200, function(){
+                this.state.start("intro", true, false, [100,100,100,100,100,100], [1,1,1]);
+            });
+        }
         
         // Instructions Button
         this.createButton(25, "Instructions", 600, 500, 300, 100, function(){

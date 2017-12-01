@@ -58,7 +58,10 @@ demo.state4.prototype = {
         createNPC(this,"Oceanus",{"x":1000, "y":700},"oceanus",{"x":-0.65, "y":0.65});
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate == 'battle')) {
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate == 'battle')) {
             monk = game.add.sprite(836, 606, 'monk');
             coordinate = 'hut';
         }
@@ -89,6 +92,10 @@ demo.state4.prototype = {
         });
         HintInfo(this);
         
+        createMainMenuBtn(this, "state4", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);

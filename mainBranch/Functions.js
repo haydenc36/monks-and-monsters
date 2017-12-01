@@ -1762,4 +1762,33 @@ AllHintUpdate = function (game_state) {
     if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") == -1)){
         updateHint(game_state, false, 'Seth', 1, 1, 'seth', 'Monastery', 'hintMonastery');
     }
-}
+};
+
+createMainMenuBtn = function (game_state, rState, callback) {
+    mmBtn = new Object();
+    mmBtn.button = game.add.button(game.world.centerX,game.world.centerY,'settings', callback, this);
+    mmBtn.button.anchor.setTo(0, 0);
+    mmBtn.button.fixedToCamera = true;
+	mmBtn.button.cameraOffset.x = 15;
+	mmBtn.button.cameraOffset.y = 200;
+    mmBtn.button.alpha = 0.35;
+    
+    mmBtn.txt = game.add.text(game.world.centerX, game.world.centerY, "Settings", {
+            font: "Book Antiqua",
+            fontSize: 20,
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#FFF', 
+            align:'center'
+        });
+    mmBtn.txt.anchor.setTo(0, 0.25);
+    mmBtn.txt.fixedToCamera = true;
+	mmBtn.txt.cameraOffset.x = 90;
+	mmBtn.txt.cameraOffset.y = 159;
+    mmBtn.txt.alpha = 0.35;
+
+    returnState = rState;
+    
+    mmBtn.button.bringToTop();
+    mmBtn.txt.bringToTop();
+};

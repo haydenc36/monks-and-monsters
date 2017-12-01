@@ -32,6 +32,7 @@ demo.state2.prototype = {
         game.load.image('ideaBtn', '../assets/sprites/hintBtn.png');
         game.load.image('hintPopup', '../assets/boxes/hintPopup.png');
         game.load.image('exitHint', '../assets/sprites/exitHintBtn.png');
+        game.load.image('settings', '../assets/sprites/SettingsIcon.png');
         
         //Hint Maps
         game.load.image('tutorialHA', '../assets/backgrounds/hintHAEx.png');
@@ -139,7 +140,12 @@ demo.state2.prototype = {
         
         
         // Initialize the monk character
-        monk = game.add.sprite(170, 1450, 'monk');
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else {
+            monk = game.add.sprite(170, 1450, 'monk');
+        }
         monk.scale.set(0.6);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -172,6 +178,11 @@ demo.state2.prototype = {
             getHint();
         });
         HintInfo(this);
+        
+        createMainMenuBtn(this, "state2", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);

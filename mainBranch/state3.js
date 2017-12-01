@@ -83,7 +83,10 @@ demo.state3.prototype = {
         }
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate == 'battle')) {
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate == 'battle')) {
             //Somewhere in front of Silva
             monk = game.add.sprite(594, 647, 'monk');
             coordinate = 'monastery';
@@ -116,6 +119,11 @@ demo.state3.prototype = {
             getHint();
         });
         HintInfo(this);
+        
+        createMainMenuBtn(this, "state3", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
