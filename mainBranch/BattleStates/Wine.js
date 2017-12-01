@@ -3,7 +3,7 @@ var demo = demo || {};
 demo.Wine = function (game_state, name, position, properties) {
     "use strict";
     demo.Item.call(this, game_state, name, position, properties);
-    this.mana_power = 0.25 * this.game_state.prefabs.Monk.stats.maxMP;
+    this.mana_power = 0.25 * this.game_state.charMaxMana;;
 };
  
 demo.Wine.prototype = Object.create(demo.Item.prototype);

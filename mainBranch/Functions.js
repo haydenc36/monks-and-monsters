@@ -558,6 +558,30 @@ dialogueList = function (game_state, NPC, npcName) {
                 };
             }
         }
+        else if (npcName == "Silva") {
+            if (dialogueCheck.indexOf("Typhon Mastermind") != -1) {
+                NPC.checkpointID = "Last Dialogue";
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "[Congratulations Parvos! You defeated the mighty monster of doom]",
+                        "charResponse": "(I don't know.. I'm not artistic to write a dialogue)"
+                    },
+                    "1": {
+                        "npcDialogue": "",
+                        "charResponse": ""
+                    }
+                };
+            }
+            else {
+                NPC.checkpointID = "Default"
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "What are you doing here?",
+                        "charResponse": ""
+                    }
+                };
+            }
+        }
     }
     else if (game_state.key == "state2") {
         if (npcName == "Head Abbot"){

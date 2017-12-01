@@ -62,7 +62,7 @@ demo.state4.prototype = {
             monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
         }
         else if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate == 'battle')) {
-            monk = game.add.sprite(836, 606, 'monk');
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
             coordinate = 'hut';
         }
         else {
@@ -117,6 +117,7 @@ demo.state4.prototype = {
         game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
         
         if ((dialogueCheck.indexOf("Oceanus Before Battle") != -1)  && (BattlesCompleted.indexOf("Oceanus") == -1)) {
+            charPosition = {"x": monk.x, "y": monk.y};
             game.state.start("BootState", true, false, "../assets/battleJSONs/OceanusBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
         }
         

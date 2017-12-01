@@ -3,7 +3,7 @@ var demo = demo || {};
 demo.AngelOfDeath = function (game_state, name, position, properties) {
     "use strict";
     demo.Skills.call(this, game_state, name, position, properties);
-    this.req_mana = 0.9 * this.game_state.prefabs.Monk.stats.maxMP;
+    this.req_mana = 0.9 * this.game_state.charMaxMana;
 };
  
 demo.AngelOfDeath.prototype = Object.create(demo.Skills.prototype);

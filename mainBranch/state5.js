@@ -90,7 +90,7 @@ demo.state5.prototype = {
             monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
         }
         else if ((BattlesCompleted.indexOf("Serpent") != -1) && (coordinate = 'battle')) {
-            monk = game.add.sprite(158, 450, 'monk');
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
             coordinate = 'brothel';
         }
         else {
@@ -146,6 +146,7 @@ demo.state5.prototype = {
         if ((monk.x <= 160) && (monk.y <= 480) && (monk.y >= 370)) {
             console.log("Location for Battle");
             if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Serpent") == -1)) {
+                charPosition = {"x": monk.x, "y": monk.y};
                 console.log("Went to battle");
                 deactivateSounds();
                 game.state.start("BootState", true, false, "../assets/battleJSONs/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);

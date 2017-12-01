@@ -120,6 +120,12 @@ demo.state1.prototype = {
         if ((!!returnState) && (returnState == "state0")) {
             monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
         }
+        else if ((BattlesCompleted.indexOf("Typhon") != -1) && (coordinate == 'battle')){
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if (coordinate == 'outside') {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
         else if ((coordinate == 'start') || (coordinate == 'battle'))
             {
                 monk = game.add.sprite(5, 1200, 'monk');
@@ -244,9 +250,12 @@ demo.state1.prototype = {
             this.NPCs["Typhon"].text.visible = true;
             dialogueList(this, this.NPCs["Typhon"],"Typhon");
             makeTyphon = false;
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state1");
         }
         
         if ((dialogueCheck.indexOf("Typhon Mastermind") != -1)  && (BattlesCompleted.indexOf("Typhon") == -1)) {
+            charPosition = {"x": monk.x, "y": monk.y};
             game.state.start("BootState", true, false, "../assets/battleJSONs/FinalBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
         }
 

@@ -88,7 +88,7 @@ demo.state3.prototype = {
         }
         else if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate == 'battle')) {
             //Somewhere in front of Silva
-            monk = game.add.sprite(594, 647, 'monk');
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
             coordinate = 'monastery';
         }
         else {
@@ -142,6 +142,7 @@ demo.state3.prototype = {
         
         if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) 
         {
+            charPosition = {"x": monk.x, "y": monk.y};
             game.state.start("BootState", true, false, "../assets/battleJSONs/SilvaBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
             
             deactivateSounds();

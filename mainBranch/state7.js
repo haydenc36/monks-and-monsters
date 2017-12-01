@@ -61,7 +61,7 @@ demo.state7.prototype = {
             monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
         }
         else if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (coordinate == "battle")) {
-            monk = game.add.sprite(123, 400, 'monk');
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
             coordinate = 'country';
         }
         else {
@@ -123,8 +123,14 @@ demo.state7.prototype = {
         
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); roosterSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7'); deactivateSounds;});
-         if(keyQ==1){
-         game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); battleAudio = "heresyMonster"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);});
+        if(keyQ==1){
+             game.physics.arcade.collide(monk, trigger7b, function(){
+                 charPosition = {"x": monk.x, "y": monk.y};
+                 console.log('Battle State'); 
+                 battleAudio = "heresyMonster"; 
+                 deactivateSounds(); 
+                 game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);}
+                );
         }
         else{
         game.physics.arcade.collide(monk, trigger7b, function(){console.log('NoKey');});
