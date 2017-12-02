@@ -5,7 +5,7 @@ var coordinate = 'start';
 // Initialize audio variables
 var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound, scrollSound;
 
-var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 275, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina, timeNow, hintBtn, hintPopup, HintOpen;
+var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 275, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina, timeNow, hintBtn, hintPopup, HintOpen, returnState, charPosition;
 
 var dialogueCheck = []/*["Silva to Cemetery","Silva Training","Oceanus After Battle","Oceanus Before Battle","Self Dialogue","Sicarius To Basement","Oceanus Recommends Brothel","Seth Recommends Oceanus","Thomas Tutorial","Head Abbot Tutorial"]*/;
 

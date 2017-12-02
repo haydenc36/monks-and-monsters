@@ -102,7 +102,7 @@
                 "group": "items",
                 "scale": {"x": 0.05, "y": 0.05},
                 "stats": {
-                    "mana_power": 30
+                    "mana_power": 0
                 }
             }
         },
@@ -113,7 +113,7 @@
                 "texture": "bread_img",
                 "group": "items",
                 "stats": {
-                    "health_power": 30
+                    "health_power": 0
                 }
             }
         },
@@ -124,7 +124,7 @@
                 "texture": "scroll_img",
                 "group": "items",
                 "stats": {
-                    "stam_power": 30
+                    "stam_power": 0
                 }
             }
         },
@@ -167,7 +167,7 @@
             "properties": {
                 "group": "attackskills",
                 "stats": {
-                    "req_mana": 1000
+                    "req_mana": 500
                 }
             }
         }

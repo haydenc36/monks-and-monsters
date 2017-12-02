@@ -83,9 +83,12 @@ demo.state3.prototype = {
         }
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate == 'battle')) {
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if ((BattlesCompleted.indexOf("Silva") != -1) && (coordinate == 'battle')) {
             //Somewhere in front of Silva
-            monk = game.add.sprite(594, 647, 'monk');
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
             coordinate = 'monastery';
         }
         else {
@@ -117,6 +120,11 @@ demo.state3.prototype = {
         });
         HintInfo(this);
         
+        createMainMenuBtn(this, "state3", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
+        
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
         
@@ -134,6 +142,7 @@ demo.state3.prototype = {
         
         if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) 
         {
+            charPosition = {"x": monk.x, "y": monk.y};
             game.state.start("BootState", true, false, "../assets/battleJSONs/SilvaBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
             
             deactivateSounds();

@@ -558,6 +558,30 @@ dialogueList = function (game_state, NPC, npcName) {
                 };
             }
         }
+        else if (npcName == "Silva") {
+            if (dialogueCheck.indexOf("Typhon Mastermind") != -1) {
+                NPC.checkpointID = "Last Dialogue";
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "[Congratulations Parvos! You defeated the mighty monster of doom]",
+                        "charResponse": "(I don't know.. I'm not artistic to write a dialogue)"
+                    },
+                    "1": {
+                        "npcDialogue": "",
+                        "charResponse": ""
+                    }
+                };
+            }
+            else {
+                NPC.checkpointID = "Default"
+                NPC.dialogue = {
+                    "0": {
+                        "npcDialogue": "What are you doing here?",
+                        "charResponse": ""
+                    }
+                };
+            }
+        }
     }
     else if (game_state.key == "state2") {
         if (npcName == "Head Abbot"){
@@ -1013,7 +1037,7 @@ createInventory = function (game_state){
         game_state.items[3][0] = breadQ;
         game_state.items[4][0] = game_state.add.text(game_state.items[6][0]+20, game_state.items[7][0]+20, game_state.items[3][0], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][0]);
-        game_state.items[5][0] = "Restores 50% health once";
+        game_state.items[5][0] = "Restores 25% health once";
         game_state.items[8][0] = 1; //slot 1 (inital)
         game_state.items[9][0] = 1; //ITEM 1
         
@@ -1028,7 +1052,7 @@ createInventory = function (game_state){
         game_state.items[3][1] = wineQ;
         game_state.items[4][1] = game_state.add.text(game_state.items[6][1]+20, game_state.items[7][1]+20, game_state.items[3][1], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][1]);
-        game_state.items[5][1] = "Restores 50% mana once";
+        game_state.items[5][1] = "Restores 25% mana once";
         game_state.items[8][1] = 2; //slot 2 (inital)
         game_state.items[9][1] = 2; //ITEM 2
         
@@ -1043,7 +1067,7 @@ createInventory = function (game_state){
         game_state.items[3][2] = scrollQ;
         game_state.items[4][2] = game_state.add.text(game_state.items[6][2]+20, game_state.items[7][2]+20, game_state.items[3][2], game_state.styleInventory2);
         game_state.inventory_base.addChild(game_state.items[4][2]);
-        game_state.items[5][2] = "Restores 50% stamina once";
+        game_state.items[5][2] = "Restores 25% stamina once";
         game_state.items[8][2] = 3; //slot 3 (inital)
         game_state.items[9][2] = 3; //ITEM 3
 
@@ -1116,7 +1140,7 @@ function useBread(){
     hover_key = false;
     if(characterEnergy < charMaxEnergy){
         breadQ = breadQ - 1;
-        temp_Restore = charMaxEnergy / 2;
+        temp_Restore = charMaxEnergy / 4;
         if(characterEnergy + temp_Restore > charMaxEnergy){
             characterEnergy = charMaxEnergy;
         }
@@ -1137,7 +1161,7 @@ function useWine(){
     hover_key = false;
     if(characterMana < charMaxMana){
         wineQ = wineQ - 1;
-        temp_Restore = charMaxMana / 2;
+        temp_Restore = charMaxMana / 4;
         if(characterMana + temp_Restore > charMaxMana){
             characterMana = charMaxMana;
         }
@@ -1158,7 +1182,7 @@ function useScroll(){
     hover_key = false;
     if(characterStamina < charMaxStamina){
         scrollQ = scrollQ -1;
-        temp_Restore = charMaxStamina / 2;
+        temp_Restore = charMaxStamina / 4;
         if(characterStamina + temp_Restore > charMaxStamina){
             characterStamina = charMaxStamina;
         }
@@ -1288,7 +1312,6 @@ item.visible = false;
 
 //Pick Up Items from Chest
 pickup = function (game_state){
-    monk.moveUp();
     shiny.bringToTop();
     item.bringToTop();
         //Pick Up Key in State7
@@ -1763,4 +1786,33 @@ AllHintUpdate = function (game_state) {
     if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") == -1)){
         updateHint(game_state, false, 'Seth', 1, 1, 'seth', 'Monastery', 'hintMonastery');
     }
-}
+};
+
+createMainMenuBtn = function (game_state, rState, callback) {
+    mmBtn = new Object();
+    mmBtn.button = game.add.button(game.world.centerX,game.world.centerY,'settings', callback, this);
+    mmBtn.button.anchor.setTo(0, 0);
+    mmBtn.button.fixedToCamera = true;
+	mmBtn.button.cameraOffset.x = 15;
+	mmBtn.button.cameraOffset.y = 200;
+    mmBtn.button.alpha = 0.35;
+    
+    mmBtn.txt = game.add.text(game.world.centerX, game.world.centerY, "Settings", {
+            font: "Book Antiqua",
+            fontSize: 20,
+            fontVariant: 'small-caps',
+            fontWeight:"bold",
+            fill:'#FFF', 
+            align:'center'
+        });
+    mmBtn.txt.anchor.setTo(0, 0.25);
+    mmBtn.txt.fixedToCamera = true;
+	mmBtn.txt.cameraOffset.x = 90;
+	mmBtn.txt.cameraOffset.y = 159;
+    mmBtn.txt.alpha = 0.35;
+
+    returnState = rState;
+    
+    mmBtn.button.bringToTop();
+    mmBtn.txt.bringToTop();
+};

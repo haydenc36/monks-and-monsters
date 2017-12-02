@@ -51,9 +51,17 @@ demo.state7.prototype = {
         var tree7 = map.createLayer('tree7');
         var buildings7 = map.createLayer('buildings7');
         
+        // Create chest
+        chest = game.add.sprite(600, 200, 'chest');
+        chest_state7 = true;
+        chest.active = true;
+        
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (coordinate == "battle")) {
-            monk = game.add.sprite(123, 400, 'monk');
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (coordinate == "battle")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
             coordinate = 'country';
         }
         else {
@@ -75,11 +83,8 @@ demo.state7.prototype = {
         // Adjust the camera
         game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
-        chest = game.add.sprite(600, 200, 'chest');
-        chest_state7 = true;
-        chest.active = true;
         
-               //Create Variables to Show picked up item
+        //Create Variables to Show picked up item
         createshowItem(this);
         
         createNPC(this,"",{"x":150, "y":450},"",{"x":0.3, "y":0.3});
@@ -100,6 +105,11 @@ demo.state7.prototype = {
         });
         HintInfo(this);
         
+        createMainMenuBtn(this, "state7", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
+        
         // Audio Variable
         audioCoordinate = "outside";
     },
@@ -113,8 +123,14 @@ demo.state7.prototype = {
         
         game.physics.arcade.collide(monk, trigger7a, function(){console.log('Main Village'); roosterSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk7, function(){console.log('noWalk7'); deactivateSounds;});
-         if(keyQ==1){
-         game.physics.arcade.collide(monk, trigger7b, function(){console.log('Battle State'); battleAudio = "heresyMonster"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);});
+        if(keyQ==1){
+             game.physics.arcade.collide(monk, trigger7b, function(){
+                 charPosition = {"x": monk.x, "y": monk.y};
+                 console.log('Battle State'); 
+                 battleAudio = "heresyMonster"; 
+                 deactivateSounds(); 
+                 game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);}
+                );
         }
         else{
         game.physics.arcade.collide(monk, trigger7b, function(){console.log('NoKey');});

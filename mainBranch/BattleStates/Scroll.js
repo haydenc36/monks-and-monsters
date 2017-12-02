@@ -3,7 +3,7 @@ var demo = demo || {};
 demo.Scroll = function (game_state, name, position, properties) {
     "use strict";
     demo.Item.call(this, game_state, name, position, properties);
-    this.stam_power = this.game_state.prefabs[this.name].stats.stam_power;
+    this.stam_power = 0.25 * this.game_state.charMaxStamina;;
 };
  
 demo.Scroll.prototype = Object.create(demo.Item.prototype);

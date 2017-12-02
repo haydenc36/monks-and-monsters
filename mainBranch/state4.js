@@ -58,8 +58,11 @@ demo.state4.prototype = {
         createNPC(this,"Oceanus",{"x":1000, "y":700},"oceanus",{"x":-0.65, "y":0.65});
         
         // Initialize the monk character
-        if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate == 'battle')) {
-            monk = game.add.sprite(836, 606, 'monk');
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else if ((BattlesCompleted.indexOf("Oceanus") != -1) && (coordinate == 'battle')) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
             coordinate = 'hut';
         }
         else {
@@ -89,6 +92,10 @@ demo.state4.prototype = {
         });
         HintInfo(this);
         
+        createMainMenuBtn(this, "state4", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
@@ -110,6 +117,7 @@ demo.state4.prototype = {
         game.physics.arcade.collide(monk, noWalk4, function(){console.log('noWalk4');});
         
         if ((dialogueCheck.indexOf("Oceanus Before Battle") != -1)  && (BattlesCompleted.indexOf("Oceanus") == -1)) {
+            charPosition = {"x": monk.x, "y": monk.y};
             game.state.start("BootState", true, false, "../assets/battleJSONs/OceanusBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
         }
         

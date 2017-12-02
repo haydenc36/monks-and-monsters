@@ -32,6 +32,7 @@ demo.state2.prototype = {
         game.load.image('ideaBtn', '../assets/sprites/hintBtn.png');
         game.load.image('hintPopup', '../assets/boxes/hintPopup.png');
         game.load.image('exitHint', '../assets/sprites/exitHintBtn.png');
+        game.load.image('settings', '../assets/sprites/SettingsIcon.png');
         
         //Hint Maps
         game.load.image('tutorialHA', '../assets/backgrounds/hintHAEx.png');
@@ -129,12 +130,22 @@ demo.state2.prototype = {
         createNPC(this,"Head Abbot",{"x":600, "y":1450},"father",{"x":-0.65, "y":0.65});
         createNPC(this,"Thomas",{"x":875, "y":600},"thomas",{"x":1.75, "y":1.75});
         
-        
-        
+        // Create chest
+        chest = game.add.sprite(1140, 600, 'chest');
+        chest.scale.set(2);
+        chest.frame = 0;
+        chest.active = true;
+        chest_state7 = false;
+        chest.alpha = 1;
         
         
         // Initialize the monk character
-        monk = game.add.sprite(170, 1450, 'monk');
+        if ((!!returnState) && (returnState == "state0")) {
+            monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
+        }
+        else {
+            monk = game.add.sprite(170, 1450, 'monk');
+        }
         monk.scale.set(0.6);
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
@@ -168,16 +179,13 @@ demo.state2.prototype = {
         });
         HintInfo(this);
         
+        createMainMenuBtn(this, "state2", function() {
+            charPosition = {"x": monk.x, "y": monk.y};
+            game.state.start("state0");
+        });
+        
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
-        
-        // Create chest
-        chest = game.add.sprite(1140, 600, 'chest');
-        chest.scale.set(2);
-        chest.frame = 0;
-        chest.active = true;
-        chest_state7 = false;
-        chest.alpha = 1;
         
         //Create Variables to Show picked up item
         createshowItem(this);

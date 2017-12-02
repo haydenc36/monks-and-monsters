@@ -4,8 +4,8 @@ demo.Heal = function (game_state, name, position, properties) {
     "use strict";
     demo.Skills.call(this, game_state, name, position, properties);
     
-    this.health_power = this.game_state.prefabs[this.name].stats.health_power;
-    this.req_mana = this.game_state.prefabs[this.name].stats.req_mana;
+    this.health_power = 0.10 * this.game_state.charMaxHealth;
+    this.req_mana = 0.05 * this.game_state.charMaxMana;
 };
  
 demo.Heal.prototype = Object.create(demo.Skills.prototype);

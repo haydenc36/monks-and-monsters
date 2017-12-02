@@ -4,7 +4,7 @@ demo.Bread = function (game_state, name, position, properties) {
     "use strict";
     demo.Item.call(this, game_state, name, position, properties);
     
-    this.health_power = this.game_state.prefabs[this.name].stats.health_power;
+    this.health_power = 0.25 * this.game_state.charMaxHealth;
 };
  
 demo.Bread.prototype = Object.create(demo.Item.prototype);
