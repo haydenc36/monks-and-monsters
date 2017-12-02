@@ -185,7 +185,6 @@ demo.state1.prototype = {
         coordinate = 'outside';
         
         // Bot animations
-        //var bot1Walk = 'walkRight';
         if (bot1Walk == 'walkRight')
         {
             console.log("Keep walking right");
@@ -198,7 +197,6 @@ demo.state1.prototype = {
                 //bot1.animations.stop();
             }
         }
-        
         else 
         {
             console.log("keep walking left");
@@ -210,8 +208,6 @@ demo.state1.prototype = {
                 bot1Walk = 'walkRight';
             }
         }
-        
-    
         
         
         // Enabling collisions
