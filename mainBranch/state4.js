@@ -56,6 +56,8 @@ demo.state4.prototype = {
         foreground_decor4.setScale(5);
         
         createNPC(this,"Oceanus",{"x":1000, "y":700},"oceanus",{"x":-0.65, "y":0.65});
+        // Create chest
+         createChest(this, "chest1", {"x":1107, "y":870},"chest",{"x":2, "y":2});
         
         // Initialize the monk character
         if ((!!returnState) && (returnState == "state0")) {
@@ -100,9 +102,6 @@ demo.state4.prototype = {
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
         
-             //Create Variables to Show picked up item
-        createshowItem(this);;
-        
         // Audio Variable
         audioCoordinate = "inside";
     
@@ -127,11 +126,11 @@ demo.state4.prototype = {
         updateHintBtn();
         AllHintUpdate(this);
         
-        distTrigger(this,{"x":-170,"y":-100},{"x":80,"y":150});
+        distTrigger(this,{"x":-50,"y":-100},{"x":200,"y":150});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":-170,"y":-100},{"x":80,"y":150});
+        NPCBoxVis(this,this.currentNPC,{"x":-50,"y":-100},{"x":200,"y":150});
         
-        pickup(this);
+        pickup(this,{"x":5,"y":5}, {"x":30,"y":30}, {"x":0.75,"y":0.75});
         
     }/*,
     render: function () {

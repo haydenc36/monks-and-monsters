@@ -50,11 +50,10 @@ demo.state7.prototype = {
         var flowers7 = map.createLayer('flowers7');
         var tree7 = map.createLayer('tree7');
         var buildings7 = map.createLayer('buildings7');
-        
+               
         // Create chest
-        chest = game.add.sprite(600, 200, 'chest');
+         createChest(this, "chest1", {"x":600, "y":200},"chest",{"x":1, "y":1});
         chest_state7 = true;
-        chest.active = true;
         
         // Initialize the monk character
         if ((!!returnState) && (returnState == "state0")) {
@@ -83,9 +82,7 @@ demo.state7.prototype = {
         // Adjust the camera
         game.camera.follow(monk);
         //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
-        
-        //Create Variables to Show picked up item
-        createshowItem(this);
+    
         
         createNPC(this,"",{"x":150, "y":450},"",{"x":0.3, "y":0.3});
         createHUD(this);
@@ -144,7 +141,7 @@ demo.state7.prototype = {
         updateInventory(this);
         updateHintBtn();
         AllHintUpdate(this);
-          pickup(this);
+         pickup(this,{"x":5,"y":5}, {"x":30,"y":30}, {"x":0.5,"y":0.5});
     }/*,
     render: function () {
         game.debug.cameraInfo(game.camera, 32, 32);

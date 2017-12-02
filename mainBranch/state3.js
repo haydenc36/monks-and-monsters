@@ -82,6 +82,10 @@ demo.state3.prototype = {
             
         }
         
+         // Create chest
+         createChest(this, "chest1", {"x":684, "y":1435},"chest", {"x":1.5, "y":1.5});
+        createChest(this, "chest2", {"x":1730, "y":225},"chest", {"x":1.5, "y":1.5});
+        
         // Initialize the monk character
         if ((!!returnState) && (returnState == "state0")) {
             monk = game.add.sprite(charPosition.x, charPosition.y, 'monk');
@@ -128,9 +132,6 @@ demo.state3.prototype = {
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
         
-                //Create Variables to Show picked up item
-        createshowItem(this);
-        
         // Audio Variable
         audioCoordinate = "inside";
     },
@@ -139,7 +140,6 @@ demo.state3.prototype = {
         
         // Update the coodinate variable
         coordinate = 'monastery';
-        
         if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) 
         {
             charPosition = {"x": monk.x, "y": monk.y};
@@ -157,11 +157,11 @@ demo.state3.prototype = {
         updateHintBtn();
         AllHintUpdate(this);
         
-        distTrigger(this,{"x":-150,"y":-50},{"x":50,"y":100});
+        distTrigger(this,{"x":0,"y":-50},{"x":150,"y":100});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":-150,"y":-50},{"x":50,"y":100});
+        NPCBoxVis(this,this.currentNPC,{"x":0,"y":-20},{"x":150,"y":100});
         
-        pickup(this);
+       pickup(this,{"x":5,"y":5}, {"x":30,"y":30}, {"x":0.5,"y":0.5});
         
     }/*,
     render: function () {

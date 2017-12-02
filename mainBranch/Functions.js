@@ -927,7 +927,7 @@ dialogueList = function (game_state, NPC, npcName) {
 createInventory = function (game_state){
 
           //Spacebar toggles the inventory
-          toggle_inventory = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); 
+          toggle_inventory = game.input.keyboard.addKey(Phaser.Keyboard.TAB); 
 	
 	   //GUI - the background image for the inventory
 	   game_state.inventory_base = game_state.add.sprite(game.world.centerX, game.world.centerY,  'inventory_base');
@@ -1005,7 +1005,7 @@ createInventory = function (game_state){
         game_state.items[9] = new Array();
     
         
-        //Auto sort function      
+             
         
         //Slot 1
         game_state.items[6][0] = game_state.slot1.centerX
@@ -1025,7 +1025,7 @@ createInventory = function (game_state){
         //Slot 6
         game_state.items[6][5] = game_state.slot6.centerX
         game_state.items[7][5] = game_state.slot6.centerY
-    
+      
         //Item 1
         game_state.items[1][0] = "Bread";
         game_state.items[2][0] = game_state.add.button(game_state.items[6][0]-30, game_state.items[7][0]-10,  'bread', useBread);
@@ -1300,60 +1300,93 @@ wait = function(ms) {
     }
 };
 
+
+// Create Chest Sprites
+createChest = function (game_state, chestName, Chest_position, Chest_sprite, Chest_scale) {
+    
+    game_state.Chests = game_state.Chests || {};
+    
+    var newChest = Object();
+    newChest.name = chestName;
+    newChest.x = Chest_position.x;
+    newChest.y = Chest_position.y;
+    newChest.spriteObj = game_state.add.sprite(Chest_position.x, Chest_position.y, Chest_sprite);
+    game_state.physics.arcade.enableBody(newChest.spriteObj);
+    newChest.spriteObj.scale.set(Chest_scale.x,Chest_scale.y);
+    newChest.spriteObj.frame = 0;
+    game_state.Chests[chestName] = newChest;
+};
+
 //Create Variables to show item from chest
-createshowItem = function(game_state){
+createshowItem = function(game_state, Shiny_scale){
 pickedItemName = '';
-shiny = game_state.add.sprite(chest.x-125, chest.y-120, "shiny");
-shiny.scale.set(0.75);
+pickItem = 0;
+pickeditem = 0;
+shiny = game_state.add.sprite(game_state.currentChest.spriteObj.centerX-150, game_state.currentChest.spriteObj.centerY-100, "shiny")
+shiny.scale.set(Shiny_scale.x, Shiny_scale.y);
 item = game_state.add.sprite(shiny.centerX-50, shiny.centerY-50, pickedItemName);
 shiny.visible = false;
 item.visible = false;
 };
 
 //Pick Up Items from Chest
-pickup = function (game_state){
-    shiny.bringToTop();
-    item.bringToTop();
-        //Pick Up Key in State7
-    if(chest_state7 == true){
-        if (((chest.x <= monk.x) && chest.x+30>= monk.x) && ((chest.y <= monk.y) && chest.y+30 >=monk.y)&& chest.active == true) {
+pickup = function (game_state, shift, shift2, Shiny_scale){
+//check which chest is activated
+for (var Chest in game_state.Chests){
+        if (((game_state.Chests[Chest].x-shift.x <= monk.x) && game_state.Chests[Chest].x+shift2.x>= monk.x) && ((game_state.Chests[Chest].y-shift.y <= monk.y) &&  game_state.Chests[Chest].y+shift2.y >=monk.y)) {
+            game_state.currentChest = game_state.Chests[Chest];
+        //If chest is unopened ....
+        if(game_state.currentChest.spriteObj.frame == 0){
+            
+            //create Varaiable for show the Item to pick up
+            createshowItem(game_state, Shiny_scale);
+            
+            //Open Chest
+            game_state.currentChest.spriteObj.frame = 1;
+            
+            //IF Chest is In State 7
+             if(chest_state7 == true){
             keyQ = 1;
-            chest_state7 == false;
-            chest.active = false;
-            chest.frame = 1;
+            chest_state7 = false;;
             pickeditem =4;
             pickedItemName ="key";
-            showItem(game_state);
+            
         }
-    }
     //Pick Up Items in every other state
     else {
-        if (((chest.x <= monk.x) && chest.x+100>= monk.x) && ((chest.y <= monk.y) && chest.y+100 >=monk.y)&& chest.active == true) {
-            chest.frame = 1;
-            pickedItem = Math.round(game_state.rnd.integerInRange(1, 3),0);
-            chest.active = false;
-            if(pickedItem==1)
+            if(pickItem == 0){
+            pickItem = Math.round(game_state.rnd.integerInRange(1, 6),0);
+            if(pickItem==1 || pickItem ==6)
                 {
                     breadQ = breadQ + 1;
                     pickeditem = 1;
                     pickedItemName ="bread";
 
                 }
-            else if(pickedItem == 2){
+            else if(pickItem == 2 || pickItem ==5){
 
                 wineQ = wineQ + 1;
                 pickeditem =2;
                 pickedItemName ="wine";
             }
-            else if(pickedItem == 3){
+            else if(pickItem == 3 || pickItem ==4){
                 scrollQ = scrollQ +1;
                 pickeditem =3;
                 pickedItemName ="scroll";
 
             }
-        showItem(game_state);
+
         }
+        }
+showItem(game_state);
+//Show Item in front of every oher Sprite
+shiny.bringToTop();
+item.bringToTop();
     }
+}
+
+
+};
 };
 
 //Show picked up item on chest for 1.5 secs
@@ -1386,7 +1419,8 @@ showItem = function(game_state){
         }
     item.visible =true;
     shiny.visible = true;
-    game.time.events.add(1500, function () { item.visible=false; shiny.visible = false; pickupSound.stop();}, self);
+
+    game.time.events.add(1500, function () { item.visible=false; shiny.visible = false; pickupSound.stop(); pickedItemName = '';pickItem = 0; pickeditem = 0;}, self);
 };
 
 
@@ -1815,4 +1849,17 @@ createMainMenuBtn = function (game_state, rState, callback) {
     
     mmBtn.button.bringToTop();
     mmBtn.txt.bringToTop();
+};
+//Reset Game
+resetGame = function(){
+     characterEnergy = null;
+    characterMana = null;
+    characterStamina = null;
+    charMaxEnergy = null;
+    charMaxMana = null;
+    charMaxStamina = null;
+    wineQ = null;
+    breadQ = null;
+    scrollQ = null;
+    keyQ = null;
 };

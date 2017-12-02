@@ -38,7 +38,7 @@ demo.state00.prototype = {
         game.load.audio('picked', '../assets/audio/itempicked.mp3');
         game.load.audio('snake', '../assets/audio/snake.wav');
         game.load.audio('scrollSound', '../assets/audio/scrollSound.wav');
-        
+         game.load.audio('outro', '../assets/audio/outro.m4a');
     },
     
     create:function()
@@ -63,6 +63,7 @@ demo.state00.prototype = {
         pickupSound = game.add.audio('picked');
         snake = game.add.audio('snake');
         scrollSound = game.add.audio('scrollSound');
+        outro = game.add.audio('outro');
         
         // Play the opening music
         intro.play();

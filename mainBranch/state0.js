@@ -37,6 +37,7 @@ demo.state0.prototype = {
             //this.state.start("BootState", true, false,  "../assets/battleJSONs/SilvaBattle.JSON", "BattleState", [100,100,100,100,100,100], [1,1,1]);
             this.state.start("intro", true, false, [100,100,100,100,100,100], [1,1,1]);
         });
+        
         if (!!characterEnergy) {
             this.createButton(40, "Resume", 600, 375, 400, 200, function(){
                 this.state.start(returnState);

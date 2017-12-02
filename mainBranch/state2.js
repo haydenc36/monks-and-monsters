@@ -131,12 +131,8 @@ demo.state2.prototype = {
         createNPC(this,"Thomas",{"x":875, "y":600},"thomas",{"x":1.75, "y":1.75});
         
         // Create chest
-        chest = game.add.sprite(1140, 600, 'chest');
-        chest.scale.set(2);
-        chest.frame = 0;
-        chest.active = true;
+         createChest(this, "chest1", {"x":1140, "y":600},"chest",{"x":2, "y":2});
         chest_state7 = false;
-        chest.alpha = 1;
         
         
         // Initialize the monk character
@@ -186,9 +182,7 @@ demo.state2.prototype = {
         
         createDialogueBox(this,{"x":3000, "y":0},"npcbox",{"x":2, "y":1.5});
         initInfoBox(this);
-        
-        //Create Variables to Show picked up item
-        createshowItem(this);
+      
         
         // Audio Variable
         audioCoordinate = "inside";
@@ -199,7 +193,7 @@ demo.state2.prototype = {
         intro.stop();
                  
         //Skipping to state 7 to test key
-        //game.state.start("state7");
+        //game.state.start("state4");
         
         tutorial = true;
     
@@ -227,9 +221,9 @@ demo.state2.prototype = {
             }
         }
         
-        distTrigger(this,{"x":-175,"y":-100},{"x":50,"y":150});
+        distTrigger(this,{"x":-50,"y":-100},{"x":200,"y":150});
         updateDialogue(this,this.currentNPC);
-        NPCBoxVis(this,this.currentNPC,{"x":-175,"y":-100},{"x":50,"y":150});
-        pickup(this);
+        NPCBoxVis(this,this.currentNPC,{"x":-50,"y":-100},{"x":200,"y":150});
+        pickup(this,{"x":5,"y":5}, {"x":40,"y":40}, {"x":0.75,"y":0.75});
     }
 };
