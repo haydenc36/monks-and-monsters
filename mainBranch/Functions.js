@@ -671,7 +671,7 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "What villager could help me solve this crisis?"
                 },
                 "6": {
-                    "npcDialogue": "Oceanus! Oceanus, yes, a good man if ever there was one! A well-connected man, I may add. I could not see all faces from the turrets, but I did not see his among the rabble rousers. He lives in the south-west corner of the village. Win him, win the people!",
+                    "npcDialogue": "Oceanus! Oceanus, yes, a good man if ever there was one! A well-connected man, I may add. I could not see all faces from the turrets, but I did not see his among the rabble rousers. He lives in the south-west corner of the village. Win him, win the people! You may find the goodies in the top right to be useful on your journey.",
                     "charResponse": "Your help is greatly appreciated!"
                 },
                 "7": {
