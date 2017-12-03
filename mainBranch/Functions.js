@@ -1827,9 +1827,8 @@ createMainMenuBtn = function (game_state, rState, callback) {
     mmBtn.button = game.add.button(game.world.centerX,game.world.centerY,'settings', callback, this);
     mmBtn.button.anchor.setTo(0, 0);
     mmBtn.button.fixedToCamera = true;
-	mmBtn.button.cameraOffset.x = 15;
+	mmBtn.button.cameraOffset.x = 25;
 	mmBtn.button.cameraOffset.y = 200;
-    mmBtn.button.alpha = 0.35;
     
     mmBtn.txt = game.add.text(game.world.centerX, game.world.centerY, "Settings", {
             font: "Book Antiqua",
@@ -1842,8 +1841,7 @@ createMainMenuBtn = function (game_state, rState, callback) {
     mmBtn.txt.anchor.setTo(0, 0.25);
     mmBtn.txt.fixedToCamera = true;
 	mmBtn.txt.cameraOffset.x = 90;
-	mmBtn.txt.cameraOffset.y = 159;
-    mmBtn.txt.alpha = 0.35;
+	mmBtn.txt.cameraOffset.y = 220;
 
     returnState = rState;
     
@@ -1852,7 +1850,7 @@ createMainMenuBtn = function (game_state, rState, callback) {
 };
 //Reset Game
 resetGame = function(){
-     characterEnergy = null;
+    characterEnergy = null;
     characterMana = null;
     characterStamina = null;
     charMaxEnergy = null;
