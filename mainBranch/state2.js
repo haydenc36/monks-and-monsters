@@ -131,7 +131,7 @@ demo.state2.prototype = {
         createNPC(this,"Thomas",{"x":875, "y":600},"thomas",{"x":1.75, "y":1.75});
         
         // Create chest
-         createChest(this, "chest1", {"x":1140, "y":600},"chest",{"x":2, "y":2});
+        createChest(this, "chest1", {"x":1140, "y":600},"chest",{"x":2, "y":2});
         chest_state7 = false;
         
         

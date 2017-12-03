@@ -31,7 +31,7 @@
                 "texture": "bg_image",
                 "group": "background",
                 "width": 1920,
-                "height": 1280
+                "height": 1082
             }
         },
         "menu_rectangle": {

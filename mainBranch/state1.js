@@ -1,6 +1,7 @@
 // English Village
 var demo = demo || {};
 var trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1, makeTyphon = true;
+var sethSprite, sethSpriteTxt;
 
 var bot1, bot1Walk = 'walkRight';;
 
@@ -99,12 +100,29 @@ demo.state1.prototype = {
         var buildings1_walk1 = map.createLayer('buildings1_walk1');
         var flowers1 = map.createLayer('flowers1');
         
-        if (BattlesCompleted.indexOf("Heresy Monster") != -1) {
+        if (BattlesCompleted.indexOf("Typhon") != -1) {
+            createNPC(this,"Silva",{"x":750, "y":1200},"silva",{"x": 0.35, "y":0.27});
+            createNPC(this,"Oceanus",{"x":700, "y":1250},"oceanus",{"x": 0.35, "y":0.27});
+        }
+        else if (BattlesCompleted.indexOf("Heresy Monster") != -1) {
             createNPC(this,"Typhon",{"x":800, "y":1200},"typhon",{"x": -0.27, "y":0.27});
             this.NPCs["Typhon"].spriteObj.visible = false;
             this.NPCs["Typhon"].text.visible = false;
             
-            createNPC(this,"Seth",{"x":800, "y":1200},"seth",{"x":0.35, "y":0.35});
+            sethSprite = game.add.sprite(800, 1200, 'seth');
+            sethSprite.scale.set(0.35);
+            sethSprite.anchor.setTo(1,1);
+            sethSpriteTxt = game.add.text(800, 1205, "Seth", {
+                font: "Book Antiqua",
+                fontSize: "20px",
+                fontVariant: 'small-caps',
+                fontWeight:"bold",
+                fill:'#FFF', 
+                align:'center'
+            });
+            sethSpriteTxt.anchor.setTo(1,0);
+            sethSpriteTxt.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
+            sethSpriteTxt.shadowBlur = 5;
         }
         
         
@@ -233,23 +251,23 @@ demo.state1.prototype = {
         game.physics.arcade.collide(monk, trigger1c, function(){doorSound.play(); deactivateSounds(); game.state.start('state3');});
         game.physics.arcade.collide(monk, trigger1d, function(){roosterSound.play(); deactivateSounds(); game.state.start('state7');});
         
-        
-        
-        if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") != -1) && (makeTyphon)) {
-            this.NPCs["Seth"].spriteObj.destroy();
-            this.NPCs["Seth"].text.destroy();
-            delete this.NPCs["Seth"];
+        if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") != -1) && (makeTyphon) && (BattlesCompleted.indexOf("Typhon") == -1)) {
+            sethSprite.destroy();
+            sethSpriteTxt.destroy();
             this.NPCs["Typhon"].spriteObj.visible = true;
             this.NPCs["Typhon"].text.visible = true;
             dialogueList(this, this.NPCs["Typhon"],"Typhon");
             makeTyphon = false;
-            charPosition = {"x": monk.x, "y": monk.y};
-            game.state.start("state1");
         }
         
         if ((dialogueCheck.indexOf("Typhon Mastermind") != -1)  && (BattlesCompleted.indexOf("Typhon") == -1)) {
             charPosition = {"x": monk.x, "y": monk.y};
             game.state.start("BootState", true, false, "../assets/battleJSONs/FinalBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
+        }
+        
+        if (dialogueCheck.indexOf("Last Dialogue") != -1) {
+            wait(1000);
+            game.state.start("outro", true, true);
         }
 
         cursorControl(0.3);
