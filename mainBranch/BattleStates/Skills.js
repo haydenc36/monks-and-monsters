@@ -16,5 +16,5 @@ demo.Skills.prototype.show_message = function (target, damage) {
     // show attack message
     action_message_position = new Phaser.Point(660, 75);
     action_message_text = this.game_state.current_unit.name + " attacks " + target.name + " with " + damage + " damage";
-    attack_message = new demo.ActionMessage(this.game_state, this.name + "_action_message", action_message_position, {group: "hud", texture: "rectangle_image", scale: {x: 0.85, y: 0.2}, duration: 1, message: action_message_text});
+    attack_message = new demo.ActionMessage(this.game_state, this.name + "_action_message", action_message_position, {group: "hud", texture: "rectangle_image", scale: {x: 2, y: 0.3}, duration: 1, message: action_message_text});
 };

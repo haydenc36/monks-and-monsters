@@ -120,7 +120,7 @@ demo.BattleState.prototype.create = function () {
         this.prefabs.AODReq = this.AODReq;
         this.prefabs.AODReq.visible = false;
     } else {
-        this.prefabs.AODReq = game.add.text(1045, 650, "Angel of Death requires 90% of your total mana points to reduce the enemies current health by half ", this.textStyle);
+        this.prefabs.AODReq = game.add.text(1045, 650, "90% of your total mana points to reduce the enemy's current health by half ", this.textStyle);
         this.prefabs.AODReq.wordWrapWidth = "350";
         this.prefabs.AODReq.wordWrap = true;
         this.prefabs.AODReq.visible = false;
@@ -174,14 +174,18 @@ demo.BattleState.prototype.create = function () {
     this.units = new PriorityQueue({comparator: function (unit_a, unit_b) {
         return unit_a.act_turn - unit_b.act_turn;
     }});
+    
     this.groups.players.forEach(function (unit) {
         unit.calculate_act_turn(0);
         this.units.queue(unit);
-    }, this);
+    }, 
+                                this);
+    
     this.groups.enemies.forEach(function (unit) {
         unit.calculate_act_turn(0);
         this.units.queue(unit);
-    }, this);
+    }, 
+                                this);
     
     this.prefabs.Monk.stats.health = this.charHealth;
     this.prefabs.Monk.stats.mana = this.charMana;
