@@ -1,7 +1,7 @@
 // Parvos' Monastery
 var demo = demo || {};
 
-var BattlesCompleted = ["Heresy Monster"];
+var BattlesCompleted = [];
 
 demo.state2 = function(){};
 demo.state2.prototype = {

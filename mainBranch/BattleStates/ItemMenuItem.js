@@ -20,7 +20,6 @@ demo.ItemMenuItem.prototype.select = function () {
         // save selected item
         this.game_state.current_item = this.text;
         this.game_state.prefabs.inventory.use_item(this.game_state.current_item);
-        this.game_state.prefabs.actions_menu.enable();
-        this.game_state.prefabs.items_menu.hide();
+        this.game_state.prefabs.items_menu.enable();
     }
 };

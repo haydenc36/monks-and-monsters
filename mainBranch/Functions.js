@@ -552,12 +552,11 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Last Dialogue";
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": "[Congratulations Parvos! You defeated the mighty monster of doom]",
-                        "charResponse": "(I don't know.. I'm not artistic to write a dialogue)"
+                        "npcDialogue": "Congratulations Parvos! You defeated the mastermind and reclaimed the village from the Dark Lord!",
+                        "charResponse": "Thank you."
                     },
                     "1": {
-                        "npcDialogue": "",
-                        "charResponse": ""
+                        "charResponse": "Thank you."
                     }
                 };
             }
@@ -576,7 +575,7 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Last Dialogue";
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": "Good work...!",
+                        "npcDialogue": "Good work... You've uncovered the truth that I failed to realize and had succumbed to.",
                         "charResponse": ""
                     }
                 };
