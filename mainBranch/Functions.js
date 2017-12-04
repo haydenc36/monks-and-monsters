@@ -609,11 +609,11 @@ dialogueList = function (game_state, NPC, npcName) {
                 NPC.checkpointID = "Last Dialogue";
                 NPC.dialogue = {
                     "0": {
-                        "npcDialogue": "Congratulations Parvos! You defeated the mastermind and reclaimed the village from the Dark Lord!",
-                        "charResponse": "Thank you."
+                        "npcDialogue": "Parvos! You've defeated the archdemon and reclaimed our village from the Dark Lord!",
+                        "charResponse": "And now I must tend to my garden. Farewell!"
                     },
                     "1": {
-                        "charResponse": "Thank you."
+                        "charResponse": "And now I must tend to my garden. Farewell!"
                     }
                 };
             }

@@ -14,7 +14,7 @@ demo.state0.prototype = {
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Set the background
-        var bg = game.add.sprite(0,-100,'Barcelona');
+        bg = game.add.sprite(0,-100,'Barcelona');
         bg.scale.set(0.45);
         
         

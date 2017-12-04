@@ -3,7 +3,7 @@ var demo = demo || {};
 var coordinate = 'start';
 
 // Initialize audio variables
-var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound, scrollSound, parvosTalk, NPCTalk;
+var intro, outro, bg, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound, scrollSound, parvosTalk, NPCTalk;
 
 var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 275, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina, timeNow, hintBtn, hintPopup, HintOpen, returnState, charPosition;
 
