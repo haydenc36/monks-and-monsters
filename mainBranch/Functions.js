@@ -189,6 +189,65 @@ updateHUD = function (game_state) {
     game_state.stamina_bar.scale.set(game_state.staminascale, 1);
 };
 
+// Create Animated; NonTalk NPC
+createBot = function (game_state, botName, position, sprite, scale, leftright, RightUpArray, LeftDownArray, frameRate) {
+    // if leftright is true, bot goes left and right; if false, bot goes up and down
+    game_state.BOTs = game_state.BOTs || {};
+    
+    var newBOT = Object();
+    newBOT.name = botName;
+    newBOT.x = position.x;
+    newBOT.y = position.y;
+    newBOT.spriteObj = game_state.add.sprite(position.x, position.y, sprite);
+    newBOT.spriteObj.scale.set(scale);
+    if (leftright) {
+        newBOT.spriteObj.animations.add('walkRight', RightUpArray, frameRate, true);
+        newBOT.spriteObj.animations.add('walkLeft', LeftDownArray, frameRate, true);
+    }
+    else {
+        newBOT.spriteObj.animations.add('walkUp', RightUpArray, frameRate, true);
+        newBOT.spriteObj.animations.add('walkDown', LeftDownArray, frameRate, true);
+    }
+    game_state.BOTs[botName] = newBOT;
+};
+
+BotWalk = function(game_state, botName, leftright, turnPoint) {
+    // if leftright is true, bot goes left and right; if false, bot goes up and down
+    if (leftright) {
+        if (game_state.BOTs[botName].walk == 'walkRight') {
+            game_state.BOTs[botName].spriteObj.animations.play('walkRight');
+            game_state.BOTs[botName].spriteObj.x += 2;
+            if (game_state.BOTs[botName].spriteObj.x >= turnPoint.turnLeftAt) {
+                game_state.BOTs[botName].walk = 'walkLeft';
+            }
+        }
+        else {
+            game_state.BOTs[botName].spriteObj.animations.play('walkLeft');
+            game_state.BOTs[botName].spriteObj.x -= 2;
+            if (game_state.BOTs[botName].spriteObj.x <= turnPoint.turnRightAt) {
+                game_state.BOTs[botName].walk = 'walkRight';
+            }
+        }
+    }
+    else {
+        if (game_state.BOTs[botName].walk == 'walkUp') {
+            game_state.BOTs[botName].spriteObj.animations.play('walkUp');
+            game_state.BOTs[botName].spriteObj.y -= 2;
+            if (game_state.BOTs[botName].spriteObj.y <= turnPoint.turnDownAt) {
+                game_state.BOTs[botName].walk = 'walkDown';
+            }
+        }
+        else {
+            game_state.BOTs[botName].spriteObj.animations.play('walkDown');
+            game_state.BOTs[botName].spriteObj.y += 2;
+            if (game_state.BOTs[botName].spriteObj.y >= turnPoint.turnUpAt) {
+                game_state.BOTs[botName].walk = 'walkUp';
+            }
+        }
+    }
+    
+}
+
 // Create an NPC Sprite
 createNPC = function (game_state, npcName, position, sprite, scale) {
     
@@ -229,8 +288,6 @@ createNPC = function (game_state, npcName, position, sprite, scale) {
         newNPC.text.setShadow(5, 0, 'rgba(0,0,0,0.5)', 0);
         newNPC.text.shadowBlur = 5;
     }
-    //newNPC.spriteObj.animations.add('idle', [0,1,2,3,4,5], 5, true);
-    //newNPC.spriteObj.animations.play('idle');
     dialogueList(game_state, newNPC, npcName);
     newNPC.readDialogue = false;
     game_state.NPCs[npcName] = newNPC;

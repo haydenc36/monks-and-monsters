@@ -128,18 +128,11 @@ demo.state1.prototype = {
         
         
         // Integrate the bots
-        // Integrate Non-Interactive Bots
-        bot1 = game.add.sprite(32, 1654, 'bot1');
-        bot1.scale.set(1.5);
-        bot1.animations.add('walkRight', [8, 9, 10, 11], 5, true);
-        bot1.animations.add('walkLeft', [4, 5, 6, 7], 5, true);
+        //Create Bot that goes left and right: createBot(this, botName, {"x": x, "y": y}, sprite, scale, true, RightFrames, LeftFrames, frameRate);
+        createBot(this, 'Bot1', {"x": 32, "y": 1654}, 'bot1', 1.5, true, [8, 9, 10, 11], [4, 5, 6, 7], 5);
         
-        // Integrate Non-Interactive Bots
-        bot2 = game.add.sprite(1632, 1376, 'bot1');
-        bot2.scale.set(1.5);
-        bot2.animations.add('walkUp', [12, 13, 14, 15], 5, true);
-        bot2.animations.add('walkDown', [0, 1, 2, 3], 5, true);
-        
+        //Create Bot that goes up and down: createBot(this, botName, {"x": x, "y": y}, sprite, scale, false, UpFrames, DownFrames, frameRate);
+        createBot(this, 'Bot2', {"x": 1632, "y": 1376}, 'bot1', 1.5, false, [12, 13, 14, 15], [0, 1, 2, 3], 5);
         
         // Initialize the monk character
         if ((!!returnState) && (returnState == "state0")) {
@@ -222,48 +215,11 @@ demo.state1.prototype = {
         coordinate = 'outside';
         
         // Bot animations
-        if (bot1Walk == 'walkRight')
-        {
-            bot1.animations.play('walkRight');
-            bot1.x += 2;
-            if (bot1.x >= 288)
-            {
-                console.log("Change direction to the left");
-                bot1Walk = 'walkLeft';
-                //bot1.animations.stop();
-            }
-        }
-        else 
-        {
-            bot1.animations.play('walkLeft');
-            bot1.x -= 2;
-            if (bot1.x <= 15)
-            {
-                console.log("Change Direction to the right");
-                bot1Walk = 'walkRight';
-            }
-        }
+        //Bot Walking left and right: BotWalk(this, botName, true, {"turnRightAt": SmallestX, "turnLeftAt": LargestX});
+        BotWalk(this, 'Bot1', true, {"turnLeftAt": 288, "turnRightAt": 15});
         
-        // BOT 2
-        if (bot2Walk == 'walkUp')
-        {
-            bot2.animations.play('walkUp');
-            bot2.y -= 2;
-            if (bot2.y <= 1376)
-            {
-                bot2Walk = 'walkDown';
-                //bot2.animations.stop();
-            }
-        }
-        else 
-        {
-            bot2.animations.play('walkDown');
-            bot2.y += 2;
-            if (bot2.y >= 1952)
-            {
-                bot2Walk = 'walkUp';
-            }
-        }
+        //Bot Walking up and down: BotWalk(this, botName, false, {"turnDownAt": SmallestY, "turnUpAt": LargestY});
+        BotWalk(this, 'Bot2', false, {"turnDownAt": 1376, "turnUpAt": 1952});
         
         // Enabling collisions
         game.physics.arcade.collide(monk, buildings2_noWalk1, function(){});

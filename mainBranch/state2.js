@@ -191,9 +191,6 @@ demo.state2.prototype = {
     
     update: function(){
         intro.stop();
-                 
-        //Skip to any state for testing
-        //game.state.start("state7");
         
         tutorial = true;
     
