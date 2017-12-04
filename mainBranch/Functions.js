@@ -765,7 +765,7 @@ dialogueList = function (game_state, NPC, npcName) {
                     "charResponse": "And I suppose you would be too late to stop this plot?"
                 },
                 "2": {
-                    "npcDialogue": "I am not privy to a single detail regarding the plans, except that they will occur when Silva comes for confession.",
+                    "npcDialogue": "I am not privy to a single detail regarding the plans, except that they will occur when Silva comes for confession. Alas if you must, take what supplies I have here for the battle to come.",
                     "charResponse": "Then I must warn Silva and Seth to flee! Farewell, Master Oceanus. Dissuade who you can; you owe those families your life."
                 },
                 "3": {
