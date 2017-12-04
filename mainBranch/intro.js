@@ -46,7 +46,7 @@ create: function()
     
 update : function()
     {
-        if(this.intro_text.y<= -1100)
+        if(this.intro_text.y<= -1270)
             {
                 this.fade.alpha = this.fade.alpha + 0.012;
                 
@@ -62,7 +62,7 @@ update : function()
 
             if(this.fade.alpha <= 0)
             {
-                this.intro_text.y = this.intro_text.y - 10;
+                this.intro_text.y = this.intro_text.y - 1;
             }
 
             else
