@@ -13,8 +13,6 @@ preload: function()
     {
         game.load.spritesheet('fade', '../assets/sprites/blackBox.jpg');
         game.load.spritesheet('paper', '../assets/boxes/intro-paper.png');
-        //game.load.audio('outrosound', '../assets/audio/outro.mp3');
-
     },
 create: function()
     {   
@@ -60,7 +58,7 @@ update : function()
                 {
                     outro.stop();
                     resetGame();
-                    this.state.start("state0");
+                    this.state.start("state0", true, true);
                 }
             }
         

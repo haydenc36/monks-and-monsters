@@ -288,7 +288,7 @@ demo.state1.prototype = {
         }
         
         if (dialogueCheck.indexOf("Last Dialogue") != -1) {
-            game.state.start("outro", true, true);
+            game.state.start("outro", true, false);
         }
 
         cursorControl(0.3);
