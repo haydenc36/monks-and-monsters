@@ -3,7 +3,7 @@ var demo = demo || {};
 var trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1, makeTyphon = true;
 var sethSprite, sethSpriteTxt;
 
-var bot1, bot1Walk = 'walkRight';;
+var bot1, bot1Walk = 'walkRight', bot2, bot2Walk = 'walkUp';
 
 demo.state1 = function(){};
 demo.state1.prototype = {
@@ -134,6 +134,12 @@ demo.state1.prototype = {
         bot1.animations.add('walkRight', [8, 9, 10, 11], 5, true);
         bot1.animations.add('walkLeft', [4, 5, 6, 7], 5, true);
         
+        // Integrate Non-Interactive Bots
+        bot2 = game.add.sprite(1632, 1376, 'bot1');
+        bot2.scale.set(1.5);
+        bot2.animations.add('walkUp', [12, 13, 14, 15], 5, true);
+        bot2.animations.add('walkDown', [0, 1, 2, 3], 5, true);
+        
         
         // Initialize the monk character
         if ((!!returnState) && (returnState == "state0")) {
@@ -218,7 +224,6 @@ demo.state1.prototype = {
         // Bot animations
         if (bot1Walk == 'walkRight')
         {
-            console.log("Keep walking right");
             bot1.animations.play('walkRight');
             bot1.x += 2;
             if (bot1.x >= 288)
@@ -230,7 +235,6 @@ demo.state1.prototype = {
         }
         else 
         {
-            console.log("keep walking left");
             bot1.animations.play('walkLeft');
             bot1.x -= 2;
             if (bot1.x <= 15)
@@ -240,6 +244,26 @@ demo.state1.prototype = {
             }
         }
         
+        // BOT 2
+        if (bot2Walk == 'walkUp')
+        {
+            bot2.animations.play('walkUp');
+            bot2.y -= 2;
+            if (bot2.y <= 1376)
+            {
+                bot2Walk = 'walkDown';
+                //bot2.animations.stop();
+            }
+        }
+        else 
+        {
+            bot2.animations.play('walkDown');
+            bot2.y += 2;
+            if (bot2.y >= 1952)
+            {
+                bot2Walk = 'walkUp';
+            }
+        }
         
         // Enabling collisions
         game.physics.arcade.collide(monk, buildings2_noWalk1, function(){});

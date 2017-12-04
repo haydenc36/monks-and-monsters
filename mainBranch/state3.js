@@ -1,6 +1,8 @@
 // Monastery
 var demo = demo || {};
 var noWalk3;
+var bot3, bot3Walk, bot4, bot4Walk;
+
 
 demo.state3 = function(){};
 demo.state3.prototype = {
@@ -73,6 +75,20 @@ demo.state3.prototype = {
         garden.setScale(1.875);
         roof3.setScale(1.875);
         
+        
+        // Integrate Non-Interactive Bots
+        bot3 = game.add.sprite(2230, 246, 'bot1');
+        bot3.scale.set(1.5);
+        bot3.animations.add('walkUp', [12, 13, 14, 15], 5, true);
+        bot3.animations.add('walkDown', [0, 1, 2, 3], 5, true);
+        
+        // Integrate Non-Interactive Bots
+        bot4 = game.add.sprite(1680, 1280, 'bot1');
+        bot4.scale.set(1.5);
+        bot4.animations.add('walkUp', [12, 13, 14, 15], 5, true);
+        bot4.animations.add('walkDown', [0, 1, 2, 3], 5, true);
+        
+        
         //Check for checkpoint before Silva Appears
 	    if (dialogueCheck.indexOf("Oceanus After Battle") != -1){
             createNPC(this,"Silva",{"x":700, "y":700},"silva",{"x":-0.50, "y":0.50});
@@ -137,6 +153,62 @@ demo.state3.prototype = {
     },
     
     update: function(){
+        
+        // Bot animations
+        if (bot3Walk == 'walkUp')
+        {
+            bot3.animations.play('walkUp');
+            bot3.y -= 2;
+            if (bot3.y <= 256)
+            {
+                bot3Walk = 'walkDown';
+                //bot3.animations.stop();
+            }
+        }
+        else 
+        {
+            bot3.animations.play('walkDown');
+            bot3.y += 2;
+            if (bot3.y >= 1120)
+            {
+                bot3Walk = 'walkUp';
+            }
+        }
+        
+        // BOT 2
+        if (bot4Walk == 'walkUp')
+        {
+            bot4.animations.play('walkUp');
+            bot4.y -= 2;
+            if (bot4.y <= 256)
+            {
+                bot4Walk = 'walkDown';
+                //bot4.animations.stop();
+            }
+        }
+        else 
+        {
+            bot4.animations.play('walkDown');
+            bot4.y += 2;
+            if (bot4.y >= 1180)
+            {
+                bot4Walk = 'walkUp';
+            }
+        }
+        
+        
+        
+        if ((monk.x <= 160) && (monk.y <= 480) && (monk.y >= 370)) {
+            console.log("Location for Battle");
+            if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Serpent") == -1)) {
+                charPosition = {"x": monk.x, "y": monk.y};
+                console.log("Went to battle");
+                deactivateSounds();
+                game.state.start("BootState", true, false, "../assets/battleJSONs/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
+            }
+        }
+        
+        
         
         // Update the coodinate variable
         coordinate = 'monastery';

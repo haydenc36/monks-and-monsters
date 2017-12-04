@@ -1,6 +1,7 @@
 // Brothel / Revolutionary Hangout
 var demo = demo || {};
 var trigger5, noWalk5;
+var bot5, bot6, bot5Walk, bot6Walk;
 
 demo.state5 = function(){};
 demo.state5.prototype = {
@@ -78,6 +79,20 @@ demo.state5.prototype = {
         furniture5b.setScale(3.5);
         stairs5.setScale(3.5);
         
+        // Integrate Non-Interactive Bots
+        bot5 = game.add.sprite(1920, 1560, 'bot1');
+        bot5.scale.set(5);
+        bot5.animations.add('walkRight', [8, 9, 10, 11], 5, true);
+        bot5.animations.add('walkLeft', [4, 5, 6, 7], 5, true);
+        
+        // Integrate Non-Interactive Bots
+        bot6 = game.add.sprite(1620, 300, 'bot1');
+        bot6.scale.set(3);
+        bot6.animations.add('walkRight', [8, 9, 10, 11], 5, true);
+        bot6.animations.add('walkLeft', [4, 5, 6, 7], 5, true);
+        
+        
+        // Integrate the interactive NPCs
         createNPC(this,"Sicarius",{"x":225, "y":1550},"sicarius",{"x":0.5, "y":0.5});
         if ((BattlesCompleted.indexOf("Serpent") != -1) && (dialogueCheck.indexOf("Self Dialogue") == -1)) {
             createNPC (this,"Parvos",{"x":105, "y": 500},"monk",{"x":-0.5, "y":0.5});
@@ -103,7 +118,7 @@ demo.state5.prototype = {
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
-        monk.animations.add('walkUp', [5, 6], 5);
+        monk.animations.add('walkRight', [5, 6], 5);
         monk.animations.add('walk', [1,2], 5);
         
         // Allow for collisions
@@ -117,7 +132,6 @@ demo.state5.prototype = {
         createHUD(this);
         createInventory(this);
         createHintBtn(this, function() {
-            console.log("Getting the Hint");
             HintOpen = true;
             getHint();
         });
@@ -143,6 +157,51 @@ demo.state5.prototype = {
     
         game.physics.arcade.collide(monk, trigger5, function(){doorSound.play(); deactivateSounds(); game.state.start('state1');});
         game.physics.arcade.collide(monk, noWalk5, function(){console.log('noWalk5');});
+        
+        
+        // Bot animations
+        if (bot5Walk == 'walkRight')
+        {
+            bot5.animations.play('walkRight');
+            bot5.y += 2;
+            if (bot5.x >= 2280)
+            {
+                bot5Walk = 'walkLeft';
+                //bot5.animations.stop();
+            }
+        }
+        else 
+        {
+            bot5.animations.play('walkLeft');
+            bot5.x -= 2;
+            if (bot5.x <= 1920)
+            {
+                bot5Walk = 'walkRight';
+            }
+        }
+        
+        // BOT 2
+        if (bot6Walk == 'walkRight')
+        {
+            bot6.animations.play('walkRight');
+            bot6.x += 2;
+            if (bot6.x >= 2100)
+            {
+                bot6Walk = 'walkLeft';
+                //bot6.animations.stop();
+            }
+        }
+        else 
+        {
+            bot6.animations.play('walkLeft');
+            bot6.x -= 2;
+            if (bot6.x <= 1620)
+            {
+                bot6Walk = 'walkRight';
+            }
+        }
+        
+        
         
         if ((monk.x <= 160) && (monk.y <= 480) && (monk.y >= 370)) {
             console.log("Location for Battle");
