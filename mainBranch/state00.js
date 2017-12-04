@@ -3,7 +3,7 @@ var demo = demo || {};
 var coordinate = 'start';
 
 // Initialize audio variables
-var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound, scrollSound;
+var intro, battleSong, chew, death, demon, medievalMusic, sword, thunder, walkAudio, roosterSound, footsteps_outside, footsteps_inside, sonicBoom, sparkle, wineSound, scrollSound, parvosTalk, NPCTalk;
 
 var monk, cursors, w, a, s, d, trigger2a, walls_noWalk2, fixtures_noWalk2b, enter, tutorial, vel = 275, characterEnergy, characterMana, characterStamina, wineQ, breadQ, charMaxEnergy, charMaxMana, charMaxStamina, timeNow, hintBtn, hintPopup, HintOpen, returnState, charPosition;
 
@@ -19,6 +19,8 @@ demo.state00.prototype = {
     preload: function()
     {
         // Load Audio Files
+        game.load.audio('parvosTalk', '../assets/audio/Parvos.mp3');
+        game.load.audio('NPCTalk', '../assets/audio/NPC.mp3');
         game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
         game.load.audio('chew', '../assets/audio/chew.m4a');
         game.load.audio('death', '../assets/audio/death.wav');
@@ -38,12 +40,14 @@ demo.state00.prototype = {
         game.load.audio('picked', '../assets/audio/itempicked.mp3');
         game.load.audio('snake', '../assets/audio/snake.wav');
         game.load.audio('scrollSound', '../assets/audio/scrollSound.wav');
-         game.load.audio('outro', '../assets/audio/outro.m4a');
+        game.load.audio('outro', '../assets/audio/outro.m4a');
     },
     
     create:function()
     {
         // Initialize Audio Samples
+        parvosTalk = game.add.audio('parvosTalk');
+        NPCTalk = game.add.audio('NPCTalk');
         battleSong = game.add.audio('battleSong');
         chew = game.add.audio('chew');
         death = game.add.audio('death');

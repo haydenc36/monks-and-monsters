@@ -334,6 +334,10 @@ updateDialogue = function (game_state, NPC) {
     if ((game_state.NPCBoxActive == 1) && (game_state.NPCBoxTextPosition <= Object.keys(NPC.dialogue).length)) {
         if (game_state.nextTextNPCBox < game_state.time.now) {
             if (game_state.NPCBoxTextPosition >= Object.keys(NPC.dialogue).length) {
+                //Stop Talking
+                NPCTalk.stop();
+                parvosTalk.stop();
+                
                 if ((NPC.checkpointID != "Default")  && (dialogueCheck.indexOf(NPC.checkpointID) == -1)){
                     dialogueCheck.push(NPC.checkpointID);
                     console.log(dialogueCheck);
@@ -384,35 +388,55 @@ chooseStr = function (game_state,NPC,extraNPC) {
         if (game_state.NPCSpeak) {
             if (Object.keys(NPC.dialogue[game_state.NPCBoxTextPosition]).length < 2){
                 if (!!NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue) {
+                    NPCTalk.stop();
+                    parvosTalk.stop();
+                    
                     st = NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue;
                     game_state.NPCBoxName = NPC.name;
                     game_state.textInfoboxNPC.setText(st);
                     game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
                     game_state.NPCSpeak = false;
+                    
+                    NPCTalk.play();
                 }
                 else if (!!NPC.dialogue[game_state.NPCBoxTextPosition].charResponse) {
+                    NPCTalk.stop();
+                    parvosTalk.stop();
+                    
                     st = NPC.dialogue[game_state.NPCBoxTextPosition].charResponse;
                     game_state.NPCBoxName = "Parvos";
                     game_state.textInfoboxNPC.setText(st);
                     game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                    
+                    parvosTalk.play();
                 }
             }
             else {
                 if (!!NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue) {
+                    NPCTalk.stop();
+                    parvosTalk.stop();
+                    
                     st = NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue;
                     game_state.NPCBoxName = NPC.name;
                     game_state.textInfoboxNPC.setText(st);
                     game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
                     game_state.NPCSpeak = false;
+                    
+                    NPCTalk.play();
                 }
             }
         }
         else {
             if (!!NPC.dialogue[game_state.NPCBoxTextPosition].charResponse) {
+                NPCTalk.stop();
+                parvosTalk.stop();
+                
                 st = NPC.dialogue[game_state.NPCBoxTextPosition].charResponse;
                 game_state.NPCBoxName = "Parvos";
                 game_state.textInfoboxNPC.setText(st);
                 game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                
+                parvosTalk.play();
             }
             game_state.NPCSpeak = true;
             game_state.NPCBoxTextPosition = Math.abs(game_state.NPCBoxTextPosition + 1);
@@ -424,29 +448,47 @@ chooseStr = function (game_state,NPC,extraNPC) {
         if (enter.isDown){
             if (Object.keys(NPC.dialogue[game_state.NPCBoxTextPosition]).length < 2){
                 if (!!NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue){
+                    NPCTalk.stop();
+                    parvosTalk.stop();
+                    
                     st = NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue;
                     game_state.NPCBoxName = NPC.name;
                     game_state.textInfoboxNPC.setText(st);
                     game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
                     game_state.NPCSpeak = true;
+                    
+                    NPCTalk.play();
+                    
                     game_state.NPCBoxTextPosition = Math.abs(game_state.NPCBoxTextPosition + 1);
                     game_state.nextTextNPCBox = game_state.time.now + 400;
                 }
                 else if (!!NPC.dialogue[game_state.NPCBoxTextPosition].charResponse){
+                    NPCTalk.stop();
+                    parvosTalk.stop();
+                    
                     st = NPC.dialogue[game_state.NPCBoxTextPosition].charResponse;
                     game_state.NPCBoxName = "Parvos";
                     game_state.textInfoboxNPC.setText(st);
                     game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
                     game_state.NPCSpeak = true;
+                    
+                    parvosTalk.play();
+                    
                     game_state.NPCBoxTextPosition = Math.abs(game_state.NPCBoxTextPosition + 1);
                     game_state.nextTextNPCBox = game_state.time.now + 400;
                 }
                 else if (!!NPC.dialogue[game_state.NPCBoxTextPosition].extra){
+                    NPCTalk.stop();
+                    parvosTalk.stop();
+                    
                     st = NPC.dialogue[game_state.NPCBoxTextPosition].extra;
                     game_state.NPCBoxName = extraNPC;
                     game_state.textInfoboxNPC.setText(st);
                     game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
                     game_state.NPCSpeak = true;
+                    
+                    NPCTalk.play();
+                    
                     game_state.NPCBoxTextPosition = Math.abs(game_state.NPCBoxTextPosition + 1);
                     game_state.nextTextNPCBox = game_state.time.now + 400;
                 }
@@ -457,25 +499,40 @@ chooseStr = function (game_state,NPC,extraNPC) {
             else {
                 if (game_state.NPCSpeak) {
                     if (!!NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue) {
+                        NPCTalk.stop();
+                        parvosTalk.stop();
+                        
                         st = NPC.dialogue[game_state.NPCBoxTextPosition].npcDialogue;
                         game_state.NPCBoxName = NPC.name;
                         game_state.textInfoboxNPC.setText(st);
                         game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                        
+                        NPCTalk.play();
                     }
                     game_state.NPCSpeak = false;
                 }
                 else {
                     if (!!NPC.dialogue[game_state.NPCBoxTextPosition].charResponse) {
+                        NPCTalk.stop();
+                        parvosTalk.stop();
+                        
                         st = NPC.dialogue[game_state.NPCBoxTextPosition].charResponse;
                         game_state.NPCBoxName = "Parvos";
                         game_state.textInfoboxNPC.setText(st);
                         game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                        
+                        parvosTalk.play();
                     }
                     else if (!!NPC.dialogue[game_state.NPCBoxTextPosition].extra) {
+                        NPCTalk.stop();
+                        parvosTalk.stop();
+                        
                         st = NPC.dialogue[game_state.NPCBoxTextPosition].extra;
                         game_state.NPCBoxName = extraNPC;
                         game_state.textInfoboxNPC.setText(st);
                         game_state.textInfoboxNPCname.setText(game_state.NPCBoxName);
+                        
+                        NPCTalk.play();
                     }
                     game_state.NPCSpeak = true;
                     game_state.NPCBoxTextPosition = Math.abs(game_state.NPCBoxTextPosition + 1);
