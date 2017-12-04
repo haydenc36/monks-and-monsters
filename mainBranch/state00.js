@@ -19,8 +19,8 @@ demo.state00.prototype = {
     preload: function()
     {
         // Load Audio Files
-        game.load.audio('parvosTalk', '../assets/audio/Parvos.mp3');
-        game.load.audio('NPCTalk', '../assets/audio/NPC.mp3');
+        game.load.audio('parvosTalk', '../assets/audio/Parvos.m4a');
+        game.load.audio('NPCTalk', '../assets/audio/NPC.m4a');
         game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
         game.load.audio('chew', '../assets/audio/chew.m4a');
         game.load.audio('death', '../assets/audio/death.wav');
@@ -47,7 +47,11 @@ demo.state00.prototype = {
     {
         // Initialize Audio Samples
         parvosTalk = game.add.audio('parvosTalk');
+        parvosTalk.volume = 0.2;
         NPCTalk = game.add.audio('NPCTalk');
+        NPCTalk.volume = 0.2;
+        
+        
         battleSong = game.add.audio('battleSong');
         chew = game.add.audio('chew');
         death = game.add.audio('death');
