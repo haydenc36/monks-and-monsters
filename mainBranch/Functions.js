@@ -1826,7 +1826,7 @@ AllHintUpdate = function (game_state) {
     }
     
     if ((BattlesCompleted.indexOf("Heresy Monster") != -1) && (dialogueCheck.indexOf("Seth is Typhon") == -1)){
-        updateHint(game_state, false, 'Seth', 1, 1, 'seth', 'Monastery', 'hintMonastery');
+        updateHint(game_state, true, 'Seth', 1, 1, 'seth', 'Monastery', 'hintMonastery');
     }
 };
 

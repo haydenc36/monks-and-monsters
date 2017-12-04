@@ -70,7 +70,7 @@
                 "group": "players",
                 "scale": {"x": 0.5, "y": 0.5},
                 "stats": {
-                    "attack": 25,
+                    "attack": 19,
                     "defense": 11,
                     "miracles_attack":19
                 }
@@ -84,7 +84,7 @@
                 "group": "enemies",
                 "scale": {"x": 1.5, "y": 1.5},
                 "stats": {
-                    "attack": 25,
+                    "attack": 30,
                     "defense": 7,
                     "health": 500,
                     "maxHP": 500,
