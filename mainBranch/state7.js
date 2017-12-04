@@ -52,7 +52,7 @@ demo.state7.prototype = {
         var buildings7 = map.createLayer('buildings7');
                
         // Create chest
-         createChest(this, "chest1", {"x":600, "y":200},"chest",{"x":1, "y":1});
+         createChest(this, "chest1", {"x":1410, "y":25},"chest",{"x":1, "y":1});
         chest_state7 = true;
         
         // Initialize the monk character

@@ -982,7 +982,7 @@ dialogueList = function (game_state, NPC, npcName) {
             NPC.checkpointID = "Self Dialogue";
             NPC.dialogue = {
                 "0": {
-                    "npcDialogue": "The cave is locked!",
+                    "npcDialogue": "The cave is locked!\n Hint: look around.",
                 }
 
                 }
