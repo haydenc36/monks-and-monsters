@@ -126,7 +126,7 @@ demo.state7.prototype = {
                  console.log('Battle State'); 
                  battleAudio = "heresyMonster"; 
                  deactivateSounds(); 
-                 game.state.start("BootState", true, false, "../assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);}
+                 game.state.start("BootState", true, false, "./assets/battleJSONs/CountryBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);}
                 );
         }
         else{

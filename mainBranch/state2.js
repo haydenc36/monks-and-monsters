@@ -15,13 +15,13 @@ demo.state2.prototype = {
         game.load.spritesheet('monk', './assets/spritesheets/monk_new.png', 185, 319);
         game.load.tilemap('england_parvos', './assets/tilemaps/files/england_parvos.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('couches', './assets/tilemaps/tilesets/couches.png');
-        game.load.image('door', '../assets/tilemaps/tilesets/door.png');
+        game.load.image('door', './assets/tilemaps/tilesets/door.png');
         game.load.image('furniture2', './assets/tilemaps/tilesets/furniture2.png');
         game.load.image('paths', './assets/tilemaps/tilesets/paths.png');
         game.load.image('religious', './assets/tilemaps/tilesets/religious.png');
         game.load.image('village_tileset', './assets/tilemaps/tilesets/village_tileset.png');
 
-        game.load.image('npcbox', '../assets/boxes/paper-dialog.png');
+        game.load.image('npcbox', './assets/boxes/paper-dialog.png');
 
         //load Sprites for HUD
         game.load.spritesheet('red_bar', './assets/boxes/red_bar.png');
@@ -56,7 +56,7 @@ demo.state2.prototype = {
         
         // Load Non-Interactive NPCs
         game.load.spritesheet('bot1', './assets/spritesheets/bot1.png', 32, 53);
-        //game.load.spritesheet('bot1', '../assets/spritesheets/bot1.png', 32, 53);
+        //game.load.spritesheet('bot1', './assets/spritesheets/bot1.png', 32, 53);
         
         //Load Enemies
         game.load.image('QMark', './assets/sprites/QMark.png');
@@ -195,7 +195,7 @@ demo.state2.prototype = {
         tutorial = true;
     
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
-            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); battleAudio = "tutorial"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ],{},tutorial);});
+            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); battleAudio = "tutorial"; deactivateSounds(); game.state.start("BootState", true, false, "./assets/battleJSONs/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ],{},tutorial);});
             
             // Play the door sound
             //doorSound.play();

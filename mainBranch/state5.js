@@ -209,7 +209,7 @@ demo.state5.prototype = {
                 charPosition = {"x": monk.x, "y": monk.y};
                 console.log("Went to battle");
                 deactivateSounds();
-                game.state.start("BootState", true, false, "../assets/battleJSONs/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
+                game.state.start("BootState", true, false, "./assets/battleJSONs/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
             }
         }
         
