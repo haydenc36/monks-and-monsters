@@ -2,8 +2,8 @@
     "assets": {
         "rectangle_image": {"type": "image", "source": "./assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "./assets/backgrounds/BG.png"},
-        "monk_spritesheet": {"type": "spritesheet", "source": "./assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "devil_spritesheet": {"type": "spritesheet", "source": "./assets/sprites/typhon.png", "frame_width": 752, "frame_height": 1063},
+        "monk_spritesheet": {"type": "image", "source": "./assets/sprites/ezio.png"},
+        "devil_spritesheet": {"type": "image", "source": "./assets/sprites/typhon.png"},
         "bread_img": {"type": "image", "source": "./assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "./assets/sprites/wine.png"},
         "arrow": {"type": "image", "source": "./assets/sprites/arrow.png"},

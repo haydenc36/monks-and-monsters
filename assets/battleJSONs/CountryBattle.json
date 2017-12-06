@@ -2,8 +2,8 @@
     "assets": {
         "rectangle_image": {"type": "image", "source": "./assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "./assets/backgrounds/cave.png"},
-        "monk_spritesheet": {"type": "spritesheet", "source": "./assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "heresy_spritesheet": {"type": "spritesheet", "source": "./assets/sprites/heresyMonster.png", "frame_width": 640, "frame_height": 666},
+        "monk_spritesheet": {"type": "image", "source": "./assets/sprites/ezio.png"},
+        "heresy_spritesheet": {"type": "image", "source": "./assets/sprites/heresyMonster.png"},
         "bread_img": {"type": "image", "source": "./assets/sprites/bread.png"},
         "wine_img": {"type": "image", "source": "./assets/sprites/wine.png"},
         "arrow": {"type": "image", "source": "./assets/sprites/arrow.png"},
