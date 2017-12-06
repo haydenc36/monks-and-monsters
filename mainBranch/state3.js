@@ -154,7 +154,7 @@ demo.state3.prototype = {
         if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) 
         {
             charPosition = {"x": monk.x, "y": monk.y};
-            game.state.start("BootState", true, false, './assets/battleJSONs/SilvaBattle.JSON', "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
+            game.state.start("BootState", true, false, './assets/battleJSONs/SilvaBattle.json', "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
             
             deactivateSounds();
         }

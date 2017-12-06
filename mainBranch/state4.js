@@ -117,7 +117,7 @@ demo.state4.prototype = {
         
         if ((dialogueCheck.indexOf("Oceanus Before Battle") != -1)  && (BattlesCompleted.indexOf("Oceanus") == -1)) {
             charPosition = {"x": monk.x, "y": monk.y};
-            game.state.start("BootState", true, false, './assets/battleJSONs/OceanusBattle.JSON', "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
+            game.state.start("BootState", true, false, './assets/battleJSONs/OceanusBattle.json', "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
         }
         
         cursorControl(0.6);
