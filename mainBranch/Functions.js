@@ -397,7 +397,6 @@ updateDialogue = function (game_state, NPC) {
                 
                 if ((NPC.checkpointID != "Default")  && (dialogueCheck.indexOf(NPC.checkpointID) == -1)){
                     dialogueCheck.push(NPC.checkpointID);
-                    console.log(dialogueCheck);
                 }
                 
                 game_state.NPCBoxActive = 2;

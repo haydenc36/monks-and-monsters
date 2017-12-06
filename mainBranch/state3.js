@@ -126,7 +126,6 @@ demo.state3.prototype = {
         createHUD(this);
         createInventory(this);
         createHintBtn(this, function() {
-            console.log("Getting the Hint");
             HintOpen = true;
             getHint();
         });

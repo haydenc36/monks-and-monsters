@@ -22,7 +22,6 @@ demo.RetreatMenuItem.prototype.select = function () {
                 var index = dialogueCheck.indexOf(this.game_state.level_data.extraInfo.removeDialogue[i]);
                 if (index != -1){
                     dialogueCheck.splice(index, 1);
-                    console.log(dialogueCheck);
                 }
             }
         }

@@ -413,7 +413,6 @@ demo.BattleState.prototype.game_over = function () {
             index = dialogueCheck.indexOf(this.level_data.extraInfo.removeDialogue[i]);
             if (index != -1){
                 dialogueCheck.splice(index, 1);
-                console.log(dialogueCheck);
             }
         }
     }
