@@ -1,16 +1,16 @@
 {
     "assets": {
-        "rectangle_image": {"type": "image", "source": "./assets/sprites/rectangle.png"},
-        "bg_image": {"type": "image", "source": "./assets/backgrounds/BattleeBG.png"},
-        "monk_spritesheet": {"type": "spritesheet", "source": "./assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "wise_spritesheet": {"type": "spritesheet", "source": "./assets/sprites/silvaBattle.png", "frame_width": 1000, "frame_height": 2726},
-        "bread_img": {"type": "image", "source": "./assets/sprites/bread.png"},
-        "wine_img": {"type": "image", "source": "./assets/sprites/wine.png"},
-        "arrow": {"type": "image", "source": "./assets/sprites/arrow.png"},
-        "redBar": {"type": "image", "source": "./assets/boxes/red_bar.png"},
-        "blackBar": {"type": "image", "source": "./assets/boxes/black_bar.png"},
-        "blueBar": {"type": "image", "source": "./assets/boxes/blue_bar.png"},
-        "greenBar": {"type": "image", "source": "./assets/boxes/green_bar.png"}
+        "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
+        "bg_image": {"type": "image", "source": "../../assets/backgrounds/BattleeBG.png"},
+        "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
+        "wise_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/silvaBattle.png", "frame_width": 1000, "frame_height": 2726},
+        "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
+        "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
+        "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
+        "redBar": {"type": "image", "source": "../../assets/boxes/red_bar.png"},
+        "blackBar": {"type": "image", "source": "../../assets/boxes/black_bar.png"},
+        "blueBar": {"type": "image", "source": "../../assets/boxes/blue_bar.png"},
+        "greenBar": {"type": "image", "source": "../../assets/boxes/green_bar.png"}
     },
     
     "groups": [
