@@ -1,16 +1,16 @@
 {
     "assets": {
-        "rectangle_image": {"type": "image", "source": "../../assets/sprites/rectangle.png"},
+        "rectangle_image": {"type": "image", "source": "./assets/sprites/rectangle.png"},
         "bg_image": {"type": "image", "source": "./assets/backgrounds/BG.png"},
-        "monk_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
-        "devil_spritesheet": {"type": "spritesheet", "source": "../../assets/sprites/typhon.png", "frame_width": 752, "frame_height": 1063},
-        "bread_img": {"type": "image", "source": "../../assets/sprites/bread.png"},
-        "wine_img": {"type": "image", "source": "../../assets/sprites/wine.png"},
-        "arrow": {"type": "image", "source": "../../assets/sprites/arrow.png"},
-        "redBar": {"type": "image", "source": "../../assets/boxes/red_bar.png"},
-        "blackBar": {"type": "image", "source": "../../assets/boxes/black_bar.png"},
-        "blueBar": {"type": "image", "source": "../../assets/boxes/blue_bar.png"},
-        "greenBar": {"type": "image", "source": "../../assets/boxes/green_bar.png"}
+        "monk_spritesheet": {"type": "spritesheet", "source": "./assets/sprites/ezio.png", "frame_width": 1000, "frame_height": 900},
+        "devil_spritesheet": {"type": "spritesheet", "source": "./assets/sprites/typhon.png", "frame_width": 752, "frame_height": 1063},
+        "bread_img": {"type": "image", "source": "./assets/sprites/bread.png"},
+        "wine_img": {"type": "image", "source": "./assets/sprites/wine.png"},
+        "arrow": {"type": "image", "source": "./assets/sprites/arrow.png"},
+        "redBar": {"type": "image", "source": "./assets/boxes/red_bar.png"},
+        "blackBar": {"type": "image", "source": "./assets/boxes/black_bar.png"},
+        "blueBar": {"type": "image", "source": "./assets/boxes/blue_bar.png"},
+        "greenBar": {"type": "image", "source": "./assets/boxes/green_bar.png"}
     },
     "groups": [
         "items",
