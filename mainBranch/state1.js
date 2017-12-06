@@ -14,30 +14,30 @@ demo.state1.prototype = {
     },
     
     preload: function(){
-        game.load.tilemap('england_village', '../assets/tilemaps/files/england_village.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
-        game.load.image('barracks', '../assets/tilemaps/tilesets/barracks.png');
-        game.load.image('castle', '../assets/tilemaps/tilesets/castle.png');
-        game.load.image('castle1', '../assets/tilemaps/tilesets/castle1.png');
-        game.load.image('chapel', '../assets/tilemaps/tilesets/chapel.png');
-        game.load.image('door', '../assets/tilemaps/tilesets/door.png');
-        game.load.image('farmhouse', '../assets/tilemaps/tilesets/farmhouse.png');
-        game.load.image('hut2', '../assets/tilemaps/tilesets/hut.png');
-        game.load.image('huts', '../assets/tilemaps/tilesets/hut2.png');
-        game.load.image('lodges', '../assets/tilemaps/tilesets/lodge.png');
-        game.load.image('lodges2', '../assets/tilemaps/tilesets/lodge2.png');
-        game.load.image('monastery', '../assets/tilemaps/tilesets/monastery.png');
-        game.load.image('mountain', '../assets/tilemaps/tilesets/paths.png');
-        game.load.image('pub', '../assets/tilemaps/tilesets/pub.png');
-        game.load.image('sawmill', '../assets/tilemaps/tilesets/sawmill.png');
-        game.load.image('stable2', '../assets/tilemaps/tilesets/stable.png');
-        game.load.image('stonehut', '../assets/tilemaps/tilesets/hut3.png');
-        game.load.image('timbered', '../assets/tilemaps/tilesets/timbered.png');
-        game.load.image('town', '../assets/tilemaps/tilesets/beautiful.png');
-        game.load.image('walltowers', '../assets/tilemaps/tilesets/towers.png');
-        game.load.image('brothel', '../assets/tilemaps/tilesets/brothel.png');
-        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
-        game.load.image('sky', '../assets/tilemaps/tilesets/sky.png');
+        game.load.tilemap('england_village', './assets/tilemaps/files/england_village.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('village_tileset2', './assets/tilemaps/tilesets/village_tileset2.png');
+        game.load.image('barracks', './assets/tilemaps/tilesets/barracks.png');
+        game.load.image('castle', './assets/tilemaps/tilesets/castle.png');
+        game.load.image('castle1', './assets/tilemaps/tilesets/castle1.png');
+        game.load.image('chapel', './assets/tilemaps/tilesets/chapel.png');
+        game.load.image('door', './assets/tilemaps/tilesets/door.png');
+        game.load.image('farmhouse', './assets/tilemaps/tilesets/farmhouse.png');
+        game.load.image('hut2', './assets/tilemaps/tilesets/hut.png');
+        game.load.image('huts', './assets/tilemaps/tilesets/hut2.png');
+        game.load.image('lodges', './assets/tilemaps/tilesets/lodge.png');
+        game.load.image('lodges2', './assets/tilemaps/tilesets/lodge2.png');
+        game.load.image('monastery', './assets/tilemaps/tilesets/monastery.png');
+        game.load.image('mountain', './assets/tilemaps/tilesets/paths.png');
+        game.load.image('pub', './assets/tilemaps/tilesets/pub.png');
+        game.load.image('sawmill', './assets/tilemaps/tilesets/sawmill.png');
+        game.load.image('stable2', './assets/tilemaps/tilesets/stable.png');
+        game.load.image('stonehut', './assets/tilemaps/tilesets/hut3.png');
+        game.load.image('timbered', './assets/tilemaps/tilesets/timbered.png');
+        game.load.image('town', './assets/tilemaps/tilesets/beautiful.png');
+        game.load.image('walltowers', './assets/tilemaps/tilesets/towers.png');
+        game.load.image('brothel', './assets/tilemaps/tilesets/brothel.png');
+        game.load.image('village_tileset', './assets/tilemaps/tilesets/village_tileset.png');
+        game.load.image('sky', './assets/tilemaps/tilesets/sky.png');
     },
     
     create: function(){

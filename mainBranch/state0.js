@@ -4,8 +4,8 @@ var demo = demo || {};
 demo.state0 = function(){};
 demo.state0.prototype = {
     preload: function(){
-        this.load.image('Barcelona','../assets/backgrounds/Barcelona.png');
-        this.load.image('button','../assets/sprites/scroll_menu.png');
+        this.load.image('Barcelona','./assets/backgrounds/Barcelona.png');
+        this.load.image('button','./assets/sprites/scroll_menu.png');
         
     },
     create:function(){

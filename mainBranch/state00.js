@@ -19,28 +19,28 @@ demo.state00.prototype = {
     preload: function()
     {
         // Load Audio Files
-        game.load.audio('parvosTalk', '../assets/audio/Parvos.m4a');
-        game.load.audio('NPCTalk', '../assets/audio/NPC.m4a');
-        game.load.audio('battleSong', '../assets/audio/battleSong.mp3');
-        game.load.audio('chew', '../assets/audio/chew.m4a');
-        game.load.audio('death', '../assets/audio/death.wav');
-        game.load.audio('intro', '../assets/audio/intro.mp3');
-        game.load.audio('medievalMusic', '../assets/audio/medieval.m4a');
-        game.load.audio('sword', '../assets/audio/sword.wav');
-        game.load.audio('timpani', '../assets/audio/timpani.wav');
-        game.load.audio('walkAudio', '../assets/audio/walk.wav');
-        game.load.audio('doorSound', '../assets/audio/doorSound.wav');
-        game.load.audio('roosterSound', '../assets/audio/roosterSound.wav');
-        game.load.audio('footsteps_outside', '../assets/audio/footsteps_outside.wav');
-        game.load.audio('footsteps_inside', '../assets/audio/footsteps_inside.m4a');
-        game.load.audio('sonicBoom', '../assets/audio/sonicBoom.wav');
-        game.load.audio('thunder', '../assets/audio/thunder.wav');
-        game.load.audio('sparkle', '../assets/audio/sparkle.wav');
-        game.load.audio('wineSound', '../assets/audio/wineSound.m4a');
-        game.load.audio('picked', '../assets/audio/itempicked.mp3');
-        game.load.audio('snake', '../assets/audio/snake.wav');
-        game.load.audio('scrollSound', '../assets/audio/scrollSound.wav');
-        game.load.audio('outro', '../assets/audio/outro.m4a');
+        game.load.audio('parvosTalk', './assets/audio/Parvos.m4a');
+        game.load.audio('NPCTalk', './assets/audio/NPC.m4a');
+        game.load.audio('battleSong', './assets/audio/battleSong.mp3');
+        game.load.audio('chew', './assets/audio/chew.m4a');
+        game.load.audio('death', './assets/audio/death.wav');
+        game.load.audio('intro', './assets/audio/intro.mp3');
+        game.load.audio('medievalMusic', './assets/audio/medieval.m4a');
+        game.load.audio('sword', './assets/audio/sword.wav');
+        game.load.audio('timpani', './assets/audio/timpani.wav');
+        game.load.audio('walkAudio', './assets/audio/walk.wav');
+        game.load.audio('doorSound', './assets/audio/doorSound.wav');
+        game.load.audio('roosterSound', './assets/audio/roosterSound.wav');
+        game.load.audio('footsteps_outside', './assets/audio/footsteps_outside.wav');
+        game.load.audio('footsteps_inside', './assets/audio/footsteps_inside.m4a');
+        game.load.audio('sonicBoom', './assets/audio/sonicBoom.wav');
+        game.load.audio('thunder', './assets/audio/thunder.wav');
+        game.load.audio('sparkle', './assets/audio/sparkle.wav');
+        game.load.audio('wineSound', './assets/audio/wineSound.m4a');
+        game.load.audio('picked', './assets/audio/itempicked.mp3');
+        game.load.audio('snake', './assets/audio/snake.wav');
+        game.load.audio('scrollSound', './assets/audio/scrollSound.wav');
+        game.load.audio('outro', './assets/audio/outro.m4a');
     },
     
     create:function()

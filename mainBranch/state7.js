@@ -11,12 +11,12 @@ demo.state7.prototype = {
     },
     
     preload: function(){
-        game.load.tilemap('england_countryside', '../assets/tilemaps/files/england_countryside.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('beautiful', '../assets/tilemaps/tilesets/beautiful.png');
-        game.load.image('paths', '../assets/tilemaps/tilesets/paths.png');
-        game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
-        game.load.image('spooky', '../assets/tilemaps/tilesets/spooky.png');
-        game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
+        game.load.tilemap('england_countryside', './assets/tilemaps/files/england_countryside.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('beautiful', './assets/tilemaps/tilesets/beautiful.png');
+        game.load.image('paths', './assets/tilemaps/tilesets/paths.png');
+        game.load.image('religious', './assets/tilemaps/tilesets/religious.png');
+        game.load.image('spooky', './assets/tilemaps/tilesets/spooky.png');
+        game.load.image('village_tileset2', './assets/tilemaps/tilesets/village_tileset2.png');
     },
     
     create:function(){

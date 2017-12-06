@@ -12,70 +12,70 @@ demo.state2.prototype = {
     
     preload: function(){
         
-        game.load.spritesheet('monk', '../assets/spritesheets/monk_new.png', 185, 319);
-        game.load.tilemap('england_parvos', '../assets/tilemaps/files/england_parvos.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('couches', '../assets/tilemaps/tilesets/couches.png');
+        game.load.spritesheet('monk', './assets/spritesheets/monk_new.png', 185, 319);
+        game.load.tilemap('england_parvos', './assets/tilemaps/files/england_parvos.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('couches', './assets/tilemaps/tilesets/couches.png');
         game.load.image('door', '../assets/tilemaps/tilesets/door.png');
-        game.load.image('furniture2', '../assets/tilemaps/tilesets/furniture2.png');
-        game.load.image('paths', '../assets/tilemaps/tilesets/paths.png');
-        game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
-        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
+        game.load.image('furniture2', './assets/tilemaps/tilesets/furniture2.png');
+        game.load.image('paths', './assets/tilemaps/tilesets/paths.png');
+        game.load.image('religious', './assets/tilemaps/tilesets/religious.png');
+        game.load.image('village_tileset', './assets/tilemaps/tilesets/village_tileset.png');
 
         game.load.image('npcbox', '../assets/boxes/paper-dialog.png');
 
         //load Sprites for HUD
-        game.load.spritesheet('red_bar', '../assets/boxes/red_bar.png');
-		game.load.spritesheet('black_bar', '../assets/boxes/black_bar.png');
-		game.load.spritesheet('blue_bar', '../assets/boxes/blue_bar.png');
-        game.load.spritesheet('green_bar', '../assets/boxes/green_bar.png');
-		game.load.spritesheet('avatar_box', '../assets/boxes/avatar_monk.png');
-        game.load.image('ideaBtn', '../assets/sprites/hintBtn.png');
-        game.load.image('hintPopup', '../assets/boxes/hintPopup.png');
-        game.load.image('exitHint', '../assets/sprites/exitHintBtn.png');
-        game.load.image('settings', '../assets/sprites/SettingsIcon.png');
+        game.load.spritesheet('red_bar', './assets/boxes/red_bar.png');
+		game.load.spritesheet('black_bar', './assets/boxes/black_bar.png');
+		game.load.spritesheet('blue_bar', './assets/boxes/blue_bar.png');
+        game.load.spritesheet('green_bar', './assets/boxes/green_bar.png');
+		game.load.spritesheet('avatar_box', './assets/boxes/avatar_monk.png');
+        game.load.image('ideaBtn', './assets/sprites/hintBtn.png');
+        game.load.image('hintPopup', './assets/boxes/hintPopup.png');
+        game.load.image('exitHint', './assets/sprites/exitHintBtn.png');
+        game.load.image('settings', './assets/sprites/SettingsIcon.png');
         
         //Hint Maps
-        game.load.image('tutorialHA', '../assets/backgrounds/hintHAEx.png');
-        game.load.image('tutorialThomas', '../assets/backgrounds/hintThEx.png');
-        game.load.image('tutorialBattle', '../assets/backgrounds/hintBattle.png');
-        game.load.image('hintMonastery', '../assets/backgrounds/hintMonastery.png');
-        game.load.image('hintBrothel', '../assets/backgrounds/hintBrothel.png');
-        game.load.image('hintHut', '../assets/backgrounds/hintHut.png');
-        game.load.image('hintBasement', '../assets/backgrounds/hintBasement.png');
-        game.load.image('hintCountry', '../assets/backgrounds/hintCountry.png');
-        game.load.image('hintCave', '../assets/backgrounds/hintCave.png');
+        game.load.image('tutorialHA', './assets/backgrounds/hintHAEx.png');
+        game.load.image('tutorialThomas', './assets/backgrounds/hintThEx.png');
+        game.load.image('tutorialBattle', './assets/backgrounds/hintBattle.png');
+        game.load.image('hintMonastery', './assets/backgrounds/hintMonastery.png');
+        game.load.image('hintBrothel', './assets/backgrounds/hintBrothel.png');
+        game.load.image('hintHut', './assets/backgrounds/hintHut.png');
+        game.load.image('hintBasement', './assets/backgrounds/hintBasement.png');
+        game.load.image('hintCountry', './assets/backgrounds/hintCountry.png');
+        game.load.image('hintCave', './assets/backgrounds/hintCave.png');
         
         //Load Interactive NPCs
-        game.load.spritesheet('thomas', '../assets/boxes/wandering_trader1.png', 64, 128);
-        game.load.spritesheet('father', '../assets/sprites/father.png', 124, 319);
-        game.load.spritesheet('seth', '../assets/sprites/seth.png', 124, 319);
-        game.load.spritesheet('silva', '../assets/sprites/silva.png', 117, 319);
-        game.load.spritesheet('oceanus', '../assets/sprites/oceanus.png', 159, 319);
-        game.load.spritesheet('sicarius', '../assets/sprites/sicarius.png', 119, 319);
-        game.load.spritesheet('typhon', '../assets/sprites/typhon.png', 752, 1063);
+        game.load.spritesheet('thomas', './assets/boxes/wandering_trader1.png', 64, 128);
+        game.load.spritesheet('father', './assets/sprites/father.png', 124, 319);
+        game.load.spritesheet('seth', './assets/sprites/seth.png', 124, 319);
+        game.load.spritesheet('silva', './assets/sprites/silva.png', 117, 319);
+        game.load.spritesheet('oceanus', './assets/sprites/oceanus.png', 159, 319);
+        game.load.spritesheet('sicarius', './assets/sprites/sicarius.png', 119, 319);
+        game.load.spritesheet('typhon', './assets/sprites/typhon.png', 752, 1063);
         
         // Load Non-Interactive NPCs
-        game.load.spritesheet('bot1', '../assets/spritesheets/bot1.png', 32, 53);
+        game.load.spritesheet('bot1', './assets/spritesheets/bot1.png', 32, 53);
         //game.load.spritesheet('bot1', '../assets/spritesheets/bot1.png', 32, 53);
         
         //Load Enemies
-        game.load.image('QMark', '../assets/sprites/QMark.png');
-        game.load.image('tutorialEnemy', '../assets/sprites/priest.png');
-        game.load.image('heresy', '../assets/sprites/heresymonster.png')
+        game.load.image('QMark', './assets/sprites/QMark.png');
+        game.load.image('tutorialEnemy', './assets/sprites/priest.png');
+        game.load.image('heresy', './assets/sprites/heresymonster.png')
         
         //load Sprites for inventory
-        game.load.spritesheet('inventory_base', '../assets/sprites/scroll_menu.png');
-        game.load.spritesheet('slot', '../assets/sprites/slot.png');
+        game.load.spritesheet('inventory_base', './assets/sprites/scroll_menu.png');
+        game.load.spritesheet('slot', './assets/sprites/slot.png');
         //load Items for inventory
-        game.load.spritesheet('bread', '../assets/sprites/bread.png');
-        game.load.spritesheet('wine', '../assets/sprites/wine.png');
-        game.load.spritesheet('scroll', '../assets/sprites/scroll_menu.png');
-        game.load.spritesheet('key', '../assets/sprites/key.png');
+        game.load.spritesheet('bread', './assets/sprites/bread.png');
+        game.load.spritesheet('wine', './assets/sprites/wine.png');
+        game.load.spritesheet('scroll', './assets/sprites/scroll_menu.png');
+        game.load.spritesheet('key', './assets/sprites/key.png');
         
-        game.load.spritesheet('shiny', '../assets/sprites/shiny.png');
+        game.load.spritesheet('shiny', './assets/sprites/shiny.png');
         
         //load chest
-        game.load.spritesheet('chest', '../assets/sprites/chest.png',32,32);
+        game.load.spritesheet('chest', './assets/sprites/chest.png',32,32);
         
     },
     

@@ -12,11 +12,11 @@ demo.state4.prototype = {
     
     preload: function(){
         
-        game.load.tilemap('england_peasant', '../assets/tilemaps/files/england_peasant.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('beautiful', '../assets/tilemaps/tilesets/beautiful.png');
-        game.load.image('floors', '../assets/tilemaps/tilesets/floors.png');
-        game.load.image('poor_art', '../assets/tilemaps/tilesets/poor_art.png');
-        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
+        game.load.tilemap('england_peasant', './assets/tilemaps/files/england_peasant.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('beautiful', './assets/tilemaps/tilesets/beautiful.png');
+        game.load.image('floors', './assets/tilemaps/tilesets/floors.png');
+        game.load.image('poor_art', './assets/tilemaps/tilesets/poor_art.png');
+        game.load.image('village_tileset', './assets/tilemaps/tilesets/village_tileset.png');
         
     },
     

@@ -12,19 +12,19 @@ demo.state5.prototype = {
     },
     
     preload: function(){
-        game.load.tilemap('england_brothel', '../assets/tilemaps/files/england_brothel.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('art', '../assets/tilemaps/tilesets/art.png');
-        game.load.image('beautiful', '../assets/tilemaps/tilesets/beautiful.png');
-        game.load.image('couches', '../assets/tilemaps/tilesets/couches.png');
-        game.load.image('floors', '../assets/tilemaps/tilesets/floors.png');
-        game.load.image('furniture', '../assets/tilemaps/tilesets/furniture.png');
-        game.load.image('furniture2', '../assets/tilemaps/tilesets/furniture2.png');
-        game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
-        game.load.image('stairs', '../assets/tilemaps/tilesets/stairs.png');
-        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
-        game.load.image('wallpaper', '../assets/tilemaps/tilesets/wallpaper.png');
-        game.load.image('windows', '../assets/tilemaps/tilesets/windows.png');
-        game.load.image('windows2', '../assets/tilemaps/tilesets/windows2.png');
+        game.load.tilemap('england_brothel', './assets/tilemaps/files/england_brothel.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('art', './assets/tilemaps/tilesets/art.png');
+        game.load.image('beautiful', './assets/tilemaps/tilesets/beautiful.png');
+        game.load.image('couches', './assets/tilemaps/tilesets/couches.png');
+        game.load.image('floors', './assets/tilemaps/tilesets/floors.png');
+        game.load.image('furniture', './assets/tilemaps/tilesets/furniture.png');
+        game.load.image('furniture2', './assets/tilemaps/tilesets/furniture2.png');
+        game.load.image('religious', './assets/tilemaps/tilesets/religious.png');
+        game.load.image('stairs', './assets/tilemaps/tilesets/stairs.png');
+        game.load.image('village_tileset', './assets/tilemaps/tilesets/village_tileset.png');
+        game.load.image('wallpaper', './assets/tilemaps/tilesets/wallpaper.png');
+        game.load.image('windows', './assets/tilemaps/tilesets/windows.png');
+        game.load.image('windows2', './assets/tilemaps/tilesets/windows2.png');
         
     },
     

@@ -6,9 +6,9 @@ var coordinate = 'start';
 demo.state6 = function(){};
 demo.state6.prototype = {
     preload: function(){
-        this.load.image('monastery','../assets/backgrounds/monastery2.jpg');
-        this.load.image('button','../assets/sprites/scroll_menu.png');
-        this.load.image('instructions', '../assets/backgrounds/instructions.png');
+        this.load.image('monastery','./assets/backgrounds/monastery2.jpg');
+        this.load.image('button','./assets/sprites/scroll_menu.png');
+        this.load.image('instructions', './assets/backgrounds/instructions.png');
     },
     create:function(){
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;

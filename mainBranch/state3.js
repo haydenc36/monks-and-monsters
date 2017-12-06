@@ -13,16 +13,16 @@ demo.state3.prototype = {
     },
     
     preload: function(){
-        game.load.tilemap('england_monastery', '../assets/tilemaps/files/england_monastery.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.image('village_tileset', '../assets/tilemaps/tilesets/village_tileset.png');
-        game.load.image('village_tileset2', '../assets/tilemaps/tilesets/village_tileset2.png');
-        game.load.image('beautiful', '../assets/tilemaps/tilesets/beautiful.png');
-        game.load.image('floors', '../assets/tilemaps/tilesets/floors.png');
-        game.load.image('furniture', '../assets/tilemaps/tilesets/furniture.png');
-        game.load.image('furniture2', '../assets/tilemaps/tilesets/furniture2.png');
-        game.load.image('monastery', '../assets/tilemaps/tilesets/monastery.png');
-        game.load.image('religious', '../assets/tilemaps/tilesets/religious.png');
-        game.load.image('spooky', '../assets/tilemaps/tilesets/spooky.png');
+        game.load.tilemap('england_monastery', './assets/tilemaps/files/england_monastery.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('village_tileset', './assets/tilemaps/tilesets/village_tileset.png');
+        game.load.image('village_tileset2', './assets/tilemaps/tilesets/village_tileset2.png');
+        game.load.image('beautiful', './assets/tilemaps/tilesets/beautiful.png');
+        game.load.image('floors', './assets/tilemaps/tilesets/floors.png');
+        game.load.image('furniture', './assets/tilemaps/tilesets/furniture.png');
+        game.load.image('furniture2', './assets/tilemaps/tilesets/furniture2.png');
+        game.load.image('monastery', './assets/tilemaps/tilesets/monastery.png');
+        game.load.image('religious', './assets/tilemaps/tilesets/religious.png');
+        game.load.image('spooky', './assets/tilemaps/tilesets/spooky.png');
         
     },
     
