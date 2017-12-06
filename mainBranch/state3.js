@@ -77,16 +77,8 @@ demo.state3.prototype = {
         
         
         // Integrate Non-Interactive Bots
-        bot3 = game.add.sprite(2230, 246, 'bot1');
-        bot3.scale.set(1.5);
-        bot3.animations.add('walkUp', [12, 13, 14, 15], 5, true);
-        bot3.animations.add('walkDown', [0, 1, 2, 3], 5, true);
-        
-        // Integrate Non-Interactive Bots
-        bot4 = game.add.sprite(1680, 1280, 'bot1');
-        bot4.scale.set(1.5);
-        bot4.animations.add('walkUp', [12, 13, 14, 15], 5, true);
-        bot4.animations.add('walkDown', [0, 1, 2, 3], 5, true);
+        createBot(this, 'Bot1', {"x": 2230, "y": 246}, 'bot1', 1.5, false, [12, 13, 14, 15], [0, 1, 2, 3], 5);
+        createBot(this, 'Bot2', {"x": 1680, "y": 1280}, 'bot1', 1.5, false, [12, 13, 14, 15], [0, 1, 2, 3], 5);
         
         
         //Check for checkpoint before Silva Appears
@@ -99,7 +91,7 @@ demo.state3.prototype = {
         }
         
          // Create chest
-         createChest(this, "chest1", {"x":684, "y":1435},"chest", {"x":1.5, "y":1.5});
+        createChest(this, "chest1", {"x":684, "y":1435},"chest", {"x":1.5, "y":1.5});
         createChest(this, "chest2", {"x":1730, "y":225},"chest", {"x":1.5, "y":1.5});
         
         // Initialize the monk character
@@ -154,68 +146,15 @@ demo.state3.prototype = {
     
     update: function(){
         
-        // Bot animations
-        if (bot3Walk == 'walkUp')
-        {
-            bot3.animations.play('walkUp');
-            bot3.y -= 2;
-            if (bot3.y <= 256)
-            {
-                bot3Walk = 'walkDown';
-                //bot3.animations.stop();
-            }
-        }
-        else 
-        {
-            bot3.animations.play('walkDown');
-            bot3.y += 2;
-            if (bot3.y >= 1120)
-            {
-                bot3Walk = 'walkUp';
-            }
-        }
-        
-        // BOT 2
-        if (bot4Walk == 'walkUp')
-        {
-            bot4.animations.play('walkUp');
-            bot4.y -= 2;
-            if (bot4.y <= 256)
-            {
-                bot4Walk = 'walkDown';
-                //bot4.animations.stop();
-            }
-        }
-        else 
-        {
-            bot4.animations.play('walkDown');
-            bot4.y += 2;
-            if (bot4.y >= 1180)
-            {
-                bot4Walk = 'walkUp';
-            }
-        }
-        
-        
-        
-        if ((monk.x <= 160) && (monk.y <= 480) && (monk.y >= 370)) {
-            console.log("Location for Battle");
-            if ((dialogueCheck.indexOf("Sicarius To Basement") != -1) && (BattlesCompleted.indexOf("Serpent") == -1)) {
-                charPosition = {"x": monk.x, "y": monk.y};
-                console.log("Went to battle");
-                deactivateSounds();
-                game.state.start("BootState", true, false, "../assets/battleJSONs/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
-            }
-        }
-        
-        
+        BotWalk(this, 'Bot1', false, {"turnDownAt": 256, "turnUpAt": 1120});
+        BotWalk(this, 'Bot2', false, {"turnDownAt": 256, "turnUpAt": 1180});
         
         // Update the coodinate variable
         coordinate = 'monastery';
         if ((dialogueCheck.indexOf("Silva Training") != -1)  && (BattlesCompleted.indexOf("Silva") == -1)) 
         {
             charPosition = {"x": monk.x, "y": monk.y};
-            game.state.start("BootState", true, false, "../assets/battleJSONs/SilvaBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
+            game.state.start("BootState", true, false, './assets/battleJSONs/SilvaBattle.JSON', "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
             
             deactivateSounds();
         }

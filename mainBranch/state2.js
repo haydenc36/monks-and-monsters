@@ -195,7 +195,7 @@ demo.state2.prototype = {
         tutorial = true;
     
         if (dialogueCheck.indexOf("Thomas Tutorial") != -1) {
-            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); battleAudio = "tutorial"; deactivateSounds(); game.state.start("BootState", true, false, "../assets/battleJSONs/Tutorial.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ],{},tutorial);});
+            game.physics.arcade.collide(monk, trigger2a, function(){doorSound.play(); battleAudio = "tutorial"; deactivateSounds(); game.state.start("BootState", true, false, './assets/battleJSONs/Tutorial.JSON', "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ],{},tutorial);});
             
             // Play the door sound
             //doorSound.play();

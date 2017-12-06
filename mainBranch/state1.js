@@ -240,7 +240,7 @@ demo.state1.prototype = {
         
         if ((dialogueCheck.indexOf("Typhon Mastermind") != -1)  && (BattlesCompleted.indexOf("Typhon") == -1)) {
             charPosition = {"x": monk.x, "y": monk.y};
-            game.state.start("BootState", true, false, "../assets/battleJSONs/FinalBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
+            game.state.start("BootState", true, false, './assets/battleJSONs/FinalBattle.JSON', "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
         }
         
         if (dialogueCheck.indexOf("Last Dialogue") != -1) {

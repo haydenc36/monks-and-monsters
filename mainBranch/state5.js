@@ -80,17 +80,8 @@ demo.state5.prototype = {
         stairs5.setScale(3.5);
         
         // Integrate Non-Interactive Bots
-        bot5 = game.add.sprite(1920, 1560, 'bot1');
-        bot5.scale.set(5);
-        bot5.animations.add('walkRight', [8, 9, 10, 11], 5, true);
-        bot5.animations.add('walkLeft', [4, 5, 6, 7], 5, true);
-        
-        // Integrate Non-Interactive Bots
-        bot6 = game.add.sprite(1620, 300, 'bot1');
-        bot6.scale.set(3);
-        bot6.animations.add('walkRight', [8, 9, 10, 11], 5, true);
-        bot6.animations.add('walkLeft', [4, 5, 6, 7], 5, true);
-        
+        createBot(this, 'Bot1', {"x": 1920, "y": 1560}, 'bot1', 5, true, [8, 9, 10, 11], [4, 5, 6, 7], 5);
+        createBot(this, 'Bot2', {"x": 1620, "y": 300}, 'bot1', 3, true, [8, 9, 10, 11], [4, 5, 6, 7], 5);
         
         // Integrate the interactive NPCs
         createNPC(this,"Sicarius",{"x":225, "y":1550},"sicarius",{"x":0.5, "y":0.5});
@@ -160,48 +151,8 @@ demo.state5.prototype = {
         
         
         // Bot animations
-        if (bot5Walk == 'walkRight')
-        {
-            bot5.animations.play('walkRight');
-            bot5.y += 2;
-            if (bot5.x >= 2280)
-            {
-                bot5Walk = 'walkLeft';
-                //bot5.animations.stop();
-            }
-        }
-        else 
-        {
-            bot5.animations.play('walkLeft');
-            bot5.x -= 2;
-            if (bot5.x <= 1920)
-            {
-                bot5Walk = 'walkRight';
-            }
-        }
-        
-        // BOT 2
-        if (bot6Walk == 'walkRight')
-        {
-            bot6.animations.play('walkRight');
-            bot6.x += 2;
-            if (bot6.x >= 2100)
-            {
-                bot6Walk = 'walkLeft';
-                //bot6.animations.stop();
-            }
-        }
-        else 
-        {
-            bot6.animations.play('walkLeft');
-            bot6.x -= 2;
-            if (bot6.x <= 1620)
-            {
-                bot6Walk = 'walkRight';
-            }
-        }
-        
-        
+        BotWalk(this, 'Bot1', true, {"turnLeftAt": 2280, "turnRightAt": 1920});
+        BotWalk(this, 'Bot2', true, {"turnLeftAt": 2100, "turnRightAt": 1620});        
         
         if ((monk.x <= 160) && (monk.y <= 480) && (monk.y >= 370)) {
             console.log("Location for Battle");
@@ -209,7 +160,7 @@ demo.state5.prototype = {
                 charPosition = {"x": monk.x, "y": monk.y};
                 console.log("Went to battle");
                 deactivateSounds();
-                game.state.start("BootState", true, false, "../assets/battleJSONs/BrothelBattle.JSON", "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
+                game.state.start("BootState", true, false, './assets/battleJSONs/BrothelBattle.JSON', "BattleState", [characterEnergy,characterMana,characterStamina,charMaxEnergy,charMaxMana,charMaxStamina], [wineQ, breadQ,scrollQ]);
             }
         }
         
