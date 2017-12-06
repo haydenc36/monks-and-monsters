@@ -61,7 +61,7 @@ demo.state2.prototype = {
         //Load Enemies
         game.load.image('QMark', './assets/sprites/QMark.png');
         game.load.image('tutorialEnemy', './assets/sprites/priest.png');
-        game.load.image('heresy', './assets/sprites/heresymonster.png')
+        game.load.image('heresy', './assets/sprites/heresyMonster.png')
         
         //load Sprites for inventory
         game.load.spritesheet('inventory_base', './assets/sprites/scroll_menu.png');
