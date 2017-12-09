@@ -92,7 +92,9 @@ demo.state5.prototype = {
         }
         
         // Create chest
-         createChest(this, "chest1", {"x":1890, "y":410},"chest",{"x":2, "y":2});
+        createChest(this, "chest1", {"x":2000, "y":220},"chest",{"x":2, "y":2});
+        
+        createChest(this, "chest2", {"x":62, "y":900},"chest",{"x":2, "y":2});
         
         // Initialize the monk character
         if ((!!returnState) && (returnState == "state0")) {
