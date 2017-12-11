@@ -1,7 +1,6 @@
 // Brothel / Revolutionary Hangout
 var demo = demo || {};
 var trigger5, noWalk5;
-var bot5, bot6, bot5Walk, bot6Walk;
 
 demo.state5 = function(){};
 demo.state5.prototype = {

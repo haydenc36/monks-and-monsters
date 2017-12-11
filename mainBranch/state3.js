@@ -1,8 +1,6 @@
 // Monastery
 var demo = demo || {};
 var noWalk3;
-var bot3, bot3Walk, bot4, bot4Walk;
-
 
 demo.state3 = function(){};
 demo.state3.prototype = {
