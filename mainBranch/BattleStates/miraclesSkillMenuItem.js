@@ -13,8 +13,7 @@ demo.miraclesSkillMenuItem.prototype.select = function () {
     // disable skills menu
     if ((!!this.game_state.prefabs.miraclesskills_menu) && (!!this.game_state.prefabs.actions_menu)) {
         this.game_state.prefabs.miraclesskills_menu.disable();
-        // enable player units menu so the player can choose the target
-        //this.game_state.prefabs.players_menu.enable();
+        
         this.game_state.current_item = this.text;
         this.game_state.prefabs.miraclesskills.use_skill(this.game_state.current_item);
         this.game_state.prefabs.actions_menu.enable();

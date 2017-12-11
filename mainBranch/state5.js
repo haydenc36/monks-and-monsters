@@ -34,14 +34,12 @@ demo.state5.prototype = {
         
         // Initialize Physics
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        //vel = 400; 
         
         //Adjust the camera settings
         bounds_x = 2240; //important to avoid text box overlapping with world borders
         bounds_y = 1680
         game.world.setBounds(0,0, bounds_x, bounds_y);
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets
         var map = game.add.tilemap('england_brothel');
@@ -119,7 +117,6 @@ demo.state5.prototype = {
         
         //Camera
         game.camera.follow(monk);
-        //game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
         
         createHUD(this);
         createInventory(this);

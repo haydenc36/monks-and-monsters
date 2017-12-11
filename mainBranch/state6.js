@@ -35,7 +35,6 @@ demo.state6.prototype = {
         var instructions = game.add.sprite(320, 220, 'instructions');
         
         this.createButton(40, "Main Menu", 650, 770, 400, 200, function(){
-            //this.state.start("intro", true, false, [1000,1000,1000], [10,10]);
             this.state.start("state0", true, false, [1000,1000,1000,1000,1000,1000], [10,10]);
         });
     },

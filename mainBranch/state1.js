@@ -47,7 +47,6 @@ demo.state1.prototype = {
         //Adjust camera settings
         game.world.setBounds(0, 0, 2400, 2400);
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
         
         // Integrate the map
@@ -185,7 +184,6 @@ demo.state1.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        //game.camera.deadzone = new Phaser.Rectangle(500, 200, 200, 200);
         
         // Audio Variable
         audioCoordinate = "outside";

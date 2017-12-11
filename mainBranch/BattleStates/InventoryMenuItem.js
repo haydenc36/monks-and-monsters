@@ -15,7 +15,7 @@ demo.InventoryMenuItem.prototype.select = function () {
         // disable actions menu
         if ((!!this.game_state.prefabs.actions_menu) && (!!this.game_state.prefabs.items_menu)) {
             this.game_state.prefabs.actions_menu.disable();
-            //this.game_state.prefabs.actions_menu.hide();
+            
             // enable enemy units menu so the player can choose the target
             this.game_state.prefabs.items_menu.show();
             this.game_state.prefabs.items_menu.enable();

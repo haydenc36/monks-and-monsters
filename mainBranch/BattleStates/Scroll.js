@@ -12,12 +12,10 @@ demo.Scroll.prototype.constructor = demo.Scroll;
 demo.Scroll.prototype.use = function () {
     "use strict";
     
-    // Sword Audio
-    scrollSound.play();
-    
     if (this.game_state.prefabs[this.name].stats.quantity > 0){
         if (this.game_state.prefabs.Monk.stats.stamina < this.game_state.prefabs.Monk.stats.maxSP) {
-            // Scroll Audio ?
+            // Scroll Audio
+            scrollSound.play();
             
             demo.Item.prototype.use.call(this);
             if (this.game_state.prefabs.Monk.stats.stamina + this.mana_power > this.game_state.prefabs.Monk.stats.maxSP) {

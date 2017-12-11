@@ -13,7 +13,6 @@ preload: function()
     {
         game.load.spritesheet('fade', './assets/sprites/blackBox.jpg');
         game.load.spritesheet('paper', './assets/boxes/intro-paper.png');
-        //game.load.audio('introsound', '../assets/audio/intro.mp3');
 
     },
 create: function()

@@ -56,7 +56,6 @@ demo.state2.prototype = {
         
         // Load Non-Interactive NPCs
         game.load.spritesheet('bot1', './assets/spritesheets/bot1.png', 32, 53);
-        //game.load.spritesheet('bot1', './assets/spritesheets/bot1.png', 32, 53);
         
         //Load Enemies
         game.load.image('QMark', './assets/sprites/QMark.png');

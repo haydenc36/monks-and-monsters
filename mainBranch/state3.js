@@ -117,7 +117,6 @@ demo.state3.prototype = {
         
         // Adjust the camera
         game.camera.follow(monk);
-        //game.camera.deadzone = new Phaser.Rectangle(300, 300, 800, 200);
         
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         

@@ -29,7 +29,6 @@ demo.state4.prototype = {
         bounds_x = 1280; //important to avoid text box overlapping with world borders
         bounds_y = 1280;
         game.world.setBounds(0,0, bounds_x, bounds_y);
-        //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         
         // Initialize the tilemap and tilesets

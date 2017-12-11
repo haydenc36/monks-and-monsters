@@ -15,7 +15,6 @@ demo.AngelOfDeath.prototype.hit = function (target) {
     var damage, action_message_position, action_message_text, attack_message;
     //damage using the Angel of Death attack
     damage = target.stats.maxHP / 2;
-    //damage = target.stats.health;
     target.receive_damage(damage);
     
     // reduce the unit mana
