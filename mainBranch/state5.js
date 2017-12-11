@@ -111,7 +111,7 @@ demo.state5.prototype = {
         game.physics.enable(monk);
         monk.body.collideWorldBounds = true;
         monk.anchor.setTo(0.5, 0.5);
-        monk.animations.add('walkRight', [5, 6], 5);
+        monk.animations.add('walkUp', [5, 6], 5);
         monk.animations.add('walk', [1,2], 5);
         
         // Allow for collisions

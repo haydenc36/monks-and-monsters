@@ -3,8 +3,6 @@ var demo = demo || {};
 var trigger1a, trigger1b, trigger1c, buildings2_noWalk1, buildings1_noWalk1, mountains_nowalking1, makeTyphon = true;
 var sethSprite, sethSpriteTxt;
 
-var bot1, bot1Walk = 'walkRight', bot2, bot2Walk = 'walkUp';
-
 demo.state1 = function(){};
 demo.state1.prototype = {
     
